@@ -1,0 +1,310 @@
+# import stuff
+import discord
+import json
+# import stuff
+import os
+
+# import stuff
+import typing
+import asyncio
+import datetime
+# import stuff
+from dotenv import load_dotenv
+from discord.ext.commands import Bot
+from discord.ext import commands
+from datetime import datetime
+from discord.ext.tasks import loop
+
+
+# Load .env file
+load_dotenv()
+
+# Grab api token
+DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+# gets client stuff
+def get_prefix(client, message):
+	if not message.guild:
+		return ['B!', 'b!']
+	with open('prefixes.json', 'r') as f:
+		prefixes = json.load(f)
+	return prefixes[str(message.guild.id)]
+def get_logs(client, message):
+	if not message.guild:
+		return ["None"]
+	with open('logs.json', 'r') as f1:
+		logs = json.load(f1)
+	return logs[str(message.guild.id)]
+
+
+client = discord.Client()
+client = commands.Bot(command_prefix=get_prefix)
+client.remove_command('help')
+client.uptime = datetime.utcnow()
+owner = client.get_user(client.owner_id)
+client.owner_id = 690420846774321221
+client.load_extension("jishaku")
+prefixes1 = get_prefix
+logs = get_logs
+
+@client.event
+async def on_ready():
+	# server counter
+	guild_count = 0
+	users = 0
+	# gets guild info
+	for guild in client.guilds:
+		with open('prefixes.json', 'r') as f:
+			prefixes = json.load(f)
+		prefixes[str(guild.id)] = ['B.', 'b.']
+		with open('prefixes.json', 'w') as f:
+			json.dump(prefixes, f, indent=4)
+
+		# prints guild name
+		print(f"- {guild.id} (name: {guild.name})")
+
+		# guild counter
+		guild_count = guild_count + 1
+		for member in guild.members:
+			users = users + 1
+
+	# prints amount of servers
+	print("BobDotBot is in " + str(guild_count) + " guilds.")
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+
+@client.event
+async def on_command_error(ctx, error):
+  if hasattr(ctx.command, 'on_error'):
+    return
+
+  ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions)
+  error = getattr(error, 'original', error)
+
+
+  if isinstance(error, commands.CommandNotFound):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Sorry, {error}. Use my help command for a command list", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.BadArgument):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.MissingRequiredArgument):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.NoPrivateMessage):
+    return
+
+  elif isinstance(error, commands.CheckFailure):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"You do not have the required permissions to run this command", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.DisabledCommand):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like this command in disabled.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.CommandInvokeError):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like something went wrong. Report this issue to the developer.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.TooManyArguments):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like you gave too many arguments.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.UserInputError):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like you did something wrong.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.CommandOnCooldown):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.NotOwner):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like you do not own this bot.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.MissingPermissions):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+
+  elif isinstance(error, commands.BotMissingPermissions):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+@client.event
+async def on_message(message):
+	await client.process_commands(message)
+	if client.user.mentioned_in(message):
+
+		with open("prefixes.json","r") as f:
+			prefixes = json.load(f)
+
+		if str(message.guild.id) in prefixes:
+   			prefix = prefixes[str(message.guild.id)]
+
+		else:
+   			prefix = 'B. or b.'
+		owner = client.get_user(client.owner_id)
+		# await message.channel.send("Hi, i'm BobDotBot, and my prefix is `B.` If you don't know any of my commands yet, try doing `B.help`, and i will DM you a list of commands that you can use with me!")
+		embedVar = discord.Embed(title="Hi, i'm BobDotBot!", description=f"My prefix(es) here: `{', '.join(prefix)}`", color=0x00ff00, timestamp=message.created_at)
+		embedVar.add_field(name="What do I do?", value="If you don't know any of my commands yet, try using my `help` command, and I will DM you a list of commands that you can use with me!")
+		embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
+		await message.channel.send(embed=embedVar)
+
+
+@client.event
+async def on_guild_join(guild):
+	guild_count = 0
+	users = 0
+	with open('prefixes.json', 'r') as f:
+		prefixes = json.load(f)
+	prefixes[str(guild.id)] = ['B.', 'b.']
+	with open('prefixes.json', 'w') as f:
+		json.dump(prefixes, f, indent=4)
+	for guild in client.guilds:
+		# prints guild name
+
+		# guild counter
+		guild_count = guild_count + 1
+		for member in guild.members:
+			users = users + 1
+
+	# prints amount of servers
+	print("BobDotBot is now in " + str(guild_count) + " guilds.")
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+
+@loop(seconds=120)
+async def server_timer():
+	await client.wait_until_ready()
+	guild_count = 0
+	users = 0
+	for guild in client.guilds:
+		# prints guild name
+
+		# guild counter
+		guild_count = guild_count + 1
+		for member in guild.members:
+			users = users + 1
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+	await asyncio.sleep(240)
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"B.help"))
+@client.event
+async def on_guild_remove(guild):
+  guild_count = 0
+  users = 0
+  with open('prefixes.json', 'r') as f:
+    prefixes = json.load(f)
+  prefixes.pop(str(guild.id))
+  with open('prefixes.json', 'w') as f:
+	  json.dump(prefixes, f, indent=4)
+	#with open('logs.json', 'r') as f1:
+		#logs = json.load(f1)
+	#logs.pop(str(guild.id))
+	#with open('logs.json', 'w') as f1:
+		#json.dump(logs, f1, indent=4)
+  for guild in client.guilds:
+		# prints guild name
+
+		# guild counter
+	  guild_count = guild_count + 1
+	  for member in guild.members:
+		  users = users + 1
+
+	# prints amount of servers
+  print("BobDotBot is now in " + str(guild_count) + " guilds.")
+  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+
+@client.command(aliases=['l'])
+@commands.is_owner()
+async def load(ctx, extension):
+    """Loads the specified Cog"""
+    client.load_extension(f'cogs.{extension}')
+    print(f'Cog "{extension}" was loaded')
+    await ctx.send(f'Loaded Cog "{extension}"')
+
+@client.command(aliases=['u'])
+@commands.is_owner()
+async def unload(ctx, extension):
+    """Unloads the specified Cog"""
+    client.unload_extension(f'cogs.{extension}')
+    print(f'Cog "{extension}" was unloaded')
+    await ctx.send(f'Unloaded Cog "{extension}"')
+
+@client.command(aliases=['r'])
+@commands.is_owner()
+async def reload(ctx, extension):
+    """Reloads the specified Cog"""
+    client.unload_extension(f'cogs.{extension}')
+    client.load_extension(f'cogs.{extension}')
+    print(f'Cog "{extension}" was reloaded')
+    await ctx.send(f'Reloaded Cog "{extension}"')
+
+@client.command(aliases=['ra'])
+@commands.is_owner()
+async def reloadall(ctx):
+    """Reloads all Cogs"""
+    print('All Cogs were reloaded{')
+    firstTime = True
+    reloaded = []
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+                client.reload_extension(f'cogs.{filename[:-3]}')
+                reloaded += [filename[:-3], ]
+                if firstTime:
+                        embedvar = discord.Embed(title='Reloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were reloaded')
+                        msg = await ctx.send(embed=embedvar)
+                        firstTime = False
+                else:
+                        embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0xff0000)
+                        await msg.edit(embed=embedvar1)
+                print(f'Cog: {filename[:-3]} was reloaded')
+                #await ctx.send(f'Cog: {filename[:-3]} was reloaded')
+    print('}')
+    embedvar = discord.Embed(title='Success!', description="Successfully reloaded all Cogs", color=0x00ff00)
+    await ctx.send(embed=embedvar)
+
+
+@client.command(aliases=['la'])
+@commands.is_owner()
+async def loadall(ctx):
+    """Loads all Cogs"""
+    print('All Cogs were loaded{')
+    firstTime = True
+    loaded = []
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+                client.load_extension(f'cogs.{filename[:-3]}')
+                loaded += [filename[:-3], ]
+                if firstTime:
+                        embedvar = discord.Embed(title='Loading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were loaded')
+                        msg = await ctx.send(embed=embedvar)
+                        firstTime = False
+                else:
+                        embedvar1 = discord.Embed(title='Loading Cogs...', description=f"Loaded cog(s): {', '.join(loaded)}", color=0xff0000)
+                        await msg.edit(embed=embedvar1)
+                print(f'Cog: {filename[:-3]} was Loaded')
+                #await ctx.send(f'Cog: {filename[:-3]} was reloaded')
+    print('}')
+    embedvar = discord.Embed(title='Success!', description="Successfully Loaded all Cogs", color=0x00ff00)
+    await ctx.send(embed=embedvar)
+
+@client.command(aliases=['ua'])
+@commands.is_owner()
+async def unloadall(ctx):
+    """Unloads all Cogs"""
+    print('All Cogs were unloaded{')
+    firstTime = True
+    unloaded = []
+    for filename in os.listdir('./cogs'):
+        if filename.endswith('.py'):
+                client.unload_extension(f'cogs.{filename[:-3]}')
+                unloaded += [filename[:-3], ]
+                if firstTime:
+                        embedvar = discord.Embed(title='Unloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were Unloaded')
+                        msg = await ctx.send(embed=embedvar)
+                        firstTime = False
+                else:
+                        embedvar1 = discord.Embed(title='Unloading Cogs...', description=f"Unloaded cog(s): {', '.join(unloaded)}", color=0xff0000)
+                        await msg.edit(embed=embedvar1)
+                print(f'Cog: {filename[:-3]} was unloaded')
+                #await ctx.send(f'Cog: {filename[:-3]} was reloaded')
+    print('}')
+    embedvar = discord.Embed(title='Success!', description="Successfully unloaded all Cogs", color=0x00ff00)
+    await ctx.send(embed=embedvar)
+
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        client.load_extension(f'cogs.{filename[:-3]}')
+
+
+
+server_timer.start()
+# token
+client.run(DISCORD_TOKEN)

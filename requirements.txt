@@ -1,0 +1,6 @@
+discord.py
+PyNaCl
+jishaku
+aiosqlite
+python-dotenv
+youtube-dl
