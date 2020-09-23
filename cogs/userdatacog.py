@@ -40,7 +40,7 @@ class Levels(commands.Cog, name = "User database"):
         cur_xp = self.users[author_id]['exp']
         cur_lvl = self.users[author_id]['level']
 
-        if cur_xp >= round((4 * (cur_lvl ** 3)) / 5):
+        if cur_xp >= round((2 * (cur_lvl ** 3)) / 7):
             self.users[author_id]['level'] += 1
             return True
         else:
