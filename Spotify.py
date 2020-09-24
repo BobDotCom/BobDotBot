@@ -78,7 +78,6 @@ def searchYoutube(trackname):
 
 def getTrackName(id, access_token):
     """ get the spotify track name from id """
-    print ACTION + " getting track name"
     proc = subprocess.Popen('curl -sS -X GET "https://api.spotify.com/v1/tracks/'+ id +'?market=ES" -H "Authorization: Bearer '+ access_token +'"', shell=True, stdout=subprocess.PIPE)
     tmp = proc.stdout.read()
     #convert from json to string
