@@ -27,14 +27,14 @@ OK      =  GREEN + "[+] " + DEFAULT
 #=======================
 #   Spotify application
 #=======================
-CLIENT_ID=""
+CLIENT_ID="6227cb2a7cdb408597867c6231a17870"
 CALL_BACK_URL=""
 
 # Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
 # tab of
 #   https://cloud.google.com/console
 # Please ensure that you have enabled the YouTube Data API for your project.
-DEVELOPER_KEY = "REPLACE_ME"
+DEVELOPER_KEY = "AIzaSyAeNg35fSL5Id-PPX9ORfNFJVO_dJMerWA"
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 
