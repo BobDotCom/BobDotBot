@@ -34,7 +34,7 @@ class Levels(commands.Cog, name = "User database"):
             json.dump(self.users, open("users.json", "w"), indent=4)
 
 
-            await asyncio.sleep(5)
+            await asyncio.sleep(60)
 
     def lvl_up(self, author_id):
         cur_xp = self.users[author_id]['exp']
