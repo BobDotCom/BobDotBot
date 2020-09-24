@@ -43,7 +43,7 @@ class MainCog(commands.Cog, name = "General"):
                         self.users = json.load(f1)
 
 
-            	await asyncio.sleep(60)
+                await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
         print('MainCog is active')
