@@ -84,7 +84,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.command()
     @commands.is_owner()
     async def save(self, ctx):
-        c = self.client.get_guild(727739470731935765).get_channel(751834280929525791)
+        c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
         """Saves all data to the GitHub repository"""
         output = sp.getoutput('git pull origin main')
         await c.send(f"""
