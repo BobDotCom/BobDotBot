@@ -330,7 +330,7 @@ class Music(commands.Cog):
         if not ctx.voice_state.is_playing:
             return await ctx.send('Nothing being played at the moment.')
 
-        if 0 >= volume >= 100:
+        if 0 >= volume or volume >= 100:
             return await ctx.send('Volume must be between 0 and 100')
 
         ctx.voice_state.volume = volume / 100
@@ -452,7 +452,7 @@ class Music(commands.Cog):
 
         # Inverse boolean value to loop and unloop.
         ctx.voice_state.loop = not ctx.voice_state.loop
-        await ctx.send(str(ctx.voice_state.loop))
+        await ctx.send(f"The player loop status is currently: {str(ctx.voice_state.loop}"))
         await ctx.message.add_reaction('✅')
 
     @commands.command(name='play')
