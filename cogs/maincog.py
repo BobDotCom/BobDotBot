@@ -34,13 +34,13 @@ class MainCog(commands.Cog, name = "General"):
         self.client.helper3_id = 706898741499789364
         with open("users.json", 'r') as f1:
             self.users = json.load(f1)
-	self.client.loop.create_task(self.save_users())
+        self.client.loop.create_task(self.save_users())
 
     async def save_users(self):
         await self.client.wait_until_ready()
         while not self.client.is_closed():
-		with open("users.json", 'r') as f1:
-            		self.users = json.load(f1)
+                with open("users.json", 'r') as f1:
+                        self.users = json.load(f1)
 
 
             	await asyncio.sleep(60)
