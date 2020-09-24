@@ -255,6 +255,7 @@ class VoiceState:
 
 
 class Music(commands.Cog):
+    """Music Commands! Want to listen to your favorite songs without even leaving discord? Use these commands to easily play songs in any voice channel the bot has acccess to"""
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.voice_states = {}
@@ -311,7 +312,7 @@ class Music(commands.Cog):
 
         ctx.voice_state.voice = await destination.connect()
 
-    @commands.command(name='leave', aliases=['disconnect'])
+    @commands.command(name='leave', aliases=['disconnect', 'fuckoff'])
     @commands.has_permissions(manage_guild=True)
     async def _leave(self, ctx: commands.Context):
         """Clears the queue and leaves the voice channel."""
@@ -329,7 +330,7 @@ class Music(commands.Cog):
         if not ctx.voice_state.is_playing:
             return await ctx.send('Nothing being played at the moment.')
 
-        if 0 > volume > 100:
+        if 0 >= volume >= 100:
             return await ctx.send('Volume must be between 0 and 100')
 
         ctx.voice_state.volume = volume / 100
@@ -451,6 +452,7 @@ class Music(commands.Cog):
 
         # Inverse boolean value to loop and unloop.
         ctx.voice_state.loop = not ctx.voice_state.loop
+        await ctx.send(str(ctx.voice_state.loop))
         await ctx.message.add_reaction('✅')
 
     @commands.command(name='play')
