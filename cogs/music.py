@@ -452,7 +452,7 @@ class Music(commands.Cog):
 
         # Inverse boolean value to loop and unloop.
         ctx.voice_state.loop = not ctx.voice_state.loop
-        await ctx.send(f"The player loop status is currently: {str(ctx.voice_state.loop}"))
+        await ctx.send(f"The player loop status is currently: {str(ctx.voice_state.loop}")
         await ctx.message.add_reaction('✅')
 
     @commands.command(name='play')
