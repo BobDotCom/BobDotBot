@@ -25,15 +25,25 @@ class MainCog(commands.Cog, name = "General"):
     """General commands that anyone can use"""
 
     def __init__(self, client):
-	self.client = client
-	self.client.uptime = datetime.utcnow()
-	owner = self.client.get_user(self.client.owner_id)
-	self.client.owner_id = 690420846774321221
-	self.client.helper1_id = 716503311402008577
-	self.client.helper2_id = 280667989370732545
-	self.client.helper3_id = 706898741499789364
-	with open("users.json", 'r') as f1:
-		self.users = json.load(f1))
+        self.client = client
+        self.client.uptime = datetime.utcnow()
+        owner = self.client.get_user(self.client.owner_id)
+        self.client.owner_id = 690420846774321221
+        self.client.helper1_id = 716503311402008577
+        self.client.helper2_id = 280667989370732545
+        self.client.helper3_id = 706898741499789364
+        with open("users.json", 'r') as f1:
+            self.users = json.load(f1)
+	self.client.loop.create_task(self.save_users())
+
+    async def save_users(self):
+        await self.client.wait_until_ready()
+        while not self.client.is_closed():
+		with open("users.json", 'r') as f1:
+            		self.users = json.load(f1)
+
+
+            	await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
         print('MainCog is active')
