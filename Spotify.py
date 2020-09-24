@@ -66,11 +66,6 @@ def youtube_search(options):
     elif search_result["id"]["kind"] == "youtube#playlist":
       playlists.append("%s (%s)" % (search_result["snippet"]["title"],
                                     search_result["id"]["playlistId"]))
-
-  print "Videos:\n", "\n".join(videos), "\n"
-  print "Channels:\n", "\n".join(channels), "\n"
-  print "Playlists:\n", "\n".join(playlists), "\n"
-
 def searchYoutube(trackname):
     textToSearch = trackname
     query = urllib.quote(textToSearch)
@@ -91,34 +86,22 @@ def getTrackName(id, access_token):
     #json.dump(tmp, io)
     data = json.loads(tmp)
     if 'error' in data:
-        print ERROR + "can't found song name"
-        print ERROR + data['error']['message']
         return None
     else:
-        print OK + "name is " + data["name"]
         return data["name"]
 
 def genUrl():
     """ gen url for getting access token """
-    print ACTION + " generating url for access token"
-    print OK +  "https://accounts.spotify.com/authorize?client_id="+ CLIENT_ID + "&response_type=token&redirect_uri=" + CALL_BACK_URL
-
 def getAccessToken():
     """ get access token """
-    print ACTION + " getting access token"
     proc = subprocess.Popen('curl -sS -X GET "https://accounts.spotify.com/authorize?client_id='+ CLIENT_ID +'&response_type=token&redirect_uri='+ CALL_BACK_URL +'" -H "Accept: application/json"', shell=True, stdout=subprocess.PIPE)
     tmp = proc.stdout.read()
     data = json.loads(tmp)
 
-    print data
 
 
 def header():
 	""" header informations """
-	print RED + "@ spotify-dl.py version 0.0.1"
-	print YELLOW + "@ author : Naper"
-	print BLUE + "@ Designed for OSx/linux"
-	print "" + DEFAULT
 
 
 if __name__ == "__main__":
@@ -150,8 +133,7 @@ if __name__ == "__main__":
               link = searchYoutube(name)
               print(link)
           else :
-              print ERROR
+              print(ERROR)
   except Exception, err:
-    print ERROR + "An HTTP error occurred\n"
     if args.traceback:
     	traceback.print_exc()
