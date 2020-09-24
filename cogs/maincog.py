@@ -32,8 +32,6 @@ class MainCog(commands.Cog, name = "General"):
         self.client.helper1_id = 716503311402008577
         self.client.helper2_id = 280667989370732545
         self.client.helper3_id = 706898741499789364
-        with open("users.json", 'r') as f1:
-            self.users = json.load(f1)
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -277,6 +275,8 @@ class MainCog(commands.Cog, name = "General"):
         member = ctx.author if not member else member
         member_id = str(member.id)
         owner = self.client.get_user(self.client.owner_id)
+	with open("users.json", 'r') as f1:
+            self.users = json.load(f1)
 
         if not member_id in self.users:
             await ctx.send("Member doesn't have a level. This could be because they have not talked yet.")
