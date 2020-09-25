@@ -332,7 +332,7 @@ class MainCog(commands.Cog, name = "General"):
     async def emoji_id(self,ctx,emoji: discord.Emoji):
         """get emoji id"""
         await ctx.send(emoji.id)
-	emoji = self.client.get_emoji(emoji.id)
+        emoji = self.client.get_emoji(emoji.id)
         await ctx.send(emoji)
 
 def setup(client):
