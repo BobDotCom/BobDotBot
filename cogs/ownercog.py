@@ -84,35 +84,36 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.command()
     @commands.is_owner()
     async def save(self, ctx):
-        c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
         """Saves all data to the GitHub repository"""
-        output = sp.getoutput('git pull origin main')
-        await c.send(f"""
-        ```sh
-        {output}
-        ```
-        """)
-        output = sp.getoutput('git add .')
-        await c.send(f"""
-        ```sh
-        {output}
-        ```
-        """)
-        output = sp.getoutput('git commit -m "Save"')
-        await c.send(f"""
-        ```sh
-        {output}
-        ```
-        """)
-        output = sp.getoutput('git push origin main')
-        await c.send(f"""
-        ```sh
-        {output}
-        ```
-        """)
-        owner = self.client.get_user(self.client.owner_id)
-        embedvar = discord.Embed(title="Saving...", description="Save to the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
-        embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
-        await ctx.send(embed=embedvar)
+        async with ctx.channel.typing():
+            c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
+            output = sp.getoutput('git pull origin main')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            output = sp.getoutput('git add .')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            output = sp.getoutput('git commit -m "Save"')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            output = sp.getoutput('git push origin main')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            owner = self.client.get_user(self.client.owner_id)
+            embedvar = discord.Embed(title="Saving...", description="Save to the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
+            embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
+            await ctx.send(embed=embedvar)
 def setup(client):
     client.add_cog(OwnerCog(client))
