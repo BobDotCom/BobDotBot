@@ -115,5 +115,45 @@ class OwnerCog(commands.Cog, name = "Owner"):
             embedvar = discord.Embed(title="Saving...", description="Save to the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
             embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
             await ctx.send(embed=embedvar)
+    @commands.command()
+    @commands.is_owner()
+    async def save(self, ctx):
+        """Saves all data to the GitHub repository"""
+        async with ctx.channel.typing():
+            c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
+            output = sp.getoutput('git add users.json')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            output = sp.getoutput('git add prefixes.json')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            output = sp.getoutput('git add mainbank.json')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            output = sp.getoutput('git commit -m "Save"')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            output = sp.getoutput('git push origin main')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            owner = self.client.get_user(self.client.owner_id)
+            embedvar = discord.Embed(title="Saving...", description="Save to the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
+            embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
+            await ctx.send(embed=embedvar)
 def setup(client):
     client.add_cog(OwnerCog(client))
