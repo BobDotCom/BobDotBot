@@ -83,8 +83,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
         await ctx.send(embed=embedvar)
     @commands.command()
     @commands.is_owner()
-    async def save(self, ctx):
-        """Saves all data to the GitHub repository"""
+    async def sync(self, ctx):
+        """Syncs all data with the GitHub repository"""
         async with ctx.channel.typing():
             c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
             output = sp.getoutput('git pull origin main')
