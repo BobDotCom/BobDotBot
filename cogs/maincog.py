@@ -331,7 +331,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command()
     async def emoji_id(self,ctx,emoji: discord.Emoji):
         """get emoji id"""
-	owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_id)
         emoji = self.client.get_emoji(emoji.id)
         embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title=f'{emoji} Emoji id for :{emoji.name}: {emoji}',description=f'ID: {emoji.id}')
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
