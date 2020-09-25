@@ -328,7 +328,9 @@ class MainCog(commands.Cog, name = "General"):
         await msg.add_reaction(emoji='✅')
         await msg.add_reaction(emoji='❎')
         await ctx.send(embed=embed)
-
+    @commands.command()
+    async def emoji_id(self,ctx,emoji: discord.Emoji):
+        await ctx.send(emoji.id)
 
 def setup(client):
     client.add_cog(MainCog(client))
