@@ -60,7 +60,7 @@ class economy(commands.Cog, name = "Economy"):
               await self.update_bank(ctx.author,1*wallet_amt)
 
         else:
-              await self.update_bank(ctx.author,-1*amount)
+              await self.update_bank(ctx.author,-1*wallet_amt)
               embedVar = discord.Embed(title=f"The coin landed on... {answer}", description=f"You lost {wallet_amt}", color = discord.Color.dark_blue())
         await ctx.send(embed = embedVar)
       
