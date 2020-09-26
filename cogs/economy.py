@@ -47,6 +47,8 @@ class economy(commands.Cog, name = "Economy"):
         answer = random.randrange(2)
         await asyncio.sleep(2)
         await msg.delete()
+        user = ctx.author
+        users = await self.get_bank_data()
         wallet_amt = users[str(user.id)]["wallet"]
 
         if answer == 1:
