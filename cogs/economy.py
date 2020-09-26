@@ -23,7 +23,7 @@ class economy(commands.Cog, name = "Economy"):
         self.client = client
     @commands.command(aliases=['bal'])
     async def balance(self,ctx,*,member: discord.Member = None):
-        """Checks your wallet and bank bslance, can be useful to use a lot of commands"""
+        """See how much money you have"""
         member = ctx.author if not member else member
         await self.open_account(member)
         user = member
@@ -33,14 +33,35 @@ class economy(commands.Cog, name = "Economy"):
         bank_amt = users[str(user.id)]["bank"]
  
         em = discord.Embed(title = f"{member.name}'s balance",color = discord.Color.dark_blue())
-        em.add_field(name = "Wallet balance", value = wallet_amt)
-        em.add_field(name = "Bank balance", value = bank_amt)
+        em.add_field(name = "Wallet", value = wallet_amt)
+        em.add_field(name = "Bank", value = bank_amt)
         await ctx.send(embed = em)
 
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.user)
     async def allin(self,ctx):
       """Bet all of your money in a coin toss"""
+      async with ctx.channel.typing():
+        emoji = self.client.get_emoji(759047006290313237) 
+        msg = await ctx.send(f"{emoji}")
+        answer = random.randrange(2)
+        await asyncio.sleep(2)
+        await msg.delete
+        wallet_amt = users[str(user.id)]["wallet"]
+
+        if answer == 1:
+            answer = 'heads'
+        elif answer == 0:
+            answer = 'tails'
+        if answer is str("heads"):
+              embedVar = discord.Embed(title=f"The coin landed on... {answer}", description=f"You won {wallet_amt}", color = discord.Color.dark_blue())
+              await self.update_bank(ctx.author,1*wallet_amt)
+
+        else:
+              await self.update_bank(ctx.author,-1*amount)
+              embedVar = discord.Embed(title=f"The coin landed on... {answer}", description=f"You lost {wallet_amt}", color = discord.Color.dark_blue())
+        await ctx.send(embed = embedVar)
+      
 
     @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.user)
@@ -59,45 +80,45 @@ class economy(commands.Cog, name = "Economy"):
         with open("mainbank.json","w") as f:
             json.dump(users,f)
 
-    @commands.command()
-    @commands.cooldown(1, 86400, commands.BucketType.user)
-    async def daily(self,ctx):
-        """use this every 24 hours to get a bonus"""
-        await self.open_account(ctx.author)
-        user = ctx.author
-        users = await self.get_bank_data()
+    #@commands.command()
+    #@commands.cooldown(1, 86400, commands.BucketType.user)
+    #async def daily(self,ctx):
+        #"""use this every 24 hours to get a bonus"""
+        #await self.open_account(ctx.author)
+        #user = ctx.author
+        #users = await self.get_bank_data()
 
-        earnings = 1000
+        #earnings = 1000
 
-        await ctx.send(f"you got {earnings} come back in 24 hours to get more")
+        #await ctx.send(f"you got {earnings} come back in 24 hours to get more")
 
-        users[str(user.id)]["wallet"] += earnings
+        #users[str(user.id)]["wallet"] += earnings
     
-        with open("mainbank.json","w") as f:
-            json.dump(users,f)
+        #with open("mainbank.json","w") as f:
+            #json.dump(users,f)
 
-    @commands.command()
-    @commands.cooldown(1, 604800, commands.BucketType.user)
-    async def weekly(self,ctx):
-        """use this every week to get a bonus"""
-        await self.open_account(ctx.author)
-        user = ctx.author
-        users = await self.get_bank_data()
+    #@commands.command()
+    #@commands.cooldown(1, 604800, commands.BucketType.user)
+    #async def weekly(self,ctx):
+        ##"""use this every week to get a bonus"""
+        ##await self.open_account(ctx.author)
+        ##user = ctx.author
+        ##users = await self.get_bank_data()
 
-        earnings = 10000
+        ##earnings = 10000
 
-        await ctx.send(f"you got {earnings} come back in 1 week to get more")
+        ##await ctx.send(f"you got {earnings} come back in 1 week to get more")
 
-        users[str(user.id)]["wallet"] += earnings
+        ##users[str(user.id)]["wallet"] += earnings
     
-        with open("mainbank.json","w") as f:
-            json.dump(users,f)
+        ##with open("mainbank.json","w") as f:
+            ##json.dump(users,f)
 
 
     @commands.command()
-    @commands.cooldown(1, 43200, commands.BucketType.user)
+    @commands.cooldown(1, 3600, commands.BucketType.user)
     async def work(self,ctx):
-        """Work and be like everyone else"""
+        """Go to work. Get a job. Leave your parents basement. Yes, I mean you. Lazy."""
         await self.open_account(ctx.author)
         user = ctx.author
         users = await self.get_bank_data()
@@ -114,7 +135,7 @@ class economy(commands.Cog, name = "Economy"):
 
     @commands.command(aliases=['with'])
     async def withdraw(self,ctx,amount = None):
-        """withdraw money from your bank to buy things and to get stollen from"""
+        """Withdraw money from your bank to use it"""
         await self.open_account(ctx.author)
         if amount == None:
             await ctx.send("Please enter the amount")
@@ -127,7 +148,7 @@ class economy(commands.Cog, name = "Economy"):
             await ctx.send("You dont have that much money")
             return
         if amount<0:
-            await ctx.send("I cant make money disappear")
+            await ctx.send("Bruh")
             return
     
         await self.update_bank(ctx.author,amount)
@@ -136,10 +157,10 @@ class economy(commands.Cog, name = "Economy"):
     
     @commands.command(aliases=['dep','depo'])
     async def deposit(self,ctx,amount = None):
-        """deposit money into your bank so no one can rob"""
+        """Keep your money safe in the bank"""
         await self.open_account(ctx.author)
         if amount == None:
-            await ctx.send("Please enter the amount")
+            await ctx.send("Please enter an amount")
             return
 
         bal = await self.update_bank(ctx.author)
@@ -149,7 +170,7 @@ class economy(commands.Cog, name = "Economy"):
             await ctx.send("You dont have that much money")
             return
         if amount<0:
-            await ctx.send("I cant make money disappear")
+            await ctx.send("Bruh")
             return
     
         await self.update_bank(ctx.author,-1*amount)
@@ -158,11 +179,11 @@ class economy(commands.Cog, name = "Economy"):
 
     @commands.command()
     async def give(self,ctx,member:discord.Member,amount = None):
-        """Give someone money and be kind """
+        """Donate to the poor"""
         await self.open_account(ctx.author)
         await self.open_account(member)
         if amount == None:
-            await ctx.send("Please enter the amount")
+            await ctx.send("Please enter an amount")
             return
 
         bal = await self.update_bank(ctx.author)
@@ -172,12 +193,12 @@ class economy(commands.Cog, name = "Economy"):
             await ctx.send("You dont have that much money")
             return
         if amount<0:
-            await ctx.send("I cant make money disappear")
+            await ctx.send("Bruh")
             return
     
         await self.update_bank(ctx.author,-1*amount,"bank")
         await self.update_bank(member,amount,"bank")
-        await ctx.send(f"You gave {amount} coins how nice")
+        await ctx.send(f"You gave them {amount} coins. You *might* go to heaven now.")
 
     @client.command(aliases = ["lb"])
     async def leaderboard(self,ctx,x = 10):
@@ -191,7 +212,7 @@ class economy(commands.Cog, name = "Economy"):
 
         total = sorted(total,reverse=True)    
 
-        em = discord.Embed(title = f"Top {x} Richest People" , description = "The leaderboard combines both bank and wallet balance to make the top 10 people",color = discord.Color.dark_blue())
+        em = discord.Embed(title = f"Top {x} Richest People" , description = "Leaderboard takes both bank and wallet balance",color = discord.Color.dark_blue())
         index = 1
         for amt in total:
             id_ = leader_board[amt]
@@ -208,10 +229,10 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def slots(self,ctx,amount = None):
-        """become rich or poor with slots"""
+        """Try your luck. Or dont."""
         await self.open_account(ctx.author)
         if amount == None:
-            await ctx.send("Please enter the amount")
+            await ctx.send("Please enter an amount")
             return
 
         bal = await self.update_bank(ctx.author)
@@ -221,7 +242,7 @@ class economy(commands.Cog, name = "Economy"):
             await ctx.send("You dont have that much money")
             return
         if amount<0:
-            await ctx.send("I cant make money disappear")
+            await ctx.send("Bruh")
             return
         final = []
         for I in range(3):
