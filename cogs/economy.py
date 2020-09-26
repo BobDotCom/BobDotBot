@@ -46,7 +46,7 @@ class economy(commands.Cog, name = "Economy"):
         msg = await ctx.send(f"{emoji}")
         answer = random.randrange(2)
         await asyncio.sleep(2)
-        await msg.delete
+        await msg.delete()
         wallet_amt = users[str(user.id)]["wallet"]
 
         if answer == 1:
