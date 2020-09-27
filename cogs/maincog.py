@@ -64,7 +64,7 @@ class MainCog(commands.Cog, name = "General"):
             except Error as e:
               cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
               return connection
-            connection = create_connection("reports.db")
+          connection = create_connection("reports.db")
           def execute_query(connection, query):
             cursor = connection.cursor()
             try:
