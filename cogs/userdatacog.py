@@ -172,7 +172,7 @@ class Levels(commands.Cog, name = "User database"):
             """
             execute_query(connection, update_level)
             msg = await message.channel.send(f"{message.author.mention} is now level {newlevel}!")
-            await asyncio.sleep(5)
+            await asyncio.sleep(30)
             await msg.delete()
 
     @commands.Cog.listener()
