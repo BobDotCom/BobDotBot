@@ -52,16 +52,16 @@ class MainCog(commands.Cog, name = "General"):
                 await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
-        global onreadyblocker
-        if onreadyblocker == False:
-          onreadyblocker = True
-          print('MainCog is active')
-          def create_connection(path):
-            connection = None
-            try:
-              connection = sqlite3.connect(path)
-            except Error as e:
-              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+		global onreadyblocker
+		if onreadyblocker == False:
+			onreadyblocker = True
+			print('MainCog is active')
+			def create_connection(path):
+				connection = None
+				try:
+					connection = sqlite3.connect(path)
+				except Error as e:
+					cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
 
             return connection
           connection = create_connection("reports.db")
