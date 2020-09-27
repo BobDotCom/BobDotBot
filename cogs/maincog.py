@@ -52,10 +52,11 @@ class MainCog(commands.Cog, name = "General"):
                 await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
+      await asyncio.sleep(5)
+      print('MainCog is active')
       global onreadyblocker
       if onreadyblocker == False:
         onreadyblocker = True
-        print('MainCog is active')
         if True:
           def create_connection(path):
             connection = None
@@ -64,7 +65,7 @@ class MainCog(commands.Cog, name = "General"):
             except Error as e:
               cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
               return connection
-          connection = create_connection("/root/main-bot/reports.db")
+          connection = create_connection("reports.db")
           def execute_query(connection, query):
             cursor = connection.cursor()
             try:
