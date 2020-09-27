@@ -115,4 +115,5 @@ class OwnerCog(commands.Cog, name = "Owner"):
             embedvar = discord.Embed(title="Saving...", description="Save to the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
             embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
             await ctx.send(embed=embedvar)
+def setup(client):
     client.add_cog(OwnerCog(client))
