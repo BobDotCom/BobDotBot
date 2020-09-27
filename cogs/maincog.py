@@ -56,14 +56,15 @@ class MainCog(commands.Cog, name = "General"):
       if onreadyblocker == False:
         onreadyblocker = True
         print('MainCog is active')
-        def create_connection(path):
-          connection = None
-          try:
-            connection = sqlite3.connect(path)
-          except Error as e:
-            cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-            return connection
-          connection = create_connection("reports.db")
+	if True:
+          def create_connection(path):
+            connection = None
+            try:
+              connection = sqlite3.connect(path)
+            except Error as e:
+              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+              return connection
+            connection = create_connection("reports.db")
           def execute_query(connection, query):
             cursor = connection.cursor()
             try:
