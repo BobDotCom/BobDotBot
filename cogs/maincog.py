@@ -36,9 +36,6 @@ class MainCog(commands.Cog, name = "General"):
         self.client.helper1_id = 716503311402008577
         self.client.helper2_id = 280667989370732545
         self.client.helper3_id = 706898741499789364
-        with open("users.json", 'r') as f1:
-            self.users = json.load(f1)
-        self.client.loop.create_task(self.save_users())
         global onreadyblocker
         onreadyblocker = False
 
