@@ -487,18 +487,123 @@ class MainCog(commands.Cog, name = "General"):
 
     @commands.command(aliases=['xp', 'rank', 'levels'])
     async def level(self, ctx, member: discord.Member = None):
-        """Lists a users level. You can level up by talking in any channel/server that the bot is in"""
+        """Lists a user's level. You can level up by talking in any channel/server that the bot is in"""
+        if True:
+          def create_connection(path):
+            connection = None
+            try:
+              connection = sqlite3.connect(path)
+            except Error as e:
+              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+            return connection
+          connection = create_connection("Users.db")
+          def execute_query(connection, query):
+            cursor = connection.cursor()
+            try:
+                cursor.execute(query)
+                connection.commit()
+            except Error as e:
+                cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+          def execute_read_query(connection, query):
+            cursor = connection.cursor()
+            result = None
+            try:
+              cursor.execute(query)
+              result = cursor.fetchall()
+              return result
+            except Error as e:
+              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+          create_users_table = """
+          CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            userid TEXT NOT NULL,
+            level INTEGER NOT NULL,
+            xp INTEGER NOT NULL
+          );
+          """
+          execute_query(connection, create_users_table)
+        def get_userid(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from users where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[1]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+        def get_id(info1):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select id from users where userid = ?"""
+              cursor.execute(sql_select_query, (info1,))
+              records = cursor.fetchall()
+        
+              for id in records:
+                return int(''.join(map(str, id)))
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+        def get_xp(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from users where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[3]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+        def get_level(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from users where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[2]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
         member = ctx.author if not member else member
         member_id = str(member.id)
         owner = self.client.get_user(self.client.owner_id)
-
-        if not member_id in self.users:
-            await ctx.send("Member doesn't have a level. This could be because they have not talked yet.")
+        the_id = get_id(member_id)
+        userid = get_userid(the_id)
+        if userid == None:
+            await ctx.send("Member doesn't have a level. This could be because they have not talked yet, or due to a glitch.")
         else:
+            xp = get_xp(the_id)
+            level = get_level(the_id)
             embed = discord.Embed(color=member.color, timestamp=ctx.message.created_at)
             embed.set_author(name=f"Level - {member}", icon_url=member.avatar_url)
-            embed.add_field(name="Level", value=self.users[member_id]['level'])
-            embed.add_field(name="XP", value=self.users[member_id]['exp'])
+            embed.add_field(name="Level", value=level)
+            embed.add_field(name="XP", value=xp)
             embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
             await ctx.send(embed=embed)
     @commands.command()
