@@ -56,7 +56,7 @@ class MainCog(commands.Cog, name = "General"):
       if onreadyblocker == False:
         onreadyblocker = True
         print('MainCog is active')
-	if True:
+        if True:
           def create_connection(path):
             connection = None
             try:
