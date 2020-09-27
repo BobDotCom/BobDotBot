@@ -160,7 +160,7 @@ class Levels(commands.Cog, name = "User database"):
         the_id = get_id(author_id)
         xp = get_xp(the_id)
         level = get_level(the_id)
-        if xp >= round((4 * (level ** 3)) / 7):
+        if xp >= round((3 * (level ** 4)) / 5):
             newlevel = level + 1
             update_level = f"""
             UPDATE
