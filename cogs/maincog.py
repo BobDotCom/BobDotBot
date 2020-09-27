@@ -52,11 +52,10 @@ class MainCog(commands.Cog, name = "General"):
                 await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
-      global onreadyblocker
-      if onreadyblocker == False:
-        onreadyblocker = True
-        print('MainCog is active')
-        if True:
+        global onreadyblocker
+        if onreadyblocker == False:
+          onreadyblocker = True
+          print('MainCog is active')
           def create_connection(path):
             connection = None
             try:
