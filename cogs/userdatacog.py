@@ -29,9 +29,6 @@ class Levels(commands.Cog, name = "User database"):
 
     @commands.Cog.listener()
     async def on_message(self, message):
-      global onreadyblocker
-      if onreadyblocker == False:
-        onreadyblocker = True
         if True:
           def create_connection(path):
             connection = None
@@ -175,7 +172,7 @@ class Levels(commands.Cog, name = "User database"):
             """
             execute_query(connection, update_level)
             msg = await message.channel.send(f"{message.author.mention} is now level {newlevel}!")
-            await asyncio.sleep(10)
+            await asyncio.sleep(5)
             await msg.delete()
 
     @commands.Cog.listener()
