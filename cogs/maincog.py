@@ -39,7 +39,7 @@ class MainCog(commands.Cog, name = "General"):
         with open("users.json", 'r') as f1:
             self.users = json.load(f1)
         self.client.loop.create_task(self.save_users())
-	global onreadyblocker
+        global onreadyblocker
         onreadyblocker = False
 
     async def save_users(self):
@@ -52,17 +52,16 @@ class MainCog(commands.Cog, name = "General"):
                 await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
-		global onreadyblocker
-		if onreadyblocker == False:
-			onreadyblocker = True
-			print('MainCog is active')
-			def create_connection(path):
-				connection = None
-				try:
-					connection = sqlite3.connect(path)
-				except Error as e:
-					cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-
+      global onreadyblocker
+      if onreadyblocker == False:
+        onreadyblocker = True
+        print('MainCog is active')
+        def create_connection(path):
+          connection = None
+          try:
+            connection = sqlite3.connect(path)
+          except Error as e:
+            cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
             return connection
           connection = create_connection("reports.db")
           def execute_query(connection, query):
