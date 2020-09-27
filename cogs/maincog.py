@@ -52,8 +52,8 @@ class MainCog(commands.Cog, name = "General"):
                 await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
-      await asyncio.sleep(5)
       print('MainCog is active')
+      await asyncio.sleep(5)
       global onreadyblocker
       if onreadyblocker == False:
         onreadyblocker = True
