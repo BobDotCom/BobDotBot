@@ -35,6 +35,8 @@ class MainCog(commands.Cog, name = "General"):
         with open("users.json", 'r') as f1:
             self.users = json.load(f1)
         self.client.loop.create_task(self.save_users())
+	global onreadyblocker
+        onreadyblocker = False
 
     async def save_users(self):
         await self.client.wait_until_ready()
@@ -46,7 +48,206 @@ class MainCog(commands.Cog, name = "General"):
                 await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
+      global onreadyblocker
+      if onreadyblocker == False:
+        onreadyblocker = True
         print('MainCog is active')
+        if True:
+          def create_connection(path):
+            connection = None
+            try:
+              connection = sqlite3.connect(path)
+            except Error as e:
+              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+
+            return connection
+          connection = create_connection("reports.db")
+          def execute_query(connection, query):
+            cursor = connection.cursor()
+            try:
+                cursor.execute(query)
+                connection.commit()
+            except Error as e:
+                cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+          def execute_read_query(connection, query):
+            cursor = connection.cursor()
+            result = None
+            try:
+              cursor.execute(query)
+              result = cursor.fetchall()
+              return result
+            except Error as e:
+              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+          create_users_table = """
+          CREATE TABLE IF NOT EXISTS reports (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            report TEXT NOT NULL,
+            reportcontent TEXT NOT NULL, 
+            logreport TEXT,
+            status TEXT NOT NULL
+          );
+          """
+          execute_query(connection, create_users_table)
+          def getDeveloperInfo(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from reports where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[2]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+          def getTheInfo(info1):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select id from reports where report = ?"""
+              cursor.execute(sql_select_query, (info1,))
+              records = cursor.fetchall()
+        
+              for id in records:
+                return int(''.join(map(str, id)))
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+          execute_query(connection, create_users_table)
+          def getDeveloperInfo1(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from reports where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[1]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+          def getDeveloperInfo2(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from reports where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[3]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+          def getDeveloperInfo3(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from reports where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[4]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+          def getDeveloperInfo4(username):
+            try:
+              cursor = connection.cursor()
+        
+              sql_select_query = f"""select * from reports where id = ?"""
+              cursor.execute(sql_select_query, (username,))
+              records = cursor.fetchall()
+        
+              for row in records:
+                return row[5]
+              cursor.close()
+            except Error as error:
+              print("Failed to read data from sqlite table", error)
+            finally:
+              if not (connection):
+                  connection.close()
+                  print("The SQLite connection is closed")
+        def check(reaction, user):
+          if str(reaction.emoji) == '✅':
+            if user == owner:
+              message_id = str(reaction.message.id)
+              info1 = getTheInfo(message_id)
+              info = getDeveloperInfo(info1)
+              if str(reaction.message.id) == info:
+                return str(reaction.emoji) == '✅' and user == owner
+              
+          elif str(reaction.emoji) == '❎':
+            if user == owner:
+              message_id = str(reaction.message.id)
+              info1 = getTheInfo(message_id)
+              info = getDeveloperInfo(info1)
+              if str(reaction.message.id) == info:
+                return str(reaction.emoji) == '❎' and user == owner
+        c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
+        owner = self.client.get_user(self.client.owner_id)
+        while True:
+          reaction, user = await self.client.wait_for('reaction_add', check=check)
+
+          if str(reaction) == '✅' and user == owner:
+            message_id = str(reaction.message.id)
+            infos = getTheInfo(message_id)
+            info5 = getDeveloperInfo4(infos)
+            othermessage = getDeveloperInfo(infos)
+            info2 = getDeveloperInfo1(infos)
+            send_to = self.client.get_user(int(info2))
+            info3 = getDeveloperInfo2(infos)
+            the_content = info3
+            if info5 == 'Approved':
+              info4 = getDeveloperInfo3(infos)
+              second_message = await c2.fetch_message(int(info4))
+              delete_account = f"DELETE FROM reports WHERE report = {othermessage}"
+              execute_query(connection, delete_account)
+              await second_message.edit(content=f"COMPLETED: {the_content}")
+              await reaction.message.edit(content=f"COMPLETED: {the_content}")
+            elif info5 == 'Submitted':
+              msg2 = await c2.send(f"APPROVED: {the_content}")
+              update_post_description = f"""
+                UPDATE
+                  reports
+                SET
+                  logreport = "{msg2.id}",
+                  status = 'Approved'
+                WHERE
+                  report = {othermessage}
+                """
+              execute_query(connection, update_post_description)
+              await send_to.send(f"Hey, {user.name} approved your suggestion")
+              await reaction.message.edit(content=f"APPROVED: {the_content}")
+            else:
+              return
+          else:
+            send_to = self.client.get_user(int(info2))
+            await send_to.send("Your suggestion did not get approved")
 
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -303,28 +504,62 @@ class MainCog(commands.Cog, name = "General"):
 
     @commands.command(aliases=['suggestion'])
     async def suggest(self, ctx, *, arg):
-        """Make a suggestion about the bot, it can be a new command that you would like to see, or anything else that you want to suggest. NOTE: do not use this command for bugs. To report a bug, use the bug command."""
+      """Make a suggestion about the bot, it can be a new command that you would like to see, or anything else that you want to suggest. NOTE: do not use this command for bugs. To report a bug, use the bug command."""
+      def create_connection(path):
+        connection = None
+        try:
+          connection = sqlite3.connect(path)
+        except Error as e:
+          cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+
+        return connection
+      connection = create_connection("reports.db")
+      def execute_query(connection, query,params:tuple=()):
+        cursor = connection.cursor()
+        try:
+            cursor.execute(query,params)
+            connection.commit()
+        except Error as e:
+            cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+        def execute_read_query(connection, query):
+            cursor = connection.cursor()
+            result = None
+            try:
+              cursor.execute(query)
+              result = cursor.fetchall()
+              return result
+            except Error as e:
+              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
+          
+      report = arg
+      owner = self.client.get_user(self.client.owner_id)
+      reporter = ctx.author.name
+      embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
+      embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
+      c = self.client.get_guild(727739470731935765).get_channel(751834280929525791)
+      msg = await c.send(f"{reporter} suggested {report}")
+      create_users = f"""
+        INSERT INTO
+          reports (username, report, reportcontent, logreport, status)
+        VALUES
+          (?,?,?,?,?);
+        """
+      execute_query(connection, create_users,(ctx.author.id,msg.id,msg.content,'None','Submitted',))
+      await msg.add_reaction(emoji='✅')
+      await msg.add_reaction(emoji='❎')
+      await ctx.send(embed=embed)
+
+    @commands.command(aliases=['bugs'])
+    async def bug(self, ctx, *, arg):
+        """Let the owner know about a bug in the bot. NOTE: do not use this command for suggestions. To make a suggestion, use the suggestion command."""
+        #load the database, collapseable
         suggestion = arg
         owner = self.client.get_user(self.client.owner_id)
         embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         suggestor = ctx.author.name
-        c = self.client.get_guild(727739470731935765).get_channel(751834280929525791)
-        msg = await c.send(f"{suggestor} suggests {suggestion}")
-        await msg.add_reaction(emoji='✅')
-        await msg.add_reaction(emoji='❎')
-        await ctx.send(embed=embed)
-
-    @commands.command(aliases=['bugs'])
-    async def bug(self, ctx, *, arg):
-        """Let the owner know about a bug in the bot. NOTE: do not use this command for suggestions. To make a suggestion, use the suggestion command."""
-        report = arg
-        owner = self.client.get_user(self.client.owner_id)
-        reporter = ctx.author.name
-        embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
-        embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         c = self.client.get_guild(727739470731935765).get_channel(751971356865986731)
-        msg = await c.send(f"{reporter} reported {report}")
+        msg = await c.send(f"{suggestor} reported {suggestion}")
         await msg.add_reaction(emoji='✅')
         await msg.add_reaction(emoji='❎')
         await ctx.send(embed=embed)
