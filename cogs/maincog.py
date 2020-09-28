@@ -256,10 +256,10 @@ class MainCog(commands.Cog, name = "General"):
         if message.content.lower() == "rickroll me please":
 	# sends reply
                 await message.channel.send("never gonna give you up")
-        if "fuck" in message.content.lower():
+        #if "fuck" in message.content.lower():
         # sends reply
-                await message.channel.send("LANGUAGE")
-                await message.delete()
+                #await message.channel.send("LANGUAGE")
+                #await message.delete()
         if message.content.lower() == "Shadow Legends":
 	# sends reply
                 await message.channel.send("Today's video is sponsored by Raid Shadow Legends, one of the biggest mobile role-playing games of 2019 and it's totally free! Currently almost 10 million users have joined Raid over the last six months, and it's one of the most impressive games in its class with detailed models, environments and smooth 60 frames per second animations! All the champions in the game can be customized with unique gear that changes your strategic buffs and abilities! The dungeon bosses have some ridiculous skills of their own and figuring out the perfect party and strategy to overtake them's a lot of fun! Currently with over 300,000 reviews, Raid has almost a perfect score on the Play Store! The community is growing fast and the highly anticipated new faction wars feature is now live, you might even find my squad out there in the arena! It's easier to start now than ever with rates program for new players you get a new daily login reward for the first 90 days that you play in the game! So what are you waiting for? Go to the video description, click on the special links and you'll get 50,000 silver and a free epic champion as part of the new player program to start your journey! Good luck and I'll see you there!")
