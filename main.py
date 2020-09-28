@@ -122,7 +122,7 @@ async def on_command_error(ctx, error):
 async def on_message(message):
 	await client.process_commands(message)
 	if client.user.mentioned_in(message):
-
+            if message.mention_everyone is False:
 		with open("prefixes.json","r") as f:
 			prefixes = json.load(f)
 
