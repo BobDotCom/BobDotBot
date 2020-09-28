@@ -28,7 +28,7 @@ class ServerCog(commands.Cog, name = "Server"):
         print('ServerCog is active')
 
     @commands.command()
-    @commands.has_permissions(administrator = True)
+    @commands.has_permissions(manage_guild = True)
     async def prefix(self, ctx, *args):
         """Set one or multiple prefixes for BobDotBot in your server"""
         with open('prefixes.json', 'r') as f:
@@ -61,14 +61,24 @@ class ServerCog(commands.Cog, name = "Server"):
                    reason: str = None):
         """Mass bans members with an optional delete_days parameter"""
         for member in members:
-            try:
-                await member.ban(delete_message_days=delete_days, reason=reason)
-                await ctx.send("Ok, I banned them for you")
+            try:=
+                asdf = _guild.get_member_named('duck')
+                f = asdf.top_role
+                h = _author.top_role
+                if not h <= f or _ctx.guild.owner == _ctx.author and not asdf == _ctx.author:
+                  if asdf.guild_permissions.ban_members and not _ctx.guild.owner == _ctx.author:
+                    await _ctx.send("This person has to not have the ban members permission.")
+                  else:
+                    await member.ban(delete_message_days=delete_days, reason=reason)
+                    await ctx.send("Ok, I banned them for you")
+                else:
+                  if asdf == _ctx.author:
+                    await _ctx.send("You can't ban yourself. -_-")
+                  else:
+                    await _ctx.send("Error, this person has a higher or equal role to you")
             except:
-                await ctx.send(f"Hmmm, I do not have permission to ban {member}")
+                await ctx.send(f"Hmmm, I do not have permission to ban {member}, or that is not a valid member")
                 return
-        else:
-            await ctx.send("Well, that isn't a user...")
 
 def setup(client):
     client.add_cog(ServerCog(client))
