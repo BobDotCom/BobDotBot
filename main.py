@@ -307,7 +307,8 @@ for filename in os.listdir('./cogs'):
         client.load_extension(f'cogs.{filename[:-3]}')
 
 
-
-server_timer.start()
+if True:
+	await asyncio.sleep(10)
+	server_timer.start()
 # token
 client.run(DISCORD_TOKEN)
