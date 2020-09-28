@@ -115,6 +115,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
             {output}
             ```
             """)
+            msg1 = await ctx.send("done")
+            await msg1.delete()
         embedvar = discord.Embed(title="Saved", description="Save to the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await msg.edit(embed=embedvar)
@@ -134,6 +136,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
             {output}
             ```
             """)
+            msg1 = await ctx.send("done")
+            await msg1.delete()
         embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await msg.edit(embed=embedvar)
