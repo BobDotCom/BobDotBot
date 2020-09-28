@@ -127,6 +127,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
             {output}
             ```
             """)
+            owner = self.client.get_user(self.client.owner_id)
             embedvar = discord.Embed(title="Syncing...", description="Sync with the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
             embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
             await ctx.send(embed=embedvar)
