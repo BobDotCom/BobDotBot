@@ -202,7 +202,7 @@ async def on_guild_remove(guild):
 
 	# prints amount of servers
   print("BobDotBot is now in " + str(guild_count) + " guilds.")
-  await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+  #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
 
 @client.command(aliases=['l'])
 @commands.is_owner()
