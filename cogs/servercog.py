@@ -61,7 +61,7 @@ class ServerCog(commands.Cog, name = "Server"):
                    reason: str = None):
         """Mass bans members with an optional delete_days parameter"""
         for member in members:
-            try:=
+            try:
                 asdf = _guild.get_member_named('duck')
                 f = asdf.top_role
                 h = _author.top_role
@@ -78,7 +78,6 @@ class ServerCog(commands.Cog, name = "Server"):
                     await _ctx.send("Error, this person has a higher or equal role to you")
             except:
                 await ctx.send(f"Hmmm, I do not have permission to ban {member}, or that is not a valid member")
-                return
 
 def setup(client):
     client.add_cog(ServerCog(client))
