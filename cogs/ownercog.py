@@ -81,10 +81,10 @@ class OwnerCog(commands.Cog, name = "Owner"):
         embedvar.add_field(name='voice', value='Voice-related commands.')
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await ctx.send(embed=embedvar)
-    @commands.command(aliases=['save'])
+    @commands.command(aliases=['push'])
     @commands.is_owner()
-    async def sync(self, ctx):
-        """Syncs all data with the GitHub repository"""
+    async def save(self, ctx):
+        """Saves all data to the GitHub repository"""
         async with ctx.channel.typing():
             c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
             output = sp.getoutput('git pull origin main')
@@ -113,6 +113,21 @@ class OwnerCog(commands.Cog, name = "Owner"):
             """)
             owner = self.client.get_user(self.client.owner_id)
             embedvar = discord.Embed(title="Saving...", description="Save to the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
+            embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
+            await ctx.send(embed=embedvar)
+    @commands.command(aliases=['pull'])
+    @commands.is_owner()
+    async def sync(self,ctx):
+        """Get the most recent changes from the GitHub repository"""
+        async with ctx.channel.typing():
+            c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
+            output = sp.getoutput('git pull origin main')
+            await c.send(f"""
+            ```sh
+            {output}
+            ```
+            """)
+            embedvar = discord.Embed(title="Syncing...", description="Sync with the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
             embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
             await ctx.send(embed=embedvar)
 def setup(client):
