@@ -1,1 +1,1 @@
-# main-bot is my bot so go away
+# main-bot is my bot so go away noob
