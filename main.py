@@ -179,7 +179,7 @@ async def server_timer():
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"B.help"))
 	await asyncio.sleep(30)
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"B.invite"))
-        await asyncio.sleep(30)
+	await asyncio.sleep(30)
 @client.event
 async def on_guild_remove(guild):
   guild_count = 0
