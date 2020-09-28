@@ -85,11 +85,11 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.is_owner()
     async def save(self, ctx):
         """Saves all data to the GitHub repository"""
+        owner = self.client.get_user(self.client.owner_id)
+        embedvar = discord.Embed(title="Saving...", description="Saving to the GitHub repository, this should take up to 15 seconds", color=0x00ff00, timestamp=ctx.message.created_at)
+        embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
+        msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
-            owner = self.client.get_user(self.client.owner_id)
-            embedvar = discord.Embed(title="Saving...", description="Saving to the GitHub repository, this should take up to 15 seconds", color=0x00ff00, timestamp=ctx.message.created_at)
-            embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
-            msg = await ctx.send(embed=embedvar)
             c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
             output = sp.getoutput('git pull origin main')
             await c.send(f"""
@@ -122,11 +122,11 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.is_owner()
     async def sync(self,ctx):
         """Get the most recent changes from the GitHub repository"""
+        owner = self.client.get_user(self.client.owner_id)
+        embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0x00ff00, timestamp=ctx.message.created_at)
+        embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
+        msg = await ctx.send(embed=embedvar)
         async with ctx.channel.typing():
-            owner = self.client.get_user(self.client.owner_id)
-            embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0x00ff00, timestamp=ctx.message.created_at)
-            embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
-            msg = await ctx.send(embed=embedvar)
             c = self.client.get_guild(727739470731935765).get_channel(758759590287638571)
             output = sp.getoutput('git pull origin main')
             await c.send(f"""
