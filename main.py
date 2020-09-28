@@ -69,7 +69,7 @@ async def on_ready():
 
 	# prints amount of servers
 	print("BobDotBot is in " + str(guild_count) + " guilds.")
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"Bot starting up..."))
 
 @client.event
 async def on_command_error(ctx, error):
@@ -160,7 +160,7 @@ async def on_guild_join(guild):
 
 	# prints amount of servers
 	print("BobDotBot is now in " + str(guild_count) + " guilds.")
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
+	#await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
 
 @loop(seconds=0)
 async def server_timer():
@@ -175,9 +175,9 @@ async def server_timer():
 		for member in guild.members:
 			users = users + 1
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
-	await asyncio.sleep(60)
+	await asyncio.sleep(40)
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"B.help | B.invite"))
-	await asyncio.sleep(30)
+	await asyncio.sleep(20)
 @client.event
 async def on_guild_remove(guild):
   guild_count = 0
