@@ -45,7 +45,6 @@ client.owner_id = 690420846774321221
 client.load_extension("jishaku")
 prefixes1 = get_prefix
 logs = get_logs
-started = False
 
 @client.event
 async def on_ready():
@@ -166,9 +165,6 @@ async def on_guild_join(guild):
 @loop(seconds=0)
 async def server_timer():
 	await client.wait_until_ready()
-	if started == False:
-		started = True
-		await asyncio.sleep(10)
 	guild_count = 0
 	users = 0
 	for guild in client.guilds:
