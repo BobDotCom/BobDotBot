@@ -123,20 +123,20 @@ async def on_message(message):
 	await client.process_commands(message)
 	if client.user.mentioned_in(message):
             if message.mention_everyone is False:
-		with open("prefixes.json","r") as f:
-			prefixes = json.load(f)
+                with open("prefixes.json","r") as f:
+                    prefixes = json.load(f)
 
-		if str(message.guild.id) in prefixes:
-   			prefix = prefixes[str(message.guild.id)]
+                if str(message.guild.id) in prefixes:
+                    prefix = prefixes[str(message.guild.id)]
 
-		else:
-   			prefix = 'B. or b.'
-		owner = client.get_user(client.owner_id)
-		# await message.channel.send("Hi, i'm BobDotBot, and my prefix is `B.` If you don't know any of my commands yet, try doing `B.help`, and i will DM you a list of commands that you can use with me!")
-		embedVar = discord.Embed(title="Hi, i'm BobDotBot!", description=f"My prefix(es) here: `{', '.join(prefix)}`", color=0x00ff00, timestamp=message.created_at)
-		embedVar.add_field(name="What do I do?", value="If you don't know any of my commands yet, try using my `help` command, and I will DM you a list of commands that you can use with me!")
-		embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
-		await message.channel.send(embed=embedVar)
+                else:
+                    prefix = 'B. or b.'
+                owner = client.get_user(client.owner_id)
+                # await message.channel.send("Hi, i'm BobDotBot, and my prefix is `B.` If you don't know any of my commands yet, try doing `B.help`, and i will DM you a list of commands that you can use with me!")
+                embedVar = discord.Embed(title="Hi, i'm BobDotBot!", description=f"My prefix(es) here: `{', '.join(prefix)}`", color=0x00ff00, timestamp=message.created_at)
+                embedVar.add_field(name="What do I do?", value="If you don't know any of my commands yet, try using my `help` command, and I will DM you a list of commands that you can use with me!")
+                embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
+                await message.channel.send(embed=embedVar)
 
 
 @client.event
