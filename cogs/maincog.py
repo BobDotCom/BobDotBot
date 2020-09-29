@@ -450,7 +450,7 @@ class MainCog(commands.Cog, name = "General"):
                                 if not c.hidden: #if cog not hidden
                                     halp.add_field(name=c.name,value=c.help,inline=False)
                             found = True
-                    for x in self.client.Commands:
+                    for x in self.client.commands:
                         if x == command:
                             owner = self.client.get_user(self.client.owner_id)
                             halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=self.client.Commands[command].__doc__, color=0x000000)
