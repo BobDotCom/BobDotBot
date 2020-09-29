@@ -435,9 +435,7 @@ class MainCog(commands.Cog, name = "General"):
                 else:
                     """Command listing within a cog."""
                     command = functools.reduce(operator.add, (cog))
-                    print(command)
                     commandthing = self.client.get_command(command)
-                    print(commandthing)
                     splice = cog[0]
                     cog = splice[0].upper() + splice[1:].lower()
                     #printing commands of cog
