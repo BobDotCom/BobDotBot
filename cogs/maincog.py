@@ -463,7 +463,7 @@ class MainCog(commands.Cog, name = "General"):
                                 possible = "Yes"
                             else:
                                 possible = "No"
-                            aliases = commandthing.aliases
+                            aliases = str(commandthing.aliases)
                             if aliases == "[]":
                                 aliases = "None"
                             halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=0x000000)
