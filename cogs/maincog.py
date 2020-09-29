@@ -456,11 +456,17 @@ class MainCog(commands.Cog, name = "General"):
                                     halp.add_field(name=c.name,value=c.help,inline=False)
                             found = True
                     if not found:
-                        if True:
+                        try:
                             owner = self.client.get_user(self.client.owner_id)
+                            possible = await commandthing.can_run(ctx)
                             halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=0x000000)
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
+                            halp.add_field(name="Aliases",value=commandthing.aliases,inline=False)
+                            halp.add_field(name="Category",value=commandthing.cog_name,inline=False)
+                            halp.add_field(name="Can you use this command?",value=possible,inline=False)
                             found = True
+                        except:
+                            found = False
                     if not found:
                         """Reminds you if that cog doesn't exist."""
                         owner = self.client.get_user(self.client.owner_id)
