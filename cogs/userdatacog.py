@@ -139,7 +139,7 @@ class Levels(commands.Cog, name = "User database"):
         userid = get_userid(the_id)
         if userid != None:
             xp = get_xp(the_id)
-            newxp = xp + 10000
+            newxp = xp + 1
             update_xp = f"""
             UPDATE
               users
