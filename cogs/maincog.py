@@ -459,6 +459,10 @@ class MainCog(commands.Cog, name = "General"):
                         try:
                             owner = self.client.get_user(self.client.owner_id)
                             possible = await commandthing.can_run(ctx)
+                            if possible == True:
+                                possible = "Yes"
+                            else:
+                                possible = "No"
                             aliases = commandthing.aliases
                             if aliases = "[]":
                                 aliases = "None"
