@@ -464,7 +464,7 @@ class MainCog(commands.Cog, name = "General"):
                             else:
                                 possible = "No"
                             aliases = commandthing.aliases
-                            if aliases = "[]":
+                            if aliases == "[]":
                                 aliases = "None"
                             halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=0x000000)
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
