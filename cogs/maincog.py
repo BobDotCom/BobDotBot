@@ -421,7 +421,7 @@ class MainCog(commands.Cog, name = "General"):
                         cmds_desc += ('{} - {}'.format(y.name,y.help)+'\n')
                 #if Uncategorized_Command_Exist == True:
                         #halp.add_field(name='Owner Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
-                await ctx.message.add_reaction(emoji='✉')
+                await ctx.message.add_reaction(emoji='✅')
                 await ctx.send('',embed=halp)
             else:
                 """Helps me remind you if you pass too many args."""
@@ -432,6 +432,7 @@ class MainCog(commands.Cog, name = "General"):
                     await ctx.send('',embed=halp)
                 else:
                     """Command listing within a cog."""
+                    command = cog
                     splice = cog[0]
                     cog = splice[0].upper() + splice[1:].lower()
                     #printing commands of cog
@@ -449,13 +450,17 @@ class MainCog(commands.Cog, name = "General"):
                                 if not c.hidden: #if cog not hidden
                                     halp.add_field(name=c.name,value=c.help,inline=False)
                             found = True
+                    for x in self.client.Commands
+                        if x == command:
+                            owner = self.client.get_user(self.client.owner_id
+                            halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=self.client.Commands[command].__doc__, color=0x000000)
                     if not found:
                         """Reminds you if that cog doesn't exist."""
                         owner = self.client.get_user(self.client.owner_id)
-                        halp = discord.Embed(title='Error!', timestamp=ctx.message.created_at,description='Ummmm, "'+cog+'" is not a command...',color=discord.Color.red())
+                        halp = discord.Embed(title='Error!', timestamp=ctx.message.created_at,description='Ummmm, "'+cog+'" is not a category, or a command...',color=discord.Color.red())
                         halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                     else:
-                        await ctx.message.add_reaction(emoji='✉')
+                        await ctx.message.add_reaction(emoji='✅')
                     await ctx.send('',embed=halp)
 
         except:
