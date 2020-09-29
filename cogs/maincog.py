@@ -402,7 +402,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.has_permissions(add_reactions=True,embed_links=True)
     async def help(self,ctx,*cog):
         """Lists all command categories and owner commands of mine."""
-        try:
+        if True:
             if not cog:
                 """Cog listing.  What more?"""
                 owner = self.client.get_user(self.client.owner_id)
@@ -463,8 +463,7 @@ class MainCog(commands.Cog, name = "General"):
                         await ctx.message.add_reaction(emoji='✅')
                     await ctx.send('',embed=halp)
 
-        except:
-            await ctx.send("Error, I can't send embeds.")
+        
 
     def setup(client):
         client.add_command(help)
