@@ -458,8 +458,7 @@ class MainCog(commands.Cog, name = "General"):
                     if not found:
                         if True:
                             owner = self.client.get_user(self.client.owner_id)
-                            halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=commandthing.__doc__, color=0x000000)
-                            halp.add_field(name=commandthing.name,value=commandthing.help,inline=False)
+                            halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=0x000000)
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             found = True
                     if not found:
