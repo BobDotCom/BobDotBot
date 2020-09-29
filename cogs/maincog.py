@@ -454,7 +454,8 @@ class MainCog(commands.Cog, name = "General"):
                         if x == command:
                             owner = self.client.get_user(self.client.owner_id)
                             halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=self.client.Commands[command].__doc__, color=0x000000)
-                            halp.add_field(name=c.name,value=c.help,inline=False)
+                            halp.add_field(name=command.name,value=command.help,inline=False)
+                            halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             found = True
                     if not found:
                         """Reminds you if that cog doesn't exist."""
