@@ -432,7 +432,7 @@ class MainCog(commands.Cog, name = "General"):
                     await ctx.send('',embed=halp)
                 else:
                     """Command listing within a cog."""
-                    command = str(cog)
+                    command = functools.reduce(operator.add, (cog))
                     print(command)
                     commandthing = self.client.get_command(command)
                     print(commandthing)
