@@ -452,7 +452,7 @@ class MainCog(commands.Cog, name = "General"):
                             found = True
                     for x in self.client.Commands:
                         if x == command:
-                            owner = self.client.get_user(self.client.owner_id
+                            owner = self.client.get_user(self.client.owner_id)
                             halp=discord.Embed(title=cog+' Info', timestamp=ctx.message.created_at,description=self.client.Commands[command].__doc__, color=0x000000)
                     if not found:
                         """Reminds you if that cog doesn't exist."""
