@@ -8,6 +8,8 @@ import random
 import typing
 import asyncio
 import datetime
+import functools 
+import operator 
 import json
 import sys
 import sqlite3
