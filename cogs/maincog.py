@@ -403,13 +403,13 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(pass_context=True)
     @commands.has_permissions(add_reactions=True,embed_links=True)
     async def help(self,ctx,*cog):
-        """Lists all command categories and owner commands of mine."""
+        """Lists all command categories"""
         if True:
             if not cog:
                 """Cog listing.  What more?"""
                 owner = self.client.get_user(self.client.owner_id)
                 halp=discord.Embed(title='Command Categories', timestamp=ctx.message.created_at,
-                                   description='Use `B.help *category*` to see a list of commands!')#\nYou can use commands in this DM, just use the prefix like normal.
+                                   description='Use `B.help *category*` to see a list of commands!\nOr, use `B.help *command*` to get info on a command')#\nYou can use commands in this DM, just use the prefix like normal.
                 cogs_desc = ''
                 for x in self.client.cogs:
                     cogs_desc += ('***{}*** - {}'.format(x,self.client.cogs[x].__doc__)+'\n')
