@@ -408,7 +408,7 @@ class MainCog(commands.Cog, name = "General"):
             if not cog:
                 """Cog listing.  What more?"""
                 owner = self.client.get_user(self.client.owner_id)
-                halp=discord.Embed(title='Command Categories', timestamp=ctx.message.created_at,
+                halp=discord.Embed(title='Command Categories', color=discord.Color.blurple(), timestamp=ctx.message.created_at,
                                    description='Use `B.help *category*` to see a list of commands!\nOr, use `B.help *command*` to get info on a command')#\nYou can use commands in this DM, just use the prefix like normal.
                 cogs_desc = ''
                 for x in self.client.cogs:
