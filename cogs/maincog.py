@@ -459,7 +459,7 @@ class MainCog(commands.Cog, name = "General"):
                             possible = await commandthing.can_run(ctx)
                             if possible == True:
                                 possible = "Yes"
-                            else:
+                            if possible != True:
                                 possible = "No"
                             aliases = str(commandthing.aliases)
                             if aliases == "[]":
