@@ -456,19 +456,13 @@ class MainCog(commands.Cog, name = "General"):
                     if not found:
                         try:
                             owner = self.client.get_user(self.client.owner_id)
-                            possible = await commandthing.can_run(ctx)
-                            if possible == True:
-                                possible = "Yes"
-                            if possible != True:
-                                possible = "No"
                             aliases = str(commandthing.aliases)
                             if aliases == "[]":
                                 aliases = "None"
-                            halp=discord.Embed(title=command+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=0x000000)
+                            halp=discord.Embed(title=command.name+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=0x000000)
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             halp.add_field(name="Aliases",value=aliases,inline=False)
                             halp.add_field(name="Category",value=commandthing.cog_name,inline=False)
-                            halp.add_field(name="Can you use this command?",value=possible,inline=False)
                             found = True
                         except:
                             found = False
