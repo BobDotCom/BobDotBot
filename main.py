@@ -35,8 +35,9 @@ def get_logs(client, message):
 		logs = json.load(f1)
 	return logs[str(message.guild.id)]
 
-
-client = discord.Client()
+intents = discord.Intents.default()
+intents.members = True  # Subscribe to the privileged members intent.
+client = discord.Client(intents=intents)
 client = commands.Bot(command_prefix=get_prefix)
 client.remove_command('help')
 client.uptime = datetime.utcnow()
