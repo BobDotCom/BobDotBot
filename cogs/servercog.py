@@ -65,7 +65,7 @@ class ServerCog(commands.Cog, name = "Server"):
                 asdf = ctx.author
                 f = member.top_role
                 h = asdf.top_role
-                if not h <= f or ctx.guild.owner == ctx.author and not asdf == ctx.author:
+                if h > f or ctx.guild.owner == ctx.author and not member == ctx.author:
                   if member.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
                     await ctx.send("This person has to not have the ban members permission.")
                   else:
