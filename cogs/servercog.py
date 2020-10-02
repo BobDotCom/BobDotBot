@@ -72,7 +72,7 @@ class ServerCog(commands.Cog, name = "Server"):
                     await member.ban(delete_message_days=delete_days, reason=reason)
                     await ctx.send("Ok, I banned them for you")
                 else:
-                  if asdf == ctx.author:
+                  if member == ctx.author:
                     await ctx.send("You can't ban yourself. -_-")
                   else:
                     await ctx.send("Error, this person has a higher or equal role to you")
