@@ -62,20 +62,20 @@ class ServerCog(commands.Cog, name = "Server"):
         """Mass bans members with an optional delete_days parameter"""
         for member in members:
             try:
-                asdf = _guild.get_member_named('duck')
-                f = asdf.top_role
-                h = _author.top_role
-                if not h <= f or _ctx.guild.owner == _ctx.author and not asdf == _ctx.author:
-                  if asdf.guild_permissions.ban_members and not _ctx.guild.owner == _ctx.author:
-                    await _ctx.send("This person has to not have the ban members permission.")
+                asdf = ctx.author
+                f = member.top_role
+                h = asdf.top_role
+                if not h <= f or ctx.guild.owner == ctx.author and not asdf == ctx.author:
+                  if asdf.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
+                    await ctx.send("This person has to not have the ban members permission.")
                   else:
                     await member.ban(delete_message_days=delete_days, reason=reason)
                     await ctx.send("Ok, I banned them for you")
                 else:
-                  if asdf == _ctx.author:
-                    await _ctx.send("You can't ban yourself. -_-")
+                  if asdf == ctx.author:
+                    await ctx.send("You can't ban yourself. -_-")
                   else:
-                    await _ctx.send("Error, this person has a higher or equal role to you")
+                    await ctx.send("Error, this person has a higher or equal role to you")
             except:
                 await ctx.send(f"Hmmm, I do not have permission to ban {member}, or that is not a valid member")
 
