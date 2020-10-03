@@ -205,7 +205,7 @@ async def on_guild_remove(guild):
   print("BobDotBot is now in " + str(guild_count) + " guilds.")
   #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
 @client.event
-async def on_member_join(member)
+async def on_member_join(member):
     """on member join"""
     guildvar = get_guild(727739470731935765)
     if str(member.guild.id) == guildvar:
