@@ -229,11 +229,11 @@ class MainCog(commands.Cog, name = "General"):
         while True:
           reaction, user = await self.client.wait_for('reaction_add', check=check)
           if reaction == nsfw and user == user:
-            if reaction.message == message:
+            if str(reaction.message.id) == str(messageid):
               await reaction.remove(user)
               await user.add_roles(nsfw, reason=None, atomic=True)
           if str(reaction) == '📣' and user == user:
-            if reaction.message == message:
+            if str(reaction.message.id) == str(messageid):
               await reaction.remove(user)
               await user.add_roles(annrole, reason=None, atomic=True)
           if str(reaction) == '✅' and user == owner:
