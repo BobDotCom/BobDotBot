@@ -8,8 +8,8 @@ import random
 import typing
 import asyncio
 import datetime
-import functools 
-import operator 
+import functools
+import operator
 import json
 import sys
 import sqlite3
@@ -86,7 +86,7 @@ class MainCog(commands.Cog, name = "General"):
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
             report TEXT NOT NULL,
-            reportcontent TEXT NOT NULL, 
+            reportcontent TEXT NOT NULL,
             logreport TEXT,
             status TEXT NOT NULL
           );
@@ -95,11 +95,11 @@ class MainCog(commands.Cog, name = "General"):
           def getDeveloperInfo(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from reports where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[2]
               cursor.close()
@@ -112,11 +112,11 @@ class MainCog(commands.Cog, name = "General"):
           def getTheInfo(info1):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select id from reports where report = ?"""
               cursor.execute(sql_select_query, (info1,))
               records = cursor.fetchall()
-        
+
               for id in records:
                 return int(''.join(map(str, id)))
               cursor.close()
@@ -130,11 +130,11 @@ class MainCog(commands.Cog, name = "General"):
           def getDeveloperInfo1(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from reports where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[1]
               cursor.close()
@@ -147,11 +147,11 @@ class MainCog(commands.Cog, name = "General"):
           def getDeveloperInfo2(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from reports where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[3]
               cursor.close()
@@ -164,11 +164,11 @@ class MainCog(commands.Cog, name = "General"):
           def getDeveloperInfo3(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from reports where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[4]
               cursor.close()
@@ -181,11 +181,11 @@ class MainCog(commands.Cog, name = "General"):
           def getDeveloperInfo4(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from reports where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[5]
               cursor.close()
@@ -203,7 +203,7 @@ class MainCog(commands.Cog, name = "General"):
               info = getDeveloperInfo(info1)
               if str(reaction.message.id) == info:
                 return str(reaction.emoji) == '✅' and user == owner
-              
+
           elif str(reaction.emoji) == '❎':
             if user == owner:
               message_id = str(reaction.message.id)
@@ -343,6 +343,7 @@ class MainCog(commands.Cog, name = "General"):
 
     @commands.command(aliases=['ui'])
     async def userinfo(self, ctx, *, member: discord.Member):
+        member = ctx.author if not member else member
         """Tells you some info about the member."""
         fmt = '{0.mention}: {0} joined on {0.joined_at} and has {1} roles.'
         owner = self.client.get_user(self.client.owner_id)
@@ -433,7 +434,7 @@ class MainCog(commands.Cog, name = "General"):
                                     halp.add_field(name=c.name,value=c.help,inline=False)
                             found = True
                     if not found:
-                        try:	
+                        try:
                             commandname = commandthing.name
                             owner = self.client.get_user(self.client.owner_id)
                             aliases = str(commandthing.aliases)
@@ -455,7 +456,7 @@ class MainCog(commands.Cog, name = "General"):
                         await ctx.message.add_reaction(emoji='✅')
                     await ctx.send('',embed=halp)
 
-        
+
 
     def setup(client):
         client.add_command(help)
@@ -467,8 +468,8 @@ class MainCog(commands.Cog, name = "General"):
         routergtx = self.client.get_user(self.client.helper1_id)
         gamin = self.client.get_user(self.client.helper2_id)
         yo56789 = self.client.get_user(self.client.helper3_id)
-        tcc = "The Coding Community - https://discord.gg/a84amZ4"
-        dpy = "discord.py - https://discord.gg/dpy"
+        tcc = "[The Coding Community](https://discord.gg/a84amZ4)"
+        dpy = "[Discord.py](https://discord.gg/dpy)"
         embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, inline=False)
         embed.set_author(name=f"Bot created by {owner}", icon_url=owner.avatar_url)
         embed.add_field(name=f"Others", value=f"Special thanks to everyone who helped me with learning how to create this bot, especially the following people and servers", inline=False)
@@ -518,11 +519,11 @@ class MainCog(commands.Cog, name = "General"):
         def get_userid(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from users where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[1]
               cursor.close()
@@ -535,11 +536,11 @@ class MainCog(commands.Cog, name = "General"):
         def get_id(info1):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select id from users where userid = ?"""
               cursor.execute(sql_select_query, (info1,))
               records = cursor.fetchall()
-        
+
               for id in records:
                 return int(''.join(map(str, id)))
               cursor.close()
@@ -552,11 +553,11 @@ class MainCog(commands.Cog, name = "General"):
         def get_xp(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from users where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[3]
               cursor.close()
@@ -569,11 +570,11 @@ class MainCog(commands.Cog, name = "General"):
         def get_level(username):
             try:
               cursor = connection.cursor()
-        
+
               sql_select_query = f"""select * from users where id = ?"""
               cursor.execute(sql_select_query, (username,))
               records = cursor.fetchall()
-        
+
               for row in records:
                 return row[2]
               cursor.close()
@@ -632,7 +633,7 @@ class MainCog(commands.Cog, name = "General"):
               return result
             except Error as e:
               cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-          
+
       report = arg
       owner = self.client.get_user(self.client.owner_id)
       reporter = ctx.author.name
