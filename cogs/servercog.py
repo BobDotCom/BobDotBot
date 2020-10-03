@@ -55,6 +55,28 @@ class ServerCog(commands.Cog, name = "Server"):
         msg = await ctx.send(f"I ate {amount} messages for you! ;)")
         await asyncio.sleep(5)
         await msg.delete()
+    @commands.command()
+    @commands.has_permissions(kick_members=True)
+    async def kick(self, ctx, member : discord.Member, *, reason=None):
+        """Kick someone"""
+        for member in members:
+            try:
+                asdf = ctx.author
+                f = member.top_role
+                h = asdf.top_role
+                if h > f or ctx.guild.owner == ctx.author and not member == ctx.author:
+                  if member.guild_permissions.kick_members and not ctx.guild.owner == ctx.author:
+                    await ctx.send("This person has to not have the kick members permission.")
+                  else:
+                    await member.kick(reason=reason)
+                    await ctx.send("Ok, I kicked them for you")
+                else:
+                  if member == ctx.author:
+                    await ctx.send("You can't kick yourself. -_-")
+                  else:
+                    await ctx.send("Error, this person has a higher or equal role to you")
+            except:
+                await ctx.send(f"Hmmm, I do not have permission to kick {member}, or that is not a valid member")
 
     @commands.command()
     @commands.has_permissions(ban_members = True)
