@@ -342,7 +342,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embedvar)
 
     @commands.command(aliases=['ui'])
-    async def userinfo(self, ctx, *, member: discord.Member):
+    async def userinfo(self, ctx, *, member: discord.Member = None):
         member = ctx.author if not member else member
         """Tells you some info about the member."""
         fmt = '{0.mention}: {0} joined on {0.joined_at} and has {1} roles.'
