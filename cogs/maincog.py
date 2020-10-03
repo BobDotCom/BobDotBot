@@ -426,7 +426,7 @@ class MainCog(commands.Cog, name = "General"):
                         if x == cog:
                             #making title
                             owner = self.client.get_user(self.client.owner_id)
-                            halp=discord.Embed(title=cog+' Commands', timestamp=ctx.message.created_at,description=self.client.cogs[cog].__doc__, color=discord.Color.blurple(), inline=False)
+                            halp=discord.Embed(title=cog+' Commands', timestamp=ctx.message.created_at,description=self.client.cogs[cog].__doc__, color=discord.Color.blurple())
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             for c in self.client.get_cog(cog).get_commands():
                                 if not c.hidden: #if cog not hidden
@@ -438,7 +438,7 @@ class MainCog(commands.Cog, name = "General"):
                             aliases = str(commandthing.aliases)
                             if aliases == "[]":
                                 aliases = "None"
-                            halp=discord.Embed(title=command+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=discord.Color.blurple())
+                            halp=discord.Embed(title=commandthing.name+' Info', timestamp=ctx.message.created_at,description=commandthing.help, color=discord.Color.blurple())
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             halp.add_field(name="Aliases",value=aliases,inline=False)
                             halp.add_field(name="Category",value=commandthing.cog_name,inline=False)
