@@ -217,7 +217,7 @@ class MainCog(commands.Cog, name = "General"):
           reaction, user = await self.client.wait_for('reaction_add', check=check)
 
           if str(reaction) == '✅' and user == owner:
-            await ctx.remove_reaction('✅', user)
+            await reaction.remove(user)
             message_id = str(reaction.message.id)
             infos = getTheInfo(message_id)
             info5 = getDeveloperInfo4(infos)
