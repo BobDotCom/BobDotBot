@@ -208,7 +208,7 @@ async def on_guild_remove(guild):
 async def on_member_join(member):
     """on member join"""
     guildvar = get_guild(727739470731935765)
-    if str(member.guild.id) == guildvar:
+    if member.guild == guildvar:
         human = get_role(745834807258251325)
         await member.add_roles(*human, reason=None, atomic=True)
         await member.send(f"Hello, welcome to {member.guild.name}")
