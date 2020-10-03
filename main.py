@@ -208,10 +208,11 @@ async def on_guild_remove(guild):
 async def on_member_join(member):
     """on member join"""
     guildvar = client.get_guild(727739470731935765)
+    channelvar = guilvar.get_channel(755259446724263996)
     if member.guild == guildvar:
         human = guildvar.get_role(745834807258251325)
         await member.add_roles(human, reason=None, atomic=True)
-        await member.send(f"Hello, welcome to {member.guild.name}")
+        await channelvar.send(f"Hello {member.mention}, welcome to {member.guild.name}! Please read the rules and have fun!")
 @client.command(aliases=['l'])
 @commands.is_owner()
 async def load(ctx, extension):
