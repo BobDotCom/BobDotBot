@@ -272,13 +272,6 @@ class MainCog(commands.Cog, name = "General"):
                 embedVar.add_field(name="Field2", value="hi2", inline=False)
                 await message.channel.send(embed=embedVar)
 
-
-
-    @commands.command()
-    async def test(self, ctx):
-        """Its a frickin test command jeez"""
-        await ctx.send('testing')
-
     @commands.command()
     async def uptime(self, ctx):
             """See how long the bot has been online"""
@@ -348,12 +341,6 @@ class MainCog(commands.Cog, name = "General"):
             embedvar = discord.Embed(title="***OOPS***", timestamp=ctx.message.created_at, description=f"{slapself} just **slapped** themselves because they didn't mention someone valid to slap!", color=0x000000)
         await ctx.send(embed=embedvar)
 
-    @commands.command()
-    @commands.has_permissions(kick_members=True)
-    async def kick(self, ctx, member : discord.Member, *, reason=None):
-        """Kick someone"""
-        await member.kick(reason=reason)
-
     @commands.command(aliases=['ui'])
     async def userinfo(self, ctx, *, member: discord.Member):
         """Tells you some info about the member."""
@@ -391,15 +378,6 @@ class MainCog(commands.Cog, name = "General"):
     async def porn(self, ctx):
         """Use if you are really horny"""
         await ctx.send("Shut up, horny kid.")
-
-    @commands.command()
-    async def displayembed(self, ctx):
-        """This is an embed tester"""
-        owner = self.client.get_user(self.client.owner_id)
-        embedvar = discord.Embed(title="Title", timestamp=ctx.message.created_at, description="desc", color=0xff0000) #,color=Hex code
-        embedvar.add_field(name="subheader", value="desc2", inline=False)
-        embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
-        await ctx.send(embed=embedvar)
 
     @commands.command(pass_context=True)
     @commands.has_permissions(add_reactions=True,embed_links=True)
