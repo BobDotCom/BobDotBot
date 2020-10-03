@@ -202,6 +202,7 @@ class MainCog(commands.Cog, name = "General"):
               info1 = getTheInfo(message_id)
               info = getDeveloperInfo(info1)
               if str(reaction.message.id) == info:
+                await remove_reaction(✅, user)
                 return str(reaction.emoji) == '✅' and user == owner
               
           elif str(reaction.emoji) == '❎':
@@ -210,6 +211,7 @@ class MainCog(commands.Cog, name = "General"):
               info1 = getTheInfo(message_id)
               info = getDeveloperInfo(info1)
               if str(reaction.message.id) == info:
+                await remove_reaction(✅, user)
                 return str(reaction.emoji) == '❎' and user == owner
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
         owner = self.client.get_user(self.client.owner_id)
