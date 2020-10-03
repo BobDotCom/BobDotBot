@@ -208,7 +208,7 @@ async def on_guild_remove(guild):
 async def on_member_join(member):
     """on member join"""
     guildvar = client.get_guild(727739470731935765)
-    channelvar = guilvar.get_channel(755259446724263996)
+    channelvar = guildvar.get_channel(755259446724263996)
     if member.guild == guildvar:
         human = guildvar.get_role(745834807258251325)
         await member.add_roles(human, reason=None, atomic=True)
