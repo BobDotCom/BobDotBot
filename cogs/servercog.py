@@ -52,7 +52,9 @@ class ServerCog(commands.Cog, name = "Server"):
     async def clear(self, ctx,amount=2):
         """Clears messages"""
         await ctx.channel.purge(limit = amount + 1)
-        await ctx.send(f"I ate {amount} messages for you! ;)")
+        msg = await ctx.send(f"I ate {amount} messages for you! ;)")
+        await asyncio.sleep(5)
+        await msg.delete()
 
     @commands.command()
     @commands.has_permissions(ban_members = True)
