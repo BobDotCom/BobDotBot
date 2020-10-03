@@ -59,7 +59,7 @@ class ServerCog(commands.Cog, name = "Server"):
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member : discord.Member, *, reason=None):
         """Kick someone"""
-        for member in members:
+        if True:
             try:
                 asdf = ctx.author
                 f = member.top_role
