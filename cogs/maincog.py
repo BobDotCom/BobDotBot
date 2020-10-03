@@ -216,14 +216,14 @@ class MainCog(commands.Cog, name = "General"):
           elif str(reaction.emoji) == nsfw:
             guild = self.client.get_guild(727739470731935765)
             channel = guild.get_channel(747275116194431088)
-            message = channel.fetch_message(762074693972525057)
+            message = await channel.fetch_message(762074693972525057)
             messageid = message.id
             if str(reaction.message.id) == str(messageid):
                 return str(reaction.emoji) == nsfw and user == user
           elif str(reaction.emoji) == '📣':
             guild = self.client.get_guild(727739470731935765)
             channel = guild.get_channel(747275116194431088)
-            message = channel.fetch_message(762074693972525057)
+            message = await channel.fetch_message(762074693972525057)
             messageid = message.id
             if str(reaction.message.id) == str(messageid):
                 return str(reaction.emoji) == '📣' and user == user
