@@ -417,8 +417,8 @@ class MainCog(commands.Cog, name = "General"):
                     commandthing = self.client.get_command(command)
                     splice = cog[0]
                     cog = splice[0].upper() + splice[1:].lower()
-                    splice1 = commandthing.name[0]
-                    commandname = splice1[0].upper() + splice1[1:].lower()
+                    splice = commandthing.name[0]
+                    commandname = splice[0].upper() + splice[1:].lower()
                     #printing commands of cog
                     """Command listing within a cog."""
                     found = False
