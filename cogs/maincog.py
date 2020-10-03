@@ -435,8 +435,6 @@ class MainCog(commands.Cog, name = "General"):
                     if not found:
                         try:	
                             commandname = commandthing.name
-                            splice = commandname[0]
-                            commandname = splice[0].upper() + splice[1:].lower()
                             owner = self.client.get_user(self.client.owner_id)
                             aliases = str(commandthing.aliases)
                             if aliases == "[]":
