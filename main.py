@@ -204,7 +204,13 @@ async def on_guild_remove(guild):
 	# prints amount of servers
   print("BobDotBot is now in " + str(guild_count) + " guilds.")
   #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
-
+@client.event
+async def on_member_join(member)
+    """on member join"""
+    if str(member.guild.id) = "727739470731935765":
+        human = get_role(745834807258251325)
+        await member.add_roles(*human, reason=None, atomic=True)
+        await member.send(f"Hello, welcome to {member.guild.name}")
 @client.command(aliases=['l'])
 @commands.is_owner()
 async def load(ctx, extension):
