@@ -214,8 +214,12 @@ class MainCog(commands.Cog, name = "General"):
               if str(reaction.message.id) == info:
                 return str(reaction.emoji) == '❎' and user == owner
           elif reaction.emoji == nsfw:
+            print(reaction.emoji)
+            print(nsfw)
             return reaction.emoji == nsfw and user == user
           elif str(reaction.emoji) == '📣':
+            print(reaction.emoji)
+            print(nsfw)
             return str(reaction.emoji) == '📣' and user == user
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
         owner = self.client.get_user(self.client.owner_id)
