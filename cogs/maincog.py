@@ -214,35 +214,28 @@ class MainCog(commands.Cog, name = "General"):
               if str(reaction.message.id) == info:
                 return str(reaction.emoji) == '❎' and user == owner
           elif str(reaction.emoji) == nsfw:
-            guild = self.client.get_guild(727739470731935765)
-            channel = guild.get_channel(747275116194431088)
-            message = await channel.fetch_message(762074693972525057)
-            messageid = message.id
-            if str(reaction.message.id) == str(messageid):
-                return str(reaction.emoji) == nsfw and user == user
+            return str(reaction.emoji) == nsfw and user == user
           elif str(reaction.emoji) == '📣':
-            guild = self.client.get_guild(727739470731935765)
-            channel = guild.get_channel(747275116194431088)
-            message = await channel.fetch_message(762074693972525057)
-            messageid = message.id
-            if str(reaction.message.id) == str(messageid):
-                return str(reaction.emoji) == '📣' and user == user
+            return str(reaction.emoji) == '📣' and user == user
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
         owner = self.client.get_user(self.client.owner_id)
         guild = self.client.get_guild(727739470731935765)
         channel = guild.get_channel(747275116194431088)
-        message = channel.fetch_message(762074693972525057)
+        message = await channel.fetch_message(762074693972525057)
+        messageid = message.id
         nsfw = self.client.get_emoji(762060771680583710)
         nsfwrole = guild.get_role(745834936992399410)
         annrole = guild.get_role(762065259166957588)
         while True:
           reaction, user = await self.client.wait_for('reaction_add', check=check)
           if str(reaction) == nsfw and user == user:
-            await reaction.remove(user)
-            await user.add_roles(nsfw, reason=None, atomic=True)
+            if str(reaction.message.id) == str(messageid):
+              await reaction.remove(user)
+              await user.add_roles(nsfw, reason=None, atomic=True)
           if str(reaction) == '📣' and user == user:
-            await reaction.remove(user)
-            await user.add_roles(annrole, reason=None, atomic=True)
+            if str(reaction.message.id) == str(messageid):
+              await reaction.remove(user)
+              await user.add_roles(annrole, reason=None, atomic=True)
           if str(reaction) == '✅' and user == owner:
             await reaction.remove(user)
             message_id = str(reaction.message.id)
