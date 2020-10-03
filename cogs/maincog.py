@@ -213,8 +213,8 @@ class MainCog(commands.Cog, name = "General"):
               info = getDeveloperInfo(info1)
               if str(reaction.message.id) == info:
                 return str(reaction.emoji) == '❎' and user == owner
-          elif str(reaction.emoji) == nsfw:
-            return str(reaction.emoji) == nsfw and user == user
+          elif reaction.emoji == nsfw:
+            return reaction.emoji == nsfw and user == user
           elif str(reaction.emoji) == '📣':
             return str(reaction.emoji) == '📣' and user == user
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
@@ -228,12 +228,12 @@ class MainCog(commands.Cog, name = "General"):
         annrole = guild.get_role(762065259166957588)
         while True:
           reaction, user = await self.client.wait_for('reaction_add', check=check)
-          if str(reaction) == nsfw and user == user:
-            if str(reaction.message.id) == str(messageid):
+          if reaction == nsfw and user == user:
+            if reaction.message == message:
               await reaction.remove(user)
               await user.add_roles(nsfw, reason=None, atomic=True)
           if str(reaction) == '📣' and user == user:
-            if str(reaction.message.id) == str(messageid):
+            if reaction.message == message:
               await reaction.remove(user)
               await user.add_roles(annrole, reason=None, atomic=True)
           if str(reaction) == '✅' and user == owner:
