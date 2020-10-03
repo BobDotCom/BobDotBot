@@ -347,7 +347,7 @@ class MainCog(commands.Cog, name = "General"):
         """Tells you some info about the member."""
         fmt = '{0.name} joined at {0.joined_at} and has {1} roles.'
         owner = self.client.get_user(self.client.owner_id)
-        embedVar = discord.Embed(title=f"User Info for {member.mention}", timestamp=ctx.message.created_at, description=member.name, color=discord.Color.blurple())
+        embedVar = discord.Embed(title=f"User Info for {member}", timestamp=ctx.message.created_at, description=member.mention, color=discord.Color.blurple())
         embedVar.add_field(name="Server Info",value="" + fmt.format(member, len(member.roles)-1), inline=False)
         embedVar.add_field(name="User ID",value=member.id, inline=False)
         embedVar.add_field(name="Roles",value='Use my roles command to get roles', inline=False)
