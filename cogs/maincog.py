@@ -200,6 +200,7 @@ class MainCog(commands.Cog, name = "General"):
           nsfw = self.client.get_emoji(762060771680583710)
           if str(reaction.emoji) == '✅':
             if user == owner:
+              print("it works")
               message_id = str(reaction.message.id)
               info1 = getTheInfo(message_id)
               info = getDeveloperInfo(info1)
@@ -214,14 +215,10 @@ class MainCog(commands.Cog, name = "General"):
               if str(reaction.message.id) == info:
                 return str(reaction.emoji) == '❎' and user == owner
           elif str(reaction.emoji) == '🔴':
-            print(reaction.emoji)
-            print(nsfw)
-            print(user)
-            return reaction.emoji == nsfw and user == user
+            print(user.name)
+            return reaction.emoji == '🔴' and user == user
           elif str(reaction.emoji) == '📣':
-            print(reaction.emoji)
-            print(nsfw)
-            print(user)
+            print(user.name)
             return str(reaction.emoji) == '📣' and user == user
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
         owner = self.client.get_user(self.client.owner_id)
@@ -233,16 +230,15 @@ class MainCog(commands.Cog, name = "General"):
         annrole = guild.get_role(762065259166957588)
         while True:
           reaction, user = await self.client.wait_for('reaction_add', check=check)
-          print(reaction.emoji)
           if str(reaction) == '🔴' and user == user:
             if str(reaction.message.id) == str(messageid):
               await reaction.remove(user)
-              await user.add_roles(nsfw, reason=None, atomic=True)
-          if str(reaction) == '📣' and user == user:
+              await user.add_roles(nsfwrole, reason=None, atomic=True)
+          elif str(reaction) == '📣' and user == user:
             if str(reaction.message.id) == str(messageid):
               await reaction.remove(user)
               await user.add_roles(annrole, reason=None, atomic=True)
-          if str(reaction) == '✅' and user == owner:
+          elif str(reaction) == '✅' and user == owner:
             await reaction.remove(user)
             message_id = str(reaction.message.id)
             infos = getTheInfo(message_id)
@@ -275,7 +271,7 @@ class MainCog(commands.Cog, name = "General"):
               await reaction.message.edit(content=f"APPROVED: {the_content}")
             else:
               return
-          else:
+          elif str(reaction) == '✅' and user == owner:
             send_to = self.client.get_user(int(info2))
             await send_to.send("Your suggestion did not get approved")
 
