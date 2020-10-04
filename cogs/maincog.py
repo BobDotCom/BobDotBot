@@ -275,7 +275,7 @@ class MainCog(commands.Cog, name = "General"):
             await message.remove_reaction(announce, member)
             await member.send(f"Added role: **{role2.name}**")
         if str(payload.emoji) == remove:
-            await message.remove_reaction(nsfw, member)
+            await message.remove_reaction(remove, member)
             try:
               await member.remove_roles(role)
               await member.send("Removed roles")
