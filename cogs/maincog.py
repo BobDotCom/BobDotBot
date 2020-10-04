@@ -281,7 +281,7 @@ class MainCog(commands.Cog, name = "General"):
             except:
               try:
                 await member.remove_roles(role2)
-		await member.send("Removed Roles")
+                await member.send("Removed Roles")
     @commands.Cog.listener()
     async def on_message(self, message):
 	# check if msg is hello
