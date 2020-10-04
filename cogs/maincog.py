@@ -214,35 +214,11 @@ class MainCog(commands.Cog, name = "General"):
               info = getDeveloperInfo(info1)
               if str(reaction.message.id) == info:
                 return str(reaction.emoji) == '❎' and user == owner
-          elif str(reaction.emoji.id) == "762060771680583710":
-            print(user.name)
-            return reaction.emoji.id == "762060771680583710" and user == user
-          elif str(reaction.emoji) == '📣':
-            print(user.name)
-            return str(reaction.emoji) == '📣' and user == user
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
         owner = self.client.get_user(self.client.owner_id)
-        guild = self.client.get_guild(727739470731935765)
-        print(guild.name)
-        channel = guild.get_channel(747275116194431088)
-        print(channel.name)
-        message = await channel.fetch_message(762074693972525057)
-        print(message.content)
-        messageid = message.id
-        nsfwrole = guild.get_role(745834936992399410)
-        annrole = guild.get_role(762065259166957588)
         while True:
           reaction, user = await self.client.wait_for('reaction_add', check=check)
-          print(f"{reaction} - {reaction.emoji} - {user}")
-          if str(reaction.emoji.id) == "762060771680583710" and user == user:
-            if str(reaction.message.id) == str(messageid):
-              await reaction.remove(user)
-              await user.add_roles(nsfwrole, reason=None, atomic=True)
-          elif str(reaction) == '📣' and user == user:
-            if str(reaction.message.id) == str(messageid):
-              await reaction.remove(user)
-              await user.add_roles(annrole, reason=None, atomic=True)
-          elif str(reaction) == '✅' and user == owner:
+          if str(reaction) == '✅' and user == owner:
             await reaction.remove(user)
             message_id = str(reaction.message.id)
             infos = getTheInfo(message_id)
@@ -278,7 +254,17 @@ class MainCog(commands.Cog, name = "General"):
           elif str(reaction) == '✅' and user == owner:
             send_to = self.client.get_user(int(info2))
             await send_to.send("Your suggestion did not get approved")
-
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self,payload):
+        if not payload.message_id == 762074693972525057 or payload.member.bot:
+            return
+        guild = self.bot.get_guild(payload.guild_id)
+        react = "<<:nsfw:762060771680583710>762060771680583710>"
+        role = guild.get_role(745834936992399410)
+        member = payload.member
+        if str(payload.emoji) == react:
+            await member.add_roles(role)
+            await member.send(f"Added role: **{role.name}**")
     @commands.Cog.listener()
     async def on_message(self, message):
 	# check if msg is hello
