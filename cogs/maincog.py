@@ -221,6 +221,8 @@ class MainCog(commands.Cog, name = "General"):
             print(reaction.emoji)
             print(nsfw)
             return str(reaction.emoji) == '📣' and user == user
+          else:
+            return str(reaction.emoji) == '📣' and user == user
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
         owner = self.client.get_user(self.client.owner_id)
         guild = self.client.get_guild(727739470731935765)
@@ -231,7 +233,7 @@ class MainCog(commands.Cog, name = "General"):
         nsfwrole = guild.get_role(745834936992399410)
         annrole = guild.get_role(762065259166957588)
         while True:
-          reaction, user = await self.client.wait_for('reaction_add')
+          reaction, user = await self.client.wait_for('reaction_add', check=check)
           print(reaction.emoji)
           if reaction == nsfw and user == user:
             if str(reaction.message.id) == str(messageid):
