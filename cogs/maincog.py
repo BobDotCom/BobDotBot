@@ -270,8 +270,16 @@ class MainCog(commands.Cog, name = "General"):
         if str(payload.emoji) == announce:
             await member.add_roles(role2)
             await member.send(f"Added role: **{role2.name}**")
-        if str(payload.emoji) == redx:
-            await member.send("this feature has not been set up yet.")
+        if str(payload.emoji) == remove:
+            try:
+              await member.remove_roles(role)
+            except:
+              return
+            try:
+              await member.remove_roles(role2)
+            except:
+              return
+            await member.send("Removed Roles")
     @commands.Cog.listener()
     async def on_message(self, message):
 	# check if msg is hello
