@@ -233,6 +233,7 @@ class MainCog(commands.Cog, name = "General"):
         annrole = guild.get_role(762065259166957588)
         while True:
           reaction, user = await self.client.wait_for('reaction_add', check=check)
+          print(f"{reaction} - {reaction.name} - {reaction.emoji} - {user}")
           if str(reaction) == '🔴' and user == user:
             if str(reaction.message.id) == str(messageid):
               await reaction.remove(user)
