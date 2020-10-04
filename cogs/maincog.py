@@ -262,12 +262,20 @@ class MainCog(commands.Cog, name = "General"):
             return
         print("2")
         guild = self.client.get_guild(payload.guild_id)
-        react = "<:nsfw:762060771680583710>"
+        nsfw = "<:nsfw:762060771680583710>"
         role = guild.get_role(745834936992399410)
+        announce = "<:megaphone:762345707272667227>"
+        role2 = guild.get_role(762065259166957588)
+        remove = "<:redx:762347633925947392>"
         member = payload.member
-        if str(payload.emoji) == react:
+        if str(payload.emoji) == nsfw:
             await member.add_roles(role)
             await member.send(f"Added role: **{role.name}**")
+        if str(payload.emoji) == announce:
+            await member.add_roles(role2)
+            await member.send(f"Added role: **{role2.name}**")
+        if str(payload.emoji) == redx:
+            await member.send("this feature has not been set up yet.")
     @commands.Cog.listener()
     async def on_message(self, message):
 	# check if msg is hello
