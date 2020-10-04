@@ -223,8 +223,11 @@ class MainCog(commands.Cog, name = "General"):
         c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
         owner = self.client.get_user(self.client.owner_id)
         guild = self.client.get_guild(727739470731935765)
+        print(guild.name)
         channel = guild.get_channel(747275116194431088)
+        print(channel.name)
         message = await channel.fetch_message(762074693972525057)
+        print(message.content)
         messageid = message.id
         nsfwrole = guild.get_role(745834936992399410)
         annrole = guild.get_role(762065259166957588)
