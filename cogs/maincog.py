@@ -259,6 +259,8 @@ class MainCog(commands.Cog, name = "General"):
             return
         guild = self.client.get_guild(payload.guild_id)
         nsfw = "<:nsfw:762060771680583710>"
+	channel = guild.get_channel(747275116194431088)
+	message = channel.fetch_message(payload.message_id)
         role = guild.get_role(745834936992399410)
         announce = "<:megaphone:762345707272667227>"
         role2 = guild.get_role(762065259166957588)
@@ -266,14 +268,14 @@ class MainCog(commands.Cog, name = "General"):
         member = payload.member
         if str(payload.emoji) == nsfw:
             await member.add_roles(role)
-            await payload.message.remove_reaction(nsfw, member)
+            await message.remove_reaction(nsfw, member)
             await member.send(f"Added role: **{role.name}**")
         if str(payload.emoji) == announce:
             await member.add_roles(role2)
-            await payload.message.remove_reaction(announce, member)
+            await message.remove_reaction(announce, member)
             await member.send(f"Added role: **{role2.name}**")
         if str(payload.emoji) == remove:
-            await payload.message.remove_reaction(nsfw, member)
+            await message.remove_reaction(nsfw, member)
             try:
               await member.remove_roles(role)
               await member.send("Removed roles")
