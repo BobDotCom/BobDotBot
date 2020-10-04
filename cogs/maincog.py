@@ -262,7 +262,7 @@ class MainCog(commands.Cog, name = "General"):
             return
         print("2")
         guild = self.client.get_guild(payload.guild_id)
-        react = "<<:nsfw:762060771680583710>762060771680583710>"
+        react = "<:nsfw:762060771680583710>"
         role = guild.get_role(745834936992399410)
         member = payload.member
         if str(payload.emoji) == react:
