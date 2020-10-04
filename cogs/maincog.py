@@ -214,9 +214,9 @@ class MainCog(commands.Cog, name = "General"):
               info = getDeveloperInfo(info1)
               if str(reaction.message.id) == info:
                 return str(reaction.emoji) == '❎' and user == owner
-          elif str(reaction.emoji) == "\U0001f534":
+          elif str(reaction.emoji.id) == "762060771680583710":
             print(user.name)
-            return reaction.emoji == "\U0001f534" and user == user
+            return reaction.emoji.id == "762060771680583710" and user == user
           elif str(reaction.emoji) == '📣':
             print(user.name)
             return str(reaction.emoji) == '📣' and user == user
@@ -234,7 +234,7 @@ class MainCog(commands.Cog, name = "General"):
         while True:
           reaction, user = await self.client.wait_for('reaction_add', check=check)
           print(f"{reaction} - {reaction.emoji} - {user}")
-          if str(reaction) == "\U0001f534" and user == user:
+          if str(reaction.emoji.id) == "762060771680583710" and user == user:
             if str(reaction.message.id) == str(messageid):
               await reaction.remove(user)
               await user.add_roles(nsfwrole, reason=None, atomic=True)
