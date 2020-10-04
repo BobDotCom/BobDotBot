@@ -231,7 +231,8 @@ class MainCog(commands.Cog, name = "General"):
         nsfwrole = guild.get_role(745834936992399410)
         annrole = guild.get_role(762065259166957588)
         while True:
-          reaction, user = await self.client.wait_for('reaction_add', check=check)
+          reaction, user = await self.client.wait_for('reaction_add')
+          print(reaction.emoji)
           if reaction == nsfw and user == user:
             if str(reaction.message.id) == str(messageid):
               await reaction.remove(user)
