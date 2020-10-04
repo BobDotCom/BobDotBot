@@ -256,9 +256,9 @@ class MainCog(commands.Cog, name = "General"):
             await send_to.send("Your suggestion did not get approved")
     @commands.Cog.listener()
     async def on_raw_reaction_add(self,payload):
-        if not payload.message_id == 762074693972525057 or payload.member.bot:
+        if not payload.message_id == 762074693972525057 or payload.member.client:
             return
-        guild = self.bot.get_guild(payload.guild_id)
+        guild = self.client.get_guild(payload.guild_id)
         react = "<<:nsfw:762060771680583710>762060771680583710>"
         role = guild.get_role(745834936992399410)
         member = payload.member
