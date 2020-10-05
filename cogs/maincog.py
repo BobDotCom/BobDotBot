@@ -302,6 +302,7 @@ class MainCog(commands.Cog, name = "General"):
             blue1 = guild.get_role(762717103982903336)
             purple1 = guild.get_role(762717105938104391)
             remove = "<:redx:762347633925947392>"
+            member = payload.member
             if str(payload.emoji) == red:
                 await member.add_roles(red1)
                 await message.remove_reaction(red, member)
