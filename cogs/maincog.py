@@ -290,9 +290,13 @@ class MainCog(commands.Cog, name = "General"):
             try:
               await member.remove_roles(role2)
               x = True
+            except:
+              y = True
             try:
               await member.remove_roles(role3)
               x = True
+            except:
+              y = True
             if x == True:
               await member.send("Removed roles")
     @commands.Cog.listener()
