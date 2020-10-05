@@ -259,7 +259,7 @@ class MainCog(commands.Cog, name = "General"):
             return
         guild = self.client.get_guild(payload.guild_id)
         nsfw = "<:nsfw:762060771680583710>"
-	dev = "<:python:762487501578960897>"
+        dev = "<:python:762487501578960897>"
         channel = guild.get_channel(747275116194431088)
         message = await channel.fetch_message(payload.message_id)
         role = guild.get_role(745834936992399410)
