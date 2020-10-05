@@ -227,7 +227,7 @@ async def on_member_remove(member):
     guildvar = client.get_guild(727739470731935765)
     channelvar = guildvar.get_channel(755259446724263996)
     if member.guild == guildvar:
-        await channelvar.send(f"Oh no! {member.name}, left the server! We hope you had fun and will come back!")
+        await channelvar.send(f"Oh no! {member.name} left the server! We hope you had fun and will come back!")
 @client.command(aliases=['l'])
 @commands.is_owner()
 async def load(ctx, extension):
