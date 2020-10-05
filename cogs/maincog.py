@@ -282,26 +282,10 @@ class MainCog(commands.Cog, name = "General"):
             await member.send(f"Added role: **{role3.name}**")
         elif str(payload.emoji) == remove:
             await message.remove_reaction(remove, member)
-            try:
-              await member.remove_roles(role)
-              x = True
-            except:
-              x = False
-              y = 1
-            try:
-              await member.remove_roles(role2)
-              x = True
-            except:
-              y += 1
-            try:
-              await member.remove_roles(role3)
-              x = True
-            except:
-              y += 1
-            if x == True:
-              await member.send("Removed roles")
-            elif y == 3:
-              await member.send("No roles to remove")
+            await member.remove_roles(role)
+            await member.remove_roles(role2)
+            await member.remove_roles(role3)
+            await member.send("Removed roles")
     @commands.Cog.listener()
     async def on_message(self, message):
 	# check if msg is hello
