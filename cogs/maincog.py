@@ -258,7 +258,7 @@ class MainCog(commands.Cog, name = "General"):
         if payload.message_id == 762754787602595840 and not payload.member.bot:
             guild = self.client.get_guild(payload.guild_id)
             nsfw = "<:nsfw:762060771680583710>"
-            dev = "<:python:762487501578960897>"
+            dev = "<:computer:762783497315811358>"
             channel = guild.get_channel(762721025912733696)
             message = await channel.fetch_message(payload.message_id)
             role = guild.get_role(745834936992399410)
