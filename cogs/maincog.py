@@ -284,17 +284,17 @@ class MainCog(commands.Cog, name = "General"):
             await message.remove_reaction(remove, member)
             try:
               await member.remove_roles(role)
-              await member.send("Removed roles")
-              try:
-                await member.remove_roles(role2)
-              except:
-                return
+              x = True
             except:
-              try:
-                await member.remove_roles(role2)
-                await member.send("Removed roles")
-              except:
-                await member.send("No roles to remove.")
+              x = False
+            try:
+              await member.remove_roles(role2)
+              x = True
+            try:
+              await member.remove_roles(role3)
+              x = True
+            if x == True:
+              await member.send("Removed roles")
     @commands.Cog.listener()
     async def on_message(self, message):
 	# check if msg is hello
