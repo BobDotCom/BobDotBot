@@ -255,37 +255,86 @@ class MainCog(commands.Cog, name = "General"):
             await send_to.send("Your suggestion did not get approved")
     @commands.Cog.listener()
     async def on_raw_reaction_add(self,payload):
-        if not payload.message_id == 762074693972525057 or payload.member.bot:
-            return
-        guild = self.client.get_guild(payload.guild_id)
-        nsfw = "<:nsfw:762060771680583710>"
-        dev = "<:python:762487501578960897>"
-        channel = guild.get_channel(747275116194431088)
-        message = await channel.fetch_message(payload.message_id)
-        role = guild.get_role(745834936992399410)
-        announce = "<:megaphone:762345707272667227>"
-        role2 = guild.get_role(762065259166957588)
-        role3 = guild.get_role(762487691061231617)
-        remove = "<:redx:762347633925947392>"
-        member = payload.member
-        if str(payload.emoji) == nsfw:
-            await member.add_roles(role)
-            await message.remove_reaction(nsfw, member)
-            await member.send(f"Added role: **{role.name}**")
-        elif str(payload.emoji) == announce:
-            await member.add_roles(role2)
-            await message.remove_reaction(announce, member)
-            await member.send(f"Added role: **{role2.name}**")
-        elif str(payload.emoji) == dev:
-            await member.add_roles(role3)
-            await message.remove_reaction(dev, member)
-            await member.send(f"Added role: **{role3.name}**")
-        elif str(payload.emoji) == remove:
-            await message.remove_reaction(remove, member)
-            await member.remove_roles(role)
-            await member.remove_roles(role2)
-            await member.remove_roles(role3)
-            await member.send("Removed roles")
+        if payload.message_id == 762754787602595840 and not payload.member.bot:
+            guild = self.client.get_guild(payload.guild_id)
+            nsfw = "<:nsfw:762060771680583710>"
+            dev = "<:python:762487501578960897>"
+            channel = guild.get_channel(762721025912733696)
+            message = await channel.fetch_message(payload.message_id)
+            role = guild.get_role(745834936992399410)
+            announce = "<:megaphone:762345707272667227>"
+            role2 = guild.get_role(762065259166957588)
+            role3 = guild.get_role(762487691061231617)
+            remove = "<:redx:762347633925947392>"
+            member = payload.member
+            if str(payload.emoji) == nsfw:
+                await member.add_roles(role)
+                await message.remove_reaction(nsfw, member)
+                await member.send(f"Added role: **{role.name}**")
+            elif str(payload.emoji) == announce:
+                await member.add_roles(role2)
+                await message.remove_reaction(announce, member)
+                await member.send(f"Added role: **{role2.name}**")
+            elif str(payload.emoji) == dev:
+                await member.add_roles(role3)
+                await message.remove_reaction(dev, member)
+                await member.send(f"Added role: **{role3.name}**")
+            elif str(payload.emoji) == remove:
+                await message.remove_reaction(remove, member)
+                await member.remove_roles(role)
+                await member.remove_roles(role2)
+                await member.remove_roles(role3)
+                await member.send("Removed roles")
+        elif payload.message_id == 762773798419169310 and not payload.member.bot:
+            guild = self.client.get_guild(payload.guild_id)
+            red = "<:red:762759166627676201>"
+            orange = "<:orange:762759545642549278>"
+            yellow = "<:yellow:762759756514721852>"
+            green = "<:green:762759873984462918>"
+            blue = "<:blue:762760282354352168>"
+            purple = "<:purple:762760629462761534>"
+            channel = guild.get_channel(762721025912733696)
+            message = await channel.fetch_message(payload.message_id)
+            red1 = guild.get_role(762717092418945084)
+            orange1 = guild.get_role(762717096529887282)
+            yellow1 = guild.get_role(762717099633803326)
+            green1 = guild.get_role(762717102091141137)
+            blue1 = guild.get_role(762717103982903336)
+            purple1 = guild.get_role(762717105938104391)
+            remove = "<:redx:762347633925947392>"
+            if str(payload.emoji) == red:
+                await member.add_roles(red1)
+                await message.remove_reaction(red, member)
+                await member.send(f"Added role: **{red1.name}**")
+            elif str(payload.emoji) == orange:
+                await member.add_roles(orange1)
+                await message.remove_reaction(orange, member)
+                await member.send(f"Added role: **{orange1.name}**")
+            elif str(payload.emoji) == yellow:
+                await member.add_roles(yellow1)
+                await message.remove_reaction(yellow, member)
+                await member.send(f"Added role: **{yellow1.name}**")
+            elif str(payload.emoji) == green:
+                await member.add_roles(green1)
+                await message.remove_reaction(green, member)
+                await member.send(f"Added role: **{green1.name}**")
+            elif str(payload.emoji) == blue:
+                await member.add_roles(blue1)
+                await message.remove_reaction(blue, member)
+                await member.send(f"Added role: **{blue1.name}**")
+            elif str(payload.emoji) == purple:
+                await member.add_roles(purple1)
+                await message.remove_reaction(purple, member)
+                await member.send(f"Added role: **{purple1.name}**")
+            elif str(payload.emoji) == remove:
+                await message.remove_reaction(remove, member)
+                await member.remove_roles(red1)
+                await member.remove_roles(orange1)
+                await member.remove_roles(yellow1)
+                await member.remove_roles(green1)
+                await member.remove_roles(blue1)
+                await member.remove_roles(purple1)
+                await member.send("Removed roles")
     @commands.Cog.listener()
     async def on_message(self, message):
 	# check if msg is hello
