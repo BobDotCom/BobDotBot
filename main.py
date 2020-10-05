@@ -208,7 +208,9 @@ async def on_guild_remove(guild):
 async def on_member_join(member):
     """on member join"""
     guildvar = client.get_guild(727739470731935765)
-    channelvar = guildvar.get_channel(755259446724263996)
+    welcome = guildvar.get_channel(755259446724263996)
+    rules = guildvar.get_channel(762721025912733696)
+    roles = guildvar.get_channel(747275116194431088)
     if member.guild == guildvar:
         human = guildvar.get_role(745834807258251325)
         badges = guildvar.get_role(762684938226630666)
@@ -218,7 +220,14 @@ async def on_member_join(member):
         await member.add_roles(badges)
         await member.add_roles(members)
         await member.add_roles(colors)
-        await channelvar.send(f"Hello {member.mention}, welcome to {member.guild.name}! Please read the rules and have fun!")
+        await welcome.send(f"Hello {member.mention}, welcome to {member.guild.name}! Please read the {rules.mention} and have fun! You can get your roles at {roles.mention}.")
+@client.event
+async def on_member_remove(member):
+    """on member remove"""
+    guildvar = client.get_guild(727739470731935765)
+    channelvar = guildvar.get_channel(755259446724263996)
+    if member.guild == guildvar:
+        await channelvar.send(f"Oh no! {member.name}, left the server! We hope you had fun and will come back!")
 @client.command(aliases=['l'])
 @commands.is_owner()
 async def load(ctx, extension):
