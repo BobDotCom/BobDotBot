@@ -265,7 +265,7 @@ class MainCog(commands.Cog, name = "General"):
         role = guild.get_role(745834936992399410)
         announce = "<:megaphone:762345707272667227>"
         role2 = guild.get_role(762065259166957588)
-	role3 = guild.get_role(762487691061231617)
+        role3 = guild.get_role(762487691061231617)
         remove = "<:redx:762347633925947392>"
         member = payload.member
         if str(payload.emoji) == nsfw:
