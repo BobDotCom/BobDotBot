@@ -211,7 +211,11 @@ async def on_member_join(member):
     channelvar = guildvar.get_channel(755259446724263996)
     if member.guild == guildvar:
         human = guildvar.get_role(745834807258251325)
-        await member.add_roles(human, reason=None, atomic=True)
+        badges = guildvar.get_role(762684938226630666)
+        members = guildvar.get_role(762684570474643507)
+        await member.add_roles(human)
+        await member.add_roles(badges)
+        await member.add_roles(members)
         await channelvar.send(f"Hello {member.mention}, welcome to {member.guild.name}! Please read the rules and have fun!")
 @client.command(aliases=['l'])
 @commands.is_owner()
