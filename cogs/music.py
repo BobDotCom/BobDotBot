@@ -44,16 +44,12 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     ytdl = youtube_dl.YoutubeDL(YTDL_OPTIONS)
 
-    def __init__(self, ctx: commands.Context, source: discord.FFmpegPCMAudio, *, data: dict, volume: float = 0.5):
+    def __init__(self, client, ctx: commands.Context, source: discord.FFmpegPCMAudio, *, data: dict, volume: float = 0.5):
         super().__init__(source, volume)
 
         self.requester = ctx.author
         self.channel = ctx.channel
         self.data = data
-
-        intents = discord.Intents.default()
-        intents.members = True
-        bot = commands.Bot(command_prefix=["B."],intents=intents)
         
         self.uploader = data.get('uploader')
         self.uploader_url = data.get('uploader_url')
@@ -118,7 +114,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
     async def search_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
         channel = ctx.channel
         loop = loop or asyncio.get_event_loop()
-
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
 
         partial = functools.partial(cls.ytdl.extract_info, cls.search_query, download=False, process=False)
@@ -142,7 +137,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         cls.search["description"] = "\n".join(lst)
 
         em = discord.Embed.from_dict(cls.search)
-        await ctx.send(embed=em, delete_after=45.0)
+        await self.client.send(embed=em, delete_after=45.0)
 
         def check(msg):
             return msg.content.isdigit() == True and msg.channel == channel or msg.content == 'cancel' or msg.content == 'Cancel'
