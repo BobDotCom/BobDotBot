@@ -111,11 +111,11 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return cls(ctx, discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS), data=info)
 
     @classmethod
-    async def search_source(self, cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
+    async def search_source(self, cls, ctx: commands.Context, search: str, *, client, loop: asyncio.BaseEventLoop = None):
         channel = ctx.channel
         loop = loop or asyncio.get_event_loop()
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
-
+        
         partial = functools.partial(cls.ytdl.extract_info, cls.search_query, download=False, process=False)
         info = await loop.run_in_executor(None, partial)
 
@@ -143,7 +143,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             return msg.content.isdigit() == True and msg.channel == channel or msg.content == 'cancel' or msg.content == 'Cancel'
         
         try:
-            m = await bot.wait_for('message', check=check, timeout=45.0)
+            m = await self.client.wait_for('message', check=check, timeout=45.0)
 
         except asyncio.TimeoutError:
             rtrn = 'timeout'
