@@ -113,7 +113,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
     @classmethod
     async def search_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
         channel = ctx.channel
-        bot = commands.Bot
+        bot = commands.Bot()
         loop = loop or asyncio.get_event_loop()
 
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
