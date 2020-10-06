@@ -545,7 +545,7 @@ class Music(commands.Cog):
                 await ctx.voice_state.songs.put(song)
                 await ctx.send('Enqueued {}'.format(str(source)))
 
-    @commands.command(name='search')
+    @commands.command(name='search', aliases=['se'])
     async def _search(self, ctx: commands.Context, *, search: str):
         """Searches youtube.
         It returns an imbed of the first 10 results collected from youtube.
