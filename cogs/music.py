@@ -115,9 +115,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
         channel = ctx.channel
         loop = loop or asyncio.get_event_loop()
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
-        intents = discord.Intents.default()
-        intents.members = True
-        bot = commands.Bot(command_prefix=["B."],intents=intents)
         partial = functools.partial(cls.ytdl.extract_info, cls.search_query, download=False, process=False)
         info = await loop.run_in_executor(None, partial)
 
