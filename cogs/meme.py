@@ -87,7 +87,9 @@ class Reddit(commands.Cog):
                                 break 
                 await ctx.send(memeHistory[len(memeHistory) - 1])
                 return
-        await ctx.send("_{}! ({})_".format(str(request['message']), str(request['error'])))
+        embed = discord.Embed(title=f"Meme", timestamp=ctx.message.created_at, color=discord.Color.blurple())
+        embed.set_image(url="_{}! ({})_".format(str(request['message']), str(request['error'])))
+        await ctx.send(embed=embed)
     
     @commands.command()
     async def showerthought(self, ctx):
