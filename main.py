@@ -209,8 +209,8 @@ async def on_member_join(member):
     """on member join"""
     guildvar = client.get_guild(727739470731935765)
     welcome = guildvar.get_channel(755259446724263996)
-    rules = guildvar.get_channel(762721025912733696)
-    roles = guildvar.get_channel(747275116194431088)
+    roles = guildvar.get_channel(762721025912733696)
+    rules = guildvar.get_channel(747275116194431088)
     if member.guild == guildvar:
         human = guildvar.get_role(745834807258251325)
         badges = guildvar.get_role(762684938226630666)
