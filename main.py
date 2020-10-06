@@ -328,7 +328,7 @@ async def unloadall(ctx):
     await ctx.send(embed=embedvar)
 @client.check
 def blacklist(ctx):
-    return ctx.message.author.id != 298816368231448588
+    return ctx.message.author.id != 706898741499789364
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
