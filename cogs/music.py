@@ -187,7 +187,7 @@ class VoiceState:
         self._volume = 0.5
         self.skip_votes = set()
 
-        self.audio_player = bot.loop.create_task(self.audio_player_task())
+        self.audio_player = client.loop.create_task(self.audio_player_task())
 
     def __del__(self):
         self.audio_player.cancel()
