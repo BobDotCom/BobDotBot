@@ -326,14 +326,14 @@ class VoiceState:
 
 
 class Music(commands.Cog):
-    def __init__(self, bot: commands.Bot):
-        self.bot = bot
+    def __init__(self, client: commands.Bot):
+        self.bot = client
         self.voice_states = {}
 
     def get_voice_state(self, ctx: commands.Context):
         state = self.voice_states.get(ctx.guild.id)
         if not state or not state.exists:
-            state = VoiceState(self.bot, ctx)
+            state = VoiceState(self.client, ctx)
             self.voice_states[ctx.guild.id] = state
 
         return state
