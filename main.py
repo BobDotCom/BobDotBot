@@ -220,7 +220,8 @@ async def on_member_join(member):
         await member.add_roles(badges)
         await member.add_roles(members)
         await member.add_roles(colors)
-        await welcome.send(f"Hello {member.mention}, welcome to {member.guild.name}! Please read the {rules.mention} and have fun! You can get your roles at {roles.mention}.")
+        if not member.bot:
+            await welcome.send(f"Hello {member.mention}, welcome to {member.guild.name}! Please read the {rules.mention} and have fun! You can get your roles at {roles.mention}.")
 @client.event
 async def on_member_remove(member):
     """on member remove"""
