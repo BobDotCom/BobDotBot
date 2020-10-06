@@ -174,8 +174,8 @@ class SongQueue(asyncio.Queue):
 
 
 class VoiceState:
-    def __init__(self, bot: commands.Bot, ctx: commands.Context):
-        self.bot = bot
+    def __init__(self, client: commands.Bot, ctx: commands.Context):
+        self.bot = client
         self._ctx = ctx
 
         self.current = None
@@ -256,8 +256,8 @@ class VoiceState:
 
 class Music(commands.Cog):
     """Music Commands! Want to listen to your favorite songs without even leaving discord? Use these commands to easily play songs in any voice channel the bot has acccess to"""
-    def __init__(self, bot: commands.Bot):
-        self.bot = bot
+    def __init__(self, client: commands.Bot):
+        self.bot = client
         self.voice_states = {}
 
     def get_voice_state(self, ctx: commands.Context):
