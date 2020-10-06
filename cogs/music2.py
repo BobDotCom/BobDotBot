@@ -406,4 +406,4 @@ class Music2(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(Music(client))
+    client.add_cog(Music2(client))
