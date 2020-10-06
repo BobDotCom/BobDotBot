@@ -47,8 +47,8 @@ async def getSub(self, ctx, sub):
         await ctx.send("_{}! ({})_".format(str(request['message']), str(request['error'])))
 
 class SubredditFetcher(commands.Cog):
-    def __init__(self, bot):
-        self.bot = bot
+    def __init__(self, client):
+        self.bot = client
 
     @commands.command()
     async def meme(self, ctx):
