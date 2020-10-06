@@ -44,7 +44,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     ytdl = youtube_dl.YoutubeDL(YTDL_OPTIONS)
 
-    def __init__(self, client, ctx: commands.Context, source: discord.FFmpegPCMAudio, *, data: dict, volume: float = 0.5):
+    def __init__(self, ctx: commands.Context, source: discord.FFmpegPCMAudio, *, data: dict, volume: float = 0.5):
         super().__init__(source, volume)
 
         self.requester = ctx.author
@@ -111,11 +111,13 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return cls(ctx, discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS), data=info)
 
     @classmethod
-    async def search_source(self, cls, ctx: commands.Context, search: str, *, client, loop: asyncio.BaseEventLoop = None):
+    async def search_source(self, cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
         channel = ctx.channel
         loop = loop or asyncio.get_event_loop()
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
-        
+        intents = discord.Intents.default()
+        intents.members = True
+        self.bot = commands.Bot(command_prefix=["B."],intents=intents)
         partial = functools.partial(cls.ytdl.extract_info, cls.search_query, download=False, process=False)
         info = await loop.run_in_executor(None, partial)
 
