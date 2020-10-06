@@ -117,7 +117,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
         intents = discord.Intents.default()
         intents.members = True
-        self.bot = commands.Bot(command_prefix=["B."],intents=intents)
+        bot = commands.Bot(command_prefix=["B."],intents=intents)
         partial = functools.partial(cls.ytdl.extract_info, cls.search_query, download=False, process=False)
         info = await loop.run_in_executor(None, partial)
 
@@ -145,7 +145,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             return msg.content.isdigit() == True and msg.channel == channel or msg.content == 'cancel' or msg.content == 'Cancel'
         
         try:
-            m = await self.bot.wait_for('message', check=check, timeout=45.0)
+            m = await bot.wait_for('message', check=check, timeout=45.0)
 
         except asyncio.TimeoutError:
             rtrn = 'timeout'
