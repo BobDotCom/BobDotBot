@@ -326,7 +326,9 @@ async def unloadall(ctx):
     print('}')
     embedvar = discord.Embed(title='Success!', description="Successfully unloaded all Cogs", color=0x00ff00)
     await ctx.send(embed=embedvar)
-
+@bot.check
+def blacklist(ctx):
+    return ctx.message.author.id != 298816368231448588
 for filename in os.listdir('./cogs'):
     if filename.endswith('.py'):
         client.load_extension(f'cogs.{filename[:-3]}')
