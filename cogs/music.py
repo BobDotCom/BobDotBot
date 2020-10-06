@@ -51,6 +51,10 @@ class YTDLSource(discord.PCMVolumeTransformer):
         self.channel = ctx.channel
         self.data = data
 
+        intents = discord.Intents.default()
+        intents.members = True
+        bot = commands.Bot(command_prefix=["B."],intents=intents)
+        
         self.uploader = data.get('uploader')
         self.uploader_url = data.get('uploader_url')
         date = data.get('upload_date')
@@ -113,9 +117,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
     @classmethod
     async def search_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
         channel = ctx.channel
-        intents = discord.Intents.default()
-        intents.members = True
-        bot = commands.Bot(command_prefix=["B."],intents=intents)
         loop = loop or asyncio.get_event_loop()
 
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
