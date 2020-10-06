@@ -139,7 +139,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         cls.search["description"] = "\n".join(lst)
 
         em = discord.Embed.from_dict(cls.search)
-        await bot.send(embed=em, delete_after=45.0)
+        await ctx.send(embed=em, delete_after=45.0)
 
         def check(msg):
             return msg.content.isdigit() == True and msg.channel == channel or msg.content == 'cancel' or msg.content == 'Cancel'
