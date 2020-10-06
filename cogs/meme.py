@@ -52,7 +52,7 @@ class Reddit(commands.Cog):
 
     @commands.command()
     async def meme(self, ctx):
-      async with ctx.typing()
+      async with ctx.typing():
         """Memes from various subreddits (excluding r/me_irl. some don't understand those memes)"""
         async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/{0}/hot.json?limit=100".format(random.choice(memeSubreddits))) as response:
@@ -91,7 +91,7 @@ class Reddit(commands.Cog):
     
     @commands.command()
     async def showerthought(self, ctx):
-      async with ctx.typing()
+      async with ctx.typing():
         async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=100") as response:
                 request = await response.json()
@@ -133,17 +133,17 @@ class Reddit(commands.Cog):
     
     @commands.command(aliases=['dankmeme', 'dank'])
     async def dankmemes(self, ctx):
-      async with ctx.typing()
+      async with ctx.typing():
         await getSub(self, ctx, 'dankmemes')
         
     @commands.command()
     async def me_irl(self, ctx):
-      async with ctx.typing()
+      async with ctx.typing():
         await getSub(self, ctx, 'me_irl')
 
     @commands.command()
     async def programmerhumor(self, ctx):
-      async with ctx.typing()
+      async with ctx.typing():
         await getSub(self, ctx, 'ProgrammerHumor')
 def setup(client):
     client.add_cog(Reddit(client))
