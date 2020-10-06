@@ -112,8 +112,16 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     @classmethod
     async def search_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
+        def get_prefix(bot, ctx):
+                if not ctx.guild:
+                        return ['B!', 'b!']
+                with open('prefixes.json', 'r') as f:
+                        prefixes = json.load(f)
+                return prefixes[str(ctx.guild.id)]
         channel = ctx.channel
-        bot = commands.Bot()
+        intents = discord.Intents.default()
+        intents.members = True
+        bot = commands.Bot(command_prefix=get_prefix,intents=intents)
         loop = loop or asyncio.get_event_loop()
 
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
