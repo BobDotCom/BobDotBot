@@ -111,9 +111,9 @@ class YTDLSource(discord.PCMVolumeTransformer):
         return cls(ctx, discord.FFmpegPCMAudio(info['url'], **cls.FFMPEG_OPTIONS), data=info)
 
     @classmethod
-    async def search_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
+    async def search_source(cls, client, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
         channel = ctx.channel
-        bot = commands.Bot()
+        bot = client
         loop = loop or asyncio.get_event_loop()
 
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
@@ -238,8 +238,8 @@ class SongQueue(asyncio.Queue):
 
 
 class VoiceState:
-    def __init__(self, bot: commands.Bot, ctx: commands.Context):
-        self.bot = bot
+    def __init__(self, client, ctx: commands.Context):
+        self.bot = client
         self._ctx = ctx
 
         self.current = None
