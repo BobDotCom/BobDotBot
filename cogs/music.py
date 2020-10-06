@@ -112,16 +112,10 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
     @classmethod
     async def search_source(cls, ctx: commands.Context, search: str, *, loop: asyncio.BaseEventLoop = None):
-        def get_prefix(bot, ctx):
-                if not ctx.guild:
-                        return ['B!', 'b!']
-                with open('prefixes.json', 'r') as f:
-                        prefixes = json.load(f)
-                return prefixes[str(ctx.guild.id)]
         channel = ctx.channel
         intents = discord.Intents.default()
         intents.members = True
-        bot = commands.Bot(command_prefix=get_prefix,intents=intents)
+        bot = commands.Bot(command_prefix=["B."],intents=intents)
         loop = loop or asyncio.get_event_loop()
 
         cls.search_query = '%s%s:%s' % ('ytsearch', 10, ''.join(search))
@@ -153,7 +147,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             return msg.content.isdigit() == True and msg.channel == channel or msg.content == 'cancel' or msg.content == 'Cancel'
         
         try:
-            m = await ctx.wait_for('message', check=check, timeout=45.0)
+            m = await bot.wait_for('message', check=check, timeout=45.0)
 
         except asyncio.TimeoutError:
             rtrn = 'timeout'
