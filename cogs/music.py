@@ -144,7 +144,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             return msg.content.isdigit() == True and msg.channel == channel or msg.content == 'cancel' or msg.content == 'Cancel'
         
         try:
-            m = await client.wait_for('message', check=check, timeout=45.0)
+            m = await self.bot.wait_for('message', check=check, timeout=45.0)
 
         except asyncio.TimeoutError:
             rtrn = 'timeout'
