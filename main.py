@@ -115,13 +115,13 @@ async def on_command_error(ctx, error):
     await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
 @client.event
 async def on_message(message):
-        bucket = client.cd.get_bucket(message)
-        retry_after = bucket.update_rate_limit()
-        if retry_after:
+	bucket = client.cd.get_bucket(message)
+	retry_after = bucket.update_rate_limit()
+	if retry_after:
             # you're rate limited
             # helpful message here
             pass
-        # you're not rate limited
+	# you're not rate limited
 	await client.process_commands(message)
 	if client.user.mentioned_in(message):
             if message.mention_everyone is False:
