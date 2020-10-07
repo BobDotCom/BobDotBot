@@ -206,7 +206,7 @@ class economy(commands.Cog, name = "Economy"):
         await self.update_bank(member,amount,"bank")
         await ctx.send(f"You gave them {amount} coins. You *might* go to heaven now.")
 
-    @client.command(aliases = ["lb"])
+    @commands.command(aliases = ["lb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def leaderboard(self,ctx,x = 10):
         users = await self.get_bank_data()
@@ -328,7 +328,7 @@ class economy(commands.Cog, name = "Economy"):
             {"name":"PC","price":500000,"description":"use this to flex on people *RIGHT NOW THIS ITEM HAS NO USE"}]
 
 
-    @client.command()
+    @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def shop(self,ctx):
         em = discord.Embed(title = "Shop", color = discord.Color.dark_blue())
@@ -343,7 +343,7 @@ class economy(commands.Cog, name = "Economy"):
 
 
 
-    @client.command()
+    @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def buy(self,ctx,item,amount = 1):
         await self.open_account(ctx.author)
@@ -362,7 +362,7 @@ class economy(commands.Cog, name = "Economy"):
         await ctx.send(f"You just bought {amount} {item}")
 
 
-    @client.command()
+    @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def bag(self,ctx):
         await self.open_account(ctx.author)
