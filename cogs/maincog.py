@@ -12,6 +12,7 @@ import functools
 import operator
 import json
 import sys
+import requests
 import sqlite3
 # import stuff
 from dotenv import load_dotenv
@@ -388,6 +389,14 @@ class MainCog(commands.Cog, name = "General"):
     async def uptime(self, ctx):
             """See how long the bot has been online"""
             owner = self.client.get_user(self.client.owner_id)
+            url = "https://api.uptimerobot.com/v2/getMonitors"
+            payload = "api_key=enterYourAPIKeyHere&format=json&logs=1"
+            headers = {
+                'content-type': "application/x-www-form-urlencoded",
+                'cache-control': "no-cache"
+                }
+            response = requests.request("POST", url, data=payload, headers=headers)
+            loaded_json = json.loads(response.text)
             minute,hour,day,second = 0,0,0,0
             time = datetime.utcnow()
             time -= self.client.uptime
@@ -403,9 +412,20 @@ class MainCog(commands.Cog, name = "General"):
                 day += hour // 24
                 hour = hour % 24
             embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s", color=0x00ff00) #,color=Hex code
+            embedVar.add_field(name="BobDotBot Server Uptime", value=loaded_json["monitors"][0]["logs"][0]["duration"])
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
-            await ctx.send(embed=embedVar)
-
+            await ctx.send(embed=embedVar)     
+url = "https://api.uptimerobot.com/v2/getMonitors"
+          
+payload = "api_key=enterYourAPIKeyHere&format=json&logs=1"
+headers = {
+    'content-type': "application/x-www-form-urlencoded",
+    'cache-control': "no-cache"
+    }
+          
+response = requests.request("POST", url, data=payload, headers=headers)
+          
+print(response.text)
 
 
     @commands.command(aliases=["nub"])
