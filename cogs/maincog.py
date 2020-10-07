@@ -21,6 +21,23 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 from datetime import datetime
 from discord.ext.commands import MissingPermissions
+from discord.ext import menus
+
+class MyMenu(menus.Menu):
+    async def send_initial_message(self, ctx, channel):
+        return await channel.send(f'Hello {ctx.author}')
+
+    @menus.button('\N{THUMBS UP SIGN}')
+    async def on_thumbs_up(self, payload):
+        await self.message.edit(content=f'Thanks {self.ctx.author}!')
+
+    @menus.button('\N{THUMBS DOWN SIGN}')
+    async def on_thumbs_down(self, payload):
+        await self.message.edit(content=f"That's not nice {self.ctx.author}...")
+
+    @menus.button('\N{BLACK SQUARE FOR STOP}\ufe0f')
+    async def on_stop(self, payload):
+        self.stop()
 
 class MemberRoles(commands.MemberConverter):
     async def convert(self, ctx, argument):
@@ -775,6 +792,10 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title=f'{emoji} Emoji id for :{emoji.name}: {emoji}',description=f'ID: {emoji.id}')
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await ctx.send(embed=embed)
+    @commands.command()
+    async def menu_example(ctx):
+        m = MyMenu()
+        await m.start(ctx)
 
 def setup(client):
     client.add_cog(MainCog(client))
