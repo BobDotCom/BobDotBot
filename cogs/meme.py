@@ -54,6 +54,7 @@ class Reddit(commands.Cog):
         self.bot = client
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def meme(self, ctx):
       """Memes from various subreddits"""
       async with ctx.typing():
@@ -95,6 +96,7 @@ class Reddit(commands.Cog):
         await ctx.send(url="_{}! ({})_".format(str(request['message']), str(request['error'])))
     
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def showerthought(self, ctx):
       """A random showerthought from r/showerthoughts"""
       async with ctx.typing():
@@ -139,24 +141,28 @@ class Reddit(commands.Cog):
 
     
     @commands.command(aliases=['dankmeme', 'dank'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def dankmemes(self, ctx):
       """Get an image from the dankmemes subreddit. Uses: `B.dankmemes`"""
       async with ctx.typing():
         await getSub(self, ctx, 'dankmemes')
         
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def me_irl(self, ctx):
       """Get an image from the me_irl subreddit. Uses: `B.me_irl`"""
       async with ctx.typing():
         await getSub(self, ctx, 'me_irl')
 
     @commands.command(aliases=["ph"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def programmerhumor(self, ctx):
       """Get an image from the ProgrammerHumor subreddit. Uses: `B.programmerhumor`"""
       async with ctx.typing():
         await getSub(self, ctx, 'ProgrammerHumor')
         
     @commands.command(aliases=["ri"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def redditimage(self, ctx, arg):
       """Get an image from a subreddit. Uses: `B.redditimage memes`"""
       async with ctx.typing():
