@@ -28,6 +28,7 @@ class ServerCog(commands.Cog, name = "Server"):
         print('ServerCog is active')
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild = True)
     async def prefix(self, ctx, *args):
         """Set one or multiple prefixes for BobDotBot in your server"""
@@ -48,6 +49,7 @@ class ServerCog(commands.Cog, name = "Server"):
                 json.dump(notprefixes, f, indent=4)
 
     @commands.command(aliases=['c'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_messages = True)
     async def clear(self, ctx,amount=2):
         """Clears messages"""
@@ -57,6 +59,7 @@ class ServerCog(commands.Cog, name = "Server"):
         await msg.delete()
     @commands.command()
     @commands.has_permissions(kick_members=True)
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def kick(self, ctx, member : discord.Member, *, reason=None):
         """Kick someone"""
         if True:
@@ -80,6 +83,7 @@ class ServerCog(commands.Cog, name = "Server"):
 
     @commands.command()
     @commands.has_permissions(ban_members = True)
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def ban(self, ctx, members: commands.Greedy[discord.Member],
                    delete_days: typing.Optional[int] = 0, *,
                    reason: str = None):
