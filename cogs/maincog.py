@@ -793,7 +793,7 @@ class MainCog(commands.Cog, name = "General"):
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await ctx.send(embed=embed)
     @commands.command()
-    async def menu_example(ctx):
+    async def menu_example(self,ctx):
         m = MyMenu()
         await m.start(ctx)
 
