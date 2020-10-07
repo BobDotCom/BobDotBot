@@ -403,7 +403,7 @@ class MainCog(commands.Cog, name = "General"):
             time -= self.client.uptime
             second = list(str(time.seconds)).copy()
             second = int("".join(second))
-            uptime = loaded_json["monitors"][0]["logs"][0]["duration"]
+            uptime = 100000000
             if second > 60:
                 minute =+ second // 60
                 second = second % 60
