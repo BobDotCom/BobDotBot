@@ -150,5 +150,10 @@ class Reddit(commands.Cog):
     async def programmerhumor(self, ctx):
       async with ctx.typing():
         await getSub(self, ctx, 'ProgrammerHumor')
+        
+    @commands.command()
+    async def redditimage(self, ctx, arg):
+      async with ctx.typing():
+        await getSub(self, ctx, arg)
 def setup(client):
     client.add_cog(Reddit(client))
