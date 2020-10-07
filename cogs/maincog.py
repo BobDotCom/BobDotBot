@@ -398,6 +398,7 @@ class MainCog(commands.Cog, name = "General"):
             response = requests.request("POST", url, data=payload, headers=headers)
             loaded_json = json.loads(response.text)
             minute,hour,day,second = 0,0,0,0
+            minute1,hour1,day1,uptime = 0,0,0,0
             time = datetime.utcnow()
             time -= self.client.uptime
             second = list(str(time.seconds)).copy()
