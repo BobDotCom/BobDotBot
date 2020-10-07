@@ -156,7 +156,7 @@ class Reddit(commands.Cog):
       async with ctx.typing():
         await getSub(self, ctx, 'ProgrammerHumor')
         
-    @commands.command()
+    @commands.command(aliases=["ri"])
     async def redditimage(self, ctx, arg):
       """Get an image from a subreddit. Uses: `B.redditimage memes`"""
       async with ctx.typing():
