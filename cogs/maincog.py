@@ -412,8 +412,17 @@ class MainCog(commands.Cog, name = "General"):
             if hour > 24:
                 day += hour // 24
                 hour = hour % 24
+            if uptime > 60:
+                minute1 =+ uptime // 60
+                uptime = uptime % 60
+            if minute1 > 60:
+                hour1 += minute1 // 60
+                minute1 = minute1 % 60
+            if hour1 > 24:
+                day1 += hour1 // 24
+                hour1 = hour1 % 24
             embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s", color=0x00ff00) #,color=Hex code
-            embedVar.add_field(name="BobDotBot Server Uptime", value=uptime)
+            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for {day}d {hour}h {minute}m {second}s")
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
             await ctx.send(embed=embedVar)
 
