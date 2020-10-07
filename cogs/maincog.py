@@ -58,7 +58,6 @@ class MainCog(commands.Cog, name = "General"):
         self.client.helper3_id = 706898741499789364
         global onreadyblocker
         onreadyblocker = False
-        self._cd = commands.CooldownMapping.from_cooldown(1.0, 60.0, commands.BucketType.user)
 
     async def save_users(self):
         await self.client.wait_until_ready()
@@ -385,15 +384,6 @@ class MainCog(commands.Cog, name = "General"):
                 await member.remove_roles(blue1)
                 await member.remove_roles(purple1)
                 await member.send("Removed roles")
-    @commands.Cog.listener()
-    async def cog_check(self, ctx):
-        bucket = self._cd.get_bucket(ctx.message)
-        retry_after = bucket.update_rate_limit()
-        if retry_after:
-            # you're rate limited
-            # helpful message here
-            pass
-        # you're not rate limited
                 
     @commands.command()
     async def uptime(self, ctx):
