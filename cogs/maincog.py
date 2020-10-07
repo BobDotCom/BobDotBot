@@ -470,7 +470,7 @@ class MainCog(commands.Cog, name = "General"):
         if len(roles) > 0:
             embedVar.add_field(name="Roles",value=f"{member.mention} has no roles")
         else:
-            embedVar.add_field(name="Roles",value=', '.join(member))
+            embedVar.add_field(name="Roles",value=', '.join(roles))
         embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedVar)
 
