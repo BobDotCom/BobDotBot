@@ -466,7 +466,7 @@ class MainCog(commands.Cog, name = "General"):
         #except:
             #embedVar.add_field(name="Server Info",value="User is not in this server")
         embedVar.add_field(name="User ID",value=member.id)
-        if len(roles) > 0:
+        if len(roles) = 0:
             embedVar.add_field(name="Roles",value=f"{member.mention} has no roles")
         else:
             embedVar.add_field(name="Roles",value=', '.join(roles))
