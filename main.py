@@ -45,7 +45,6 @@ client.owner_id = 690420846774321221
 client.load_extension("jishaku")
 prefixes1 = get_prefix
 logs = get_logs
-client.cd = commands.CooldownMapping.from_cooldown(1.0, 1.0, commands.BucketType.user)
 @client.event
 async def on_ready():
 	# server counter
@@ -115,13 +114,6 @@ async def on_command_error(ctx, error):
     await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
 @client.event
 async def on_message(message):
-	bucket = client.cd.get_bucket(message)
-	retry_after = bucket.update_rate_limit()
-	if retry_after:
-            # you're rate limited
-            # helpful message here
-            pass
-	# you're not rate limited
 	await client.process_commands(message)
 	if client.user.mentioned_in(message):
             if message.mention_everyone is False:
