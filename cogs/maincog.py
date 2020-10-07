@@ -390,7 +390,7 @@ class MainCog(commands.Cog, name = "General"):
             """See how long the bot has been online"""
             owner = self.client.get_user(self.client.owner_id)
             url = "https://api.uptimerobot.com/v2/getMonitors"
-            payload = "api_key=enterYourAPIKeyHere&format=json&logs=1"
+            payload = "api_key=u1005755-917ad9aadb3cf71bc1b8d32e&format=json&logs=1"
             headers = {
                 'content-type': "application/x-www-form-urlencoded",
                 'cache-control': "no-cache"
