@@ -549,7 +549,7 @@ class MainCog(commands.Cog, name = "General"):
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             for c in self.client.get_cog(cog).get_commands():
                                 if not c.hidden: #if cog not hidden
-                                    halp.add_field(name=c.name,value=c.help,inline=False)
+                                    halp.add_field(name=c.name,value=c.help)
                             found = True
                     if not found:
                         try:
