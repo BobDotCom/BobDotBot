@@ -353,6 +353,7 @@ class Music(commands.Cog):
         await ctx.send('An error occurred: {}'.format(str(error)))
 
     @commands.command(name='join', invoke_without_subcommand=True)
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _join(self, ctx: commands.Context):
         """Joins a voice channel."""
 
@@ -364,6 +365,7 @@ class Music(commands.Cog):
         ctx.voice_state.voice = await destination.connect()
 
     @commands.command(name='summon')
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild=True)
     async def _summon(self, ctx: commands.Context, *, channel: discord.VoiceChannel = None):
         """Summons the bot to a voice channel.
@@ -381,6 +383,7 @@ class Music(commands.Cog):
         ctx.voice_state.voice = await destination.connect()
 
     @commands.command(name='leave', aliases=['disconnect'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild=True)
     async def _leave(self, ctx: commands.Context):
         """Clears the queue and leaves the voice channel."""
@@ -392,6 +395,7 @@ class Music(commands.Cog):
         del self.voice_states[ctx.guild.id]
 
     @commands.command(name='volume')
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.is_owner()
     async def _volume(self, ctx: commands.Context, *, volume: int):
         """Sets the volume of the player."""
@@ -406,12 +410,14 @@ class Music(commands.Cog):
         await ctx.send('Volume of the player set to {}%'.format(volume))
 
     @commands.command(name='now', aliases=['current', 'playing'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _now(self, ctx: commands.Context):
         """Displays the currently playing song."""
         embed = ctx.voice_state.current.create_embed()
         await ctx.send(embed=embed)
 
     @commands.command(name='pause', aliases=['pa'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild=True)
     async def _pause(self, ctx: commands.Context):
         """Pauses the currently playing song."""
@@ -421,6 +427,7 @@ class Music(commands.Cog):
             await ctx.message.add_reaction('⏯')
 
     @commands.command(name='resume', aliases=['re', 'res'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild=True)
     async def _resume(self, ctx: commands.Context):
         """Resumes a currently paused song."""
@@ -430,6 +437,7 @@ class Music(commands.Cog):
             await ctx.message.add_reaction('⏯')
 
     @commands.command(name='stop')
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild=True)
     async def _stop(self, ctx: commands.Context):
         """Stops playing song and clears the queue."""
@@ -441,6 +449,7 @@ class Music(commands.Cog):
             await ctx.message.add_reaction('⏹')
 
     @commands.command(name='skip', aliases=['s'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _skip(self, ctx: commands.Context):
         """Vote to skip a song. The requester can automatically skip.
         3 skip votes are needed for the song to be skipped.
@@ -468,6 +477,7 @@ class Music(commands.Cog):
             await ctx.send('You have already voted to skip this song.')
 
     @commands.command(name='queue')
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _queue(self, ctx: commands.Context, *, page: int = 1):
         """Shows the player's queue.
         You can optionally specify the page to show. Each page contains 10 elements.
@@ -491,6 +501,7 @@ class Music(commands.Cog):
         await ctx.send(embed=embed)
 
     @commands.command(name='shuffle')
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _shuffle(self, ctx: commands.Context):
         """Shuffles the queue."""
 
@@ -501,6 +512,7 @@ class Music(commands.Cog):
         await ctx.message.add_reaction('✅')
 
     @commands.command(name='remove')
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _remove(self, ctx: commands.Context, index: int):
         """Removes a song from the queue at a given index."""
 
@@ -511,6 +523,7 @@ class Music(commands.Cog):
         await ctx.message.add_reaction('✅')
 
     @commands.command(name='loop')
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _loop(self, ctx: commands.Context):
         """Loops the currently playing song.
         Invoke this command again to unloop the song.
@@ -525,6 +538,7 @@ class Music(commands.Cog):
         await ctx.send(f"Loop state is now: {ctx.voice_state.loop}")
 
     @commands.command(name='play', aliases=['p'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _play(self, ctx: commands.Context, *, search: str):
         """Plays a song.
         If there are songs in the queue, this will be queued until the
@@ -547,6 +561,7 @@ class Music(commands.Cog):
                 await ctx.send('Enqueued {}'.format(str(source)))
 
     @commands.command(name='search', aliases=['se'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _search(self, ctx: commands.Context, *, search: str):
         """Searches youtube.
         It returns an imbed of the first 10 results collected from youtube.
