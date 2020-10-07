@@ -26,16 +26,16 @@ from discord.ext import menus
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
         return await channel.send(f'Hello {ctx.author}')
-
-    @menus.button('\N{THUMBS UP SIGN}')
+    
+    @menus.button('<:red:762759166627676201>')
     async def on_thumbs_up(self, payload):
         await self.message.edit(content=f'Thanks {self.ctx.author}!')
 
-    @menus.button('\N{THUMBS DOWN SIGN}')
+    @menus.button('<:orange:762759545642549278>')
     async def on_thumbs_down(self, payload):
         await self.message.edit(content=f"That's not nice {self.ctx.author}...")
 
-    @menus.button('\N{BLACK SQUARE FOR STOP}\ufe0f')
+    @menus.button('<:yellow:762759756514721852>')
     async def on_stop(self, payload):
         self.stop()
 
