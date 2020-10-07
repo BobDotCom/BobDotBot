@@ -463,11 +463,14 @@ class MainCog(commands.Cog, name = "General"):
         roles = [role.mention for role in memberroles.roles[1:]] # Remove everyone role!
         embedVar = discord.Embed(title=f"User Info for {member}", timestamp=ctx.message.created_at, description=member.mention, color=discord.Color.blurple())
         #try:
-            #embedVar.add_field(name="Server Info",value="" + fmt.format(member, len(member.roles)-1))
+            #embedVar.add_field(name="Server Info",value=f"{member.name} has" + fmt.format(member, len(member.roles)-1))
         #except:
             #embedVar.add_field(name="Server Info",value="User is not in this server")
         embedVar.add_field(name="User ID",value=member.id)
-        embedVar.add_field(name="Roles",value="" + fmt.format(member, len(roles)-1))
+        if len(roles) > 0:
+            embedVar.add_field(name="Roles",value=f"{member.mention} has no roles))
+        else:
+            embedVar.add_field(name="Roles",value=', '.join(member))
         embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedVar)
 
