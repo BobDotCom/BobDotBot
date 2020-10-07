@@ -38,7 +38,7 @@ async def getSub(self, ctx, sub):
                         if accepted:
                             if url not in memeHistory:
                                 memeHistory.append(url)  #add the url to the history, so it won't be posted again
-                                if len(memeHistory) > 63: #limit size
+                                if len(memeHistory) > 250: #limit size
                                     memeHistory.popleft() #remove the oldest
 
                                 break #done with this loop, can send image
