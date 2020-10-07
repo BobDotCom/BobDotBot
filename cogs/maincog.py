@@ -459,7 +459,7 @@ class MainCog(commands.Cog, name = "General"):
         member = ctx.author if not member else member
         fmt = '{0.name} joined at {0.joined_at} and has {1} roles.'
         owner = self.client.get_user(self.client.owner_id)
-        memberroles = ctx.author if not argument else await super().convert(ctx, argument)
+        memberroles = await super().convert(ctx, ctx.author) if not member else await super().convert(ctx, member)
         roles = [role.mention for role in memberroles.roles[1:]] # Remove everyone role!
         embedVar = discord.Embed(title=f"User Info for {member}", timestamp=ctx.message.created_at, description=member.mention, color=discord.Color.blurple())
         #try:
