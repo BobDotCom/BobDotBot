@@ -792,10 +792,10 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title=f'{emoji} Emoji id for :{emoji.name}: {emoji}',description=f'ID: {emoji.id}')
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await ctx.send(embed=embed)
-    @commands.command()
-    async def menu_example(self,ctx):
-        m = MyMenu()
-        await m.start(ctx)
+    #@commands.command()
+    #async def menu_example(self,ctx):
+        #m = MyMenu()
+        #await m.start(ctx)
 
 def setup(client):
     client.add_cog(MainCog(client))
