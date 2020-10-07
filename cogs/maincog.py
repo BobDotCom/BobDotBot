@@ -386,6 +386,7 @@ class MainCog(commands.Cog, name = "General"):
                 await member.send("Removed roles")
                 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def uptime(self, ctx):
             """See how long the bot has been online"""
             owner = self.client.get_user(self.client.owner_id)
@@ -428,11 +429,13 @@ class MainCog(commands.Cog, name = "General"):
             await ctx.send(embed=embedVar)
 
     @commands.command(aliases=["nub"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def noob(self, ctx):
         """Ur nub"""
         await ctx.send("NOOOOOB")
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def invite(self, ctx):
         """Invite me to your own server!"""
         owner = self.client.get_user(self.client.owner_id)
@@ -443,6 +446,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embedvar)
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def add(self, ctx, a: int, b: int):
         """I'm a baby bot, so i only do baby math(format= "x y" for x+y=z)"""
         answer = (a + b)
@@ -452,6 +456,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embedvar)
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def roles(self, ctx, *, member: MemberRoles):
         """Tells you a member's roles."""
         owner = self.client.get_user(self.client.owner_id)
@@ -460,6 +465,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embedvar)
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def slap(self, ctx, members: commands.Greedy[discord.Member], *, reason='no reason'):
         """Use this to slap someone(B.slap <@user> <reason>)"""
         slapped = ", ".join(x.name for x in members)
@@ -473,6 +479,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embedvar)
 
     @commands.command(aliases=['ui'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def userinfo(self, ctx, *, member: discord.Member = None):
         """Tells you some info about the member."""
         member = ctx.author if not member else member
@@ -498,6 +505,7 @@ class MainCog(commands.Cog, name = "General"):
             await ctx.send('I could not find that member...')
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def say(self, ctx, *, arg):
         """Says what you want"""
         quote = arg
@@ -508,6 +516,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embedVar)
 
     @commands.command(aliases=['pong'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def ping(self, ctx):
         """Checks ping(alais=pong)"""
         ping = int(self.client.latency * 1000)
@@ -517,11 +526,13 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embedVar)
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def porn(self, ctx):
         """Use if you are really horny"""
         await ctx.send("Shut up, horny kid.")
 
     @commands.command(pass_context=True)
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(add_reactions=True,embed_links=True)
     async def help(self,ctx,*cog):
         """Lists all command categories"""
@@ -603,6 +614,7 @@ class MainCog(commands.Cog, name = "General"):
         client.add_command(help)
 
     @commands.command(aliases=["credit", "owner"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def credits(self, ctx):
         """Shows the credits for the bot"""
         owner = self.client.get_user(self.client.owner_id)
@@ -621,6 +633,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['xp', 'rank', 'levels'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def level(self, ctx, member: discord.Member = None):
         """Lists a user's level. You can level up by talking in any channel/server that the bot is in"""
         if True:
@@ -742,11 +755,13 @@ class MainCog(commands.Cog, name = "General"):
             embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
             await ctx.send(embed=embed)
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def ligma(self, ctx):
         """Ligmabols"""
         await ctx.send("slurp")
 
     @commands.command(aliases=['suggestion'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def suggest(self, ctx, *, arg):
       """Make a suggestion about the bot, it can be a new command that you would like to see, or anything else that you want to suggest. NOTE: do not use this command for bugs. To report a bug, use the bug command."""
       def create_connection(path):
@@ -794,6 +809,7 @@ class MainCog(commands.Cog, name = "General"):
       await ctx.send(embed=embed)
 
     @commands.command(aliases=['bugs'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def bug(self, ctx, *, arg):
         """Let the owner know about a bug in the bot. NOTE: do not use this command for suggestions. To make a suggestion, use the suggestion command."""
         #load the database, collapseable
@@ -808,6 +824,7 @@ class MainCog(commands.Cog, name = "General"):
         await msg.add_reaction(emoji='❎')
         await ctx.send(embed=embed)
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def emoji_id(self,ctx,emoji: discord.Emoji):
         """get emoji id"""
         owner = self.client.get_user(self.client.owner_id)
