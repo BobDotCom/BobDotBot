@@ -15,13 +15,14 @@ import discord.utils
 from discord.ext import tasks, commands
 import random
 
-client = commands.Bot(command_prefix ="/")
+
 
 class economy(commands.Cog, name = "Economy"):
     """Economy commands"""
     def __init__(self, client):
         self.client = client
     @commands.command(aliases=['bal'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def balance(self,ctx,*,member: discord.Member = None):
         """See how much money you have"""
         member = ctx.author if not member else member
@@ -136,6 +137,7 @@ class economy(commands.Cog, name = "Economy"):
 
 
     @commands.command(aliases=['with'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def withdraw(self,ctx,amount = None):
         """Withdraw money from your bank to use it"""
         await self.open_account(ctx.author)
@@ -158,6 +160,7 @@ class economy(commands.Cog, name = "Economy"):
         await ctx.send(f"You withdrew {amount} coins")
     
     @commands.command(aliases=['dep','depo'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def deposit(self,ctx,amount = None):
         """Keep your money safe in the bank"""
         await self.open_account(ctx.author)
@@ -180,6 +183,7 @@ class economy(commands.Cog, name = "Economy"):
         await ctx.send(f"You deposited {amount} coins")
 
     @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def give(self,ctx,member:discord.Member,amount = None):
         """Donate to the poor"""
         await self.open_account(ctx.author)
@@ -203,6 +207,7 @@ class economy(commands.Cog, name = "Economy"):
         await ctx.send(f"You gave them {amount} coins. You *might* go to heaven now.")
 
     @client.command(aliases = ["lb"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def leaderboard(self,ctx,x = 10):
         users = await self.get_bank_data()
         leader_board = {}
@@ -324,6 +329,7 @@ class economy(commands.Cog, name = "Economy"):
 
 
     @client.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def shop(self,ctx):
         em = discord.Embed(title = "Shop", color = discord.Color.dark_blue())
 
@@ -338,6 +344,7 @@ class economy(commands.Cog, name = "Economy"):
 
 
     @client.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def buy(self,ctx,item,amount = 1):
         await self.open_account(ctx.author)
 
@@ -356,6 +363,7 @@ class economy(commands.Cog, name = "Economy"):
 
 
     @client.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def bag(self,ctx):
         await self.open_account(ctx.author)
         user = ctx.author
