@@ -138,21 +138,25 @@ class Reddit(commands.Cog):
     
     @commands.command(aliases=['dankmeme', 'dank'])
     async def dankmemes(self, ctx):
+      """Get an image from the dankmemes subreddit. Uses: `B.dankmemes`"""
       async with ctx.typing():
         await getSub(self, ctx, 'dankmemes')
         
     @commands.command()
     async def me_irl(self, ctx):
+      """Get an image from the me_irl subreddit. Uses: `B.me_irl`"""
       async with ctx.typing():
         await getSub(self, ctx, 'me_irl')
 
     @commands.command()
     async def programmerhumor(self, ctx):
+      """Get an image from the ProgrammerHumor subreddit. Uses: `B.programmerhumor`"""
       async with ctx.typing():
         await getSub(self, ctx, 'ProgrammerHumor')
         
     @commands.command()
     async def redditimage(self, ctx, arg):
+      """Get an image from a subreddit. Uses: `B.redditimage memes`"""
       async with ctx.typing():
         await getSub(self, ctx, arg)
 def setup(client):
