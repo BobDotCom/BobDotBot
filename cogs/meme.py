@@ -49,13 +49,14 @@ async def getSub(self, ctx, sub):
         await ctx.send("_{}! ({})_".format(str(request['message']), str(request['error'])))
 
 class Reddit(commands.Cog):
+    """Reddit features."""
     def __init__(self, client):
         self.bot = client
 
     @commands.command()
     async def meme(self, ctx):
+      """Memes from various subreddits"""
       async with ctx.typing():
-        """Memes from various subreddits (excluding r/me_irl. some don't understand those memes)"""
         async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/{0}/hot.json?limit=100".format(random.choice(memeSubreddits))) as response:
                 request = await response.json()
@@ -95,6 +96,7 @@ class Reddit(commands.Cog):
     
     @commands.command()
     async def showerthought(self, ctx):
+      """A random showerthought from r/showerthoughts"""
       async with ctx.typing():
         async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=100") as response:
