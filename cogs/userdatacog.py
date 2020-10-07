@@ -131,7 +131,7 @@ class Levels(commands.Cog, name = "User database"):
               if not (connection):
                   connection.close()
                   print("The SQLite connection is closed")
-        if message.author == self.client.user or message.guild.id == 336642139381301249:
+        if message.author == self.client.user or message.guild.id == 336642139381301249 or message.guild.id == 432915254922575873:
             return
         if message.author.bot: return
         author_id = str(message.author.id)
