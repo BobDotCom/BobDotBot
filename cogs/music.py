@@ -389,7 +389,8 @@ class Music(commands.Cog):
     @commands.has_permissions(manage_guild=True)
     async def _leave(self, ctx: commands.Context):
         """Clears the queue and leaves the voice channel."""
-
+        emoji = "<:blobleave:763579679230787584>"
+        await ctx.message.add_reaction(emoji)
         if not ctx.voice_state.voice:
             return await ctx.send('Not connected to any voice channel.')
 
