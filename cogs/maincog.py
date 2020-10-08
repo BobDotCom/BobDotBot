@@ -837,7 +837,7 @@ class MainCog(commands.Cog, name = "General"):
         #m = MyMenu()
         #await m.start(ctx)
         # Python3 code to demonstrate working of 
-    @commands.command(aliases=["ttb")
+    @commands.command(aliases=["ttb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def binary(self,ctx,*,arg):
         res = ''.join(format(ord(i), 'b') for i in arg)
