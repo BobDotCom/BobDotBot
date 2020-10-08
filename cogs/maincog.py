@@ -847,7 +847,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["btt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def text(self,ctx,*,arg):
-        binary_int = int("11000010110001001100011", 2)
+        binary_int = int(arg, 2)
         byte_number = binary_int.bit_length() + 7 // 8
 
         binary_array = binary_int.to_bytes(byte_number, "big")
