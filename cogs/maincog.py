@@ -842,6 +842,7 @@ class MainCog(commands.Cog, name = "General"):
     async def binary(self,ctx,*,arg):
         binary = ''.join(format(ord(i), 'b') for i in arg)
         embed = discord.Embed(color=discord.Color.blurple, timestamp=ctx.message.created_at, title="Text to binary", description=binary)
+        await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(MainCog(client))
