@@ -422,7 +422,7 @@ class Music(commands.Cog):
     @commands.command(name='pause', aliases=['pa'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _pause(self, ctx: commands.Context):
-        """Pauses the currently playing song."""
+      """Pauses the currently playing song."""
       if len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
         if ctx.voice_state.is_playing and ctx.voice_state.voice.is_playing():
             ctx.voice_state.voice.pause()
@@ -431,7 +431,7 @@ class Music(commands.Cog):
     @commands.command(name='resume', aliases=['re', 'res'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _resume(self, ctx: commands.Context):
-        """Resumes a currently paused song."""
+      """Resumes a currently paused song."""
       if len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
         if ctx.voice_state.is_playing and ctx.voice_state.voice.is_paused():
             ctx.voice_state.voice.resume()
@@ -440,7 +440,7 @@ class Music(commands.Cog):
     @commands.command(name='stop')
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _stop(self, ctx: commands.Context):
-        """Stops playing song and clears the queue."""
+      """Stops playing song and clears the queue."""
       if len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
         ctx.voice_state.songs.clear()
         if ctx.voice_state.loop:
