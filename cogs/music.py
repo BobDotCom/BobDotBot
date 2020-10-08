@@ -356,12 +356,13 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _join(self, ctx: commands.Context):
         """Joins a voice channel."""
-
+        emoji = "<:blobjoin:763579431272185887>"
+        await ctx.message.add_reaction(emoji)
         destination = ctx.author.voice.channel
         if ctx.voice_state.voice:
             await ctx.voice_state.voice.move_to(destination)
             return
-
+                       
         ctx.voice_state.voice = await destination.connect()
 
     @commands.command(name='summon')
@@ -371,7 +372,8 @@ class Music(commands.Cog):
         """Summons the bot to a voice channel.
         If no channel was specified, it joins your channel.
         """
-
+        emoji = "<:blobjoin:763579431272185887>"
+        await ctx.message.add_reaction(emoji)
         if not channel and not ctx.author.voice:
             raise VoiceError('You are neither connected to a voice channel nor specified a channel to join.')
 
