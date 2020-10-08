@@ -12,7 +12,7 @@ memeSubreddits = ["BikiniBottomTwitter", "memes", "2meirl4meirl", "deepfriedmeme
 async def getSub(self, ctx, sub):
         """Get stuff from requested sub"""
         async with aiohttp.ClientSession() as session:
-            async with session.get(f"https://www.reddit.com/r{sub}/hot.json?limit=100") as response:
+            async with session.get(f"https://www.reddit.com/r{sub}/hot.json?limit=250") as response:
                 request = await response.json()
 
         attempts = 1
@@ -21,7 +21,7 @@ async def getSub(self, ctx, sub):
                 print("failed request {}".format(attempts))
                 await asyncio.sleep(2)
                 async with aiohttp.ClientSession() as session:
-                    async with session.get(f"https://www.reddit.com/r/{sub}/hot.json?limit=100") as response:
+                    async with session.get(f"https://www.reddit.com/r/{sub}/hot.json?limit=250") as response:
                         request = await response.json()
                 attempts += 1
             else:
@@ -59,7 +59,7 @@ class Reddit(commands.Cog):
       """Memes from various subreddits"""
       async with ctx.typing():
         async with aiohttp.ClientSession() as session:
-            async with session.get("https://www.reddit.com/r/{0}/hot.json?limit=100".format(random.choice(memeSubreddits))) as response:
+            async with session.get("https://www.reddit.com/r/{0}/hot.json?limit=250".format(random.choice(memeSubreddits))) as response:
                 request = await response.json()
 
         attempts = 1
@@ -68,7 +68,7 @@ class Reddit(commands.Cog):
                 print("failed request {}".format(attempts))
                 await asyncio.sleep(2)
                 async with aiohttp.ClientSession() as session:
-                    async with session.get("https://www.reddit.com/r/{0}/hot.json?limit=100".format(random.choice(memeSubreddits))) as response:
+                    async with session.get("https://www.reddit.com/r/{0}/hot.json?limit=250".format(random.choice(memeSubreddits))) as response:
                         request = await response.json()
                 attempts += 1
             else:
@@ -101,7 +101,7 @@ class Reddit(commands.Cog):
       """A random showerthought from r/showerthoughts"""
       async with ctx.typing():
         async with aiohttp.ClientSession() as session:
-            async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=100") as response:
+            async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=250") as response:
                 request = await response.json()
 
         attempts = 1
@@ -110,7 +110,7 @@ class Reddit(commands.Cog):
                 print("failed request {}".format(attempts))
                 await asyncio.sleep(2)
                 async with aiohttp.ClientSession() as session:
-                    async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=100") as response:
+                    async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=250") as response:
                         request = await response.json()
                 attempts += 1
             else:
