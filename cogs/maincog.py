@@ -847,15 +847,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["btt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def text(self,ctx,*,arg):
-        def text_from_bits(bits, encoding='utf-8', errors='surrogatepass'):
-            n = int(bits, 2)
-            return int2bytes(n).decode(encoding, errors)
-
-        def int2bytes(i):
-            hex_string = '%x' % i
-            n = len(hex_string)
-            return binascii.unhexlify(hex_string.zfill(n + (n & 1)))
-        binary = text_from_bits(arg)
+        binary = arg.decode()
         embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title="Binary to text", description=binary)
         await ctx.send(embed=embed)
 def setup(client):
