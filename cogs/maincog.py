@@ -840,8 +840,8 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["ttb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def binary(self,ctx,*,arg):
-        res = ''.join(format(ord(i), 'b') for i in arg)
-        embed = discord.Embed(color=discord.Color.blurple, timestamp=ctx.message.created_at, title="Text to binary", description=res)
+        binary = ''.join(format(ord(i), 'b') for i in arg)
+        embed = discord.Embed(color=discord.Color.blurple, timestamp=ctx.message.created_at, title="Text to binary", description=binary)
 
 def setup(client):
     client.add_cog(MainCog(client))
