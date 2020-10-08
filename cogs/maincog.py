@@ -405,22 +405,22 @@ class MainCog(commands.Cog, name = "General"):
             second = list(str(time.seconds)).copy()
             second = int("".join(second))
             uptime = loaded_json["monitors"][0]["logs"][0]["duration"]
-            if second > 60:
+            if second >= 60:
                 minute =+ second // 60
                 second = second % 60
-            if minute > 60:
+            if minute >= 60:
                 hour += minute // 60
                 minute = minute % 60
-            if hour > 24:
+            if hour >= 24:
                 day += hour // 24
                 hour = hour % 24
-            if uptime > 60:
+            if uptime >= 60:
                 minute1 =+ uptime // 60
                 uptime = uptime % 60
-            if minute1 > 60:
+            if minute1 >= 60:
                 hour1 += minute1 // 60
                 minute1 = minute1 % 60
-            if hour1 > 24:
+            if hour1 >= 24:
                 day1 += hour1 // 24
                 hour1 = hour1 % 24
             embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s", color=0x00ff00) #,color=Hex code
