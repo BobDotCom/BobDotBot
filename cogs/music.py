@@ -460,7 +460,7 @@ class Music(commands.Cog):
             return await ctx.send('Not playing any music right now...')
 
         voter = ctx.message.author
-        if voter == ctx.voice_state.current.requester or len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild::
+        if voter == ctx.voice_state.current.requester or len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
             await ctx.message.add_reaction('⏭')
             ctx.voice_state.skip()
 
