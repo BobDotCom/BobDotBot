@@ -847,12 +847,13 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["btt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def text(self,ctx,*,arg):
-        binary_int = int(arg, 2)
-        byte_number = binary_int.bit_length() + 7 // 8
-
-        binary_array = binary_int.to_bytes(byte_number, "big")
-        text = binary_array.decode()
-        embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title="Binary to text", description=text)
+    lists = ""
+    newarg = arg.split(" ")
+    for x in newarg:
+        asdf = chr(int(x, 2))
+        thevar = (lists,asdf)
+        lists = "".join(thevar)
+        embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title="Binary to text", description=lists)
         await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(MainCog(client))
