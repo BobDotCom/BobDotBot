@@ -387,7 +387,7 @@ class Music(commands.Cog):
     @commands.command(name='leave', aliases=['disconnect'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _leave(self, ctx: commands.Context):
-      if len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
+      if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         """Clears the queue and leaves the voice channel."""
         emoji = "<:blobleave:763579679230787584>"
         await ctx.message.add_reaction(emoji)
@@ -423,7 +423,7 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _pause(self, ctx: commands.Context):
       """Pauses the currently playing song."""
-      if len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
+      if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         if ctx.voice_state.is_playing and ctx.voice_state.voice.is_playing():
             ctx.voice_state.voice.pause()
             await ctx.message.add_reaction('⏯')
@@ -432,7 +432,7 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _resume(self, ctx: commands.Context):
       """Resumes a currently paused song."""
-      if len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
+      if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         if ctx.voice_state.is_playing and ctx.voice_state.voice.is_paused():
             ctx.voice_state.voice.resume()
             await ctx.message.add_reaction('⏯')
@@ -441,7 +441,7 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _stop(self, ctx: commands.Context):
       """Stops playing song and clears the queue."""
-      if len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
+      if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         ctx.voice_state.songs.clear()
         if ctx.voice_state.loop:
             ctx.voice_state.loop = False
@@ -460,7 +460,7 @@ class Music(commands.Cog):
             return await ctx.send('Not playing any music right now...')
 
         voter = ctx.message.author
-        if voter == ctx.voice_state.current.requester or len(ctx.voice_client.channel.members) == 2 or member.guild_permissions.manage_guild:
+        if voter == ctx.voice_state.current.requester or len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
             await ctx.message.add_reaction('⏭')
             ctx.voice_state.skip()
 
