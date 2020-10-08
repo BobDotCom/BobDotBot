@@ -11,6 +11,7 @@ import datetime
 import functools
 import operator
 import json
+import binascii
 import sys
 import requests
 import sqlite3
