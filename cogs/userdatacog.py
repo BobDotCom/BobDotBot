@@ -131,7 +131,7 @@ class Levels(commands.Cog, name = "User database"):
               if not (connection):
                   connection.close()
                   print("The SQLite connection is closed")
-        if message.author == self.client.user or message.guild.id == 336642139381301249 or message.guild.id == 432915254922575873:
+        if message.author == self.client.user:
             return
         if message.author.bot: return
         author_id = str(message.author.id)
@@ -171,9 +171,10 @@ class Levels(commands.Cog, name = "User database"):
               id = {the_id}
             """
             execute_query(connection, update_level)
-            msg = await message.channel.send(f"{message.author.mention} is now level {newlevel}!")
-            await asyncio.sleep(30)
-            await msg.delete()
+            if not message.guild.id == 336642139381301249 and not message.guild.id == 432915254922575873:
+                msg = await message.channel.send(f"{message.author.mention} is now level {newlevel}!")
+                await asyncio.sleep(30)
+                await msg.delete()
 
     @commands.Cog.listener()
     async def on_ready(self):
