@@ -291,10 +291,6 @@ class VoiceState:
                     self.bot.loop.create_task(self.stop())
                     self.exists = False
                     return
-                if len(ctx.voice_client.channel.members) == 1:
-                    self.bot.loop.create_task(self.stop())
-                    self.exists = False
-                    return
                 self.current.source.volume = self._volume
                 self.voice.play(self.current.source, after=self.play_next_song)
                 await self.current.source.channel.send(embed=self.current.create_embed())
