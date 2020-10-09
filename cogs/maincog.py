@@ -466,7 +466,7 @@ class MainCog(commands.Cog, name = "General"):
         """Use this to slap someone
         Uses: `B.slap [user] [reason]`
         Note: Arguments in brackets[] are not required
-        Note: If the user has a multi word name, put it in "quotes""""
+        Note: If the user has a multi word name, put it in "quotes" """
         slapped = ", ".join(x.name for x in members)
         slapself = f"{ctx.author.name}"
         owner = self.client.get_user(self.client.owner_id)
