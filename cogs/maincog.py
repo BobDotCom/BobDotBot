@@ -466,7 +466,7 @@ class MainCog(commands.Cog, name = "General"):
         """Use this to slap someone
         Uses: `B.slap [user] [reason]`
         Note: Arguments in brackets[] are not required
-        Note: If the user has a multi word name, put it in "quotes" """
+        Note: If the user has a multi word name, put it in "quotes", or mention it"""
         slapped = ", ".join(x.name for x in members)
         slapself = f"{ctx.author.name}"
         owner = self.client.get_user(self.client.owner_id)
@@ -482,7 +482,8 @@ class MainCog(commands.Cog, name = "General"):
     async def userinfo(self, ctx, *, member: discord.Member = None):
         """Tells you some info about the member.
         Uses: `B.userinfo [member]`
-        Note: Arguments in brackets[] are optional"""
+        Note: Arguments in brackets[] are optional
+        Note: If the user has a multi word name, put it in "quotes", or mention it"""
         member = ctx.author if not member else member
         fmt = '{0.name} joined at {0.joined_at} and has {1} roles.'
         owner = self.client.get_user(self.client.owner_id)
