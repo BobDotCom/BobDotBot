@@ -876,6 +876,11 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["rw"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def renderworld(self,ctx,arg):
-        await ctx.send(f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}.png")
+        try:
+            embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Here is a render of the world: {arg}")
+            embed.set_image(url=f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}.png")
+        except:
+            embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
+        await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(MainCog(client))
