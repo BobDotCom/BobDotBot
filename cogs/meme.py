@@ -26,7 +26,7 @@ async def getSub(self, ctx, sub):
                 attempts += 1
             else:
                 index = 0
-                print(request['data'])
+                print(request['data']['over_18']
                 for index, val in enumerate(request['data']['children']):
                     if 'url' in val['data']:
                         url = val['data']['url']
