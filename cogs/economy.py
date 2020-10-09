@@ -232,7 +232,7 @@ class economy(commands.Cog, name = "Economy"):
         em = discord.Embed(title = f"Top {x} Richest People" , description = "Leaderboard takes both bank and wallet balance",color = discord.Color.dark_blue())
         index = 1
         for amt in total:
-            id_ = leader_board[amt]
+            id_ = leader_board[total_amount]
             member = self.client.get_user(id_)
             name = member.name
             em.add_field(name = f"{index}. {name}" , value = f"{amt}",  inline = False)
