@@ -24,6 +24,7 @@ async def getSub(self, ctx, sub):
                 async with aiohttp.ClientSession() as session:
                     async with session.get(f"https://www.reddit.com/r/{sub}/hot.json?limit=450") as response:
                         request = await response.json()
+                        await ctx.send(request)
                 attempts += 1
             else:
                 index = 0
