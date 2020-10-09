@@ -876,6 +876,6 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["rw"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def renderworld(self,ctx,arg):
-        await ctx.send(f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}")
+        await ctx.send(f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}.png")
 def setup(client):
     client.add_cog(MainCog(client))
