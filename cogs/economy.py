@@ -133,7 +133,7 @@ class economy(commands.Cog, name = "Economy"):
 
         earnings =  random.randrange(2001)
 
-        await ctx.send(f"you worked and got {earnings} must of worked hard to get it!")
+        await ctx.send(f"You worked for an hour and somehow managed to get {earnings} coins. bruh")
 
         users[str(user.id)]["wallet"] += earnings
     
