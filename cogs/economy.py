@@ -219,30 +219,31 @@ class economy(commands.Cog, name = "Economy"):
     async def leaderboard(self,ctx,x = 10):
         """Check the top players and their balance
         Uses: `B.leaderboard`"""
-        users = await self.get_bank_data()
-        leader_board = {}
-        total = []
-        asdf = []
-        for user in users:
-            total_amount = users[user]["wallet"] + users[user]["bank"]
-            leader_board[total_amount] = int(user)
-            total.append(total_amount)
-            asdf.append(int(user))
-        total = sorted(total,reverse=True)    
+        #users = await self.get_bank_data()
+        #leader_board = {}
+        #total = []
+        #asdf = []
+        #for user in users:
+            #total_amount = users[user]["wallet"] + users[user]["bank"]
+            #leader_board[total_amount] = int(user)
+            #total.append(total_amount)
+            #asdf.append(int(user))
+        #total = sorted(total,reverse=True)    
 
-        em = discord.Embed(title = f"Top {x} Richest People" , description = "Leaderboard takes both bank and wallet balance",color = discord.Color.dark_blue())
-        index = 1
-        for amt in total:
-            id_ = asdf[index]
-            member = self.client.get_user(id_)
-            name = member.name
-            em.add_field(name = f"{index}. {name}" , value = f"{amt}",  inline = False)
-            if index == x:
-                break
-            else:
-                index += 1
+        #em = discord.Embed(title = f"Top {x} Richest People" , description = "Leaderboard takes both bank and wallet balance",color = discord.Color.dark_blue())
+        #index = 1
+        #for amt in total:
+            #await _ctx.send
+            #id_ = asdf[index]
+            #member = self.client.get_user(id_)
+            #name = member.name
+            #em.add_field(name = f"{index}. {name}" , value = f"{amt}",  inline = False)
+            #if index == x:
+                #break
+            #else:
+                #index += 1
 
-        await ctx.send(embed = em)
+        await ctx.send("this command is currently disabled)
 
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
