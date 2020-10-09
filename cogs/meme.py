@@ -14,8 +14,6 @@ async def getSub(self, ctx, sub):
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://www.reddit.com/r{sub}/hot.json?limit=450") as response:
                 request = await response.json()
-                try:
-                    await ctx.send(request)
                     
         attempts = 1
         while attempts < 5:
@@ -25,12 +23,10 @@ async def getSub(self, ctx, sub):
                 async with aiohttp.ClientSession() as session:
                     async with session.get(f"https://www.reddit.com/r/{sub}/hot.json?limit=450") as response:
                         request = await response.json()
-                        try:
-                            await ctx.send(request)
                 attempts += 1
             else:
                 index = 0
-
+                await ctx.send(request)
                 for index, val in enumerate(request['data']['children']):
                     if 'url' in val['data']:
                         url = val['data']['url']
