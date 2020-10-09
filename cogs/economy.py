@@ -24,7 +24,9 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command(aliases=['bal'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def balance(self,ctx,*,member: discord.Member = None):
-        """See how much money you have"""
+        """See how much money you, or someone else has
+        Uses: `B.balance [member]`
+        Note: Arguments in brackets[] are optional"""
         member = ctx.author if not member else member
         await self.open_account(member)
         user = member
