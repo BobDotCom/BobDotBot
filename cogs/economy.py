@@ -41,7 +41,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.user)
     async def allin(self,ctx):
-      """Bet all of your money in a coin toss"""
+      """Bet all of your money in a coin toss
+      Uses: `B.allin`"""
       async with ctx.channel.typing():
         emoji = self.client.get_emoji(759047006290313237) 
         msg = await ctx.send(f"{emoji}")
@@ -69,7 +70,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def beg(self,ctx):
-        """Beg to get money though everyone wont like you for doing it"""
+        """Beg peope for money
+        Uses: `B.beg`"""
         await self.open_account(ctx.author)
         user = ctx.author
         users = await self.get_bank_data()
@@ -121,7 +123,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 3600, commands.BucketType.user)
     async def work(self,ctx):
-        """Go to work. Get a job. Leave your parents basement. Yes, I mean you. Lazy."""
+        """Go to work. Get a job. Leave your parents basement. Yes, I mean you. Lazy.
+        Uses: `B.work`"""
         await self.open_account(ctx.author)
         user = ctx.author
         users = await self.get_bank_data()
@@ -139,7 +142,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command(aliases=['with'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def withdraw(self,ctx,amount = None):
-        """Withdraw money from your bank to use it"""
+        """Withdraw money from your bank, putting it into your wallet to use
+        Uses: `B.withdraw <amount>`"""
         await self.open_account(ctx.author)
         if amount == None:
             await ctx.send("Please enter the amount")
@@ -162,7 +166,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command(aliases=['dep','depo'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def deposit(self,ctx,amount = None):
-        """Keep your money safe in the bank"""
+        """Keep your money safe in the bank
+        Uses: `B.deposit <amount>`"""
         await self.open_account(ctx.author)
         if amount == None:
             await ctx.send("Please enter an amount")
@@ -185,7 +190,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def give(self,ctx,member:discord.Member,amount = None):
-        """Donate to the poor"""
+        """Donate to the poor
+        Uses: `B.donate <member> <amount>`"""
         await self.open_account(ctx.author)
         await self.open_account(member)
         if amount == None:
@@ -209,6 +215,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command(aliases = ["lb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def leaderboard(self,ctx,x = 10):
+        """Check the top players and their balance
+        Uses: `B.leaderboard`"""
         users = await self.get_bank_data()
         leader_board = {}
         total = []
@@ -236,7 +244,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
     async def slots(self,ctx,amount = None):
-        """Try your luck. Or dont."""
+        """Try your luck. Or dont.
+        Uses: `B.slots <amount>`"""
         await self.open_account(ctx.author)
         if amount == None:
             await ctx.send("Please enter an amount")
@@ -296,7 +305,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 1800, commands.BucketType.user)
     async def rob(self,ctx,member:discord.Member):
-        """Rob someone i dont know why you would though"""
+        """Rob someone. You're a theif now
+        Uses: `B.rob <member>`"""
         await self.open_account(ctx.author)
         await self.open_account(member)
 
@@ -331,6 +341,8 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def shop(self,ctx):
+        """See whats in the shop
+        Uses: `B.shop`"""
         em = discord.Embed(title = "Shop", color = discord.Color.dark_blue())
 
         for item in self.mainshop:
@@ -346,6 +358,9 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def buy(self,ctx,item,amount = 1):
+        """Buy something from the shop
+        Uses: `B.buy <item> [amount]`
+        Note: Amount(in brackets[]) defaults to 1 if not set"""
         await self.open_account(ctx.author)
 
         res = await self.buy_this(ctx.author,item,amount)
@@ -362,9 +377,11 @@ class economy(commands.Cog, name = "Economy"):
         await ctx.send(f"You just bought {amount} {item}")
 
 
-    @commands.command()
+    @commands.command(aliases=["inv"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def bag(self,ctx):
+    async def inventory(self,ctx):
+        """Check your inventory
+        Uses: `B.inventory`"""
         await self.open_account(ctx.author)
         user = ctx.author
         users = await self.get_bank_data()
