@@ -873,5 +873,9 @@ class MainCog(commands.Cog, name = "General"):
             lists = "".join(thevar)
         embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title="Binary to text", description=lists)
         await ctx.send(embed=embed)
+    @commands.command(aliases=["rw"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def renderworld(self,ctx,arg):
+        await ctx.send(f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}")
 def setup(client):
     client.add_cog(MainCog(client))
