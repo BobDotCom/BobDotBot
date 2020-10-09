@@ -222,17 +222,18 @@ class economy(commands.Cog, name = "Economy"):
         users = await self.get_bank_data()
         leader_board = {}
         total = []
+        asdf = []
         for user in users:
             total_amount = users[user]["wallet"] + users[user]["bank"]
             leader_board[total_amount] = int(user)
             total.append(total_amount)
-
+            asdf.append(int(user))
         total = sorted(total,reverse=True)    
 
         em = discord.Embed(title = f"Top {x} Richest People" , description = "Leaderboard takes both bank and wallet balance",color = discord.Color.dark_blue())
         index = 1
         for amt in total:
-            id_ = leader_board[total_amount]
+            id_ = asdf[index]
             member = self.client.get_user(id_)
             name = member.name
             em.add_field(name = f"{index}. {name}" , value = f"{amt}",  inline = False)
