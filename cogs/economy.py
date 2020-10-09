@@ -243,7 +243,7 @@ class economy(commands.Cog, name = "Economy"):
             #else:
                 #index += 1
 
-        await ctx.send("this command is currently disabled)
+        await ctx.send("this command is currently disabled")
 
     @commands.command()
     @commands.cooldown(1, 5, commands.BucketType.user)
