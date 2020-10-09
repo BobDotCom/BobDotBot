@@ -27,7 +27,9 @@ async def getSub(self, ctx, sub):
             else:
                 index = 0
                 for index, val in enumerate(request['data']['children']):
-                    print(val['data']["over_18"])
+                    if val['data']["over_18"] == True:
+                        if not ctx.channel.is_nsfw():
+                            return await ctx.send("Thats an nsfw reddit, nonono")
                     if 'url' in val['data']:
                         url = val['data']['url']
                         urlLower = url.lower()
