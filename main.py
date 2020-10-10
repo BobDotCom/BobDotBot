@@ -248,20 +248,24 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
     """on member remove"""
-    guild = member.guild
+    guild: discord.Guild = member.guild
     channels = guild.channels
-    print(f"{member} has left the server...")
 
-    # Leave Message
+    if str(guild.id) not in Data.server_data:
+        Data.server_data[str(guild.id)] = Data.create_new_data()
+    data = Data.server_data[str(guild.id)]
+    # Welcome Message
+    if data["leave_message"] is None:
+        server_wlcm_msg = f"Goodbye, {member}"
+    else:
+        server_wlcm_msg = data["leave_message"]
+        server_wlcm_msg = server_wlcm_msg.replace(
+            "[member]", f"{member}")
+
     for channel in channels:
         if str(channel).find("bye") != -1 or str(channel).find("leave") != -1:
-            msg = f"Goodbye, **{str(member)}**, thank you for staying at **{guild.name}** Server\n"
-            await channel.send(msg)
+            await channel.send(server_wlcm_msg)
             break
-    guildvar = client.get_guild(727739470731935765)
-    channelvar = guildvar.get_channel(755259446724263996)
-    if member.guild == guildvar:
-        await channelvar.send(f"Oh no! {member.name} left the server! We hope you had fun and will come back!")
 @client.command(aliases=['l'])
 @commands.is_owner()
 async def load(ctx, extension):
