@@ -120,9 +120,11 @@ class Serversettings(commands.Cog):
         embed.add_field(name="Badges", value=badges)
 
         embed.add_field(name="Bot?", value=member.bot)
+        roles = " ".join([role.mention for role in member.roles if role != ctx.guild.default_role])
+        roles = "None" if not roles else roles
         embed.add_field(
             name=f"{len(member.roles)-1} Roles",
-            value=" ".join([role.mention for role in member.roles if role != ctx.guild.default_role]),
+            value=roles,
             inline = False
         )
 
