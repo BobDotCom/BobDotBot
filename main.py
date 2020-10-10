@@ -207,6 +207,31 @@ async def on_guild_remove(guild):
 @client.event
 async def on_member_join(member):
     """on member join"""
+    guild: discord.Guild = member.guild
+    channels = guild.channels
+
+    if str(guild.id) not in Data.server_data:
+        Data.server_data[str(guild.id)] = Data.create_new_data()
+    data = Data.server_data[str(guild.id)]
+
+    print(f"{member} has joined {guild} server...")
+
+    join_role = guild.get_role(data["join_role"])
+    if join_role is not None:
+        await member.add_roles(join_role)
+
+    # Welcome Message
+    if data["welcome_msg"] is None:
+        server_wlcm_msg = f"Welcome, {member.mention}, to the Official **{guild.name}** Server"
+    else:
+        server_wlcm_msg = data["welcome_msg"]
+        server_wlcm_msg = server_wlcm_msg.replace(
+            "[mention]", f"{member.mention}")
+
+    for channel in channels:
+        if str(channel).find("welcome") != -1:
+            await channel.send(server_wlcm_msg)
+            break
     guildvar = client.get_guild(727739470731935765)
     welcome = guildvar.get_channel(755259446724263996)
     roles = guildvar.get_channel(762721025912733696)
@@ -225,6 +250,16 @@ async def on_member_join(member):
 @client.event
 async def on_member_remove(member):
     """on member remove"""
+    guild = member.guild
+    channels = guild.channels
+    print(f"{member} has left the server...")
+
+    # Leave Message
+    for channel in channels:
+        if str(channel).find("bye") != -1 or str(channel).find("leave") != -1:
+            msg = f"Goodbye, **{str(member)}**, thank you for staying at **{guild.name}** Server\n"
+            await channel.send(msg)
+            break
     guildvar = client.get_guild(727739470731935765)
     channelvar = guildvar.get_channel(755259446724263996)
     if member.guild == guildvar:
