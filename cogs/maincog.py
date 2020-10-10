@@ -477,36 +477,7 @@ class MainCog(commands.Cog, name = "General"):
         else:
             embedvar = discord.Embed(title="***OOPS***", timestamp=ctx.message.created_at, description=f"{slapself} just **slapped** themselves because they didn't mention someone valid to slap!", color=0x000000)
         await ctx.send(embed=embedvar)
-
-    @commands.command(aliases=['ui'])
-    @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def userinfo(self, ctx, *, member: discord.Member = None):
-        """Tells you some info about the member.
-        Uses: `B.userinfo [member]`
-        Note: Arguments in brackets[] are optional
-        Note: If the user has a multi word name, put it in "quotes", or mention it"""
-        member = ctx.author if not member else member
-        fmt = '{0.name} joined at {0.joined_at} and has {1} roles.'
-        owner = self.client.get_user(self.client.owner_id)
-        roles = [role.mention for role in member.roles[1:]] # Remove everyone role!
-        embedVar = discord.Embed(title=f"User Info for {member}", timestamp=ctx.message.created_at, description=f"{member.mention}(Nickname: {member.nick})", color=discord.Color.blurple())
-        try:
-            embedVar.add_field(name="Server Info",value=f"" + fmt.format(member, len(member.roles)-1))
-        except:
-            embedVar.add_field(name="Server Info",value="User is not in this server")
-        embedVar.add_field(name="User ID",value=member.id)
-        if len(roles) == 0:
-            embedVar.add_field(name="Roles",value=f"{member.name} has no roles")
-        else:
-            embedVar.add_field(name="Roles",value=', '.join(roles))
-        embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
-        await ctx.send(embed=embedVar)
-
-    @userinfo.error
-    async def userinfo_error(self, ctx, error):
-        if isinstance(error, commands.BadArgument):
-            await ctx.send('I could not find that member...')
-
+        
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def say(self, ctx, *, arg):
@@ -891,6 +862,98 @@ class MainCog(commands.Cog, name = "General"):
               data = await resp.json(content_type="text/html")
               data = data["online_user"]
         embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
+        await ctx.send(embed=embed)
+    @commands.command(name="serverinfo", aliases=["si"])
+    async def serverinfo(self, ctx):
+        name = ctx.guild.name
+        description = ctx.guild.description
+        owner = ctx.guild.owner
+        guild_id = ctx.guild.id
+        region = ctx.guild.region
+        member_count = ctx.guild.member_count
+        icon = ctx.guild.icon_url
+
+        embed = discord.Embed(
+            title=f"{name} Server Information",
+            description=description,
+            color=discord.Color.blurple()
+        )
+        embed.set_thumbnail(url=icon)
+        embed.add_field(name="Owner", value=owner, inline=True)
+        embed.add_field(name="Server ID", value=guild_id, inline=True)
+        embed.add_field(name="Region", value=region, inline=True)
+        embed.add_field(name="Member Count", value=member_count, inline=True)
+
+        await ctx.send(embed=embed)
+
+    @commands.command(name="userinfo", aliases=["ui"])
+    async def userinfo(self, ctx, member: discord.Member = None):
+        """Tells you some info about the member.
+        Uses: `B.userinfo [member]`
+        Note: Arguments in brackets[] are optional
+        Note: If the user has a multi word name, put it in "quotes", or mention it"""
+        member = ctx.author if not member else member
+
+        embed = discord.Embed(
+            color=discord.Color.blurple(),
+            timestamp=ctx.message.created_at,
+            description=member.mention
+        )
+
+        embed.set_author(name=f"{member} Info")
+        embed.set_thumbnail(url=member.avatar_url)
+        embed.set_footer(
+            text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
+
+        embed.add_field(name="ID:", value=member.id)
+        embed.add_field(name="Nickname", value=member.nick)
+        embed.add_field(
+            name="Registered At:",
+            value=member.created_at.strftime("%a, %d %b %Y %I:%M %p")
+        )
+        embed.add_field(
+            name="Joined Server At:",
+            value=member.joined_at.strftime("%a, %d %b %Y %I:%M %p")
+        )
+        badges = ""
+        for i in list(iter(member.public_flags)):
+            if i[1] and i[0] == "staff":
+                badges += str(self.bot.get_emoji(764456791215046667))+" Discord Staff"
+            if  i[1] and i[0] == "partner":
+                badges += str(self.bot.get_emoji(764456791345201173))+" Discord Partner"
+            if  i[1] and i[0] == "early_supporter":
+                badges += str(self.bot.get_emoji(764456791453990933))+" Early Supporter"
+            if  i[1] and i[0] == "bug_hunter":
+                badges += str(self.bot.get_emoji(764456789440725012))+" Bug Hunter"
+            if  i[1] and i[0] == "bug_hunter_level_2":
+                badges += str(self.bot.get_emoji(764456791509041152))+" Bug Hunter 2"
+            if  i[1] and i[0] == "early_verified_bot_developer":
+                badges += str(self.bot.get_emoji(764456791601315860))+" Early Verified Bot Developer"
+            if  i[1] and i[0] == "verified_bot":
+                badges += str(self.bot.get_emoji(764507982347763712))+str(self.bot.get_emoji(764507981907755018))+" Verified Bot"
+            if  i[1] and i[0] == "hypesquad":
+                badges += str(self.bot.get_emoji(764456789256830976))+" Hypesquad"
+            if  i[1] and i[0] == "hypesquad_bravery":
+                badges += str(self.bot.get_emoji(764456791294869506))+" Hypesquad Bravery"
+            if  i[1] and i[0] == "hypesquad_brilliance":
+                badges += str(self.bot.get_emoji(764456789734588426))+" Hypesquad Brilliance"
+            if  i[1] and i[0] == "hypesquad_balance":
+                badges += str(self.bot.get_emoji(764456791521361930))+" Hypesquad Balance"
+            else:
+                badges += ""
+        if badges == "":
+            badges = "None"
+        embed.add_field(name="Badges", value=badges)
+
+        embed.add_field(name="Bot?", value=member.bot)
+        roles = " ".join([role.mention for role in member.roles if role != ctx.guild.default_role])
+        roles = "Nothing to display here, this user looks boring" if not roles else roles
+        embed.add_field(
+            name=f"{len(member.roles)-1} Roles",
+            value=roles,
+            inline = False
+        )
+
         await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(MainCog(client))
