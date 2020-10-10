@@ -6,7 +6,7 @@ from otherscripts.helpers import create_mute_role
 
 
 class Moderator(commands.Cog):
-    def __init__(self, bot, theme_color):
+    def __init__(self, client, theme_color):
         self.bot = client
         self.theme_color = theme_color
         self.warn_count = {}
@@ -215,3 +215,5 @@ class Moderator(commands.Cog):
         await channel.set_permissions(ctx.guild.roles[0], send_messages=True)
 
         await ctx.send(f"🔓The channel {channel.mention} has been unlocked")
+def setup(client):
+    client.add_cog(Moderator(client))
