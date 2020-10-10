@@ -886,10 +886,10 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
-        page = requests.get('https://growtopiagame.com/detail')
-        tree = html.fromstring(page.content)
-        online = tree.xpath("/html/body")
-        for x in online:
-            print(x)
+        async with aiohttp.ClientSession() as sess:
+            async with sess.get("https://growtopiagame.com/detail") as resp:
+              data = await resp.json(content_type="text/html")
+              data = data["online_user"]
+        await ctx.send(data)
 def setup(client):
     client.add_cog(MainCog(client))
