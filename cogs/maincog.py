@@ -884,7 +884,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embed)
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def online(self,ctx,arg):
+    async def online(self,ctx):
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://growtopiagame.com/detail") as response:
                 request = await response.json()
