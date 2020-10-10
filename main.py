@@ -14,7 +14,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 from datetime import datetime
 from discord.ext.tasks import loop
-
+from otherscipts.data import Data
 
 # Load .env file
 load_dotenv()
@@ -320,6 +320,70 @@ async def unloadall(ctx):
     print('}')
     embedvar = discord.Embed(title='Success!', description="Successfully unloaded all Cogs", color=0x00ff00)
     await ctx.send(embed=embedvar)
+@client.command(name="activateautomod")
+@commands.has_guild_permissions(administrator=True)
+async def activateautomod(ctx):
+    if str(ctx.guild.id) not in Data.server_data:
+        Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
+
+    Data.server_data[str(ctx.guild.id)]["active"] = True
+    await ctx.send("Automod is now active in your server...")
+
+
+@client.command(name="stopautomod")
+@commands.has_guild_permissions(administrator=True)
+async def stopautomod(ctx):
+    if str(ctx.guild.id) not in Data.server_data:
+        Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
+
+    Data.server_data[str(ctx.guild.id)]["active"] = False
+    await ctx.send("Automod is now inactive in your server...")
+
+
+@client.command(name="whitelistuser")
+@commands.has_guild_permissions(administrator=True)
+async def whitelistuser(ctx, user: discord.User = None):
+    if user is None:
+        ctx.send("Insufficient Arguments")
+    else:
+        if str(ctx.guild.id) not in Data.server_data:
+            Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
+
+        Data.server_data[str(ctx.guild.id)]["users"].append(str(user.id))
+        await ctx.send(f"Added {user.mention} to AutoMod user whitelist.")
+
+
+@client.command(name="whitelisturl")
+@commands.has_guild_permissions(administrator=True)
+async def whitelisturl(ctx, url: str = None):
+    if url is None:
+        ctx.send("Insufficient Arguments")
+    else:
+        if str(ctx.guild.id) not in Data.server_data:
+            Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
+
+        Data.server_data[str(ctx.guild.id)]["urls"].append(url)
+        await ctx.send(f"Added `{url}` to AutoMod URL whitelist.")
+
+
+@client.command(name="whitelistchannel")
+@commands.has_guild_permissions(administrator=True)
+async def whitelistchannel(ctx, channel: discord.TextChannel = None):
+    if channel is None:
+        ctx.send("Insufficient Arguments")
+    else:
+        if str(ctx.guild.id) not in Data.server_data:
+            Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
+
+        Data.server_data[str(ctx.guild.id)]["channels"].append(
+            str(channel.id))
+        await ctx.send(f"Added {channel.mention} to AutoMod Channel whitelist.")
+
+
+@client.command(name="automodstatus")
+async def automodstatus(ctx):
+    status = Data.server_data[str(ctx.guild.id)]["active"]
+    await ctx.send(f"AutoMod Active: **{status}**")
 @client.check
 def blacklist(ctx):
     return ctx.message.author.id != 706898741499789364
