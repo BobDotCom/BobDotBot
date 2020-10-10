@@ -4,7 +4,7 @@ from discord.ext import commands
 from otherscripts.data import Data
 
 
-class ServerSettings(commands.Cog):
+class Serversettings(commands.Cog):
     def __init__(self, client):
         self.bot = client
         self.theme_color = discord.Color.blurple()
@@ -137,4 +137,4 @@ class ServerSettings(commands.Cog):
         Data.server_data[str(ctx.guild.id)]["pay_respects"] = False
         await ctx.send("Respects have been disabled!")
 def setup(client):
-    client.add_cog(ServerSettings(client))
+    client.add_cog(Serversettings(client))
