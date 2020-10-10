@@ -886,7 +886,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
-        page = requests.get('https://growtopiagame.com/detail.html')
+        page = requests.get('https://growtopiagame.com/detail')
         tree = html.fromstring(page.content)
         online = tree.xpath("/html/body")
         for x in online:
