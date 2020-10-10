@@ -890,6 +890,7 @@ class MainCog(commands.Cog, name = "General"):
             async with sess.get("https://growtopiagame.com/detail") as resp:
               data = await resp.json(content_type="text/html")
               data = data["online_user"]
-        await ctx.send(data)
+        embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
+        await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(MainCog(client))
