@@ -16,6 +16,7 @@ from datetime import datetime
 from discord.ext.tasks import loop
 from cogs.data import Data
 
+
 # Load .env file
 load_dotenv()
 
