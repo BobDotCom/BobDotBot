@@ -146,6 +146,7 @@ async def on_guild_join(guild):
 	guild_count = 0
 	users = 0
 	Data.server_data[str(ctx.guild.id)]["welcome_msg"] = ""
+	Data.server_data[str(ctx.guild.id)]["leave_msg"] = ""
 	with open('prefixes.json', 'r') as f:
 		prefixes = json.load(f)
 	prefixes[str(guild.id)] = ['B.', 'b.']
@@ -234,9 +235,6 @@ async def on_member_join(member):
             await channel.send(server_wlcm_msg)
             break
     guildvar = client.get_guild(727739470731935765)
-    welcome = guildvar.get_channel(755259446724263996)
-    roles = guildvar.get_channel(762721025912733696)
-    rules = guildvar.get_channel(747275116194431088)
     if member.guild == guildvar:
         human = guildvar.get_role(745834807258251325)
         badges = guildvar.get_role(762684938226630666)
@@ -246,8 +244,7 @@ async def on_member_join(member):
         await member.add_roles(badges)
         await member.add_roles(members)
         await member.add_roles(colors)
-        if not member.bot:
-            await welcome.send(f"Hello {member.mention}, welcome to {member.guild.name}! Please read the {rules.mention} and have fun! You can get your roles at {roles.mention}.")
+        
 @client.event
 async def on_member_remove(member):
     """on member remove"""
