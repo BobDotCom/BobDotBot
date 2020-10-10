@@ -19,7 +19,7 @@ from otherscripts.data import Data
 
 # Load .env file
 load_dotenv()
-
+THEME_COLOR = discord.Colour.blurple()
 # Grab api token
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 # gets client stuff
