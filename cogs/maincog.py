@@ -882,5 +882,12 @@ class MainCog(commands.Cog, name = "General"):
         except:
             embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
         await ctx.send(embed=embed)
+    @commands.command(aliases=["gt"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def online(self,ctx,arg):
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"https://growtopiagame.com/detail") as response:
+                request = await response.json()
+                print(request)
 def setup(client):
     client.add_cog(MainCog(client))
