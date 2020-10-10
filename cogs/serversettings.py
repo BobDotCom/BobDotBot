@@ -136,3 +136,5 @@ class ServerSettings(commands.Cog):
 
         Data.server_data[str(ctx.guild.id)]["pay_respects"] = False
         await ctx.send("Respects have been disabled!")
+def setup(client):
+    client.add_cog(ServerSettings(client))
