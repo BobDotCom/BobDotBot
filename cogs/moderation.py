@@ -7,7 +7,7 @@ from otherscipts.helpers import create_mute_role
 
 class Moderator(commands.Cog):
     def __init__(self, bot, theme_color):
-        self.bot = bot
+        self.bot = client
         self.theme_color = theme_color
         self.warn_count = {}
 
