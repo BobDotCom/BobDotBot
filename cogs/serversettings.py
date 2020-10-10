@@ -66,8 +66,7 @@ class Serversettings(commands.Cog):
 
     @commands.command(name="useri")
     async def useri(self, ctx, member: discord.Member = None):
-        if member is None:
-            member = ctx.author
+        member = ctx.author if not member else member
 
         embed = discord.Embed(
             color=self.theme_color,
@@ -89,10 +88,6 @@ class Serversettings(commands.Cog):
         embed.add_field(
             name="Joined Server At:",
             value=member.joined_at.strftime("%a, %d %b %Y %I:%M %p")
-        )
-        embed.add_field(
-            name=f"{len(member.roles)-1} Roles",
-            value=" ".join([role.mention for role in member.roles if role != ctx.guild.default_role])
         )
         badges = ""
         for i in list(iter(member.public_flags)):
@@ -125,6 +120,11 @@ class Serversettings(commands.Cog):
         embed.add_field(name="Badges", value=badges)
 
         embed.add_field(name="Bot?", value=member.bot)
+        embed.add_field(
+            name=f"{len(member.roles)-1} Roles",
+            value=" ".join([role.mention for role in member.roles if role != ctx.guild.default_role]),
+            inline = False
+        )
 
         await ctx.send(embed=embed)
 
