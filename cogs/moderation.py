@@ -2,7 +2,7 @@ import asyncio
 import discord
 from discord.ext import commands
 
-from otherscipts.helpers import create_mute_role
+from cogs.helpers import create_mute_role
 
 
 class Moderator(commands.Cog):
