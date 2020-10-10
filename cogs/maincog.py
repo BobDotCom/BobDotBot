@@ -25,7 +25,7 @@ from discord.ext import commands
 from datetime import datetime
 from discord.ext.commands import MissingPermissions
 from discord.ext import menus
-
+from lxml import html
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
         return await channel.send(f'Hello {ctx.author}')
@@ -886,9 +886,9 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f"https://growtopiagame.com/detail") as response:
-                request = await response.json()
-                print(request)
+        page = requests.get('https://growtopiagame.com/detail.html')
+        tree = html.fromstring(page.content)
+        online = tree.xpath("/html/body"
+        print(online)
 def setup(client):
     client.add_cog(MainCog(client))
