@@ -127,23 +127,5 @@ class Serversettings(commands.Cog):
         )
 
         await ctx.send(embed=embed)
-
-    @commands.command(name="enablerespects")
-    @commands.has_guild_permissions(manage_messages=True)
-    async def enablerespects(self, ctx):
-        if str(ctx.guild.id) not in Data.server_data:
-            Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
-
-        Data.server_data[str(ctx.guild.id)]["pay_respects"] = True
-        await ctx.send("Respects have been enabled!")
-
-    @commands.command(name="disablerespects")
-    @commands.has_guild_permissions(manage_messages=True)
-    async def disablerespects(self, ctx):
-        if str(ctx.guild.id) not in Data.server_data:
-            Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
-
-        Data.server_data[str(ctx.guild.id)]["pay_respects"] = False
-        await ctx.send("Respects have been disabled!")
 def setup(client):
     client.add_cog(Serversettings(client))
