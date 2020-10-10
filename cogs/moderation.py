@@ -8,7 +8,7 @@ from otherscripts.helpers import create_mute_role
 class Moderator(commands.Cog):
     def __init__(self, client, theme_color):
         self.bot = client
-        self.theme_color = theme_color
+        self.theme_color = discord.Color.blurple()
         self.warn_count = {}
 
     @commands.command(name="warn")
