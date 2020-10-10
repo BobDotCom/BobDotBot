@@ -20,6 +20,17 @@ class Serversettings(commands.Cog):
             await ctx.send("This server's welcome message has been disabled")
         else:
             await ctx.send(f"This server's welcome message has been set to ```{msg}```")
+    @commands.command(name="leavemessage")
+    @commands.has_guild_permissions(administrator=True)
+    async def leave_message(self, ctx, *, msg: str = ""):
+        if str(ctx.guild.id) not in Data.server_data:
+            Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
+
+        Data.server_data[str(ctx.guild.id)]["leave_message"] = msg
+        if len(msg.strip()) == 0:
+            await ctx.send("This server's leave message has been disabled")
+        else:
+            await ctx.send(f"This server's leave message has been set to ```{msg}```")
 
     @commands.command(name="joinrole")
     @commands.has_guild_permissions(administrator=True)
