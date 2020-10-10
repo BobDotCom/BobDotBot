@@ -48,6 +48,7 @@ prefixes1 = get_prefix
 logs = get_logs
 @client.event
 async def on_ready():
+	client.loop.create_task(Data.auto_update_data())
 	# server counter
 	guild_count = 0
 	users = 0
