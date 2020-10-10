@@ -129,31 +129,35 @@ class Moderator(commands.Cog):
             else:
                 await ctx.send("This user was never muted.")
 
-    @commands.command(name="ban")
-    @commands.has_guild_permissions(ban_members=True)
-    async def ban(self, ctx, user: discord.User = None, *, reason=None):
-        if user is None:
-            await ctx.send("Insufficient arguments.")
-        else:
-            await ctx.guild.ban(user, reason=reason)
-            if reason:
-                await ctx.send(f"User **{user}** has been banned for reason: **{reason}**.")
-            else:
-                await ctx.send(f"User **{user}** has been banned.")
-            await user.send(f"You have been **banned** from **{ctx.guild}** server due to the following reason:\n**{reason}**")
-
-    @commands.command(name="tempban")
-    @commands.has_guild_permissions(ban_members=True)
-    async def tempban(self, ctx, user: discord.User = None, days: int = 1):
-        if user is None:
-            await ctx.send("Insufficient arguments.")
-        else:
-            await ctx.guild.ban(user)
-            await ctx.send(f"User **{user}** has been temporarily banned for **{days} day(s)**")
-            await user.send(f"You have been **temporarily banned** from **{ctx.guild}** server for **{days} day(s)**")
-            await asyncio.sleep(days * 86400)  # convert days to seconds
-            await ctx.guild.unban(user)
-            await ctx.send(f"**{user}** has been unbanned after a {days} day Temp Ban.")
+    @commands.command()
+    @commands.has_permissions(ban_members = True)
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def ban(self, ctx, members: commands.Greedy[discord.Member],
+                   delete_days: typing.Optional[int] = 0, *,
+                   reason: str = None):
+        """Mass bans members with an optional delete_days parameter"""
+        for member in members:
+            try:
+                asdf = ctx.author
+                f = member.top_role
+                h = asdf.top_role
+                if h > f or ctx.guild.owner == ctx.author and not member == ctx.author:
+                  if member.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
+                    await ctx.send("This person has to not have the ban members permission.")
+                  else:
+                    await member.ban(delete_message_days=delete_days, reason=reason)
+                    await ctx.send("Ok, I banned them for you")
+                else:
+                  if member == ctx.author:
+                    await ctx.send("You can't ban yourself. -_-")
+                  else:
+                    await ctx.send("Error, this person has a higher or equal role to you")
+            except:
+                await ctx.send(f"Hmmm, I do not have permission to ban {member}, or that is not a valid member")
+            try:
+                await members.send(f"You have been **banned** from **{ctx.guild}** server due to the following reason:\n**{reason}**")
+            except:
+                return
 
     @commands.command(name="unban")
     @commands.has_guild_permissions(ban_members=True)
@@ -179,17 +183,29 @@ class Moderator(commands.Cog):
             except NameError:
                 await ctx.send(f"{username} is has not been banned in this server.")
 
-    @commands.command(name="kick")
-    @commands.has_guild_permissions(kick_members=True)
-    async def kick(self, ctx, user: discord.User = None, *, reason=None):
-        if user is None:
-            await ctx.send("Insufficient arguments.")
-        else:
-            await ctx.guild.kick(user, reason=reason)
-            if reason:
-                await ctx.send(f"User **{user}** has been kicked for reason: **{reason}**.")
-            else:
-                await ctx.send(f"User **{user}** has been kicked.")
+    @commands.command()
+    @commands.has_permissions(kick_members=True)
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def kick(self, ctx, member : discord.Member, *, reason=None):
+        """Kick someone"""
+        if True:
+            try:
+                asdf = ctx.author
+                f = member.top_role
+                h = asdf.top_role
+                if h > f or ctx.guild.owner == ctx.author and not member == ctx.author:
+                  if member.guild_permissions.kick_members and not ctx.guild.owner == ctx.author:
+                    await ctx.send("This person has to not have the kick members permission.")
+                  else:
+                    await member.kick(reason=reason)
+                    await ctx.send("Ok, I kicked them for you")
+                else:
+                  if member == ctx.author:
+                    await ctx.send("You can't kick yourself. -_-")
+                  else:
+                    await ctx.send("Error, this person has a higher or equal role to you")
+            except:
+                await ctx.send(f"Hmmm, I do not have permission to kick {member}, or that is not a valid member")
             await user.send(f"You have been **kicked** from **{ctx.guild}** server due to the following reason:\n**{reason}**")
 
     @commands.command(name="lockchannel")
