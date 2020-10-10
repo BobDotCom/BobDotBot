@@ -80,21 +80,19 @@ class Serversettings(commands.Cog):
         embed.set_footer(
             text=f"Requested by {ctx.author}", icon_url=ctx.author.avatar_url)
 
-        embed.add_field(name="ID:", value=member.id, inline=False)
+        embed.add_field(name="ID:", value=member.id)
+        embed.add_field(name="Nickname", value=member.nick)
         embed.add_field(
             name="Registered At:",
-            value=member.created_at.strftime("%a, %d %b %Y %I:%M %p"),
-            inline=False
+            value=member.created_at.strftime("%a, %d %b %Y %I:%M %p")
         )
         embed.add_field(
             name="Joined Server At:",
-            value=member.joined_at.strftime("%a, %d %b %Y %I:%M %p"),
-            inline=False
+            value=member.joined_at.strftime("%a, %d %b %Y %I:%M %p")
         )
         embed.add_field(
             name=f"{len(member.roles)-1} Roles",
-            value=" ".join([role.mention for role in member.roles if role != ctx.guild.default_role]),
-            inline=False
+            value=" ".join([role.mention for role in member.roles if role != ctx.guild.default_role])
         )
         badges = ""
         for i in list(iter(member.public_flags)):
