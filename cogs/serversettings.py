@@ -5,9 +5,9 @@ from otherscripts.data import Data
 
 
 class ServerSettings(commands.Cog):
-    def __init__(self, bot, theme_color):
+    def __init__(self, bot):
         self.bot = client
-        self.theme_color = theme_color
+        self.theme_color = discord.Color.blurple()
 
     @commands.command(name="welcomemessage")
     @commands.has_guild_permissions(administrator=True)
