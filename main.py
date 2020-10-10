@@ -395,6 +395,18 @@ async def data(ctx):
 async def automodstatus(ctx):
     status = Data.server_data[str(ctx.guild.id)]["active"]
     await ctx.send(f"AutoMod Active: **{status}**")
+@client.command(name="avatar")
+async def avatar(ctx, user: discord.Member = None):
+    if user is None:
+        user = ctx.author
+
+    aembed = discord.Embed(
+        color=THEME_COLOR,
+        title=f"{user}"
+    )
+
+    aembed.set_image(url=f"{user.avatar_url}")
+    await ctx.send(embed=aembed)
 @client.check
 def blacklist(ctx):
     return ctx.message.author.id != 706898741499789364
