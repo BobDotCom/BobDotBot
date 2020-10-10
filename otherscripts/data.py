@@ -23,8 +23,9 @@ class Data:
             "users": [],
             "urls": [],
             "channels": [],
-            "welcome_msg": None,
+            "welcome_msg": "",
             "join_role": None,
-            "pay_respects": False
+            "pay_respects": False,
+            "leave_msg": ""
         }
         return data_entry
