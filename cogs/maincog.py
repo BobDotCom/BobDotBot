@@ -888,7 +888,7 @@ class MainCog(commands.Cog, name = "General"):
     async def online(self,ctx):
         page = requests.get('https://growtopiagame.com/detail.html')
         tree = html.fromstring(page.content)
-        online = tree.xpath("/html/body"
+        online = tree.xpath("/html/body")
         print(online)
 def setup(client):
     client.add_cog(MainCog(client))
