@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-from otherscipts.data import Data
+from otherscripts.data import Data
 
 
 class ServerSettings(commands.Cog):
