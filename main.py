@@ -14,7 +14,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 from datetime import datetime
 from discord.ext.tasks import loop
-from cogs.data import Data
+from otherscripts.data import Data
 
 
 # Load .env file
