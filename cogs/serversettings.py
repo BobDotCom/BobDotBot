@@ -5,7 +5,7 @@ from otherscripts.data import Data
 
 
 class ServerSettings(commands.Cog):
-    def __init__(self, bot):
+    def __init__(self, client):
         self.bot = client
         self.theme_color = discord.Color.blurple()
 
