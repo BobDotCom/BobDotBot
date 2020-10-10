@@ -53,8 +53,8 @@ class ServerSettings(commands.Cog):
 
         await ctx.send(embed=embed)
 
-    @commands.command(name="userinfo")
-    async def userinfo(self, ctx, member: discord.Member = None):
+    @commands.command(name="useri")
+    async def useri(self, ctx, member: discord.Member = None):
         if member is None:
             member = ctx.author
 
