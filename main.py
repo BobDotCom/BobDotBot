@@ -385,7 +385,12 @@ async def whitelistchannel(ctx, channel: discord.TextChannel = None):
             str(channel.id))
         await ctx.send(f"Added {channel.mention} to AutoMod Channel whitelist.")
 
-
+@client.command(name="data")
+async def data(ctx):
+    is_owner = await client.is_owner(ctx.author)
+    if is_owner:  # for real sparta
+        data_file = discord.File("data.json")
+        await ctx.send(file=data_file)
 @client.command(name="automodstatus")
 async def automodstatus(ctx):
     status = Data.server_data[str(ctx.guild.id)]["active"]
