@@ -322,6 +322,7 @@ class VoiceState:
 
 
 class Music(commands.Cog):
+    """Want to listen to your favorite music without leaving discord? Or maybe you want to listen to music with your friends? Use these commands and you can do either of those!"""
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         self.voice_states = {}
@@ -387,9 +388,9 @@ class Music(commands.Cog):
     @commands.command(name='leave', aliases=['disconnect'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _leave(self, ctx: commands.Context):
+      """Clears the queue and leaves the voice channel.
+      Uses: `B.leave`"""
       if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
-        """Clears the queue and leaves the voice channel.
-        Uses: `B.leave`"""
         emoji = "<:blobleave:763579679230787584>"
         await ctx.message.add_reaction(emoji)
         if not ctx.voice_state.voice:
