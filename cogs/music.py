@@ -353,7 +353,8 @@ class Music(commands.Cog):
     @commands.command(name='join', invoke_without_subcommand=True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _join(self, ctx: commands.Context):
-        """Joins a voice channel."""
+        """Joins a voice channel.
+        Uses: `B.join`"""
         emoji = "<:blobjoin:763579431272185887>"
         await ctx.message.add_reaction(emoji)
         destination = ctx.author.voice.channel
@@ -369,7 +370,8 @@ class Music(commands.Cog):
     async def _summon(self, ctx: commands.Context, *, channel: discord.VoiceChannel = None):
         """Summons the bot to a voice channel.
         If no channel was specified, it joins your channel.
-        """
+        Uses: `B.summon [voice channel]
+        Note: Arguments in brackets[] are optional`"""
         emoji = "<:blobjoin:763579431272185887>"
         await ctx.message.add_reaction(emoji)
         if not channel and not ctx.author.voice:
@@ -386,7 +388,8 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _leave(self, ctx: commands.Context):
       if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
-        """Clears the queue and leaves the voice channel."""
+        """Clears the queue and leaves the voice channel.
+        Uses: `B.leave`"""
         emoji = "<:blobleave:763579679230787584>"
         await ctx.message.add_reaction(emoji)
         if not ctx.voice_state.voice:
@@ -399,7 +402,8 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.is_owner()
     async def _volume(self, ctx: commands.Context, *, volume: int):
-        """Sets the volume of the player."""
+        """Sets the volume of the player.
+        Uses: `B.volume <number 1-100>`"""
 
         if not ctx.voice_state.is_playing:
             return await ctx.send('Nothing being played at the moment.')
@@ -410,17 +414,19 @@ class Music(commands.Cog):
         ctx.voice_state.volume = volume / 100
         await ctx.send('Volume of the player set to {}%'.format(volume))
 
-    @commands.command(name='now', aliases=['current', 'playing'])
+    @commands.command(name='np', aliases=['current', 'playing'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def _now(self, ctx: commands.Context):
-        """Displays the currently playing song."""
+    async def _np(self, ctx: commands.Context):
+        """Displays the currently playing song.
+        Uses: `B.np`"""
         embed = ctx.voice_state.current.create_embed()
         await ctx.send(embed=embed)
 
     @commands.command(name='pause', aliases=['pa'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _pause(self, ctx: commands.Context):
-      """Pauses the currently playing song."""
+      """Pauses the currently playing song.
+        Uses: `B.pause`"""
       if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         if ctx.voice_state.is_playing and ctx.voice_state.voice.is_playing():
             ctx.voice_state.voice.pause()
@@ -429,7 +435,8 @@ class Music(commands.Cog):
     @commands.command(name='resume', aliases=['re', 'res'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _resume(self, ctx: commands.Context):
-      """Resumes a currently paused song."""
+      """Resumes a currently paused song.
+        Uses: `B.resume`"""
       if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         if ctx.voice_state.is_playing and ctx.voice_state.voice.is_paused():
             ctx.voice_state.voice.resume()
@@ -438,7 +445,8 @@ class Music(commands.Cog):
     @commands.command(name='stop')
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _stop(self, ctx: commands.Context):
-      """Stops playing song and clears the queue."""
+      """Stops playing song, stops loop, and clears the queue.
+        Uses: `B.stop`"""
       if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         ctx.voice_state.songs.clear()
         if ctx.voice_state.loop:
@@ -452,7 +460,7 @@ class Music(commands.Cog):
     async def _skip(self, ctx: commands.Context):
         """Vote to skip a song. The requester can automatically skip.
         3 skip votes are needed for the song to be skipped.
-        """
+        Uses: `B.skip`"""
 
         if not ctx.voice_state.is_playing:
             return await ctx.send('Not playing any music right now...')
@@ -480,7 +488,8 @@ class Music(commands.Cog):
     async def _queue(self, ctx: commands.Context, *, page: int = 1):
         """Shows the player's queue.
         You can optionally specify the page to show. Each page contains 10 elements.
-        """
+        Uses: `B.queue [page]`
+        Note: Arguments in brackets[] are not required"""
 
         if len(ctx.voice_state.songs) == 0:
             return await ctx.send('Empty queue.')
@@ -502,7 +511,8 @@ class Music(commands.Cog):
     @commands.command(name='shuffle')
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _shuffle(self, ctx: commands.Context):
-        """Shuffles the queue."""
+        """Shuffles the queue.
+        Uses: `B.shuffle`"""
 
         if len(ctx.voice_state.songs) == 0:
             return await ctx.send('Empty queue.')
@@ -513,7 +523,8 @@ class Music(commands.Cog):
     @commands.command(name='remove')
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _remove(self, ctx: commands.Context, index: int):
-        """Removes a song from the queue at a given index."""
+        """Removes a song from the queue at a given index.
+        Uses: `B.remove <song number>`"""
 
         if len(ctx.voice_state.songs) == 0:
             return await ctx.send('Empty queue.')
@@ -526,7 +537,7 @@ class Music(commands.Cog):
     async def _loop(self, ctx: commands.Context):
         """Loops the currently playing song.
         Invoke this command again to unloop the song.
-        """
+        Uses: `B.loop`"""
 
         if not ctx.voice_state.is_playing:
             return await ctx.send('Nothing being played at the moment.')
@@ -544,7 +555,7 @@ class Music(commands.Cog):
         other songs finished playing.
         This command automatically searches from various sites if no URL is provided.
         A list of these sites can be found here: https://rg3.github.io/youtube-dl/supportedsites.html
-        """
+        Uses: `B.play <song name>`"""
 
         async with ctx.typing():
             try:
@@ -563,11 +574,11 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _search(self, ctx: commands.Context, *, search: str):
         """Searches youtube.
-        It returns an imbed of the first 10 results collected from youtube.
+        It returns an embed of the first 10 results collected from youtube.
         Then the user can choose one of the titles by typing a number
         in chat or they can cancel by typing "cancel" in chat.
         Each title in the list can be clicked as a link.
-        """
+        Uses: `B.search <query>`"""
         async with ctx.typing():
             try:
                 source = await YTDLSource.search_source(ctx, search, loop=self.bot.loop)
