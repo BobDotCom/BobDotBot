@@ -75,7 +75,7 @@ class Serversettings(commands.Cog, name = "Settings"):
         
     @commands.command(name="activateautomod")
     @commands.has_guild_permissions(administrator=True)
-    async def activateautomod(ctx):
+    async def activateautomod(self, ctx):
         if str(ctx.guild.id) not in Data.server_data:
             Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
 
@@ -85,7 +85,7 @@ class Serversettings(commands.Cog, name = "Settings"):
 
     @commands.command(name="stopautomod")
     @commands.has_guild_permissions(administrator=True)
-    async def stopautomod(ctx):
+    async def stopautomod(self, ctx):
         if str(ctx.guild.id) not in Data.server_data:
             Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
 
@@ -95,7 +95,7 @@ class Serversettings(commands.Cog, name = "Settings"):
 
     @commands.command(name="whitelistuser")
     @commands.has_guild_permissions(administrator=True)
-    async def whitelistuser(ctx, user: discord.User = None):
+    async def whitelistuser(self, ctx, user: discord.User = None):
         if user is None:
             ctx.send("Insufficient Arguments")
         else:
@@ -108,7 +108,7 @@ class Serversettings(commands.Cog, name = "Settings"):
 
     @commands.command(name="whitelisturl")
     @commands.has_guild_permissions(administrator=True)
-    async def whitelisturl(ctx, url: str = None):
+    async def whitelisturl(self, ctx, url: str = None):
         if url is None:
             ctx.send("Insufficient Arguments")
         else:
@@ -121,7 +121,7 @@ class Serversettings(commands.Cog, name = "Settings"):
 
     @commands.command(name="whitelistchannel")
     @commands.has_guild_permissions(administrator=True)
-    async def whitelistchannel(ctx, channel: discord.TextChannel = None):
+    async def whitelistchannel(self, ctx, channel: discord.TextChannel = None):
         if channel is None:
             ctx.send("Insufficient Arguments")
         else:
@@ -133,13 +133,13 @@ class Serversettings(commands.Cog, name = "Settings"):
             await ctx.send(f"Added {channel.mention} to AutoMod Channel whitelist.")
 
     @commands.command(name="data")
-    async def data(ctx):
+    async def data(self, ctx):
         is_owner = await client.is_owner(ctx.author)
         if is_owner:  # for real sparta
             data_file = discord.File("data.json")
             await ctx.send(file=data_file)
     @commands.command(name="automodstatus")
-    async def automodstatus(ctx):
+    async def automodstatus(self, ctx):
         status = Data.server_data[str(ctx.guild.id)]["active"]
         await ctx.send(f"AutoMod Active: **{status}**")
 
