@@ -72,15 +72,15 @@ class Moderator(commands.Cog):
         if True:
             try:
                 asdf = ctx.author
-                f = member.top_role
+                f = user.top_role
                 h = asdf.top_role
-                if h > f or ctx.guild.owner == ctx.author and not member == ctx.author:
-                  if member.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
+                if h > f or ctx.guild.owner == ctx.author and not user == ctx.author:
+                  if user.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
                     await ctx.send("This person has to not have the ban members permission.")
                     return
                 else:
-                  if member == ctx.author:
-                    await ctx.send("You can't ban yourself. -_-")
+                  if user == ctx.author:
+                    await ctx.send("You can't mute yourself. -_-")
                     return
                   else:
                     await ctx.send("Error, this person has a higher or equal role to you")
