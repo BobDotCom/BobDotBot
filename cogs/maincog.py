@@ -848,6 +848,8 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embed)
     @commands.command(name="serverinfo", aliases=["si"])
     async def serverinfo(self, ctx):
+        """Get the info of the server that you are in
+        Uses `B.serverinfo`"""
         name = ctx.guild.name
         description = ctx.guild.description
         owner = ctx.guild.owner
@@ -940,11 +942,14 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embed)
     @commands.command(name="avatar")
     async def avatar(ctx, user: discord.Member = None):
+        """Get the avatar of a user
+        Uses `B.avatar [user]`
+        Note: Arguments in brackets [] are optional"""
         if user is None:
             user = ctx.author
 
         aembed = discord.Embed(
-            color=THEME_COLOR,
+            color=discord.Color.blurple(),
             title=f"{user}"
         )
 
