@@ -229,5 +229,14 @@ class Moderator(commands.Cog):
         await channel.set_permissions(ctx.guild.roles[0], send_messages=True)
 
         await ctx.send(f"🔓The channel {channel.mention} has been unlocked")
+    @commands.command(aliases=['c'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    @commands.has_permissions(manage_messages = True)
+    async def clear(self, ctx,amount=2):
+        """Clears messages"""
+        await ctx.channel.purge(limit = amount + 1)
+        msg = await ctx.send(f"I ate {amount} messages for you! ;)")
+        await asyncio.sleep(5)
+        await msg.delete()
 def setup(client):
     client.add_cog(Moderator(client))
