@@ -78,8 +78,6 @@ class Moderator(commands.Cog):
                   if member.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
                     await ctx.send("This person has to not have the ban members permission.")
                     return
-                  else:
-                    break
                 else:
                   if member == ctx.author:
                     await ctx.send("You can't ban yourself. -_-")
