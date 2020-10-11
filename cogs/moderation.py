@@ -87,6 +87,8 @@ class Moderator(commands.Cog):
                   else:
                     await ctx.send("Error, this person has a higher or equal role to you")
                     return
+            except:
+                return
             guild = ctx.guild
             mute_role = None
 
