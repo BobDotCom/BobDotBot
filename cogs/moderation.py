@@ -1,7 +1,7 @@
 import asyncio
 import discord
 from discord.ext import commands
-
+from typing import Optional
 from otherscripts.helpers import create_mute_role
 
 
@@ -132,9 +132,7 @@ class Moderator(commands.Cog):
     @commands.command()
     @commands.has_permissions(ban_members = True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def ban(self, ctx, members: commands.Greedy[discord.Member],
-                   delete_days: typing.Optional[int] = 0, *,
-                   reason: str = None):
+    async def ban(self, ctx, members: commands.Greedy[discord.Member],delete_days: Optional[int] = 0, *,reason: str = None):
         """Mass bans members with an optional delete_days parameter"""
         for member in members:
             try:
