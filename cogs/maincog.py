@@ -575,6 +575,7 @@ class MainCog(commands.Cog, name = "General"):
                             halp=discord.Embed(title='Command Info: '+commandname, timestamp=ctx.message.created_at,description=commandthing.help, color=discord.Color.blurple())
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             halp.add_field(name="Aliases",value=aliases,inline=False)
+                            halp.add_field(name="Permissions",value=commandthing.checks,inline=False)
                             halp.add_field(name="Category",value=commandthing.cog_name,inline=False)
                             found = True
                         except:
