@@ -118,9 +118,9 @@ async def on_command_error(ctx, error):
 async def on_message(message):
 	await client.process_commands(message)
 	if str(message.guild.id) not in Data.server_data:
-            Data.server_data[str(guild.id)] = Data.create_new_data()
+            Data.server_data[str(message.guild.id)] = Data.create_new_data()
 
-	data = Data.server_data[str(guild.id)]
+	data = Data.server_data[str(message.guild.id)]
 	if client.user.mentioned_in(message):
             if message.mention_everyone is False:
                 with open("prefixes.json","r") as f:
