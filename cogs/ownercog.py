@@ -31,7 +31,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.command(aliases=['update', 'maintenence', 'logout', 'die', 'kill'])
     @commands.is_owner()
     async def shutdown(self, ctx):
-        """Shuts the bot down"""
+        """Shuts the bot down
+        Uses: `B.shutdown`"""
         owner = self.client.get_user(self.client.owner_id)
         embedvar = discord.Embed(title="*Shutting Down...*", description="Goodbye!", color=0xff0000)
         embedvar.set_footer(text=f"Bot made by {owner}")
@@ -42,20 +43,23 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.command()
     @commands.is_owner()
     async def osay(self, ctx, *, arg):
-        """Says what you tell it to"""
+        """Says what you tell it to
+        Uses: `B.osay <message>`"""
         await ctx.message.delete()
         await ctx.send(arg)
 
     @commands.command()
     @commands.is_owner()
     async def ossay(self, ctx, *, arg):
-        """Says what you tell it to, and leaves your message"""
+        """Says what you tell it to, and leaves your message
+        Uses: `B.ossay <message>`"""
         await ctx.send(arg)
 
     @commands.command()
     @commands.is_owner()
     async def help_jsk(self, ctx):
-        """Lists the help command for jsk"""
+        """Lists the help command for jsk
+        Uses: `B.help_jsk`"""
         owner = self.client.get_user(self.client.owner_id)
         embedvar = discord.Embed(title="Jishaku Commands", description="Since help jsk doesnt work, these are the commands that jishaku has:", color=0x000000, timestamp=ctx.message.created_at)
         embedvar.add_field(name='cancel', value='Cancels a task with the given index.')
@@ -84,7 +88,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.command(aliases=['push'])
     @commands.is_owner()
     async def save(self, ctx):
-        """Saves all data to the GitHub repository"""
+        """Saves all data to the GitHub repository
+        Uses: `B.save`"""
         owner = self.client.get_user(self.client.owner_id)
         embedvar = discord.Embed(title="Saving...", description="Saving to the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
@@ -123,7 +128,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.command(aliases=['pull'])
     @commands.is_owner()
     async def sync(self,ctx):
-        """Get the most recent changes from the GitHub repository"""
+        """Get the most recent changes from the GitHub repository
+        Uses: `B.sync`"""
         owner = self.client.get_user(self.client.owner_id)
         embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
