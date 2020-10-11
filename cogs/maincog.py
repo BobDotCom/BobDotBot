@@ -846,24 +846,6 @@ class MainCog(commands.Cog, name = "General"):
             lists = "".join(thevar)
         embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title="Binary to text", description=lists)
         await ctx.send(embed=embed)
-    @commands.command(aliases=["rw"])
-    @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def renderworld(self,ctx,arg):
-        try:
-            embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Here is a render of the world: {arg}")
-            embed.set_image(url=f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}.png")
-        except:
-            embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
-        await ctx.send(embed=embed)
-    @commands.command(aliases=["gt"])
-    @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def online(self,ctx):
-        async with aiohttp.ClientSession() as sess:
-            async with sess.get("https://growtopiagame.com/detail") as resp:
-              data = await resp.json(content_type="text/html")
-              data = data["online_user"]
-        embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
-        await ctx.send(embed=embed)
     @commands.command(name="serverinfo", aliases=["si"])
     async def serverinfo(self, ctx):
         name = ctx.guild.name
