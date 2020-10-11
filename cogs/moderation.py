@@ -69,7 +69,24 @@ class Moderator(commands.Cog):
         If a time is given, the user may remain muted for longer than that time if the bot is reloaded during that time. As the bot is still in development, this is very likely"""
         if user is None:
             await ctx.send("Insufficient arguments.")
-        else:
+        if True:
+            try:
+                asdf = ctx.author
+                f = member.top_role
+                h = asdf.top_role
+                if h > f or ctx.guild.owner == ctx.author and not member == ctx.author:
+                  if member.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
+                    await ctx.send("This person has to not have the ban members permission.")
+                    return
+                  else:
+                    break
+                else:
+                  if member == ctx.author:
+                    await ctx.send("You can't ban yourself. -_-")
+                    return
+                  else:
+                    await ctx.send("Error, this person has a higher or equal role to you")
+                    return
             guild = ctx.guild
             mute_role = None
 
@@ -77,7 +94,7 @@ class Moderator(commands.Cog):
                 if role.name.lower() == "muted":
                     mute_role = role
                     break
-
+        if True:
             if mute_role in user.roles:
                 await ctx.send("This user is already muted.")
             else:
@@ -149,11 +166,11 @@ class Moderator(commands.Cog):
     @commands.has_permissions(ban_members = True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def ban(self, ctx, member: discord.Member, delete_days: Optional[int] = 0, *,reason: str = None):
-        """Mass bans members with an optional delete_days parameter
+        """Ban a member with an optional delete_days parameter
         Uses: `B.ban <member> [delete messages in days] [reason]`
         Note: Arguments in brackets[] are optional
         The reason must not start with a number, and you may give a reason without deleting messages"""
-        for member in members:
+        if True:
             try:
                 asdf = ctx.author
                 f = member.top_role
