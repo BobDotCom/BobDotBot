@@ -32,6 +32,8 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.command(aliases=["rw"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def renderworld(self,ctx,arg):
+        """Get a world render of any rendered world in Growtopia
+        Uses: `B.renderworld <world>`"""
         try:
             embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Here is a render of the world: {arg}")
             embed.set_image(url=f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}.png")
@@ -41,6 +43,8 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
+        """See how many people are playing the game right now
+        Uses: `B.online`"""
         async with aiohttp.ClientSession() as sess:
             async with sess.get("https://growtopiagame.com/detail") as resp:
               data = await resp.json(content_type="text/html")
