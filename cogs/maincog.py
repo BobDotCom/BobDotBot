@@ -956,5 +956,17 @@ class MainCog(commands.Cog, name = "General"):
         )
 
         await ctx.send(embed=embed)
+    @commands.command(name="avatar")
+    async def avatar(ctx, user: discord.Member = None):
+        if user is None:
+            user = ctx.author
+
+        aembed = discord.Embed(
+            color=THEME_COLOR,
+            title=f"{user}"
+        )
+
+        aembed.set_image(url=f"{user.avatar_url}")
+        await ctx.send(embed=aembed)
 def setup(client):
     client.add_cog(MainCog(client))
