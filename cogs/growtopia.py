@@ -40,6 +40,21 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         except:
             embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
         await ctx.send(embed=embed)
+    @commands.command(aliases=["rt"])
+    async def rendertest(self,ctx,world):
+        """
+        Shows an image of a rendered world
+        """
+        async with ctx.typing():
+            async with aiohttp.ClientSession() as sess:
+                async with sess.get(self.url+f'/worlds/{world.lower()}.png') as resp:
+                    if not resp.status == 200:
+                        embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
+                        await ctx.send(embed=embed)
+                        return
+                    embed = discord.Embed(title=f"Here is a render of the world: {world.upper()}")
+                    embed.set_image(url=self.url+f'/worlds/{world.lower()}.png') 
+                    await ctx.send(embed=embed)             
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
