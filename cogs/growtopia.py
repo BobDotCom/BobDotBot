@@ -29,7 +29,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.Cog.listener()
     async def on_ready(self):
         print('GrowtopiaCog is active')
-    @commands.command(aliases=["rw". "render"])
+    @commands.command(aliases=["rw", "render"])
     async def renderworld(self,ctx,world):
         """
         Shows an image of a rendered world
