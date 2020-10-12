@@ -29,20 +29,8 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.Cog.listener()
     async def on_ready(self):
         print('GrowtopiaCog is active')
-
-    @commands.command(aliases=["rw"])
-    @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def renderworld(self,ctx,arg):
-        """Get a world render of any rendered world in Growtopia
-        Uses: `B.renderworld <world>`"""
-        try:
-            embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Here is a render of the world: {arg}")
-            embed.set_image(url=f"https://s3.amazonaws.com/world.growtopiagame.com/{arg}.png")
-        except:
-            embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
-        await ctx.send(embed=embed)
-    @commands.command(aliases=["rt"])
-    async def rendertest(self,ctx,world):
+    @commands.command(aliases=["rw". "render"])
+    async def renderworld(self,ctx,world):
         """
         Shows an image of a rendered world
         """
@@ -62,10 +50,10 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         """See how many people are playing the game right now
         Uses: `B.online`"""
         async with aiohttp.ClientSession() as sess:
-            async with sess.get("https://growtopiagame.com/detail") as resp:
+            async with sess.get(self.url+'/detail') as resp:
               data = await resp.json(content_type="text/html")
               data = data["online_user"]
-        embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
+        embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
         await ctx.send(embed=embed)
 
 def setup(client):
