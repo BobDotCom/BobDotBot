@@ -44,7 +44,7 @@ async def getSub(self, ctx, sub):
                                     memeHistory.popleft() #remove the oldest
 
                                 break #done with this loop, can send image
-                embed = discord.Embed(title=sub, timestamp=ctx.message.created_at, color=discord.Color.blurple())
+                embed = discord.Embed(title=sub, timestamp=ctx.message.created_at)
                 embed.set_image(url=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed) #send the last image
                 return
@@ -92,7 +92,7 @@ class Reddit(commands.Cog):
                                     memeHistory.popleft() 
 
                                 break 
-                embed = discord.Embed(title=f"Meme", timestamp=ctx.message.created_at, color=discord.Color.blurple())
+                embed = discord.Embed(title=f"Meme", timestamp=ctx.message.created_at)
                 embed.set_image(url=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed)
                 return
@@ -138,7 +138,7 @@ class Reddit(commands.Cog):
                                     memeHistory.popleft()
 
                                 break
-                embed = discord.Embed(title=f"Showerthought", timestamp=ctx.message.created_at, description=memeHistory[len(memeHistory) - 1], color=discord.Color.blurple())
+                embed = discord.Embed(title=f"Showerthought", timestamp=ctx.message.created_at, description=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed)
                 return
         await ctx.send("_{}! ({})_".format(str(request['message']), str(request['error'])))
