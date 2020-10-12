@@ -308,12 +308,13 @@ async def reloadall(ctx):
                         firstTime = False
                 else:
                         embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0xff0000)
+                        await asyncio.sleep(1)
                         await msg.edit(embed=embedvar1)
                 print(f'Cog: {filename[:-3]} was reloaded')
                 #await ctx.send(f'Cog: {filename[:-3]} was reloaded')
     print('}')
-    embedvar = discord.Embed(title='Success!', description="Successfully reloaded all Cogs", color=0x00ff00)
-    await ctx.send(embed=embedvar)
+    embedvar1.add_field(name='Success!', value="Successfully reloaded all Cogs", color=0x00ff00)
+    await msg.edit(embed=embedvar1)
 
 
 @client.command(aliases=['la'])
