@@ -145,8 +145,8 @@ async def on_message(message):
 async def on_guild_join(guild):
 	guild_count = 0
 	users = 0
-	Data.server_data[str(ctx.guild.id)]["welcome_msg"] = ""
-	Data.server_data[str(ctx.guild.id)]["leave_msg"] = ""
+	Data.server_data[str(guild.id)]["welcome_msg"] = ""
+	Data.server_data[str(guild.id)]["leave_msg"] = ""
 	with open('prefixes.json', 'r') as f:
 		prefixes = json.load(f)
 	prefixes[str(guild.id)] = ['B.', 'b.']
