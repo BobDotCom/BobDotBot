@@ -31,9 +31,8 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         print('GrowtopiaCog is active')
     @commands.command(aliases=["rw", "render"])
     async def renderworld(self,ctx,world):
-        """
-        Shows an image of a rendered world
-        """
+        """Get a render of a world in Growtopia
+        Uses: `B.renderworld <world>`"""
         async with ctx.typing():
             async with aiohttp.ClientSession() as sess:
                 async with sess.get(self.url+f'/worlds/{world.lower()}.png') as resp:
