@@ -9,7 +9,6 @@ class Moderator(commands.Cog):
     """Special moderation commands for moderators in the server"""
     def __init__(self, client):
         self.bot = client
-        self.theme_color = discord.Color.blurple()
         self.warn_count = {}
 
     @commands.command(name="warn")
@@ -30,7 +29,7 @@ class Moderator(commands.Cog):
                 self.warn_count[str(user)] += 1
 
             embed = discord.Embed(
-                title=f"{user.name} has been warned", color=self.theme_color)
+                title=f"{user.name} has been warned")
             embed.add_field(name="Reason", value=reason)
             embed.add_field(name="This user has been warned",
                             value=f"{self.warn_count[str(user)]} time(s)")
@@ -48,7 +47,7 @@ class Moderator(commands.Cog):
             await ctx.send("Clearing all warns.")
         else:
             self.warn_count[str(user)] = 0
-            await ctx.send(f"Clearing warns for {user.mention}.")
+            await ctx.send(f"Clearing warns for {user}.")
 
     @commands.command(name="warncount")
     async def warncount(self, ctx, user: discord.User):
@@ -58,7 +57,7 @@ class Moderator(commands.Cog):
             self.warn_count[str(user)] = 0
 
         count = self.warn_count[str(user)]
-        await ctx.send(f"{user.mention} has been warned {count} time(s)")
+        await ctx.send(f"{user} has been warned {count} time(s)")
 
     @commands.command(name="mute")
     @commands.has_guild_permissions(kick_members=True)
@@ -105,7 +104,7 @@ class Moderator(commands.Cog):
 
                 if time is None:
                     await user.add_roles(mute_role)
-                    await ctx.send(f"User {user.mention} has been muted! They cannot speak.")
+                    await ctx.send(f"User {user} has been muted! They cannot speak.")
                 else:
                     time_unit = None
                     parsed_time = None
@@ -124,7 +123,7 @@ class Moderator(commands.Cog):
                         parsed_time = time[0:len(time)]
 
                     await user.add_roles(mute_role)
-                    await ctx.send(f"User {user.mention} has been muted for {parsed_time} {time_unit}! They cannot speak.")
+                    await ctx.send(f"User {user} has been muted for {parsed_time} {time_unit}! They cannot speak.")
 
                     if time_unit == "seconds":
                         await asyncio.sleep(int(parsed_time))
@@ -134,7 +133,7 @@ class Moderator(commands.Cog):
                         await asyncio.sleep(int(parsed_time) * 3600)
 
                     await user.remove_roles(mute_role)
-                    await ctx.send(f"User {user.mention} has been unmuted after {parsed_time} {time_unit}! They can speak now.")
+                    await ctx.send(f"User {user} has been unmuted after {parsed_time} {time_unit}! They can speak now.")
 
     @commands.command(name="unmute")
     @commands.has_guild_permissions(kick_members=True)
@@ -157,7 +156,7 @@ class Moderator(commands.Cog):
                     mute_role = await create_mute_role(guild)
 
                 await user.remove_roles(mute_role)
-                await ctx.send(f"User {user.mention} has been unmuted! They can now speak.")
+                await ctx.send(f"User {user} has been unmuted! They can now speak.")
 
             else:
                 await ctx.send("This user was never muted.")
