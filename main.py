@@ -313,7 +313,8 @@ async def reloadall(ctx):
                 print(f'Cog: {filename[:-3]} was reloaded')
                 #await ctx.send(f'Cog: {filename[:-3]} was reloaded')
     print('}')
-    embedvar1.add_field(name='Success!', value="Successfully reloaded all Cogs", color=0x00ff00)
+    embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0x00ff00)
+    embedvar1.add_field(name='Success!', value="Successfully reloaded all Cogs")
     await msg.edit(embed=embedvar1)
 
 
