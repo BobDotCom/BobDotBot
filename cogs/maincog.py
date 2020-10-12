@@ -427,7 +427,7 @@ class MainCog(commands.Cog, name = "General"):
             if hour1 >= 24:
                 day1 += hour1 // 24
                 hour1 = hour1 % 24
-            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s", color=0x00ff00) #,color=Hex code
+            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s")
             embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for {day1}d {hour1}h {minute1}m {uptime}s")
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
             await ctx.send(embed=embedVar)
@@ -445,7 +445,7 @@ class MainCog(commands.Cog, name = "General"):
         """Invite me to your own server!
         Uses: `B.invite`"""
         owner = self.client.get_user(self.client.owner_id)
-        embedvar = discord.Embed(title="Wow! I'm really that special?", timestamp=ctx.message.created_at, description="I have 2 different versions, here they are:", color=0x00ff00) #,color=Hex code
+        embedvar = discord.Embed(title="Wow! I'm really that special?", timestamp=ctx.message.created_at, description="I have 2 different versions, here they are:")
         embedvar.add_field(name="BobDotBot(Reccomended)", value="This bot is online almost 24/7, and the code works a lot better than alpha, though it still has lots of new features. [Click Here](https://discord.com/api/oauth2/authorize?client_id=746045299125911562&permissions=8&scope=bot)", inline=False)
         embedvar.add_field(name="BobDotBot Alpha(Unstable)", value="This bot has code that updates as I write it, so it may be buggy. Only online part of the day.(You will have to request permission from the owner to invite this bot) [Click Here](https://discord.com/api/oauth2/authorize?client_id=745044803732897802&permissions=8&scope=bot)", inline=False)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
@@ -458,7 +458,7 @@ class MainCog(commands.Cog, name = "General"):
         Uses: `B.add <number> <number>`"""
         answer = (a + b)
         owner = self.client.get_user(self.client.owner_id)
-        embedvar = discord.Embed(title="Math", timestamp=ctx.message.created_at, description="I think the answer to that is **" + str(answer) + "**", color=0x9400ff) #,color=Hex code
+        embedvar = discord.Embed(title="Math", timestamp=ctx.message.created_at, description="I think the answer to that is **" + str(answer) + "**") 
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedvar)
         
@@ -473,10 +473,10 @@ class MainCog(commands.Cog, name = "General"):
         slapself = f"{ctx.author.name}"
         owner = self.client.get_user(self.client.owner_id)
         if slapped:
-            embedvar = discord.Embed(title="***SLAP***", timestamp=ctx.message.created_at, description='*{}* just got **slapped** for {}'.format(slapped, reason), color=0xff8400) #,color=Hex code
+            embedvar = discord.Embed(title="***SLAP***", timestamp=ctx.message.created_at, description='*{}* just got **slapped** for {}'.format(slapped, reason)) 
             embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         else:
-            embedvar = discord.Embed(title="***OOPS***", timestamp=ctx.message.created_at, description=f"{slapself} just **slapped** themselves because they didn't mention someone valid to slap!", color=0x000000)
+            embedvar = discord.Embed(title="***OOPS***", timestamp=ctx.message.created_at, description=f"{slapself} just **slapped** themselves because they didn't mention someone valid to slap!")
         await ctx.send(embed=embedvar)
         
     @commands.command()
@@ -487,7 +487,7 @@ class MainCog(commands.Cog, name = "General"):
         quote = arg
         author = ctx.author.name
         owner = self.client.get_user(self.client.owner_id)
-        embedVar = discord.Embed(title=f"{author} says:", timestamp=ctx.message.created_at, description=f'{quote}', color=0x00ff00)
+        embedVar = discord.Embed(title=f"{author} says:", timestamp=ctx.message.created_at, description=f'{quote}')
         embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedVar)
 
@@ -498,7 +498,7 @@ class MainCog(commands.Cog, name = "General"):
         Uses: `B.ping`"""
         ping = int(self.client.latency * 1000)
         owner = self.client.get_user(self.client.owner_id)
-        embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description="My ping is *" + str(ping) + "ms*", color=0x00ff00)
+        embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description="My ping is *" + str(ping) + "ms*")
         embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedVar)
 
@@ -520,7 +520,7 @@ class MainCog(commands.Cog, name = "General"):
             if not cog:
                 """Cog listing.  What more?"""
                 owner = self.client.get_user(self.client.owner_id)
-                halp=discord.Embed(title='Command Categories', color=discord.Color.blurple(), timestamp=ctx.message.created_at,
+                halp=discord.Embed(title='Command Categories', timestamp=ctx.message.created_at,
                                    description='Use `B.help *category*` to see a list of commands!\nOr, use `B.help *command*` to get info on a command')#\nYou can use commands in this DM, just use the prefix like normal.
                 cogs_desc = ''
                 for x in self.client.cogs:
@@ -559,7 +559,7 @@ class MainCog(commands.Cog, name = "General"):
                         if x == cog:
                             #making title
                             owner = self.client.get_user(self.client.owner_id)
-                            halp=discord.Embed(title=cog+' Commands', timestamp=ctx.message.created_at,description=self.client.cogs[cog].__doc__, color=discord.Color.blurple())
+                            halp=discord.Embed(title=cog+' Commands', timestamp=ctx.message.created_at,description=self.client.cogs[cog].__doc__)
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             for c in self.client.get_cog(cog).get_commands():
                                 if not c.hidden: #if cog not hidden
@@ -572,7 +572,7 @@ class MainCog(commands.Cog, name = "General"):
                             aliases = str(commandthing.aliases)
                             if aliases == "[]":
                                 aliases = "None"
-                            halp=discord.Embed(title='Command Info: '+commandname, timestamp=ctx.message.created_at,description=commandthing.help, color=discord.Color.blurple())
+                            halp=discord.Embed(title='Command Info: '+commandname, timestamp=ctx.message.created_at,description=commandthing.help)
                             halp.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
                             halp.add_field(name="Aliases",value=aliases,inline=False)
                             halp.add_field(name="Category",value=commandthing.cog_name,inline=False)
@@ -604,12 +604,12 @@ class MainCog(commands.Cog, name = "General"):
         yo56789 = self.client.get_user(self.client.helper3_id)
         tcc = "[The Coding Community](https://discord.gg/a84amZ4)"
         dpy = "[Discord.py](https://discord.gg/dpy)"
-        embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, inline=False)
+        embed = discord.Embed(timestamp=ctx.message.created_at, inline=False)
         embed.set_author(name=f"Bot created by {owner}", icon_url=owner.avatar_url)
         embed.add_field(name=f"Others", value=f"Special thanks to everyone who helped me with learning how to create this bot, especially the following people and servers", inline=False)
         embed.add_field(name=f'{routergtx}', value=f"RouterGTX was a really big help with learning how the code worked, and giving me examples, but still letting me figure out most of it on my own", inline=False)
         embed.add_field(name=f'{gamin}', value=f'Okct was one of the first people to help me, and was able to help me solve problems that I was having trouble with at the beginning', inline=False)
-        embed.add_field(name=f'{yo56789}', value=f'Yo56789 helped me get pointed in the right direction even from my first day making a bot, and gave me some help servers where I could ask questions', inline=False)
+        embed.add_field(name=f'{yo56789}', value=f'Yo56789 helped me learn that if you give someone admin, they will grief your server :/', inline=False)
         embed.add_field(name=f'Servers', value=f'{tcc} -- This was the first server that I got help from, and they are quite active and able to help.\n{dpy} -- This is the official discord.py server, and it has an extremely active help chat, where you can get help with almost anything about discord.py.', inline=False)
         await ctx.send(embed=embed)
 
