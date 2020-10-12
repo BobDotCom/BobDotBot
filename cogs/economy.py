@@ -35,7 +35,7 @@ class economy(commands.Cog, name = "Economy"):
         wallet_amt = users[str(user.id)]["wallet"]
         bank_amt = users[str(user.id)]["bank"]
  
-        em = discord.Embed(title = f"{member.name}'s balance",color = discord.Color.dark_blue())
+        em = discord.Embed(title = f"{member.name}'s balance")
         em.add_field(name = "Wallet", value = wallet_amt)
         em.add_field(name = "Bank", value = bank_amt)
         await ctx.send(embed = em)
@@ -60,12 +60,12 @@ class economy(commands.Cog, name = "Economy"):
         elif answer == 0:
             answer = 'tails'
         if answer is str("heads"):
-              embedVar = discord.Embed(title=f"The coin landed on... {answer}", description=f"You won {wallet_amt}", color = discord.Color.dark_blue())
+              embedVar = discord.Embed(title=f"The coin landed on... {answer}", description=f"You won {wallet_amt}")
               await self.update_bank(ctx.author,1*wallet_amt)
 
         else:
               await self.update_bank(ctx.author,-1*wallet_amt)
-              embedVar = discord.Embed(title=f"The coin landed on... {answer}", description=f"You lost {wallet_amt}", color = discord.Color.dark_blue())
+              embedVar = discord.Embed(title=f"The coin landed on... {answer}", description=f"You lost {wallet_amt}")
         await ctx.send(embed = embedVar)
       
 
@@ -230,7 +230,7 @@ class economy(commands.Cog, name = "Economy"):
             #asdf.append(int(user))
         #total = sorted(total,reverse=True)    
 
-        #em = discord.Embed(title = f"Top {x} Richest People" , description = "Leaderboard takes both bank and wallet balance",color = discord.Color.dark_blue())
+        #em = discord.Embed(title = f"Top {x} Richest People" , description = "Leaderboard takes both bank and wallet balance")
         #index = 1
         #for amt in total:
             #await _ctx.send
@@ -347,7 +347,7 @@ class economy(commands.Cog, name = "Economy"):
     async def shop(self,ctx):
         """See whats in the shop
         Uses: `B.shop`"""
-        em = discord.Embed(title = "Shop", color = discord.Color.dark_blue())
+        em = discord.Embed(title = "Shop")
 
         for item in self.mainshop:
             name = item["name"]
@@ -396,7 +396,7 @@ class economy(commands.Cog, name = "Economy"):
             bag = []
 
 
-        em = discord.Embed(title = "Bag", color = discord.Color.dark_blue() )
+        em = discord.Embed(title = "Inventory")
         for item in bag:
             name = item["item"]
             amount = item["amount"]
