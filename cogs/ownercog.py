@@ -49,6 +49,22 @@ class OwnerCog(commands.Cog, name = "Owner"):
         embedvar.set_footer(text=f"Bot made by {owner}")
         await ctx.send(embed=embedvar)
         await ctx.bot.logout()
+    @commands.command(name="reloadplus", aliases=["rp"])
+    @commands.is_owner()
+    async def botstop(self,ctx):
+        restart = self.client.get_command("restart")
+        sync = self.client.get_command("sync")
+        await ctx.invoke(sync)
+        await asyncio.sleep(2.5)
+        await ctx.invoke(restart)
+    @commands.command(name="reloadcog", aliases=["rc"])
+    @commands.is_owner()
+    async def botstop(self,ctx):
+        ra = self.client.get_command("ra")
+        sync = self.client.get_command("sync")
+        await ctx.invoke(sync)
+        await asyncio.sleep(2.5)
+        await ctx.invoke(ra)
     @commands.command()
     @commands.is_owner()
     async def osay(self, ctx, *, arg):
