@@ -24,6 +24,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         self.client.uptime = datetime.utcnow()
         owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
+        self.url = "https://growtopiagame.com"
 
     @commands.Cog.listener()
     async def on_ready(self):
