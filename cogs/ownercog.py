@@ -21,7 +21,6 @@ class OwnerCog(commands.Cog, name = "Owner"):
     def __init__(self, client):
         self.client = client
         self.client.uptime = datetime.utcnow()
-        owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
 
     @commands.Cog.listener()
@@ -38,8 +37,18 @@ class OwnerCog(commands.Cog, name = "Owner"):
         embedvar.set_footer(text=f"Bot made by {owner}")
         await ctx.send(embed=embedvar)
         print("Bot Shut Down")
+        output = sp.getoutput("systemctl stop my_bot")
+        await ctx.send(output)
+    @commands.command(name="restart")
+    @commands.is_owner()
+    async def botstop(self,ctx):
+        """Restarts the bot
+        Uses: `B.restart`"""
+        owner = self.client.get_user(self.client.owner_id)
+        embedvar = discord.Embed(title="*Restarting...*", description="Be right back!")
+        embedvar.set_footer(text=f"Bot made by {owner}")
+        await ctx.send(embed=embedvar)
         await ctx.bot.logout()
-
     @commands.command()
     @commands.is_owner()
     async def osay(self, ctx, *, arg):
