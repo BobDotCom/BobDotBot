@@ -731,7 +731,7 @@ class MainCog(commands.Cog, name = "General"):
         else:
             xp = get_xp(the_id)
             level = get_level(the_id)
-            embed = discord.Embed(color=member.color, timestamp=ctx.message.created_at)
+            embed = discord.Embed(timestamp=ctx.message.created_at)
             embed.set_author(name=f"Level - {member}", icon_url=member.avatar_url)
             embed.add_field(name="Level", value=level)
             embed.add_field(name="XP", value=xp)
@@ -778,7 +778,7 @@ class MainCog(commands.Cog, name = "General"):
       report = arg
       owner = self.client.get_user(self.client.owner_id)
       reporter = ctx.author.name
-      embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
+      embed = discord.Embed(timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
       embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
       c = self.client.get_guild(727739470731935765).get_channel(751834280929525791)
       msg = await c.send(f"{reporter} suggested {report}")
@@ -801,7 +801,7 @@ class MainCog(commands.Cog, name = "General"):
         #load the database, collapseable
         suggestion = arg
         owner = self.client.get_user(self.client.owner_id)
-        embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
+        embed = discord.Embed(timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         suggestor = ctx.author.name
         c = self.client.get_guild(727739470731935765).get_channel(751971356865986731)
@@ -817,7 +817,7 @@ class MainCog(commands.Cog, name = "General"):
         Example: B.emoji_id <:computer:762783497315811358>"""
         owner = self.client.get_user(self.client.owner_id)
         emoji = self.client.get_emoji(emoji.id)
-        embed = discord.Embed(color=0x00ff00, timestamp=ctx.message.created_at, title=f'{emoji} Emoji id for :{emoji.name}: {emoji}',description=f'ID: {emoji.id}')
+        embed = discord.Embed(timestamp=ctx.message.created_at, title=f'{emoji} Emoji id for :{emoji.name}: {emoji}',description=f'ID: {emoji.id}')
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await ctx.send(embed=embed)
     #@commands.command()
@@ -831,7 +831,7 @@ class MainCog(commands.Cog, name = "General"):
         """Take a string of ASCII text and translate it to binary
         Uses: `B.encode <text>`"""
         binary = ' '.join(format(ord(i), 'b') for i in arg)
-        embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title="Text to binary", description=binary)
+        embed = discord.Embed(timestamp=ctx.message.created_at, title="Text to binary", description=binary)
         await ctx.send(embed=embed)
     @commands.command(aliases=["btt", "binary_to_text", "text"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -844,7 +844,7 @@ class MainCog(commands.Cog, name = "General"):
             asdf = chr(int(x, 2))
             thevar = (lists,asdf)
             lists = "".join(thevar)
-        embed = discord.Embed(color=discord.Color.blurple(), timestamp=ctx.message.created_at, title="Binary to text", description=lists)
+        embed = discord.Embed(timestamp=ctx.message.created_at, title="Binary to text", description=lists)
         await ctx.send(embed=embed)
     @commands.command(name="serverinfo", aliases=["si"])
     async def serverinfo(self, ctx):
@@ -860,8 +860,7 @@ class MainCog(commands.Cog, name = "General"):
 
         embed = discord.Embed(
             title=f"{name} Server Information",
-            description=description,
-            color=discord.Color.blurple()
+            description=description
         )
         embed.set_thumbnail(url=icon)
         embed.add_field(name="Owner", value=owner, inline=True)
@@ -880,7 +879,6 @@ class MainCog(commands.Cog, name = "General"):
         member = ctx.author if not member else member
 
         embed = discord.Embed(
-            color=discord.Color.blurple(),
             timestamp=ctx.message.created_at,
             description=member.mention
         )
@@ -949,7 +947,6 @@ class MainCog(commands.Cog, name = "General"):
             user = ctx.author
 
         aembed = discord.Embed(
-            color=discord.Color.blurple(),
             title=f"{user}"
         )
 
