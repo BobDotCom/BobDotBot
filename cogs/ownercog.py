@@ -41,7 +41,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
         await ctx.send(output)
     @commands.command(name="restart")
     @commands.is_owner()
-    async def botstop(self,ctx):
+    async def nopnop(self,ctx):
         """Restarts the bot
         Uses: `B.restart`"""
         owner = self.client.get_user(self.client.owner_id)
@@ -51,7 +51,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
         await ctx.bot.logout()
     @commands.command(name="reloadplus", aliases=["rp"])
     @commands.is_owner()
-    async def botstop(self,ctx):
+    async def nop(self,ctx):
         restart = self.client.get_command("restart")
         sync = self.client.get_command("sync")
         await ctx.invoke(sync)
