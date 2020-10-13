@@ -1009,7 +1009,7 @@ class MainCog(commands.Cog, name = "General"):
               except asyncio.TimeoutError:
                 source = 'timeout'
               if not m == "cancel" or m == "Cancel":
-                    source = msg
+                    source = m
               elif m.content == 'cancel':
                 source = 'cancel'
               else:
