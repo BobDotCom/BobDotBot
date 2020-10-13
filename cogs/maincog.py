@@ -962,7 +962,7 @@ class MainCog(commands.Cog, name = "General"):
       code = code.strip("```python")
       code = code.strip("```js")
       code = code.strip("```")
-      code = bytes(str(code), 'utf-8')
+      code = code.encode('utf-8')
       async with aiohttp.ClientSession() as cs:
         async with cs.post('https://mystb.in/documents', data = code) as r:
           res = await r.json()
