@@ -26,6 +26,7 @@ from datetime import datetime
 from discord.ext.commands import MissingPermissions
 from discord.ext import menus
 from lxml import html
+from jishaku.codeblocks import Codeblock, codeblock_converter
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
         return await channel.send(f'Hello {ctx.author}')
