@@ -1013,8 +1013,6 @@ class MainCog(commands.Cog, name = "General"):
                     source = m.content
               if m.content == 'cancel' or m.content == "Cancel":
                 source = 'cancel'
-              else:
-                source = 'sel_invalid'
               if source == 'sel_invalid':
                     await ctx.send('Error')
                     done = True
