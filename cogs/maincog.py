@@ -1001,7 +1001,8 @@ class MainCog(commands.Cog, name = "General"):
             data = data["response"]
             embed = discord.Embed(title="Chatbot says:",description=data)
             await ctx.send(embed=embed)
-            while True:
+            done = False
+            while not done:
               def check(msg):
                 return msg.author == ctx.author and msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
               try:
@@ -1016,13 +1017,13 @@ class MainCog(commands.Cog, name = "General"):
                 source = 'sel_invalid'
               if source == 'sel_invalid':
                     await ctx.send('Error')
-                    return
+                    done = True
               elif source == 'cancel':
                     await ctx.send(':white_check_mark:')
-                    return
+                    done = True
               elif source == 'timeout':
                     await ctx.send(':alarm_clock: **Time\'s up bud**')
-                    return
+                    done = True
               else:
                 async with sess.get(self.api + f'/chatbot?message={source}') as resp:
                   data = await resp.json()
