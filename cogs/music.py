@@ -4,7 +4,7 @@ import itertools
 import math
 import random
 import sr_api
-
+import os
 import discord
 import youtube_dl
 from async_timeout import timeout
