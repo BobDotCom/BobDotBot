@@ -608,9 +608,15 @@ class Music(commands.Cog):
         if not title:
             title = ctx.voice_state.current.ret_lyric()
         lyrics = await api.get_lyrics(str(title))
-        await ctx.send(lyrics.title)
-        await ctx.send(lyrics.author)
-        await ctx.send(lyrics.lyrics)
+        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
+        try:
+            await ctx.send(embed=embed)
+        except:
+            try:
+                await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
+                await ctx.send(file=discord.File(lyrics.save()))
+            except:
+                await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
 
                        
     @_join.before_invoke
