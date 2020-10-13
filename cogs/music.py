@@ -612,13 +612,13 @@ class Music(commands.Cog):
         #try:
             #await ctx.send(embed=embed)
         if True:
-            try:
+            if True:
                 await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
-                lyrics.save()
-                with open(f"{lyrics.title}.txt") as fp:
+                lyrics.save(f"/root/main-bot/lyrics/{lyrics.title}.txt")
+                with open(f".lyrics/{lyrics.title}.txt") as fp:
                     await ctx.send(file=discord.File(fp))
-                os.remove(f"{lyrics.title}.txt")
-            except:
+                os.remove(f".lyrics/{lyrics.title}.txt")
+            else:
                 try:
                     os.remove(f"{lyrics.title}.txt")
                     await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
