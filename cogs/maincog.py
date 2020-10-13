@@ -1003,23 +1003,21 @@ class MainCog(commands.Cog, name = "General"):
             await ctx.send(embed=embed)
             done = False
             while not done:
+              err = None
               def check(msg):
-                return msg.author == ctx.author and msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
+                return msg.author == ctx.author and msg.channel == ctx.channel
               try:
                 m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
               except asyncio.TimeoutError:
-                source = 'timeout'
+                err = 'timeout'
               if m:
                     source = m.content
               if m.content == 'cancel' or m.content == "Cancel":
-                source = 'cancel'
-              if source == 'sel_invalid':
-                    await ctx.send('Error')
-                    done = True
-              elif source == 'cancel':
+                err = 'cancel'
+              if err == 'cancel':
                     await ctx.send(':white_check_mark:')
                     done = True
-              elif source == 'timeout':
+              elif err == 'timeout':
                     await ctx.send(':alarm_clock: **Time\'s up bud**')
                     done = True
               else:
