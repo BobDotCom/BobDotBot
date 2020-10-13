@@ -995,7 +995,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def chatbot(self,ctx,*,chat):
       async with aiohttp.ClientSession() as sess:
-        async with sess.get(self.api + f'/{chat}') as resp:
+        async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
           data = await resp.json()
           data = data["response"]
           embed = discord.Embed(title="Chatbot says:",description=data)
