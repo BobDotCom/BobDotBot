@@ -1002,9 +1002,16 @@ class MainCog(commands.Cog, name = "General"):
           if chat:
             async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
               data = await resp.json()
-              data = data["response"]
-              embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
-              embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
+              try:
+                data = data["response"]
+                embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
+                embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
+                await ctx.send(embed=embed)
+              except:
+                data = data["error"]
+                embed = discord.Embed(title="Chatbot Error:",description=data,timestamp=ctx.message.created_at)
+                embed.set_footer(text="Chatbot api by some-random-api")
+                return
               await ctx.send(embed=embed)
             done = False
           while not done:
@@ -1028,10 +1035,17 @@ class MainCog(commands.Cog, name = "General"):
               else:
                 async with sess.get(self.api + f'/chatbot?message={source}') as resp:
                   data = await resp.json()
-                  data = data["response"]
-                  embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
-                  embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
-                  await ctx.send(embed=embed)
+                  try:
+                    data = data["response"]
+                    embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
+                    embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
+                    await ctx.send(embed=embed)
+                  except:
+                    data = data["error"]
+                    embed = discord.Embed(title="Chatbot Error:",description=data,timestamp=ctx.message.created_at)
+                    embed.set_footer(text="Chatbot api by some-random-api")
+                    await ctx.send(embed=embed)
+                    return
           await sess.close()
 
 def setup(client):
