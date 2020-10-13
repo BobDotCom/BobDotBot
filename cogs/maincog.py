@@ -847,6 +847,7 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(timestamp=ctx.message.created_at, title="Binary to text", description=lists)
         await ctx.send(embed=embed)
     @commands.command(name="serverinfo", aliases=["si"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def serverinfo(self, ctx):
         """Get the info of the server that you are in
         Uses `B.serverinfo`"""
@@ -871,6 +872,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embed)
 
     @commands.command(name="userinfo", aliases=["ui"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def userinfo(self, ctx, member: discord.Member = None):
         """Tells you some info about the member.
         Uses: `B.userinfo [member]`
@@ -939,6 +941,7 @@ class MainCog(commands.Cog, name = "General"):
 
         await ctx.send(embed=embed)
     @commands.command(name="avatar")
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def avatar(ctx, user: discord.Member = None):
         """Get the avatar of a user
         Uses `B.avatar [user]`
@@ -953,6 +956,7 @@ class MainCog(commands.Cog, name = "General"):
         aembed.set_image(url=f"{user.avatar_url}")
         await ctx.send(embed=aembed)
     @commands.command(name="mystbin",aliases=["mb"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
     async def mystbin(self,ctx,*,code):
       """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future.
       Uses `B.mystbin [\`\`\`][language]
@@ -975,5 +979,18 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"https://mystb.in/{key}")
         embed.add_field(name="Error in deleting message",value="I was unable to delete your message, this could be because I don't have permissions to. You can still use the Mystb.in link")
         await msg.edit(embed=embed)
+    ```py
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def catpic(self,ctx):
+      async with aiohttp.ClientSession() as sess:
+        async with sess.get('https://some-random-api.ml/img/cat') as resp:
+          data = await resp.json()
+          data = data["link"]
+          embed = discord.Embed(title="Cats")
+          embed.set_image(url=data)
+          await ctx.send(embed=embed)
+      await sess.close()
+```
 def setup(client):
     client.add_cog(MainCog(client))
