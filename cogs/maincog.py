@@ -953,8 +953,12 @@ class MainCog(commands.Cog, name = "General"):
 
         aembed.set_image(url=f"{user.avatar_url}")
         await ctx.send(embed=aembed)
-    @commands.command(name="mystbin")
+    @commands.command(name="mystbin",aliases=["mb"])
     async def mystbin(self,ctx,*,data):
+      """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future.
+      Uses `B.mystbin [```][language]
+      <code>[```]`
+      Note: Arguments in brackets [] are optional"""
       data = data.strip("```py")
       data = data.strip("```python")
       data = data.strip("```js")
