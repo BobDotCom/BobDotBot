@@ -3,6 +3,7 @@ import functools
 import itertools
 import math
 import random
+import sr_api
 
 import discord
 import youtube_dl
@@ -11,7 +12,7 @@ from discord.ext import commands
 
 # Silence useless bug reports messages
 youtube_dl.utils.bug_reports_message = lambda: ''
-
+api = sr_api.Client()
 class VoiceError(Exception):
     pass
 
@@ -573,7 +574,7 @@ class Music(commands.Cog):
 
     @commands.command(name='search', aliases=['se'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def _search(self, ctx: commands.Context, *, search: str):
+    async def _search(self, ctx, *, search):
         """Searches youtube.
         It returns an embed of the first 10 results collected from youtube.
         Then the user can choose one of the titles by typing a number
@@ -599,7 +600,12 @@ class Music(commands.Cog):
                     song = Song(source)
                     await ctx.voice_state.songs.put(song)
                     await ctx.send('Enqueued {}'.format(str(source)))
-            
+    @commands.command(name='lyrics', aliases=['ly'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def _lyrics(self, ctx *, title = None):
+        if not title:
+            await ctx.send(self.source.title)
+                       
     @_join.before_invoke
     @_play.before_invoke
     async def ensure_voice_state(self, ctx: commands.Context):
