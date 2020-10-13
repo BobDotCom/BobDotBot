@@ -62,15 +62,9 @@ class FunCog(commands.Cog, name = "Fun"):
                     await ctx.send(':alarm_clock: **Time\'s up bud**')
                     done = True
               else:
-                  try:
                     data = await client.chatbot(source)
                     embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
                     embed.set_footer(text="Chatbot: some-random-api - cancel - Timeout:45")
-                    await ctx.send(embed=embed)
-                  except:
-                    data = await client.chatbot(source)
-                    embed = discord.Embed(title="Chatbot Error:",description=data,timestamp=ctx.message.created_at)
-                    embed.set_footer(text="Chatbot api by some-random-api")
                     await ctx.send(embed=embed)
                     return
                   
