@@ -1004,7 +1004,7 @@ class MainCog(commands.Cog, name = "General"):
               data = await resp.json()
               data = data["response"]
               embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
-              embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds"
+              embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
               await ctx.send(embed=embed)
             done = False
           while not done:
@@ -1030,7 +1030,7 @@ class MainCog(commands.Cog, name = "General"):
                   data = await resp.json()
                   data = data["response"]
                   embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
-                  embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds"
+                  embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
                   await ctx.send(embed=embed)
           await sess.close()
 
