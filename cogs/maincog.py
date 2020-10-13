@@ -1003,7 +1003,7 @@ class MainCog(commands.Cog, name = "General"):
             await ctx.send(embed=embed)
             while True:
               def check(msg):
-                return msg.author == ctx.author or msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
+                return msg.author == ctx.author and msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
               try:
                 m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
               except asyncio.TimeoutError:
