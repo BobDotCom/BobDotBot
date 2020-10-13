@@ -953,12 +953,12 @@ class MainCog(commands.Cog, name = "General"):
         aembed.set_image(url=f"{user.avatar_url}")
         await ctx.send(embed=aembed)
     @commands.command(name="mystbin")
-    async def mystbin(self, data):
-      data = bytes(data, 'utf-8')
+    async def mystbin(self, ctx, data):
+      data = bytes(str(data), 'utf-8')
       async with aiohttp.ClientSession() as cs:
         async with cs.post('https://mystb.in/documents', data = data) as r:
           res = await r.json()
           key = res["key"]
-          return f"https://mystb.in/{key}"
+          await ctx.send(f"https://mystb.in/{key}")
 def setup(client):
     client.add_cog(MainCog(client))
