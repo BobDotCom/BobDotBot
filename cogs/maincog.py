@@ -994,12 +994,13 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def chatbot(self,ctx,*,chat):
-      async with aiohttp.ClientSession() as sess:
-        async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
-          data = await resp.json()
-          data = data["response"]
-          embed = discord.Embed(title="Chatbot says:",description=data)
-          await ctx.send(embed=embed)
-      await sess.close()
+      async with ctx.typing()
+        async with aiohttp.ClientSession() as sess:
+          async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
+            data = await resp.json()
+            data = data["response"]
+            embed = discord.Embed(title="Chatbot says:",description=data)
+            await ctx.send(embed=embed)
+        await sess.close()
 def setup(client):
     client.add_cog(MainCog(client))
