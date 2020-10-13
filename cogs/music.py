@@ -354,9 +354,9 @@ class Music(commands.Cog):
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
     @commands.Cog.listener()
-    async def on_voice_state_update(member, prev, cur):
+    async def on_voice_state_update(self, member, prev, cur):
         try:
-            if client.user in prev.channel.members and len([m for m in prev.channel.members if not m.bot]) == 0:
+            if self.client.user in prev.channel.members and len([m for m in prev.channel.members if not m.bot]) == 0:
                 await cur.channel.guild.voice_state.stop()
                 del self.voice_states[cur.channel.guild.id]
         except AttributeError:
