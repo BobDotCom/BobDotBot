@@ -955,8 +955,8 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="mystbin",aliases=["mb"])
     async def mystbin(self,ctx,*,code):
       """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future.
-      Uses `B.mystbin [```][language]
-      <code>[```]`
+      Uses `B.mystbin [\`\`\`][language]
+      <code>[\`\`\`]`
       Note: Arguments in brackets [] are optional"""
       code = code.strip("```py")
       code = code.strip("```python")
