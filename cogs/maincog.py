@@ -1021,11 +1021,11 @@ class MainCog(commands.Cog, name = "General"):
               elif source == 'timeout':
                     await ctx.send(':alarm_clock: **Time\'s up bud**')
               else:
-                async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
-                data = await resp.json()
-                data = data["response"]
-                embed = discord.Embed(title="Chatbot says:",description=data)
-                await ctx.send(embed=embed)
+                async with sess.get(self.api + f'/chatbot?message={source}') as resp:
+                  data = await resp.json()
+                  data = data["response"]
+                  embed = discord.Embed(title="Chatbot says:",description=data)
+                  await ctx.send(embed=embed)
           await sess.close()
         except:
             await ctx.send("error")
