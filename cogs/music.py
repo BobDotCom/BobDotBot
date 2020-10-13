@@ -602,7 +602,7 @@ class Music(commands.Cog):
                     await ctx.send('Enqueued {}'.format(str(source)))
     @commands.command(name='lyrics', aliases=['ly'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def _lyrics(self, ctx *, title = None):
+    async def _lyrics(self, ctx, *, title = None):
         if not title:
             await ctx.send(self.source.title)
                        
