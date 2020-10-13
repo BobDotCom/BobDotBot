@@ -26,7 +26,6 @@ from datetime import datetime
 from discord.ext.commands import MissingPermissions
 from discord.ext import menus
 from lxml import html
-from otherscripts.codeblocks import Codeblock, codeblock_converter
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
         return await channel.send(f'Hello {ctx.author}')
@@ -954,19 +953,18 @@ class MainCog(commands.Cog, name = "General"):
         aembed.set_image(url=f"{user.avatar_url}")
         await ctx.send(embed=aembed)
     @commands.command(name="mystbin",aliases=["mb"])
-    async def mystbin(self,ctx,*,data):
+    async def mystbin(self,ctx,*,code):
       """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future.
       Uses `B.mystbin [```][language]
       <code>[```]`
       Note: Arguments in brackets [] are optional"""
-      data = data.strip("```py")
-      data = data.strip("```python")
-      data = data.strip("```js")
-      data = data.strip("```")
-
-      data = bytes(str(data), 'utf-8')
+      code = code.strip("```py")
+      code = code.strip("```python")
+      code = code.strip("```js")
+      code = code.strip("```")
+      code = bytes(str(code), 'utf-8')
       async with aiohttp.ClientSession() as cs:
-        async with cs.post('https://mystb.in/documents', data = data) as r:
+        async with cs.post('https://mystb.in/documents', data = code) as r:
           res = await r.json()
           key = res["key"]
           await ctx.send(f"https://mystb.in/{key}")
