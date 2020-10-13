@@ -1,5 +1,6 @@
 import sr_api
 import discord
+import datetime
 from discord.ext import commands
 from discord.ext.commands import Bot, BucketType
 api = sr_api.Client()
