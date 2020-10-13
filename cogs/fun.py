@@ -34,7 +34,7 @@ class FunCog(commands.Cog, name = "Fun"):
         Once you send your first message, the bot will reply to your messages until you say cancel"""
         if chat:
           async with ctx.typing():
-                data = await client.chatbot(chat)
+                data = await api.chatbot(chat)
                 embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
                 embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
                 await ctx.send(embed=embed)
@@ -63,7 +63,7 @@ class FunCog(commands.Cog, name = "Fun"):
                     await ctx.send(':alarm_clock: **Time\'s up bud**')
                     done = True
               else:
-                    data = await client.chatbot(source)
+                    data = await api.chatbot(source)
                     embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
                     embed.set_footer(text="Chatbot: some-random-api - cancel - Timeout:45")
                     await ctx.send(embed=embed)
