@@ -210,7 +210,9 @@ class Song:
                 .set_thumbnail(url=self.source.thumbnail)
                 .set_author(name=self.requester.name, icon_url=self.requester.avatar_url))
         return embed
-
+    def ret_lyric(self):
+        return self.source.title
+    
 
 class SongQueue(asyncio.Queue):
     def __getitem__(self, item):
@@ -604,7 +606,8 @@ class Music(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _lyrics(self, ctx, *, title = None):
         if not title:
-            await ctx.send(self.source.title)
+            title = ctx.voice_state.current.ret_lyric()
+            await ctx.send(title)
                        
     @_join.before_invoke
     @_play.before_invoke
