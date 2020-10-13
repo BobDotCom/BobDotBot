@@ -1002,6 +1002,33 @@ class MainCog(commands.Cog, name = "General"):
               data = data["response"]
               embed = discord.Embed(title="Chatbot says:",description=data)
               await ctx.send(embed=embed)
+              def check(msg):
+                return msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
+              try:
+                m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
+              except asyncio.TimeoutError:
+                source = 'timeout'
+                      else:
+              if not m == "cancel" or m == "Cancel":
+                    source = msg
+                else:
+                    source = 'sel_invalid'
+              elif m.content == 'cancel':
+                source = 'cancel'
+              else:
+                source = 'sel_invalid'
+              if source == 'sel_invalid':
+                    await ctx.send('Invalid selection')
+              elif source == 'cancel':
+                    await ctx.send(':white_check_mark:')
+              elif source == 'timeout':
+                    await ctx.send(':alarm_clock: **Time\'s up bud**')
+              else:
+                async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
+                data = await resp.json()
+                data = data["response"]
+                embed = discord.Embed(title="Chatbot says:",description=data)
+                await ctx.send(embed=embed)
           await sess.close()
         except:
             await ctx.send("error")
