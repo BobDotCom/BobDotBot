@@ -357,6 +357,7 @@ class Music(commands.Cog):
     async def on_voice_state_update(self, member, prev, cur):
         try:
             if self.client.user in cur.channel.members and len([m for m in cur.channel.members if not m.bot]) == 0:
+                print("asdf")
                 await cur.channel.guild.voice_state.stop()
                 del self.voice_states[cur.channel.guild.id]
         except AttributeError:
