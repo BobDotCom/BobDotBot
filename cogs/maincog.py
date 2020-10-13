@@ -998,7 +998,7 @@ class MainCog(commands.Cog, name = "General"):
         async with sess.get(self.api + f'/{chat}') as resp:
           data = await resp.json()
           data = data["response"]
-          embed = discord.Embed(title="Chatbot says:",description:data)
+          embed = discord.Embed(title="Chatbot says:",description=data)
           await ctx.send(embed=embed)
       await sess.close()
 def setup(client):
