@@ -1008,9 +1008,9 @@ class MainCog(commands.Cog, name = "General"):
                 m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
               except asyncio.TimeoutError:
                 source = 'timeout'
-              if not m == "cancel" or m == "Cancel":
+              if m:
                     source = m
-              elif m.content == 'cancel':
+              if m == 'cancel' or m == "Cancel":
                 source = 'cancel'
               else:
                 source = 'sel_invalid'
