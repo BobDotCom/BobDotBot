@@ -998,9 +998,9 @@ class MainCog(commands.Cog, name = "General"):
       """Start a chat with a bot. Once you send your first message
       Uses `chatbot <chat>`
       Once you send your first message, the bot will reply to your messages until you say cancel"""
-      async with ctx.typing():
-        async with aiohttp.ClientSession() as sess:
-          if chat:
+      async with aiohttp.ClientSession() as sess:
+        if chat:
+          async with ctx.typing():
             async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
               data = await resp.json()
               try:
@@ -1013,15 +1013,20 @@ class MainCog(commands.Cog, name = "General"):
                 embed = discord.Embed(title="Chatbot Error:",description=data,timestamp=ctx.message.created_at)
                 embed.set_footer(text="Chatbot api by some-random-api")
                 return
-          done = False
-          while not done:
-              err = None
-              def check(msg):
-                return msg.author == ctx.author and msg.channel == ctx.channel
-              try:
-                m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
-              except asyncio.TimeoutError:
-                err = 'timeout'
+        else:
+          async with ctx.typing():
+            embed = discord.Embed(title="I started a chat for you with AI. Type any message to send to the bot, or type cancel to exit",timestamp=ctx.message.created_at)
+            await ctx.send(embed=embed)
+        done = False
+        while not done:
+            err = None
+            def check(msg):
+              return msg.author == ctx.author and msg.channel == ctx.channel
+            try:
+              m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
+            except asyncio.TimeoutError:
+              err = 'timeout'
+            async with ctx.typing():
               if m:
                     source = m.content
               if m.content == 'cancel' or m.content == "Cancel":
@@ -1029,16 +1034,18 @@ class MainCog(commands.Cog, name = "General"):
               if err == 'cancel':
                     await ctx.send(':white_check_mark:')
                     done = True
+                    await sess.close()
               elif err == 'timeout':
                     await ctx.send(':alarm_clock: **Time\'s up bud**')
                     done = True
+                    await sess.close()
               else:
                 async with sess.get(self.api + f'/chatbot?message={source}') as resp:
                   data = await resp.json()
                   try:
                     data = data["response"]
                     embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
-                    embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
+                    embed.set_footer(text="Chatbot: some-random-api - cancel - Timeout:45")
                     await ctx.send(embed=embed)
                   except:
                     data = data["error"]
@@ -1046,7 +1053,6 @@ class MainCog(commands.Cog, name = "General"):
                     embed.set_footer(text="Chatbot api by some-random-api")
                     await ctx.send(embed=embed)
                     return
-          await sess.close()
 
 def setup(client):
     client.add_cog(MainCog(client))
