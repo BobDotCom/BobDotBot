@@ -955,7 +955,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=aembed)
     @commands.command(name="mystbin")
     async def mystbin(self,ctx,*,data):
-      data.strip(["```"])
+      data = str(data).strip(["```"])
       data = bytes(str(data), 'utf-8')
       async with aiohttp.ClientSession() as cs:
         async with cs.post('https://mystb.in/documents', data = data) as r:
