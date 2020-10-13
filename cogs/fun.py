@@ -27,7 +27,7 @@ class FunCog(commands.Cog, name = "Fun"):
       await sess.close()
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    @commands.max_concurrency(5, per=BucketType.channel)
+    @commands.max_concurrency(5, per=BucketType.channel: 1)
     async def chatbot(self,ctx,*,chat = None):
         """Start a chat with a bot. Once you send your first message
         Uses `chatbot <chat>`
