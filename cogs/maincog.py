@@ -61,6 +61,7 @@ class MainCog(commands.Cog, name = "General"):
         self.client.helper3_id = 706898741499789364
         global onreadyblocker
         onreadyblocker = False
+        self.api = "https://some-random-api.ml"
 
     async def save_users(self):
         await self.client.wait_until_ready()
@@ -983,11 +984,21 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def catpic(self,ctx):
       async with aiohttp.ClientSession() as sess:
-        async with sess.get('https://some-random-api.ml/img/cat') as resp:
+        async with sess.get(self.api + '/img/cat') as resp:
           data = await resp.json()
           data = data["link"]
           embed = discord.Embed(title="Cats")
           embed.set_image(url=data)
+          await ctx.send(embed=embed)
+      await sess.close()
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def chatbot(self,ctx,*,chat):
+      async with aiohttp.ClientSession() as sess:
+        async with sess.get(self.api + f'/{chat}') as resp:
+          data = await resp.json()
+          data = data["response"]
+          embed = discord.Embed(title="Chatbot says:",description:data)
           await ctx.send(embed=embed)
       await sess.close()
 def setup(client):
