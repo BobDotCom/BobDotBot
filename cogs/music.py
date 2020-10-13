@@ -354,14 +354,12 @@ class Music(commands.Cog):
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
     @commands.Cog.listener()
-    async def on_voice_state_update(member, before, after):
-        if after.channel.members == 1:
-            try:
-                self.bot.loop.create_task(self.stop())
-                self.exists = False
-                return
-            except:
-                return
+    async def on_voice_state_update(member, prev, cur):
+        try:
+            await cur.channel.guild.voice_state.stop()
+            del self.voice_states[cur.channel.guild.id]
+        except AttributeError:
+            pass
 
     @commands.command(name='join', invoke_without_subcommand=True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -404,7 +402,10 @@ class Music(commands.Cog):
       Uses: `B.leave`"""
       if len(ctx.voice_client.channel.members) == 2 or ctx.author.guild_permissions.manage_guild:
         emoji = "<:blobleave:763579679230787584>"
-        await ctx.message.add_reaction(emoji)
+        try:
+            await ctx.message.add_reaction(emoji)
+        except:
+            pass
         if not ctx.voice_state.voice:
             return await ctx.send('Not connected to any voice channel.')
 
