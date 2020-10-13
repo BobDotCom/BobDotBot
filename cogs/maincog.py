@@ -979,7 +979,6 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"https://mystb.in/{key}")
         embed.add_field(name="Error in deleting message",value="I was unable to delete your message, this could be because I don't have permissions to. You can still use the Mystb.in link")
         await msg.edit(embed=embed)
-    ```py
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def catpic(self,ctx):
@@ -991,6 +990,5 @@ class MainCog(commands.Cog, name = "General"):
           embed.set_image(url=data)
           await ctx.send(embed=embed)
       await sess.close()
-```
 def setup(client):
     client.add_cog(MainCog(client))
