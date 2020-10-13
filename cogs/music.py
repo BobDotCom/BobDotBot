@@ -619,7 +619,11 @@ class Music(commands.Cog):
                     await ctx.send(file=discord.File(fp))
                 os.remove(f"{lyrics.title}.txt")
             except:
-                await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
+                try:
+                    os.remove(f"{lyrics.title}.txt")
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
+                except:
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
 
                        
     @_join.before_invoke
