@@ -28,7 +28,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.max_concurrency(5, per=BucketType.channel)
     async def chatbot(self,ctx,*,chat = None):
-v"""Start a chat with a bot. Once you send your first message
+        """Start a chat with a bot. Once you send your first message
         Uses `chatbot <chat>`
         Once you send your first message, the bot will reply to your messages until you say cancel"""
         if chat:
