@@ -993,16 +993,21 @@ class MainCog(commands.Cog, name = "General"):
       await sess.close()
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def chatbot(self,ctx,*,chat):
+    async def chatbot(self,ctx,*,chat = None):
+      """Start a chat with a bot. Once you send your first message
+      Uses `chatbot <chat>`
+      Once you send your first message, the bot will reply to your messages until you say cancel"""
       async with ctx.typing():
         async with aiohttp.ClientSession() as sess:
-          async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
-            data = await resp.json()
-            data = data["response"]
-            embed = discord.Embed(title="Chatbot says:",description=data)
-            await ctx.send(embed=embed)
+          if chat:
+            async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
+              data = await resp.json()
+              data = data["response"]
+              embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
+              embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds"
+              await ctx.send(embed=embed)
             done = False
-            while not done:
+          while not done:
               err = None
               def check(msg):
                 return msg.author == ctx.author and msg.channel == ctx.channel
@@ -1024,7 +1029,8 @@ class MainCog(commands.Cog, name = "General"):
                 async with sess.get(self.api + f'/chatbot?message={source}') as resp:
                   data = await resp.json()
                   data = data["response"]
-                  embed = discord.Embed(title="Chatbot says:",description=data)
+                  embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
+                  embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds"
                   await ctx.send(embed=embed)
           await sess.close()
 
