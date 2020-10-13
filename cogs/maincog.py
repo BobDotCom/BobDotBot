@@ -967,6 +967,13 @@ class MainCog(commands.Cog, name = "General"):
         async with cs.post('https://mystb.in/documents', data = code) as r:
           res = await r.json()
           key = res["key"]
-          await ctx.send(f"https://mystb.in/{key}")
+          embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"https://mystb.in/{key}")
+          msg = await ctx.send(embed=embed)
+      try:
+        await ctx.message.delete()
+      except:
+        embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"https://mystb.in/{key}")
+        embed.add_field(name="Error in deleting message",value="I was unable to delete your message, this could be because I don't have permissions to. You can still use the Mystb.in link")
+        await msg.edit(embed=embed)
 def setup(client):
     client.add_cog(MainCog(client))
