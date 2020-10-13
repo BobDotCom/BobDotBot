@@ -993,7 +993,7 @@ class MainCog(commands.Cog, name = "General"):
       await sess.close()
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    @commands.max_concurrency(5, BucketType.channel)
+    @commands.max_concurrency(5, per=BucketType.channel)
     async def chatbot(self,ctx,*,chat = None):
       """Start a chat with a bot. Once you send your first message
       Uses `chatbot <chat>`
