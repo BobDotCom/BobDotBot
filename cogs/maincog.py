@@ -1003,7 +1003,7 @@ class MainCog(commands.Cog, name = "General"):
             await ctx.send(embed=embed)
             while True:
               def check(msg):
-                return msg.author == ctx.author msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
+                return msg.author == ctx.author or msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
               try:
                 m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
               except asyncio.TimeoutError:
@@ -1015,11 +1015,14 @@ class MainCog(commands.Cog, name = "General"):
               else:
                 source = 'sel_invalid'
               if source == 'sel_invalid':
-                    await ctx.send('Invalid selection')
+                    await ctx.send('Error')
+                    return
               elif source == 'cancel':
                     await ctx.send(':white_check_mark:')
+                    return
               elif source == 'timeout':
                     await ctx.send(':alarm_clock: **Time\'s up bud**')
+                    return
               else:
                 async with sess.get(self.api + f'/chatbot?message={source}') as resp:
                   data = await resp.json()
