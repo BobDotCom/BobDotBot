@@ -20,7 +20,7 @@ import sqlite3
 from dotenv import load_dotenv
 from sqlite3 import Error
 from termcolor import colored, cprint
-from discord.ext.commands import Bot
+from discord.ext.commands import Bot, BucketType
 from discord.ext import commands
 from datetime import datetime
 from discord.ext.commands import MissingPermissions
