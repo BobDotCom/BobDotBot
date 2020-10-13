@@ -995,15 +995,15 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def chatbot(self,ctx,*,chat):
       async with ctx.typing():
-        if True:
-          async with aiohttp.ClientSession() as sess:
-            async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
-              data = await resp.json()
-              data = data["response"]
-              embed = discord.Embed(title="Chatbot says:",description=data)
-              await ctx.send(embed=embed)
+        async with aiohttp.ClientSession() as sess:
+          async with sess.get(self.api + f'/chatbot?message={chat}') as resp:
+            data = await resp.json()
+            data = data["response"]
+            embed = discord.Embed(title="Chatbot says:",description=data)
+            await ctx.send(embed=embed)
+            while True:
               def check(msg):
-                return msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
+                return msg.author == ctx.author msg.channel == ctx.channel or msg.content == 'cancel' or msg.content == 'Cancel'
               try:
                 m = await ctx.bot.wait_for('message', check=check, timeout=45.0)
               except asyncio.TimeoutError:
