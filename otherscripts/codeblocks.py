@@ -41,7 +41,7 @@ def codeblock_converter(argument):
             code.append(char)
         if char == '\n':  # \n delimits language and code
             in_language = False
-            in_code = False
+            in_code = True
         # we're not seeing a newline yet but we also passed the opening ```
         elif ''.join(last) == '`' * 3 and char != '`':
             in_language = True
