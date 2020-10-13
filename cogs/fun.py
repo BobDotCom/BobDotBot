@@ -52,8 +52,7 @@ class FunCog(commands.Cog, name = "Fun"):
             except asyncio.TimeoutError:
               err = 'timeout'
             async with ctx.typing():
-              if m:
-                    source = m.content
+              source = m.content
               if m.content == 'cancel' or m.content == "Cancel":
                 err = 'cancel'
               if err == 'cancel':
@@ -67,7 +66,6 @@ class FunCog(commands.Cog, name = "Fun"):
                     embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
                     embed.set_footer(text="Chatbot: some-random-api - cancel - Timeout:45")
                     await ctx.send(embed=embed)
-                    return
                   
                   
                   
