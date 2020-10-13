@@ -41,6 +41,7 @@ class FunCog(commands.Cog, name = "Fun"):
                 await ctx.send(embed=embed)
             except:
                 await ctx.send("Error with Chatbot, please try again later")
+                return
         else:
           async with ctx.typing():
             embed = discord.Embed(title="I started a chat for you with AI. Type any message to send to the bot, or type cancel to exit",timestamp=ctx.message.created_at)
@@ -72,6 +73,7 @@ class FunCog(commands.Cog, name = "Fun"):
                     await ctx.send(embed=embed)
                 except:
                     await ctx.send("Error with Chatbot, please try again later")
+                    return
                   
                   
                   
