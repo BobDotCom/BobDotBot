@@ -1012,7 +1012,6 @@ class MainCog(commands.Cog, name = "General"):
                 embed = discord.Embed(title="Chatbot Error:",description=data,timestamp=ctx.message.created_at)
                 embed.set_footer(text="Chatbot api by some-random-api")
                 return
-              await ctx.send(embed=embed)
             done = False
           while not done:
               err = None
