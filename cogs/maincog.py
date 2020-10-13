@@ -1011,8 +1011,6 @@ class MainCog(commands.Cog, name = "General"):
                       else:
               if not m == "cancel" or m == "Cancel":
                     source = msg
-                else:
-                    source = 'sel_invalid'
               elif m.content == 'cancel':
                 source = 'cancel'
               else:
