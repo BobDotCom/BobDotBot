@@ -353,6 +353,15 @@ class Music(commands.Cog):
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
         await ctx.send('An error occurred: {}'.format(str(error)))
+    @commands.Cog.listener()
+    async def on_voice_state_update(member, before, after):
+        if after.channel.members == 1:
+            try:
+                self.bot.loop.create_task(self.stop())
+                self.exists = False
+                return
+            except:
+                return
 
     @commands.command(name='join', invoke_without_subcommand=True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
