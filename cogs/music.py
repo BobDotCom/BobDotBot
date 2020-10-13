@@ -607,7 +607,8 @@ class Music(commands.Cog):
     async def _lyrics(self, ctx, *, title = None):
         if not title:
             title = ctx.voice_state.current.ret_lyric()
-            await ctx.send(title)
+        lyrics = await api.get_lyrics(title)
+        await ctx.send(lyrics)
                        
     @_join.before_invoke
     @_play.before_invoke
