@@ -669,14 +669,14 @@ class Music(commands.Cog):
         except:
             try:
                 await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
-                if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
+                if lyrics.title not in ["requirements", "runtime", "main"]:
                     lyrics.save()
                     with open(f"{lyrics.title}.txt") as fp:
                         await ctx.send(file=discord.File(fp))
                     os.remove(f"{lyrics.title}.txt")
             except:
                 try:
-                    if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
+                    if lyrics.title not in ["requirements", "runtime", "main"]:
                         os.remove(f"{lyrics.title}.txt")
                     await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
                 except:
