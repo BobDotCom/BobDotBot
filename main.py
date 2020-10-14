@@ -288,8 +288,7 @@ async def unload(ctx, extension):
 @commands.is_owner()
 async def reload(ctx, extension):
     """Reloads the specified Cog"""
-    client.unload_extension(f'cogs.{extension}')
-    client.load_extension(f'cogs.{extension}')
+    client.reload_extension(f'cogs.{extension}')
     print(f'Cog "{extension}" was reloaded')
     await ctx.send(f'Reloaded Cog "{extension}"')
 
@@ -303,6 +302,7 @@ async def reloadall(ctx):
     notr = []
     embedvar = discord.Embed(title='Reloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were reloaded')
     msg = await ctx.send(embed=embedvar)
+    reload = client.get_command("jishaku dbg")
     for x in list(client.extensions):
       if x != "jishaku":
         try:
@@ -314,6 +314,7 @@ async def reloadall(ctx):
             embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0xff0000)
         else:
             embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}\nNot loaded: {', '.join(notr)}", color=0xff0000)
+            await ctx.invoke(reload, f"r {x[:5]}")
         await asyncio.sleep(1)
         await msg.edit(embed=embedvar1)
         print(f'Cog: {x[5:]} was reloaded')
