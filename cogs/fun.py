@@ -17,14 +17,10 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def catpic(self,ctx):
-      async with aiohttp.ClientSession() as sess:
-        async with sess.get(self.api + '/img/cat') as resp:
-          data = await resp.json()
-          data = data["link"]
-          embed = discord.Embed(title="Cat")
-          embed.set_image(url=data)
-          await ctx.send(embed=embed)
-      await sess.close()
+      data = await api.get_image("cat")
+      embed = discord.Embed(title="Cat")
+      embed.set_image(url=data)
+      await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.max_concurrency(1, per=BucketType.channel)
