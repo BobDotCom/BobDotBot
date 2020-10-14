@@ -303,7 +303,7 @@ async def reloadall(ctx):
     notr = []
     embedvar = discord.Embed(title='Reloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were reloaded')
     msg = await ctx.send(embed=embedvar)
-    for x in client.extensions:
+    for x in list(client.extensions):
       if x != "jishaku":
         try:
             client.reload_extension(x)
