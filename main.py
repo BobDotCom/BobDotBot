@@ -300,23 +300,30 @@ async def reloadall(ctx):
     print('All Cogs were reloaded{')
     firstTime = True
     reloaded = []
-    for filename in os.listdir('./cogs'):
-        if filename.endswith('.py'):
-                client.reload_extension(f'cogs.{filename[:-3]}')
-                reloaded += [filename[:-3], ]
-                if firstTime:
-                        embedvar = discord.Embed(title='Reloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were reloaded')
-                        msg = await ctx.send(embed=embedvar)
-                        firstTime = False
-                else:
-                        embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0xff0000)
-                        await asyncio.sleep(1)
-                        await msg.edit(embed=embedvar1)
-                print(f'Cog: {filename[:-3]} was reloaded')
+    not = []
+    embedvar = discord.Embed(title='Reloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were reloaded')
+    msg = await ctx.send(embed=embedvar)
+    for x in client.extensions:
+        try:
+            client.reload_extension(x)
+            reloaded += [x[5:], ]
+        except:
+            not += [x[5:], ]
+        if len(not) == 0:
+            embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0xff0000)
+        else:
+            embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}\nNot loaded: {', '.join(not)}", color=0xff0000)
+        await asyncio.sleep(1)
+        await msg.edit(embed=embedvar1)
+        print(f'Cog: {x[5:]} was reloaded')
                 #await ctx.send(f'Cog: {filename[:-3]} was reloaded')
     print('}')
-    embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0x00ff00)
-    embedvar1.add_field(name='Success!', value="Successfully reloaded all Cogs")
+    if len(not) == 0:
+        embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0x00ff00)
+        embedvar1.add_field(name='Success!', value="Successfully reloaded all Cogs")
+    else:
+        embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}\nNot loaded: {', '.join(not)}", color=0xff0000)
+        embedvar1.add_field(name='Failure', value="Failed to reload all cogs")
     await msg.edit(embed=embedvar1)
 
 
