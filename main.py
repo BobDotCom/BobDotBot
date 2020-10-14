@@ -381,8 +381,11 @@ async def unloadall(ctx):
 def blacklist(ctx):
     return ctx.message.author.id != 706898741499789364
 for filename in os.listdir('./cogs'):
-    if filename.endswith('.py'):
-        client.load_extension(f'cogs.{filename[:-3]}')
+    try:
+        if filename.endswith('.py'):
+            client.load_extension(f'cogs.{filename[:-3]}')
+    except:
+    	continue
 
 
 server_timer.start()
