@@ -356,8 +356,8 @@ class Music(commands.Cog):
         await ctx.send('An error occurred: {}'.format(str(error)))
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, prev, cur):
-        print("1")
-        if True:
+        await asyncio.sleep(.5)
+        try:
             theuser = member.guild.me
             try:
                 channel = cur.channel.members
@@ -371,8 +371,8 @@ class Music(commands.Cog):
                 await channels.disconnect()
                 del self.voice_states[current.guild.id]
                 print("3")
-        #except AttributeError:
-            #pass
+        except AttributeError:
+            pass
 
     @commands.command(name='join', invoke_without_subcommand=True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
