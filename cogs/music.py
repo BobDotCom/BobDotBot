@@ -367,7 +367,8 @@ class Music(commands.Cog):
                 current = prev.channel
             if theuser in channel and len(channel) == 1:
                 print("2")
-                await current.guild.voice_client.stop()
+                await channels = discord.utils.get(client.voice_clients, channel=current)
+                await channels.disconnect()
                 del self.voice_states[current.guild.id]
                 print("3")
         #except AttributeError:
