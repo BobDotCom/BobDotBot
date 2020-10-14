@@ -658,7 +658,7 @@ class Music(commands.Cog):
     async def _cancerlyrics(self, ctx, *, title = None):
         if not title:
             title = ctx.voice_state.current.ret_lyric()
-        lyrics = await api.get_lyrics(title + "&cancer=true)
+        lyrics = await api.get_lyrics(title + "&cancer=true")
         embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
         try:
             try:
