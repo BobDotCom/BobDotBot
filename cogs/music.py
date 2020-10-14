@@ -634,7 +634,7 @@ class Music(commands.Cog):
         embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
         try:
             try:
-                embed.set_image(url=lyrics.thumbnail)
+                embed.set_thumbnail(url=lyrics.thumbnail)
                 await ctx.send(embed=embed)
             except:
                 await ctx.send(embed=embed)
