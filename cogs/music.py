@@ -383,7 +383,8 @@ class Music(commands.Cog):
         await ctx.message.add_reaction(emoji)
         destination = ctx.author.voice.channel
         if ctx.voice_state.voice:
-            await ctx.voice_state.voice.move_to(destination, self_deaf=True)
+            await ctx.voice_state.voice.move_to(destination)
+            await ctx.guild.change_voice_state(channel=destination, self_deaf=True)
             return
                        
         ctx.voice_state.voice = await destination.connect()
@@ -404,7 +405,8 @@ class Music(commands.Cog):
 
         destination = channel or ctx.author.voice.channel
         if ctx.voice_state.voice:
-            await ctx.voice_state.voice.move_to(destination, self_deaf=True)
+            await ctx.voice_state.voice.move_to(destination)
+            await ctx.guild.change_voice_state(channel=destination, self_deaf=True)
             return
 
         ctx.voice_state.voice = await destination.connect()
