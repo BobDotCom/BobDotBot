@@ -943,18 +943,17 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=embed)
     @commands.command(name="avatar")
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def avatar(ctx, user: discord.Member = None):
+    async def avatar(self, ctx, member: discord.Member = None):
         """Get the avatar of a user
         Uses `B.avatar [user]`
         Note: Arguments in brackets [] are optional"""
-        if user is None:
-            user = ctx.author
+        member = ctx.author if not member else member
 
         aembed = discord.Embed(
-            title=f"{user}"
+            title=f"{member}"
         )
 
-        aembed.set_image(url=f"{user.avatar_url}")
+        aembed.set_image(url=f"{member.avatar_url}")
         await ctx.send(embed=aembed)
     @commands.command(name="mystbin",aliases=["mb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
