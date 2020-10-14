@@ -46,6 +46,7 @@ client.owner_id = 690420846774321221
 client.load_extension("jishaku")
 prefixes1 = get_prefix
 logs = get_logs
+client.launch_time = datetime.datetime.utcnow()
 @client.event
 async def on_ready():
 	client.loop.create_task(Data.auto_update_data())
