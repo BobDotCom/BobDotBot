@@ -371,8 +371,6 @@ class Music(commands.Cog):
                 await channels.disconnect()
                 del self.voice_states[current.guild.id]
                 print("3")
-            else:
-                await current.guild.change_voice_state(channel=current, self_deaf=True)
         except AttributeError:
             pass
 
@@ -385,10 +383,10 @@ class Music(commands.Cog):
         await ctx.message.add_reaction(emoji)
         destination = ctx.author.voice.channel
         if ctx.voice_state.voice:
-            await ctx.voice_state.voice.move_to(destination)
+            await ctx.voice_state.voice.move_to(destination, self_deaf=True)
             return
                        
-        ctx.voice_state.voice = await destination.connect()
+        ctx.voice_state.voice = await destination.connect(self_deaf=True)
 
     @commands.command(name='summon')
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -405,10 +403,10 @@ class Music(commands.Cog):
 
         destination = channel or ctx.author.voice.channel
         if ctx.voice_state.voice:
-            await ctx.voice_state.voice.move_to(destination)
+            await ctx.voice_state.voice.move_to(destination, self_deaf=True)
             return
 
-        ctx.voice_state.voice = await destination.connect()
+        ctx.voice_state.voice = await destination.connect(self_deaf=True)
 
     @commands.command(name='leave', aliases=['disconnect'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
