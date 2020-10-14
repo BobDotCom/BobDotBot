@@ -359,7 +359,11 @@ class Music(commands.Cog):
         print("5432")
         if True:
             theuser = member.guild.me
-            if theuser in cur.channel.members:
+            try:
+                current = cur.channel.members
+            except:
+                current = prev.channel.members
+            if theuser in current:
                 print("asdf")
                 #await cur.channel.guild.voice_state.stop()
                 #del self.voice_states[cur.channel.guild.id]
