@@ -328,7 +328,7 @@ class Music(commands.Cog):
     """Want to listen to your favorite music without leaving discord? Or maybe you want to listen to music with your friends? Use these commands and you can do either of those!"""
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-        self.client = client
+        self.client = bot
         self.voice_states = {}
 
     def get_voice_state(self, ctx: commands.Context):
