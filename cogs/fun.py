@@ -29,9 +29,10 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.max_concurrency(1, per=BucketType.channel)
     async def chatbot(self,ctx,*,chat = None):
-        """Start a chat with a bot. Once you send your first message
-        Uses `chatbot <chat>`
-        Once you send your first message, the bot will reply to your messages until you say cancel"""
+      """Start a chat with a bot. Once you send your first message
+      Uses `chatbot <chat>`
+      Once you send your first message, the bot will reply to your messages until you say cancel"""
+      try:
         if chat:
           async with ctx.typing():
             try:
@@ -74,7 +75,12 @@ class FunCog(commands.Cog, name = "Fun"):
                 except:
                     await ctx.send("Error with Chatbot, please try again later")
                     return
-                  
+      except:
+        try:
+            await ctx.send("error")
+            return
+        except:
+            return
                   
                   
 def setup(client):
