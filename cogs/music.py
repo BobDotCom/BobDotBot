@@ -653,7 +653,34 @@ class Music(commands.Cog):
                     await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
                 except:
                     await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
-
+    @commands.command(name='cancerlyrics', aliases=['cl'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def _cancerlyrics(self, ctx, *, title = None):
+        if not title:
+            title = ctx.voice_state.current.ret_lyric()
+        lyrics = await api.get_lyrics(title + "&cancer=true)
+        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
+        try:
+            try:
+                embed.set_thumbnail(url=lyrics.thumbnail)
+                await ctx.send(embed=embed)
+            except:
+                await ctx.send(embed=embed)
+        except:
+            try:
+                await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
+                if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
+                    lyrics.save()
+                    with open(f"{lyrics.title}.txt") as fp:
+                        await ctx.send(file=discord.File(fp))
+                    os.remove(f"{lyrics.title}.txt")
+            except:
+                try:
+                    if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
+                        os.remove(f"{lyrics.title}.txt")
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
+                except:
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
                        
     @_join.before_invoke
     @_play.before_invoke
