@@ -114,6 +114,8 @@ async def on_command_error(ctx, error):
 
   elif isinstance(error, commands.BotMissingPermissions):
     await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+  elif isinstance(error, commands.MaxConcurrencyReached):
+    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
 @client.event
 async def on_message(message):
 	await client.process_commands(message)
