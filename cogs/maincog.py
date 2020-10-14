@@ -451,9 +451,9 @@ class MainCog(commands.Cog, name = "General"):
             if hour2 >= 24:
                 day2 += hour2 // 24
                 hour2 = hour2 % 24
-            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s, and was last reloaded {day1}d {hour1}h {minute1}m {second1}s ago")
-            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for {day2}d {hour2}h {minute2}m {uptime}s, with an average response time of {ping}")
-            embedVar.add_field(name="BobDotBot Server Uptime History", value=f"BobDotBot has logged:\n{perday}% uptime today\n{perweek}% uptime this week\n{permonth}% uptime this month")
+            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for `{day}d {hour}h {minute}m {second}s`, and was last reloaded `{day1}d {hour1}h {minute1}m {second1}s` ago")
+            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for `{day2}d {hour2}h {minute2}m {uptime}s`, with an average response time of `{ping}`")
+            embedVar.add_field(name="BobDotBot Server Uptime History", value=f"BobDotBot has logged:\n`{perday}%` uptime today\n`{perweek}%` uptime this week\n`{permonth}%` uptime this month")
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
             await ctx.send(embed=embedVar)
 
