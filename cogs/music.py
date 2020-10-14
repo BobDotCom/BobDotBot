@@ -632,17 +632,17 @@ class Music(commands.Cog):
             title = ctx.voice_state.current.ret_lyric()
         lyrics = await api.get_lyrics(str(title))
         embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
-        #try:
-            #await ctx.send(embed=embed)
-        if True:
-            if True:
+        try:
+            await ctx.send(embed=embed)
+        except:
+            try:
                 await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
                 if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
                     lyrics.save()
                     with open(f"{lyrics.title}.txt") as fp:
                         await ctx.send(file=discord.File(fp))
                     os.remove(f"{lyrics.title}.txt")
-            else:
+            except:
                 try:
                     if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
                         os.remove(f"{lyrics.title}.txt")
