@@ -360,17 +360,15 @@ class Music(commands.Cog):
         if True:
             theuser = member.guild.me
             try:
-                current = cur.channel.members
+                current = cur.channel
             except:
-                current = prev.channel.members
-            if theuser in current:
+                current = prev.channel
+            if theuser in current.members and len(current.members) == 1:
                 print("asdf")
-                #await cur.channel.guild.voice_state.stop()
-                #del self.voice_states[cur.channel.guild.id]
-            if len(current) == 1:
-                print("1234")
-        #except AttributeError:
-            #pass
+                await current.guild.voice_state.stop()
+                del self.voice_states[current.guild.id]
+        except AttributeError:
+            pass
 
     @commands.command(name='join', invoke_without_subcommand=True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
