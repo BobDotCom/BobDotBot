@@ -361,14 +361,14 @@ class Music(commands.Cog):
             theuser = member.guild.me
             try:
                 channel = cur.channel.members
-                current = cur.channel.guild
+                current = cur.channel
             except:
                 channel = prev.channel.members
-                current = prev.channel.guild
+                current = prev.channel
             if theuser in channel and len(channel) == 1:
                 print("2")
                 await current.voice_state.stop()
-                del self.voice_states[current.id]
+                del self.voice_states[current.guild.id]
                 print("3")
         #except AttributeError:
             #pass
