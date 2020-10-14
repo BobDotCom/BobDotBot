@@ -406,7 +406,8 @@ class Music(commands.Cog):
             await ctx.voice_state.voice.move_to(destination, self_deaf=True)
             return
 
-        ctx.voice_state.voice = await destination.connect(self_deaf=True)
+        ctx.voice_state.voice = await destination.connect()
+        await ctx.guild.change_voice_state(channel=destination, self_deaf=True)
 
     @commands.command(name='leave', aliases=['disconnect'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
