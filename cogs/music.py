@@ -355,6 +355,7 @@ class Music(commands.Cog):
         await ctx.send('An error occurred: {}'.format(str(error)))
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, prev, cur):
+        print("5432")
         try:
             theuser = cur.channel.guild.get_member(int(self.client.user.id))
             if theuser in cur.channel.members:
