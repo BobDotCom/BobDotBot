@@ -357,10 +357,12 @@ class Music(commands.Cog):
     async def on_voice_state_update(self, member, prev, cur):
         try:
             theuser = cur.channel.guild.get_member(int(self.client.user.id))
-            if theuser in cur.channel.members and len(cur.channel.members) == 1:
+            if theuser in cur.channel.members:
                 print("asdf")
-                await cur.channel.guild.voice_state.stop()
-                del self.voice_states[cur.channel.guild.id]
+                #await cur.channel.guild.voice_state.stop()
+                #del self.voice_states[cur.channel.guild.id]
+            if len(cur.channel.members) == 1:
+                print("1234")
         except AttributeError:
             pass
 
