@@ -53,7 +53,8 @@ class MainCog(commands.Cog, name = "General"):
     def __init__(self, client):
         self.client = client
         self.bot = client
-        self.client.uptime = datetime.utcnow()
+        self.client.module.uptime = datetime.utcnow()
+        self.client.uptime = client.uptime
         owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
         self.client.helper1_id = 716503311402008577
@@ -409,8 +410,12 @@ class MainCog(commands.Cog, name = "General"):
             minute1,hour1,day1,uptime = 0,0,0,0
             time = datetime.utcnow()
             time -= self.client.uptime
+            time1 = datetime.utcnow()
+            time1 -= self.client.module.uptime
             second = list(str(time.seconds)).copy()
             second = int("".join(second))
+            second1 = list(str(time1.seconds)).copy()
+            second1 = int("".join(second))
             uptime = loaded_json["monitors"][0]["logs"][0]["duration"]
             ping = loaded_json["monitors"][0]["average_response_time"]
             ratios1 = loaded_json["monitors"][0]["custom_uptime_ratio"]
@@ -427,17 +432,26 @@ class MainCog(commands.Cog, name = "General"):
             if hour >= 24:
                 day += hour // 24
                 hour = hour % 24
-            if uptime >= 60:
-                minute1 =+ uptime // 60
-                uptime = uptime % 60
-            if minute1 >= 60:
+            if second1 >= 60:
+                minute1 =+ second1 // 60
+                second1 = second1 % 60
+            if minute >= 60:
                 hour1 += minute1 // 60
                 minute1 = minute1 % 60
-            if hour1 >= 24:
+            if hour >= 24:
                 day1 += hour1 // 24
                 hour1 = hour1 % 24
-            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s")
-            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for {day1}d {hour1}h {minute1}m {uptime}s, with an average response time of {ping}")
+            if uptime >= 60:
+                minute2 =+ uptime // 60
+                uptime = uptime % 60
+            if minute2 >= 60:
+                hour2 += minute2 // 60
+                minute2 = minute2 % 60
+            if hour2 >= 24:
+                day2 += hour2 // 24
+                hour2 = hour2 % 24
+            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s, and was last reloaded {day1}d {hour1}h {minute1}m {second1}s ago")
+            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for {day2}d {hour2}h {minute2}m {uptime}s, with an average response time of {ping}")
             embedVar.add_field(name="BobDotBot Server Uptime History", value=f"BobDotBot has logged:\n{perday}% uptime today\n{perweek}% uptime this week\n{permonth}% uptime this month")
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
             await ctx.send(embed=embedVar)
