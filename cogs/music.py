@@ -365,7 +365,7 @@ class Music(commands.Cog):
             except:
                 channel = prev.channel
                 current = cur.channel.guild
-            if theuser in channel and len(channel) == 1:]:
+            if theuser in channel and len(channel) == 1:
                 print("2")
                 await current.voice_state.stop()
                 del self.voice_states[current.id]
