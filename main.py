@@ -314,7 +314,7 @@ async def reloadall(ctx):
             embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}", color=0xff0000)
         else:
             embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}\nNot loaded: {', '.join(notr)}", color=0xff0000)
-            await ctx.invoke(reload, f"r {x[:5]}")
+            await ctx.invoke(reload, "r", x[:5])
         await asyncio.sleep(1)
         await msg.edit(embed=embedvar1)
         print(f'Cog: {x[5:]} was reloaded')
