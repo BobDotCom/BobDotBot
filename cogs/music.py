@@ -367,7 +367,7 @@ class Music(commands.Cog):
                 print("asdf")
                 #await cur.channel.guild.voice_state.stop()
                 #del self.voice_states[cur.channel.guild.id]
-            if len(cur.channel.members) == 1:
+            if len(current) == 1:
                 print("1234")
         #except AttributeError:
             #pass
