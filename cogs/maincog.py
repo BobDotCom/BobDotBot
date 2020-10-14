@@ -53,7 +53,7 @@ class MainCog(commands.Cog, name = "General"):
     def __init__(self, client):
         self.client = client
         self.bot = client
-        self.client.module.uptime = datetime.utcnow()
+        self.client.uptime1 = datetime.utcnow()
         self.client.uptime = client.uptime
         owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
@@ -411,7 +411,7 @@ class MainCog(commands.Cog, name = "General"):
             time = datetime.utcnow()
             time -= self.client.uptime
             time1 = datetime.utcnow()
-            time1 -= self.client.module.uptime
+            time1 -= self.client.uptime1
             second = list(str(time.seconds)).copy()
             second = int("".join(second))
             second1 = list(str(time1.seconds)).copy()
