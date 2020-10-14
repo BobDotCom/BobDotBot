@@ -659,7 +659,7 @@ class Music(commands.Cog):
         if not title:
             title = ctx.voice_state.current.ret_lyric()
         lyrics = await api.get_lyrics(title + "&cancer=true")
-        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
+        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}(but its cancer)",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
         try:
             try:
                 embed.set_thumbnail(url=lyrics.thumbnail)
