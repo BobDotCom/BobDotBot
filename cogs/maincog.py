@@ -408,6 +408,7 @@ class MainCog(commands.Cog, name = "General"):
                 await sess.close()
             minute,hour,day,second = 0,0,0,0
             minute1,hour1,day1,uptime = 0,0,0,0
+            minute2,hour2,day2,second1 = 0,0,0,0
             time = datetime.utcnow()
             time -= self.client.uptime
             time1 = datetime.utcnow()
