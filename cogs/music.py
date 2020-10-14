@@ -358,7 +358,7 @@ class Music(commands.Cog):
     async def on_voice_state_update(self, member, prev, cur):
         print("5432")
         if True:
-            theuser = cur.channel.guild.get_member(int(self.client.user.id))
+            theuser = member.guild.me
             if theuser in cur.channel.members:
                 print("asdf")
                 #await cur.channel.guild.voice_state.stop()
