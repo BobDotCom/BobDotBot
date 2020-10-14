@@ -633,7 +633,11 @@ class Music(commands.Cog):
         lyrics = await api.get_lyrics(str(title))
         embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
         try:
-            await ctx.send(embed=embed)
+            try:
+                embed.set_image(url=lyrics.thumbnail
+                await ctx.send(embed=embed)
+            except:
+                await ctx.send(embed=embed)
         except:
             try:
                 await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
