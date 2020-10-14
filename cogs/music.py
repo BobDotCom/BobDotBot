@@ -356,7 +356,7 @@ class Music(commands.Cog):
     @commands.Cog.listener()
     async def on_voice_state_update(self, member, prev, cur):
         print("5432")
-        try:
+        if True:
             theuser = cur.channel.guild.get_member(int(self.client.user.id))
             if theuser in cur.channel.members:
                 print("asdf")
@@ -364,8 +364,8 @@ class Music(commands.Cog):
                 #del self.voice_states[cur.channel.guild.id]
             if len(cur.channel.members) == 1:
                 print("1234")
-        except AttributeError:
-            pass
+        #except AttributeError:
+            #pass
 
     @commands.command(name='join', invoke_without_subcommand=True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
