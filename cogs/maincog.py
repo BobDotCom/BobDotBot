@@ -396,13 +396,15 @@ class MainCog(commands.Cog, name = "General"):
             Uses: `B.uptime`"""
             owner = self.client.get_user(self.client.owner_id)
             url = "https://api.uptimerobot.com/v2/getMonitors"
-            payload = "api_key=u1005755-917ad9aadb3cf71bc1b8d32e&format=json&logs=1"
+            payload = "api_key=m786103375-82cb9a321430a4dea3f707bf&format=json&logs=1&response_times=1&custom_uptime_ratios=7-30-365"
             headers = {
                 'content-type': "application/x-www-form-urlencoded",
                 'cache-control': "no-cache"
                 }
-            response = requests.request("POST", url, data=payload, headers=headers)
-            loaded_json = json.loads(response.text)
+            async with aiohttp.ClientSession() as sess:
+                async with sess.post(url, data=payload, headers=headers) as resp:
+                    loaded_json = await resp.json()
+                await sess.close()
             minute,hour,day,second = 0,0,0,0
             minute1,hour1,day1,uptime = 0,0,0,0
             time = datetime.utcnow()
@@ -410,6 +412,12 @@ class MainCog(commands.Cog, name = "General"):
             second = list(str(time.seconds)).copy()
             second = int("".join(second))
             uptime = loaded_json["monitors"][0]["logs"][0]["duration"]
+            ping = loaded_json["monitors"][0]["average_response_time"]
+            ratios1 = loaded_json["monitors"][0]["custom_uptime_ratio"]
+            ratios = ratios1.split("-")
+            perday = ratios[0]
+            perweek = ratios[1]
+            permonth = ratios[2]
             if second >= 60:
                 minute =+ second // 60
                 second = second % 60
@@ -429,7 +437,8 @@ class MainCog(commands.Cog, name = "General"):
                 day1 += hour1 // 24
                 hour1 = hour1 % 24
             embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for {day}d {hour}h {minute}m {second}s")
-            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for {day1}d {hour1}h {minute1}m {uptime}s")
+            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for {day1}d {hour1}h {minute1}m {uptime}s, with an average response time of {ping}")
+            embedVar.add_field(name="BobDotBot Server Uptime History", value=f"BobDotBot has logged:\n{perday}% uptime today\n{perweek}% uptime this week\n{permonth}% uptime this month")
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
             await ctx.send(embed=embedVar)
 
