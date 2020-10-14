@@ -371,6 +371,8 @@ class Music(commands.Cog):
                 await channels.disconnect()
                 del self.voice_states[current.guild.id]
                 print("3")
+            else:
+                await current.guild.change_voice_state(channel=current, self_deaf=True)
         except AttributeError:
             pass
 
