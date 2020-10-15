@@ -7,7 +7,14 @@ from discord.ext.commands import Bot, BucketType
 api = sr_api.Client()
 async def get_the_image(self, ctx, animal):
     data = await api.get_image(animal)
+    animal = "Bird" if animal == "Birb" else animal
     embed = discord.Embed(title=animal)
+    embed.set_image(url=data)
+    await ctx.send(embed=embed)
+
+async def get_the_gif(self, ctx, option):
+    data = await api.get_gif(option)
+    embed = discord.Embed(title=option)
     embed.set_image(url=data)
     await ctx.send(embed=embed)
 
@@ -17,18 +24,100 @@ class FunCog(commands.Cog, name = "Fun"):
         self.client = client
         self.bot = client
         self.client.owner_id = 690420846774321221
+
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def amongus(self, ctx, *, member: discord.Member = None):
       member = ctx.author if not member else member
       await ctx.send('command not made yet')
 
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def dog(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Dog")
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def cat(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Cat")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def catpic(self,ctx):
+    async def panda(self, ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Cat")
+        await get_the_image(self, ctx, "Panda")
+        
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def red_panda(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Red_Panda")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def fox(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Fox")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def bird(self, ctx):
+      async with ctx.typing():
+        await get_the_image(self, ctx, "Birb")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def koala(self, ctx):
+      async with ctx.typing():
+        await get_the_image(self, ctx, "Koala")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def kangaroo(self, ctx):
+      async with ctx.typing():
+        await get_the_image(self, ctx, "Kangaroo")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def giraffe(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Giraffe")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def whale(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Whale")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def bot_token(self, ctx):
+      async with ctx.typing():
+        token = await api.bot_token()
+        await ctx.send(token)
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def wink(self, ctx):
+      async with ctx.typing():
+        await get_the_gif(self, ctx, "Wink")
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def pat(self,ctx):
+      async with ctx.typing():
+        await get_the_gif(self,ctx,"Pat")
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def hug(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Hug")
+    @commands.command(aliases=["fp"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def facepalm(self,ctx):
+      async with ctx.typing():
+        await get_the_gif(self,ctx,"Face-Palm")
+    
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.max_concurrency(1, per=BucketType.channel)
@@ -85,7 +174,17 @@ class FunCog(commands.Cog, name = "Fun"):
             return
         except:
             return
-                  
+  @commands.command(aliases=["mc"])
+  @commands.cooldown(1, 1, commands.BucketType.channel)
+  async def minecraft(self,ctx,*,username):
+    async with ctx.typing():
+      user = await api.mc_user(username)
+      try:
+        embed = discord.Embed(title='MineCraft user details:',descriptiom="Provided by some-random-api",timestamp=ctx.message.created_at)
+        embed.add_field(name="Username:",value=user.name)
+        embed.add_field(name='User UUID',value=user.uuid)
+        embed.add_field(name='History',value=user.history)
+        embed.add_field(name='History',value=user.formatted_history)
                   
 def setup(client):
     client.add_cog(FunCog(client))
