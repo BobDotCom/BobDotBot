@@ -225,7 +225,7 @@ class FunCog(commands.Cog, name = "Fun"):
             token_url = f"https://some-random-api.ml/pokedex?pokemon={name}"
             async with request("GET", token_url, headers={}) as r:
               data = await r.json()
-              sprite = data['sprites']#[0]['normal']
+              sprite = data['sprites']['normal']
               #animated = data['sprites'][0]['animated']
             #embed.set_image(url=sprite)
             #embed.set_thumbnail(url=animated)
