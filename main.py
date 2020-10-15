@@ -23,7 +23,7 @@ THEME_COLOR = discord.Colour.blurple()
 # Grab api token
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 SR_API_TOKEN = os.getenv("SR_API_TOKEN")
-theuptime = datetime.utcnow()
+theuptime = [datetime.utcnow(), ]
 # gets client stuff
 def get_prefix(client, message):
 	if not message.guild:
@@ -41,7 +41,8 @@ def get_logs(client, message):
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix=get_prefix,intents=intents, embed_color=discord.Color.blurple())
 client.remove_command('help')
-client.uptime = theuptime
+for x in theuptime:
+    client.uptime = x
 owner = client.get_user(client.owner_id)
 client.owner_id = 690420846774321221
 client.load_extension("jishaku")
