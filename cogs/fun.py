@@ -11,7 +11,8 @@ api = sr_api.Client()
 async def get_the_image(self, ctx, animal):
     data = await api.get_image(animal)
     animal = "Bird" if animal == "Birb" else animal
-    embed = discord.Embed(title=animal)
+    fact = await api.get_fact(animal)
+    embed = discord.Embed(title=animal,description=fact,timestamp=ctx.message.created_at)
     embed.set_image(url=data)
     await ctx.send(embed=embed)
 
