@@ -180,14 +180,46 @@ class FunCog(commands.Cog, name = "Fun"):
       async with ctx.typing():
         user = await api.mc_user(username)
         try:
-          embed = discord.Embed(title='MineCraft user details:',descriptiom="Provided by some-random-api",timestamp=ctx.message.created_at)
+          embed = discord.Embed(title='Minecraft User Details:',description="Provided by some-random-api",timestamp=ctx.message.created_at)
           embed.add_field(name="Username:",value=user.name)
           embed.add_field(name='User UUID',value=user.uuid)
-          embed.add_field(name='History',value=user.history)
-          embed.add_field(name='History',value=user.formatted_history)
+          embed.add_field(name='Name History',value=user.formatted_history)
         except:
           embed = discord.Embed(title='Error',descriptiom="Api may be down",timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
-                  
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def pokemon(self, ctx, name):
+      async with ctx.typing():
+        x = await api.get_pokemon(name)
+        try:
+          embed = discord.Embed(title='Pokémon Details:',description="Provided by some-random-api",timestamp=ctx.message.created_at)
+          embed.add_field(name="Name",value=x.name)
+          embed.add_field(name="ID", value=x.id)
+          embed.add_field(name="Type",value=x.type)
+          embed.add_field(name="Abilities",value=x.abilities)
+          embed.add_field(name="Height",value=x.height)
+          embed.add_field(name="Weight", value=x.weight)
+          embed.add_field(name="Base Experience",value=x.base_experience)
+          embed.add_field(name="Gender",value=x.genedr)
+          embed.add_field(name="Egg Groups", value=x.egg_groups)
+          embed.add_field(name="HP", value=x.hp)
+          embed.add_field(name="Attack", value=x.attack)
+          embed.add_field(name="Defense",value=x.defense)
+          embed.add_field(name="Special Attack",value=x.sp_atk)
+          embed.add_field(name="Special Defense",value=x.sp_def)
+          embed.add_field(name="Speed",value=x.speed)
+          embed.add_field(name="Total",value=x.total)
+          embed.add_field(name="Evolution Stage",value=x.evolutionStage)
+          embed.add_field(name="Evolution Line",value=x.evolutionLine)
+          embed.add_field(name="Description",value=x.description)
+          embed.add_field(name="Generation",value=x.generation)
+          embed.set_thumbnail(url=x.spriteNormal)
+          embed.set_image(url=spriteAnimated)
+          await ctx.send(embed=embed)
+        except:
+          await ctx.send("error")
+
 def setup(client):
     client.add_cog(FunCog(client))
