@@ -42,11 +42,11 @@ class FunCog(commands.Cog, name = "Fun"):
       async with ctx.typing():
         member = ctx.author if not member else member
         if True:
-          gif = api.amongus(member.name, member.avatar)
+          gif = api.amongus(member.name, member.avatar_url)
           buf = BytesIO(await gif.read())
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
-        #except:
-          #await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.')
+        except:
+          await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.(This could also mean that the website is down)')
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
