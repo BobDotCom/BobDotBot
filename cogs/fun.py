@@ -214,7 +214,6 @@ class FunCog(commands.Cog, name = "Fun"):
           embed.add_field(name="Speed",value=x.speed)
           embed.add_field(name="Total",value=x.total)
           embed.add_field(name="Evolution Stage",value=x.evolutionStage)
-          embed.add_field(name="Evolution Line",value='None')
           #embed.add_field(name="Evolution Line",value=', '.join(x.evolutionLine))
           embed.add_field(name="Description",value=x.description)
           embed.add_field(name="Generation",value=x.generation)
@@ -227,6 +226,10 @@ class FunCog(commands.Cog, name = "Fun"):
               data = await r.json()
               sprite = data['sprites']['normal']
               animated = data['sprites']['animated']
+              evolutionl = data['family']['evolutionLine']
+              evolutions = data['family']['evolutionStage']
+            embed.add_field(name="Evolution Stage",value=evolutionl)
+            embed.add_field(name="Evolution Line",value=', '.join(evolutions))
             embed.set_image(url=sprite)
             embed.set_thumbnail(url=animated)
           await ctx.send(embed=embed)
