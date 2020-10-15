@@ -36,8 +36,7 @@ def get_logs(client, message):
 		logs = json.load(f1)
 	return logs[str(message.guild.id)]
 
-intents = discord.Intents.default()
-intents.members = True
+intents = discord.Intents.all()
 client = commands.Bot(command_prefix=get_prefix,intents=intents, embed_color=discord.Color.blurple())
 client.remove_command('help')
 client.uptime = datetime.utcnow()
@@ -297,7 +296,6 @@ async def reload(ctx, extension):
 async def reloadall(ctx):
     """Reloads all Cogs"""
     print('All Cogs were reloaded{')
-    firstTime = True
     reloaded = []
     notr = []
     embedvar = discord.Embed(title='Reloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were reloaded')

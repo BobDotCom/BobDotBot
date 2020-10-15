@@ -1,26 +1,34 @@
 import sr_api
 import discord
 import datetime
+import asyncio
 from discord.ext import commands
 from discord.ext.commands import Bot, BucketType
 api = sr_api.Client()
+async def get_the_image(self, ctx, animal):
+    data = await api.get_image(animal)
+    embed = discord.Embed(title=animal)
+    embed.set_image(url=data)
+    await ctx.send(embed=embed)
 
 class FunCog(commands.Cog, name = "Fun"):
     """Fun Commands"""
     def __init__(self, client):
         self.client = client
         self.bot = client
-        owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def amongus(self, ctx, *, member: discord.Member = None):
+      member = ctx.author if not member else member
+      await ctx.send('command not made yet')
 
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def catpic(self,ctx):
-      data = await api.get_image("cat")
-      embed = discord.Embed(title="Cat")
-      embed.set_image(url=data)
-      await ctx.send(embed=embed)
+      async with ctx.typing():
+        await get_the_image(self,ctx,"Cat")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.max_concurrency(1, per=BucketType.channel)
