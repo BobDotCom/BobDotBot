@@ -22,7 +22,10 @@ from discord.ext import commands
 from datetime import datetime
 from discord.ext.commands import MissingPermissions
 from discord.ext import menus
+from dotenv import loadenv
 from lxml import html
+load_dotenv()
+MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel):
         return await channel.send(f'Hello {ctx.author}')
@@ -393,7 +396,7 @@ class MainCog(commands.Cog, name = "General"):
             Uses: `B.uptime`"""
             owner = self.client.get_user(self.client.owner_id)
             url = "https://api.uptimerobot.com/v2/getMonitors"
-            payload = "api_key=m786103375-82cb9a321430a4dea3f707bf&format=json&logs=1&response_times=1&custom_uptime_ratios=7-30-365"
+            payload = f"api_key={MONITOR_TOKEN}&format=json&logs=1&response_times=1&custom_uptime_ratios=1-7-30"
             headers = {
                 'content-type': "application/x-www-form-urlencoded",
                 'cache-control': "no-cache"
