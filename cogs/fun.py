@@ -32,8 +32,14 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def amongus(self, ctx, *, member: discord.Member = None):
-      member = ctx.author if not member else member
-      await ctx.send('command not made yet')
+      async with ctx.typing():
+        member = ctx.author if not member else member
+        if True:
+          gif = api.amongus(member.name, member.avatar)
+          buf = BytesIO(await gif.read())
+          await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
+        #except:
+          #await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.')
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
