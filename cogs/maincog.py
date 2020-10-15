@@ -22,7 +22,6 @@ from discord.ext import commands
 from datetime import datetime
 from discord.ext.commands import MissingPermissions
 from discord.ext import menus
-from dotenv import loadenv
 from lxml import html
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
