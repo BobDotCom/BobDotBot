@@ -228,11 +228,13 @@ class FunCog(commands.Cog, name = "Fun"):
               animated = data['sprites']['animated']
               evolutionl = data['family']['evolutionLine']
               evolutions = data['family']['evolutionStage']
-            embed.add_field(name="Evolution Stage",value=evolutionl)
-            embed.add_field(name="Evolution Line",value=', '.join(evolutions))
+            #embed.add_field(name="Evolution Stage",value=evolutionl)
+            #embed.add_field(name="Evolution Line",value=', '.join(evolutions))
             embed.set_image(url=sprite)
             embed.set_thumbnail(url=animated)
           await ctx.send(embed=embed)
+          await ctx.send(evolutionl)
+          await ctx.send(evolutions)
         #except:
           #await ctx.send("error")
 
