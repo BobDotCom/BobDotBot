@@ -7,7 +7,7 @@ from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands import Bot, BucketType
 from aiohttp import request
-api = sr_api.Client()
+api = sr_api.Client("AdaJmMuyrF0u2PFbzRrf7pVW7")
 async def get_the_image(self, ctx, animal):
     try:
       data = await api.get_image(animal)
