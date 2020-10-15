@@ -226,11 +226,10 @@ class FunCog(commands.Cog, name = "Fun"):
             async with request("GET", token_url, headers={}) as r:
               data = await r.json()
               sprite = data['sprites']['normal']
-              #animated = data['sprites'][0]['animated']
-            #embed.set_image(url=sprite)
-            #embed.set_thumbnail(url=animated)
+              animated = data['sprites']['animated']
+            embed.set_image(url=sprite)
+            embed.set_thumbnail(url=animated)
           await ctx.send(embed=embed)
-          await ctx.send(sprite)
         #except:
           #await ctx.send("error")
 
