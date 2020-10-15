@@ -38,7 +38,7 @@ class FunCog(commands.Cog, name = "Fun"):
           gif = api.amongus(member.name, member.avatar)
           buf = BytesIO(await gif.read())
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
-        except CommandInvokeError.PremiumOnly:
+        except:
           await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.')
 
     @commands.command()
