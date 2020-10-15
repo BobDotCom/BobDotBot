@@ -62,7 +62,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def red_panda(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"red_panda")
+        await get_the_image(self,ctx,"red panda")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
