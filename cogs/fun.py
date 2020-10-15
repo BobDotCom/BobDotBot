@@ -65,8 +65,8 @@ class FunCog(commands.Cog, name = "Fun"):
               else:
                 try:
                     data = await api.chatbot(source)
-                    embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
-                    embed.set_footer(text="Chatbot: some-random-api - cancel - Timeout:45")
+                    embed = discord.Embed(title="Chatbot says:",description=data)
+                    embed.set_footer(text=f"Say cancel to exit - Timeout:45s - started at: {ctx.message.created_at}")
                     await ctx.send(embed=embed)
                 except:
                     await ctx.send("Error with Chatbot, please try again later")
