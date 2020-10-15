@@ -92,7 +92,7 @@ class FunCog(commands.Cog, name = "Fun"):
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def bot_token(self, ctx):
+    async def random_token(self, ctx):
       async with ctx.typing():
         token = await api.bot_token()
         await ctx.send(token)
