@@ -9,11 +9,18 @@ from discord.ext.commands import Bot, BucketType
 from aiohttp import request
 api = sr_api.Client()
 async def get_the_image(self, ctx, animal):
-    data = await api.get_image(animal)
-    animal = "Bird" if animal == "Birb" else animal
-    fact = await api.get_fact(animal)
+    try:
+      data = await api.get_image(animal)
+    except:
+      data = "None"
+    try:
+      animal = "bird" if animal == "birb" else animal
+      fact = await api.get_fact(animal)
+    except:
+      fact = "No fact provided"
     embed = discord.Embed(title=animal,description=fact,timestamp=ctx.message.created_at)
-    embed.set_image(url=data)
+    if data != "None":
+      embed.set_image(url=data)
     await ctx.send(embed=embed)
 
 async def get_the_gif(self, ctx, option):
@@ -62,7 +69,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def red_panda(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"red panda")
+        await get_the_image(self,ctx,"red_panda")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -99,7 +106,21 @@ class FunCog(commands.Cog, name = "Fun"):
     async def whale(self,ctx):
       async with ctx.typing():
         await get_the_image(self,ctx,"whale")
-
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def raccoon(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"raccoon")
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def pikachu(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"pikachu")
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def elephant(self,ctx):
+      async with ctx.typing():
+        await get_the_image(self,ctx,"elephant")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def random_token(self, ctx):
