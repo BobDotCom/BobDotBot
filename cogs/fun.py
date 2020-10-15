@@ -142,7 +142,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def hug(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"hug")
+        await get_the_gif(self,ctx,"hug")
     @commands.command(aliases=["fp"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def facepalm(self,ctx):
