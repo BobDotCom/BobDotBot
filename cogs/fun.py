@@ -3,6 +3,7 @@ import discord
 import datetime
 import asyncio
 import aiohttp
+from io import BytesIO
 from discord.ext import commands
 from discord.ext.commands import Bot, BucketType
 from aiohttp import request
@@ -15,6 +16,7 @@ async def get_the_image(self, ctx, animal):
     await ctx.send(embed=embed)
 
 async def get_the_gif(self, ctx, option):
+    option = option.lower
     data = await api.get_gif(option)
     embed = discord.Embed(title=option)
     embed.set_image(url=data)
