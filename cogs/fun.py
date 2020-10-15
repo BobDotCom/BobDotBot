@@ -213,7 +213,7 @@ class FunCog(commands.Cog, name = "Fun"):
           embed.add_field(name="Special Defense",value=x.sp_def)
           embed.add_field(name="Speed",value=x.speed)
           embed.add_field(name="Total",value=x.total)
-          embed.add_field(name="Evolution Stage",value=', '.join(x.evolutionStage))
+          embed.add_field(name="Evolution Stage",value=x.evolutionStage)
           embed.add_field(name="Evolution Line",value=', '.join(x.evolutionLine))
           embed.add_field(name="Description",value=x.description)
           embed.add_field(name="Generation",value=x.generation)
