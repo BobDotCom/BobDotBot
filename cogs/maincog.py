@@ -1,10 +1,7 @@
-# import stuff
+# All 25 of the gay imports
 import discord
-
-# import stuff
 import os
 import random
-# import stuff
 import typing
 import asyncio
 import datetime
@@ -16,10 +13,10 @@ import binascii
 import sys
 import requests
 import sqlite3
-# import stuff
 from dotenv import load_dotenv
 from sqlite3 import Error
 from termcolor import colored, cprint
+from humanize import precisedelta as nd
 from discord.ext.commands import Bot, BucketType
 from discord.ext import commands
 from datetime import datetime
@@ -405,9 +402,9 @@ class MainCog(commands.Cog, name = "General"):
                 async with sess.post(url, data=payload, headers=headers) as resp:
                     loaded_json = await resp.json()
                 await sess.close()
-            minute,hour,day,second = 0,0,0,0
-            minute1,hour1,day1,uptime = 0,0,0,0
-            minute2,hour2,day2,second1 = 0,0,0,0
+            second = 0
+            uptime = 0
+            second1 = 0
             time = datetime.utcnow()
             time -= self.client.uptime
             time1 = datetime.utcnow()
@@ -423,35 +420,8 @@ class MainCog(commands.Cog, name = "General"):
             perday = ratios[0]
             perweek = ratios[1]
             permonth = ratios[2]
-            if second >= 60:
-                minute =+ second // 60
-                second = second % 60
-            if minute >= 60:
-                hour += minute // 60
-                minute = minute % 60
-            if hour >= 24:
-                day += hour // 24
-                hour = hour % 24
-            if second1 >= 60:
-                minute1 =+ second1 // 60
-                second1 = second1 % 60
-            if minute >= 60:
-                hour1 += minute1 // 60
-                minute1 = minute1 % 60
-            if hour >= 24:
-                day1 += hour1 // 24
-                hour1 = hour1 % 24
-            if uptime >= 60:
-                minute2 =+ uptime // 60
-                uptime = uptime % 60
-            if minute2 >= 60:
-                hour2 += minute2 // 60
-                minute2 = minute2 % 60
-            if hour2 >= 24:
-                day2 += hour2 // 24
-                hour2 = hour2 % 24
-            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for `{day}d {hour}h {minute}m {second}s`, and was last reloaded `{day1}d {hour1}h {minute1}m {second1}s` ago")
-            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for `{day2}d {hour2}h {minute2}m {uptime}s`, with an average response time of `{ping}`")
+            embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for `{nd(second)}`, and was last reloaded `{nd(second1)}` ago")
+            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for `{nd(uptime)}`, with an average response time of `{ping}`")
             embedVar.add_field(name="BobDotBot Server Uptime History", value=f"BobDotBot has logged:\n`{perday}%` uptime today\n`{perweek}%` uptime this week\n`{permonth}%` uptime this month")
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
             await ctx.send(embed=embedVar)
