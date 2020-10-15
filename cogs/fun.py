@@ -2,6 +2,7 @@ import sr_api
 import discord
 import datetime
 import asyncio
+import os
 import aiohttp
 from io import BytesIO
 from dotenv import load_dotenv
