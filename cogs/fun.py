@@ -202,7 +202,7 @@ class FunCog(commands.Cog, name = "Fun"):
           embed.add_field(name="Height",value=x.height)
           embed.add_field(name="Weight", value=x.weight)
           embed.add_field(name="Base Experience",value=x.base_experience)
-          embed.add_field(name="Gender",value=x.genedr)
+          embed.add_field(name="Gender",value=x.gender)
           embed.add_field(name="Egg Groups", value=x.egg_groups)
           embed.add_field(name="HP", value=x.hp)
           embed.add_field(name="Attack", value=x.attack)
