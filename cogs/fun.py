@@ -226,7 +226,6 @@ class FunCog(commands.Cog, name = "Fun"):
               data = await r.json()
               sprite = data['sprites'][0]['normal']
               animated = data['sprites'][0]['animated']
-              await session.close()
             embed.set_image(url=sprite)
             embed.set_thumbnail(url=animated)
           await ctx.send(embed=embed)
