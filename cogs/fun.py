@@ -292,7 +292,7 @@ class FunCog(commands.Cog, name = "Fun"):
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def meme1(self,ctx,*,arg):
+    async def meme1(self,ctx):
       async with ctx.typing():
         asdf = await api.get_meme()
         embed = discord.Embed(title=asdf.category,description=asdf.caption,timestamp=ctx.message.created_at)
@@ -301,7 +301,7 @@ class FunCog(commands.Cog, name = "Fun"):
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def animequote(self,ctx,*,arg):
+    async def animequote(self,ctx):
       async with ctx.typing():
         asdf = await api.anime_quote()
         embed = discord.Embed(title="Anime quote",description=asdf.quote,timestamp=ctx.message.created_at)
@@ -311,7 +311,7 @@ class FunCog(commands.Cog, name = "Fun"):
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def joke(self,ctx,*,arg):
+    async def joke(self,ctx):
       async with ctx.typing():
         asdf = await api.get_joke()
         embed=discord.Embed(title="Joke",description=asdf,timestamp=ctx.message.created_at)
