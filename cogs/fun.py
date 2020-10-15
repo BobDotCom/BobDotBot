@@ -218,10 +218,10 @@ class FunCog(commands.Cog, name = "Fun"):
           #embed.add_field(name="Evolution Line",value=', '.join(x.evolutionLine))
           embed.add_field(name="Description",value=x.description)
           embed.add_field(name="Generation",value=x.generation)
-          try:
-            embed.set_image(url=x.spriteNormal)
-            embed.set_thumbnail(url=x.spriteAnimated)
-          except:
+          #try:
+            #embed.set_image(url=x.spriteNormal)
+            #embed.set_thumbnail(url=x.spriteAnimated)
+          if True:
             token_url = f"https://some-random-api.ml/pokedex{name}"
             async with request("GET", token_url, headers={}) as r:
               data = await r.json()
