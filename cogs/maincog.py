@@ -423,7 +423,7 @@ class MainCog(commands.Cog, name = "General"):
             perweek = ratios[1]
             permonth = ratios[2]
             embedVar = discord.Embed(title="Bot Uptime", timestamp=ctx.message.created_at, description=f"Bot has been online for `{nd(second)}`, and was last reloaded `{nd(second1)}` ago")
-            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for `{nd(uptime)}`, with an average response time of `{ping}`")
+            embedVar.add_field(name="BobDotBot Server Uptime", value=f"Server has been up for `{nd(uptime)}`, with an average response time of `{ping}ms`")
             embedVar.add_field(name="BobDotBot Server Uptime History", value=f"BobDotBot has logged:\n`{perday}%` uptime today\n`{perweek}%` uptime this week\n`{permonth}%` uptime this month")
             embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
             await ctx.send(embed=embedVar)
