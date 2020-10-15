@@ -41,7 +41,7 @@ class FunCog(commands.Cog, name = "Fun"):
     async def amongus(self, ctx, *, member: discord.Member = None):
       async with ctx.typing():
         member = ctx.author if not member else member
-        if True:
+        try:
           gif = api.amongus(member.name, member.avatar_url)
           buf = BytesIO(await gif.read())
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
