@@ -215,8 +215,8 @@ class FunCog(commands.Cog, name = "Fun"):
           embed.add_field(name="Evolution Line",value=x.evolutionLine)
           embed.add_field(name="Description",value=x.description)
           embed.add_field(name="Generation",value=x.generation)
-          embed.set_thumbnail(url=x.spriteNormal)
-          embed.set_image(url=x.spriteAnimated)
+          await ctx.send(x.spriteNormal)
+          await ctx.send(x.spriteAnimated)
           await ctx.send(embed=embed)
         #except:
           #await ctx.send("error")
