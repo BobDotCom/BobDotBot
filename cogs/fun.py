@@ -174,17 +174,20 @@ class FunCog(commands.Cog, name = "Fun"):
             return
         except:
             return
-  @commands.command(aliases=["mc"])
-  @commands.cooldown(1, 1, commands.BucketType.channel)
-  async def minecraft(self,ctx,*,username):
-    async with ctx.typing():
-      user = await api.mc_user(username)
-      try:
-        embed = discord.Embed(title='MineCraft user details:',descriptiom="Provided by some-random-api",timestamp=ctx.message.created_at)
-        embed.add_field(name="Username:",value=user.name)
-        embed.add_field(name='User UUID',value=user.uuid)
-        embed.add_field(name='History',value=user.history)
-        embed.add_field(name='History',value=user.formatted_history)
+    @commands.command(aliases=["mc"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def minecraft(self,ctx,*,username):
+      async with ctx.typing():
+        user = await api.mc_user(username)
+        try:
+          embed = discord.Embed(title='MineCraft user details:',descriptiom="Provided by some-random-api",timestamp=ctx.message.created_at)
+          embed.add_field(name="Username:",value=user.name)
+          embed.add_field(name='User UUID',value=user.uuid)
+          embed.add_field(name='History',value=user.history)
+          embed.add_field(name='History',value=user.formatted_history)
+        except:
+          embed = discord.Embed(title='Error',descriptiom="Api may be down",timestamp=ctx.message.created_at)
+        await ctx.senc(embed=embed)
                   
 def setup(client):
     client.add_cog(FunCog(client))
