@@ -4,10 +4,13 @@ import datetime
 import asyncio
 import aiohttp
 from io import BytesIO
+from dotenv import load_dotenv
 from discord.ext import commands
 from discord.ext.commands import Bot, BucketType
 from aiohttp import request
-api = sr_api.Client("AdaJmMuyrF0u2PFbzRrf7pVW7")
+load_dotenv()
+SR_API_TOKEN = os.getenv("SR_API_TOKEN")
+api = sr_api.Client(SR_API_TOKEN)
 async def get_the_image(self, ctx, animal):
     try:
       data = await api.get_image(animal)
