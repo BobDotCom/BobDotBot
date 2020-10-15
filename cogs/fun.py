@@ -2,8 +2,10 @@ import sr_api
 import discord
 import datetime
 import asyncio
+import aiohttp
 from discord.ext import commands
 from discord.ext.commands import Bot, BucketType
+from aiohttp import request
 api = sr_api.Client()
 async def get_the_image(self, ctx, animal):
     data = await api.get_image(animal)
@@ -197,13 +199,13 @@ class FunCog(commands.Cog, name = "Fun"):
           embed = discord.Embed(title='Pokémon Details:',description="Provided by some-random-api",timestamp=ctx.message.created_at)
           embed.add_field(name="Name",value=x.name)
           embed.add_field(name="ID", value=x.id)
-          embed.add_field(name="Type",value=x.type)
-          embed.add_field(name="Abilities",value=x.abilities)
+          embed.add_field(name="Type",value=', '.join(x.type))
+          embed.add_field(name="Abilities",value=', '.join(x.abilities))
           embed.add_field(name="Height",value=x.height)
           embed.add_field(name="Weight", value=x.weight)
           embed.add_field(name="Base Experience",value=x.base_experience)
-          embed.add_field(name="Gender",value=x.gender)
-          embed.add_field(name="Egg Groups", value=x.egg_groups)
+          embed.add_field(name="Gender",value=', '.join(x.gender))
+          embed.add_field(name="Egg Groups", value=', '.join(x.egg_groups))
           embed.add_field(name="HP", value=x.hp)
           embed.add_field(name="Attack", value=x.attack)
           embed.add_field(name="Defense",value=x.defense)
@@ -211,15 +213,22 @@ class FunCog(commands.Cog, name = "Fun"):
           embed.add_field(name="Special Defense",value=x.sp_def)
           embed.add_field(name="Speed",value=x.speed)
           embed.add_field(name="Total",value=x.total)
-          embed.add_field(name="Evolution Stage",value=x.evolutionStage)
-          embed.add_field(name="Evolution Line",value=x.evolutionLine)
+          embed.add_field(name="Evolution Stage",value=', '.join(x.evolutionStage))
+          embed.add_field(name="Evolution Line",value=', '.join(x.evolutionLine))
           embed.add_field(name="Description",value=x.description)
           embed.add_field(name="Generation",value=x.generation)
           try:
-            await ctx.send(str(x.spriteNormal))
-            await ctx.send(str(x.spriteAnimated))
+            embed.set_image(url=x.spriteNormal)
+            embed.set_thumbnail(url=x.spriteAnimated)
           except:
-            await ctx.send('error sending avatar')
+            token_url = f"https://some-random-api.ml/pokedex{name}"
+            async with request("GET", token_url, headers={}) as r:
+              data = await r.json()
+              sprite = data['sprites'][0]['normal']
+              animated = data['sprites'][0]['animated']
+              await session.close()
+            embed.set_image(url=sprite)
+            embed.set_thumbnail(url=animated)
           await ctx.send(embed=embed)
         #except:
           #await ctx.send("error")

@@ -295,7 +295,7 @@ async def reload(ctx, extension):
 @commands.is_owner()
 async def reloadall(ctx):
     """Reloads all Cogs"""
-    print('All Cogs were reloaded{')
+    print('All Cogs were reloaded{')l
     reloaded = []
     notr = []
     embedvar = discord.Embed(title='Reloading Cogs...', description='If you see this message for more than 10 seconds, an error most likely occurred, no cogs were reloaded')
