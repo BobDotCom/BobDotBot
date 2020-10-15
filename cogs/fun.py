@@ -187,7 +187,7 @@ class FunCog(commands.Cog, name = "Fun"):
           embed.add_field(name='History',value=user.formatted_history)
         except:
           embed = discord.Embed(title='Error',descriptiom="Api may be down",timestamp=ctx.message.created_at)
-        await ctx.senc(embed=embed)
+        await ctx.send(embed=embed)
                   
 def setup(client):
     client.add_cog(FunCog(client))
