@@ -17,7 +17,6 @@ async def get_the_image(self, ctx, animal):
     await ctx.send(embed=embed)
 
 async def get_the_gif(self, ctx, option):
-    option = option.lower
     data = await api.get_gif(option)
     embed = discord.Embed(title=option)
     embed.set_image(url=data)
@@ -46,60 +45,60 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def dog(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Dog")
+        await get_the_image(self,ctx,"dog")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def cat(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Cat")
+        await get_the_image(self,ctx,"cat")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def panda(self, ctx):
       async with ctx.typing():
-        await get_the_image(self, ctx, "Panda")
+        await get_the_image(self, ctx, "panda")
         
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def red_panda(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Red_Panda")
+        await get_the_image(self,ctx,"red_Panda")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def fox(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Fox")
+        await get_the_image(self,ctx,"fox")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def bird(self, ctx):
       async with ctx.typing():
-        await get_the_image(self, ctx, "Birb")
+        await get_the_image(self, ctx, "birb")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def koala(self, ctx):
       async with ctx.typing():
-        await get_the_image(self, ctx, "Koala")
+        await get_the_image(self, ctx, "koala")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def kangaroo(self, ctx):
       async with ctx.typing():
-        await get_the_image(self, ctx, "Kangaroo")
+        await get_the_image(self, ctx, "kangaroo")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def giraffe(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Giraffe")
+        await get_the_image(self,ctx,"giraffe")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def whale(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Whale")
+        await get_the_image(self,ctx,"whale")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -112,7 +111,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def wink(self, ctx):
       async with ctx.typing():
-        await get_the_gif(self, ctx, "Wink")
+        await get_the_gif(self, ctx, "wink")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def pat(self,ctx):
@@ -122,12 +121,12 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def hug(self,ctx):
       async with ctx.typing():
-        await get_the_image(self,ctx,"Hug")
+        await get_the_image(self,ctx,"hug")
     @commands.command(aliases=["fp"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def facepalm(self,ctx):
       async with ctx.typing():
-        await get_the_gif(self,ctx,"Face-Palm")
+        await get_the_gif(self,ctx,"face-palm")
     
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
