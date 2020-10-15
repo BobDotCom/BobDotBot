@@ -262,6 +262,59 @@ class FunCog(commands.Cog, name = "Fun"):
           await ctx.send(embed=embed)
         #except:
           #await ctx.send("error")
-
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def binary1(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.encode_binary(arg)
+        embed=discord.Embed(title="Text to Binary",description=asdf,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def text1(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.decode_binary(arg)
+        embed=discord.Embed(title="Binary to text",description=asdf,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def base64(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.encode_base64(arg)
+        embed=discord.Embed(title="Text to Base64",description=asdf,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def base64(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.decode_base64(arg)
+        embed=discord.Embed(title="Base64 to Text",description=asdf,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def meme1(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.get_meme()
+        embed = discord.Embed(title=asdf.category,description=asdf.caption,timestamp=ctx.message.created_at)
+        embed.set_image(url=asdf.image)
+        embed.set_footer(text=f"Meme ID: {asdf.id}")
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def animequote(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.anime_quote()
+        embed = discord.Embed(title="Anime quote",description=asdf.quote,timestamp=ctx.message.created_at)
+        embed.add_field(name=f"Quote from: {asdf.anime}",value=f"Said by: {asdf.character}")
+        embed.set_image(url=asdf.image)
+        embed.set_footer(text=f"Meme ID: {asdf.id}")
+        await ctx.send(embed=embed)
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def joke(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.get_joke()
+        embed=discord.Embed(title="Joke",description=asdf,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(FunCog(client))
