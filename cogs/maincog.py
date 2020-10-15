@@ -1,4 +1,4 @@
-asdf# import stuff
+# import stuff
 import discord
 
 # import stuff
