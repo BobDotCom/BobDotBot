@@ -22,6 +22,7 @@ load_dotenv()
 THEME_COLOR = discord.Colour.blurple()
 # Grab api token
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+SR_API_TOKEN = os.getenv("SR_API_TOKEN")
 # gets client stuff
 def get_prefix(client, message):
 	if not message.guild:
@@ -43,6 +44,7 @@ client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
 client.owner_id = 690420846774321221
 client.load_extension("jishaku")
+client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
 logs = get_logs
 @client.event
