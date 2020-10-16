@@ -152,7 +152,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def pat(self,ctx):
       async with ctx.typing():
-        await get_the_gif(self,ctx,"Pat")
+        await get_the_gif(self,ctx,"pat")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def hug(self,ctx):
