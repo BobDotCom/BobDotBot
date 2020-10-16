@@ -22,7 +22,6 @@ from discord.ext import commands
 #from .otherscripts import checks, formats, time
 from otherscripts.paginator import RoboPages
 from collections import OrderedDict, deque, Counter
-import os, datetime
 import copy
 import unicodedata
 import inspect
@@ -48,6 +47,8 @@ class BotHelpPageSource(menus.ListPageSource):
         # just in case it doesn't fit perfectly
         # However, we have 6 per page so I'll try cutting it off at around 800 instead
         # Since there's a 6000 character limit overall in the embed
+        splice = cog[0]
+        cog = splice[0].upper() + splice[1:].lower()
         if cog.description:
             short_doc = cog.description.split('\n', 1)[0] + '\n'
         else:
@@ -130,9 +131,9 @@ class HelpMenu(RoboPages):
     async def show_bot_help(self, payload):
         """shows how to use the bot"""
 
-        embed = discord.Embed(title='Using the bot', colour=discord.Colour.blurple())
-        embed.title = 'Using the bot'
-        embed.description = 'Hello! Welcome to the help page.'
+        embed = discord.Embed(title='How to use the help command', colour=discord.Colour.blurple())
+        embed.title = 'How to use the help command'
+        embed.description = 'This is help for the help'
 
         entries = (
             ('<argument>', 'This means the argument is __**required**__.'),
@@ -148,7 +149,7 @@ class HelpMenu(RoboPages):
         for name, value in entries:
             embed.add_field(name=name, value=value, inline=False)
 
-        embed.set_footer(text=f'We were on page {self.current_page + 1} before this message.')
+        embed.set_footer(text=f'Previous page: {self.current_page + 1}')
         await self.message.edit(embed=embed)
 
         async def go_back_to_current_page():
