@@ -42,7 +42,7 @@ client = commands.Bot(command_prefix=get_prefix,intents=intents, embed_color=dis
 #client.remove_command('help')
 client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
-client.owner_id = 690420846774321221
+client.owner_ids = {690420846774321221}
 client.load_extension("jishaku")
 client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
@@ -79,7 +79,7 @@ async def on_command_error(ctx, error):
     commands.MissingRole, commands.CommandOnCooldown, commands.DisabledCommand
     )
 
-  if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
+  if ctx.original_author_id in client.owner_ids and isinstance(error, owner_reinvoke_errors):
     return await ctx.reinvoke()
   ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions, commands.MaxConcurrencyReached)
   error = getattr(error, 'original', error)
