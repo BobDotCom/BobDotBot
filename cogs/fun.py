@@ -171,17 +171,18 @@ class FunCog(commands.Cog, name = "Fun"):
       """Start a chat with a bot. Once you send your first message
       Uses `chatbot <chat>`
       Once you send your first message, the bot will reply to your messages until you say cancel"""
-      if True: #try
+      errortimes = 0
+      try:
         if chat:
           async with ctx.typing():
-            if True: #try
+            try:
                 data = await api.chatbot(chat)
                 embed = discord.Embed(title="Chatbot says:",description=data,timestamp=ctx.message.created_at)
                 embed.set_footer(text="Chatbot api by some-random-api - Say cancel to exit\nTimeout:45 seconds")
                 await ctx.send(embed=embed)
-            #except:
-                #await ctx.send("Error with Chatbot, please try again later")
-                #return
+            except:
+                await ctx.send("Error with Chatbot, please send another message. If this continues, it will automatically exit. Send cancel to cancel")
+                errortimes += 1
         else:
           async with ctx.typing():
             embed = discord.Embed(title="I started a chat for you with AI. Type any message to send to the bot, or type cancel to exit",timestamp=ctx.message.created_at)
@@ -211,15 +212,19 @@ class FunCog(commands.Cog, name = "Fun"):
                     embed = discord.Embed(title="Chatbot says:",description=data)
                     embed.set_footer(text=f"Say cancel to exit - Timeout:45s - started at: {ctx.message.created_at}")
                     await ctx.send(embed=embed)
-                #except:
-                    #await ctx.send("Error with Chatbot, please try again later")
-                    #return
-      #except:
-        #try:
-            #await ctx.send("error")
-            #return
-        #except:
-            #return
+                except:
+                  if errortimes <= 3:
+                    await ctx.send("Error with Chatbot, please send another message. If this continues, it will automatically exit. Send cancel to cancel")
+                    errortimes += 1
+                  else:
+                    await ctx.send("Error with Chatbot continued, please try again later")
+                    return
+      except:
+        try:
+            await ctx.send("Error with Chatbot, please try again later")
+            return
+        except:
+            return
     @commands.command(aliases=["mc"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def minecraft(self,ctx,*,username):
