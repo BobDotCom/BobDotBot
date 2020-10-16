@@ -195,13 +195,11 @@ class PaginatedHelpCommand(commands.HelpCommand):
 
 
         menu = HelpMenu(BotHelpPageSource(self, all_commands))
-        await self.context.release()
         await menu.start(self.context)
 
     async def send_cog_help(self, cog):
         entries = await self.filter_commands(cog.get_commands(), sort=True)
         menu = HelpMenu(GroupHelpPageSource(cog, entries, prefix=self.clean_prefix))
-        await self.context.release()
         await menu.start(self.context)
 
     def common_command_formatting(self, embed_like, command):
@@ -229,7 +227,6 @@ class PaginatedHelpCommand(commands.HelpCommand):
         source = GroupHelpPageSource(group, entries, prefix=self.clean_prefix)
         self.common_command_formatting(source, group)
         menu = HelpMenu(source)
-        await self.context.release()
         await menu.start(self.context)
 class MemberRoles(commands.MemberConverter):
     async def convert(self, ctx, argument):
