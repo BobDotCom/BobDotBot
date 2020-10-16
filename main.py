@@ -71,6 +71,8 @@ async def on_ready():
 
 @client.event
 async def on_command_error(ctx, error):
+  if hasattr(ctx.command, 'on_error'):
+    return
   setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
   owner_reinvoke_errors = (
     commands.MissingAnyRole, commands.MissingPermissions,
@@ -79,9 +81,6 @@ async def on_command_error(ctx, error):
 
   if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
     return await ctx.reinvoke()
-  if hasattr(ctx.command, 'on_error'):
-    return
-
   ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions, commands.MaxConcurrencyReached)
   error = getattr(error, 'original', error)
 
