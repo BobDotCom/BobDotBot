@@ -24,9 +24,7 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command(aliases=['bal'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def balance(self,ctx,*,member: discord.Member = None):
-        """See how much money you, or someone else has
-        Uses: `B.balance [member]`
-        Note: Arguments in brackets[] are optional"""
+        """See how much money you, or someone else has"""
         member = ctx.author if not member else member
         await self.open_account(member)
         user = member
@@ -43,8 +41,7 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 60, commands.BucketType.user)
     async def allin(self,ctx):
-      """Bet all of your money in a coin toss
-      Uses: `B.allin`"""
+      """Bet all of your money in a coin toss"""
       async with ctx.channel.typing():
         emoji = self.client.get_emoji(759047006290313237) 
         msg = await ctx.send(f"{emoji}")
@@ -72,8 +69,7 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def beg(self,ctx):
-        """Beg peope for money
-        Uses: `B.beg`"""
+        """Beg peope for money"""
         await self.open_account(ctx.author)
         user = ctx.author
         users = await self.get_bank_data()
@@ -125,8 +121,7 @@ class economy(commands.Cog, name = "Economy"):
     @commands.command()
     @commands.cooldown(1, 3600, commands.BucketType.user)
     async def work(self,ctx):
-        """Go to work. Get a job. Leave your parents basement. Yes, I mean you. Lazy.
-        Uses: `B.work`"""
+        """Go to work. Get a job. Leave your parents basement. Yes, I mean you. Lazy."""
         await self.open_account(ctx.author)
         user = ctx.author
         users = await self.get_bank_data()
@@ -143,13 +138,9 @@ class economy(commands.Cog, name = "Economy"):
 
     @commands.command(aliases=['with'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def withdraw(self,ctx,amount = None):
-        """Withdraw money from your bank, putting it into your wallet to use
-        Uses: `B.withdraw <amount>`"""
+    async def withdraw(self,ctx,amount):
+        """Withdraw money from your bank, putting it into your wallet to use"""
         await self.open_account(ctx.author)
-        if amount == None:
-            await ctx.send("Please enter the amount")
-            return
 
         bal = await self.update_bank(ctx.author)
     
@@ -157,7 +148,7 @@ class economy(commands.Cog, name = "Economy"):
         if amount>bal[1]:
             await ctx.send("You dont have that much money")
             return
-        if amount<0:
+        if amount <= 0:
             await ctx.send("Bruh")
             return
     
