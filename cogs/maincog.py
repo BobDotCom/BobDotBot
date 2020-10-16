@@ -84,7 +84,7 @@ class BotHelpPageSource(menus.ListPageSource):
         prefix = menu.ctx.prefix
         description = f'Use "{prefix}help command" for more info on a command.\n' \
                       f'Use "{prefix}help category" for more info on a category.\n' \
-                       'For more help, join the official bot support server: https://discord.gg/DWEaqMy'
+                       'For more help, join the official bot support server: [BobDotBot Support](https://discord.gg/3seAXGr)'
 
         embed = discord.Embed(title='Categories', description=description, colour=discord.Colour.blurple())
 
