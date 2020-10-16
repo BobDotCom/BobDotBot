@@ -50,8 +50,8 @@ class FunCog(commands.Cog, name = "Fun"):
           buf = BytesIO(await gif.read())
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
           worked = True
-        except HTTPError as error:
-            await ctx.send(f'Error: {error}. API may be down')
+        except urllib.error.HTTPError as error:
+            await ctx.send(f'Error: {error.code}, Reason:{error.reason}. API may be down')
         else:
           if not worked:
             await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.(This could also mean that the website is down)')
