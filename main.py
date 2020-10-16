@@ -71,6 +71,14 @@ async def on_ready():
 
 @client.event
 async def on_command_error(ctx, error):
+  setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
+  owner_reinvoke_errors = (
+    commands.MissingAnyRole, commands.MissingPermissions,
+    commands.MissingRole, commands.CommandOnCooldown, commands.DisabledCommand
+    )
+
+  if ctx.original_author_id in self.bot.owner_ids and isinstance(error, owner_reinvoke_errors):
+    return await ctx.reinvoke()
   if hasattr(ctx.command, 'on_error'):
     return
 
