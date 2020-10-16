@@ -252,7 +252,7 @@ class MainCog(commands.Cog, name = "General"):
         onreadyblocker = False
         self.api = "https://some-random-api.ml"
         client.help_command = PaginatedHelpCommand()
-        bot.help_command.cog = self
+        client.help_command.cog = self
 
     async def save_users(self):
         await self.client.wait_until_ready()
