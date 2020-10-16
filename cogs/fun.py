@@ -49,7 +49,9 @@ class FunCog(commands.Cog, name = "Fun"):
           gif = api.amongus(member.name, member.avatar_url)
           buf = BytesIO(await gif.read())
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
-        except:
+        except HTTPError as error:
+            await ctx.send(f'Error: {error}. API may be down")
+        else:
           await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.(This could also mean that the website is down)')
 
     @commands.command()
