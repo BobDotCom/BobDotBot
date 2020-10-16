@@ -47,8 +47,6 @@ class BotHelpPageSource(menus.ListPageSource):
         # just in case it doesn't fit perfectly
         # However, we have 6 per page so I'll try cutting it off at around 800 instead
         # Since there's a 6000 character limit overall in the embed
-        splice = cog[0]
-        cog = splice[0].upper() + splice[1:].lower()
         if cog.description:
             short_doc = cog.description.split('\n', 1)[0] + '\n'
         else:
