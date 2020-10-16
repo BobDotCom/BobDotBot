@@ -63,7 +63,7 @@ class BotHelpPageSource(menus.ListPageSource):
                 value = f'`{command.name}`'
                 formyaddidion = True
             else:
-                value = f', `{command.name}`'
+                value = f'| `{command.name}`'
             count = len(value) + 1 # The space
             if count + current_count < 800:
                 current_count += count
