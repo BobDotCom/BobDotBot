@@ -19,7 +19,7 @@ async def get_the_image(self, ctx, animal):
       data = "None"
     try:
       animal = "bird" if animal == "birb" else animal
-      fact = await api.get_fact(animal)
+      fact = await api.get_fact(getattr(sr_api.Animal,animal))
     except:
       fact = "No fact provided"
     embed = discord.Embed(title=animal,description=fact,timestamp=ctx.message.created_at)
@@ -320,5 +320,6 @@ class FunCog(commands.Cog, name = "Fun"):
         asdf = await api.get_joke()
         embed=discord.Embed(title="Joke",description=asdf,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
+
 def setup(client):
     client.add_cog(FunCog(client))
