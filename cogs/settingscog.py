@@ -30,8 +30,7 @@ class Serversettings(commands.Cog, name = "Settings"):
         Note: Arguments in brackets[] are optional"""
         with open('prefixes.json', 'r') as f:
             prefixes = json.load(f)
-        with open('prefixes.json', 'r') as f:
-            notprefixes = json.load(f)
+            notprefixes = prefixes
         prefixes[str(ctx.guild.id)] = args
         notprefixes[str(ctx.guild.id)] = ['B.', 'b.']
         args = None if not args else args
@@ -155,7 +154,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="data")
     async def data(self, ctx):
         """Owner Command"""
-        is_owner = await client.is_owner(ctx.author)
+        is_owner = await self.bot.is_owner(ctx.author)
         if is_owner:  # for real sparta
             data_file = discord.File("data.json")
             await ctx.send(file=data_file)
