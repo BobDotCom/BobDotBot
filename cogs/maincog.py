@@ -57,8 +57,13 @@ class BotHelpPageSource(menus.ListPageSource):
         ending_length = len(ending_note)
 
         page = []
+        formyaddidion = False
         for command in commands:
-            value = f'`{command.name}` |'
+            if formyaddidion == False:
+                value = f'`{command.name}`'
+                formyaddidion = True
+            else:
+                value = f'`• {command.name}`'
             count = len(value) + 1 # The space
             if count + current_count < 800:
                 current_count += count
