@@ -251,7 +251,7 @@ class MainCog(commands.Cog, name = "General"):
         global onreadyblocker
         onreadyblocker = False
         self.api = "https://some-random-api.ml"
-        client.help_command = EmbedHelpCommand()
+        client.help_command = PaginatedHelpCommand()
         bot.help_command.cog = self
 
     async def save_users(self):
