@@ -28,7 +28,11 @@ async def get_the_image(self, ctx, animal):
     await ctx.send(embed=embed)
 
 async def get_the_gif(self, ctx, option):
+  try:
     data = await api.get_gif(option)
+  except:
+    await ctx.send("error")
+  else:
     embed = discord.Embed(title=option)
     embed.set_image(url=data)
     await ctx.send(embed=embed)
@@ -285,7 +289,7 @@ class FunCog(commands.Cog, name = "Fun"):
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def base64(self,ctx,*,arg):
+    async def debase64(self,ctx,*,arg):
       async with ctx.typing():
         asdf = await api.decode_base64(arg)
         embed=discord.Embed(title="Base64 to Text",description=asdf,timestamp=ctx.message.created_at)
