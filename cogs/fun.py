@@ -228,7 +228,7 @@ class FunCog(commands.Cog, name = "Fun"):
     async def pokemon(self, ctx, name):
       async with ctx.typing():
         x = await api.get_pokemon(name)
-        if True:
+        try:
           embed = discord.Embed(title='Pokémon Details:',description="Provided by some-random-api",timestamp=ctx.message.created_at)
           embed.add_field(name="Name",value=x.name)
           embed.add_field(name="ID", value=x.id)
@@ -252,10 +252,9 @@ class FunCog(commands.Cog, name = "Fun"):
           embed.add_field(name="Generation",value=x.generation)
           #embed.set_image(url=x.spriteNormal)
           embed.set_thumbnail(url=x.spriteAnimated)
-          await ctx.send(x.spriteAnimated)
-         # await ctx.send(embed=embed)
-        #except:
-          #await ctx.send("error")
+          await ctx.send(embed=embed)
+        except:
+          await ctx.send("error")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def binary1(self,ctx,*,arg):
