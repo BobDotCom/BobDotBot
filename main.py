@@ -15,7 +15,6 @@ from discord.ext import commands
 from datetime import datetime
 from discord.ext.tasks import loop
 from otherscripts.data import Data
-from otherscripts.helpcommand import EmbedHelpCommand
 
 
 # Load .env file
@@ -39,8 +38,8 @@ def get_logs(client, message):
 	return logs[str(message.guild.id)]
 
 intents = discord.Intents.all()
-client = commands.Bot(help_command=EmbedHelpCommand(),command_prefix=get_prefix,intents=intents, embed_color=discord.Color.blurple())
-client.remove_command('help')
+client = commands.Bot(command_prefix=get_prefix,intents=intents, embed_color=discord.Color.blurple())
+#client.remove_command('help')
 client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
 client.owner_id = 690420846774321221
