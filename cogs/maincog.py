@@ -19,96 +19,218 @@ from termcolor import colored, cprint
 from humanize import precisedelta as nd
 from discord.ext.commands import Bot, BucketType
 from discord.ext import commands
+#from .otherscripts import checks, formats, time
+from otherscripts.paginator import RoboPages
+from collections import OrderedDict, deque, Counter
+import os, datetime
+import copy
+import unicodedata
+import inspect
+import itertools
+from typing import Union
 from datetime import datetime
 from discord.ext.commands import MissingPermissions
 from discord.ext import menus
 from lxml import html
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
-class MyMenu(menus.Menu):
-    async def send_initial_message(self, ctx, channel):
-        return await channel.send(f'Hello {ctx.author}')
-    
-    @menus.button('<:red:762759166627676201>')
-    async def on_thumbs_up(self, payload):
-        await self.message.edit(content=f'Thanks {self.ctx.author}!')
+class BotHelpPageSource(menus.ListPageSource):
+    def __init__(self, help_command, commands):
+        # entries = [(cog, len(sub)) for cog, sub in commands.items()]
+        # entries.sort(key=lambda t: (t[0].qualified_name, t[1]), reverse=True)
+        super().__init__(entries=sorted(commands.keys(), key=lambda c: c.qualified_name), per_page=6)
+        self.commands = commands
+        self.help_command = help_command
+        self.prefix = help_command.clean_prefix
 
-    @menus.button('<:orange:762759545642549278>')
-    async def on_thumbs_down(self, payload):
-        await self.message.edit(content=f"That's not nice {self.ctx.author}...")
+    def format_commands(self, cog, commands):
+        # A field can only have 1024 characters so we need to paginate a bit
+        # just in case it doesn't fit perfectly
+        # However, we have 6 per page so I'll try cutting it off at around 800 instead
+        # Since there's a 6000 character limit overall in the embed
+        if cog.description:
+            short_doc = cog.description.split('\n', 1)[0] + '\n'
+        else:
+            short_doc = 'No help found...\n'
 
-    @menus.button('<:yellow:762759756514721852>')
-    async def on_stop(self, payload):
-        self.stop()
-class EmbedHelpCommand(commands.HelpCommand):
-    """This is an example of a HelpCommand that utilizes embeds.
-    It's pretty basic but it lacks some nuances that people might expect.
-    1. It breaks if you have more than 25 cogs or more than 25 subcommands. (Most people don't reach this)
-    2. It doesn't DM users. To do this, you have to override `get_destination`. It's simple.
-    Other than those two things this is a basic skeleton to get you started. It should
-    be simple to modify if you desire some other behaviour.
-    
-    To use this, pass it to the bot constructor e.g.:
-       
-    bot = commands.Bot(help_command=EmbedHelpCommand())
-    """
-    # Set the embed colour here
-    COLOUR = discord.Colour.blurple()
+        current_count = len(short_doc)
+        ending_note = '+%d not shown'
+        ending_length = len(ending_note)
 
-    def get_ending_note(self):
-        return 'Use {0}{1} [command] for more info on a command.'.format(self.clean_prefix, self.invoked_with)
+        page = []
+        for command in commands:
+            value = f'`{command.name}`'
+            count = len(value) + 1 # The space
+            if count + current_count < 800:
+                current_count += count
+                page.append(value)
+            else:
+                # If we're maxed out then see if we can add the ending note
+                if current_count + ending_length + 1 > 800:
+                    # If we are, pop out the last element to make room
+                    page.pop()
+
+                # Done paginating so just exit
+                break
+
+        if len(page) == len(commands):
+            # We're not hiding anything so just return it as-is
+            return short_doc + ' '.join(page)
+
+        hidden = len(commands) - len(page)
+        return short_doc + ' '.join(page) + '\n' + (ending_note % hidden)
+
+
+    async def format_page(self, menu, cogs):
+        prefix = menu.ctx.prefix
+        description = f'Use "{prefix}help command" for more info on a command.\n' \
+                      f'Use "{prefix}help category" for more info on a category.\n' \
+                       'For more help, join the official bot support server: https://discord.gg/DWEaqMy'
+
+        embed = discord.Embed(title='Categories', description=description, colour=discord.Colour.blurple())
+
+        for cog in cogs:
+            commands = self.commands.get(cog)
+            if commands:
+                value = self.format_commands(cog, commands)
+                embed.add_field(name=cog.qualified_name, value=value, inline=True)
+
+        maximum = self.get_max_pages()
+        embed.set_footer(text=f'Page {menu.current_page + 1}/{maximum}')
+        return embed
+
+class GroupHelpPageSource(menus.ListPageSource):
+    def __init__(self, group, commands, *, prefix):
+        super().__init__(entries=commands, per_page=6)
+        self.group = group
+        self.prefix = prefix
+        self.title = f'{self.group.qualified_name} Commands'
+        self.description = self.group.description
+
+    async def format_page(self, menu, commands):
+        embed = discord.Embed(title=self.title, description=self.description, colour=discord.Colour.blurple())
+
+        for command in commands:
+            signature = f'{command.qualified_name} {command.signature}'
+            embed.add_field(name=signature, value=command.short_doc or 'No help given...', inline=False)
+
+        maximum = self.get_max_pages()
+        if maximum > 1:
+            embed.set_author(name=f'Page {menu.current_page + 1}/{maximum} ({len(self.entries)} commands)')
+
+        embed.set_footer(text=f'Use "{self.prefix}help command" for more info on a command.')
+        return embed
+
+
+class HelpMenu(RoboPages):
+    def __init__(self, source):
+        super().__init__(source)
+
+    @menus.button('\N{WHITE QUESTION MARK ORNAMENT}', position=menus.Last(5))
+    async def show_bot_help(self, payload):
+        """shows how to use the bot"""
+
+        embed = discord.Embed(title='Using the bot', colour=discord.Colour.blurple())
+        embed.title = 'Using the bot'
+        embed.description = 'Hello! Welcome to the help page.'
+
+        entries = (
+            ('<argument>', 'This means the argument is __**required**__.'),
+            ('[argument]', 'This means the argument is __**optional**__.'),
+            ('[A|B]', 'This means that it can be __**either A or B**__.'),
+            ('[argument...]', 'This means you can have multiple arguments.\n' \
+                              'Now that you know the basics, it should be noted that...\n' \
+                              '__**You do not type in the brackets!**__')
+        )
+
+        embed.add_field(name='How do I use this bot?', value='Reading the bot signature is pretty simple.')
+
+        for name, value in entries:
+            embed.add_field(name=name, value=value, inline=False)
+
+        embed.set_footer(text=f'We were on page {self.current_page + 1} before this message.')
+        await self.message.edit(embed=embed)
+
+        async def go_back_to_current_page():
+            await asyncio.sleep(30.0)
+            await self.show_page(self.current_page)
+
+        self.bot.loop.create_task(go_back_to_current_page())
+
+class PaginatedHelpCommand(commands.HelpCommand):
+    def __init__(self):
+        super().__init__(command_attrs={
+            'cooldown': commands.Cooldown(1, 3.0, commands.BucketType.member),
+            'help': 'Shows help about the bot, a command, or a category'
+        })
+
+    async def on_help_command_error(self, ctx, error):
+        if isinstance(error, commands.CommandInvokeError):
+            await ctx.send(str(error.original))
 
     def get_command_signature(self, command):
-        return '{0.qualified_name} {0.signature}'.format(command)
+        parent = command.full_parent_name
+        if len(command.aliases) > 0:
+            aliases = '|'.join(command.aliases)
+            fmt = f'[{command.name}|{aliases}]'
+            if parent:
+                fmt = f'{parent} {fmt}'
+            alias = fmt
+        else:
+            alias = command.name if not parent else f'{parent} {command.name}'
+        return f'{alias} {command.signature}'
 
     async def send_bot_help(self, mapping):
-        embed = discord.Embed(title='Bot Commands', colour=self.COLOUR)
-        description = self.context.bot.description
-        if description:
-            embed.description = description
+        bot = self.context.bot
+        entries = await self.filter_commands(bot.commands, sort=True)
 
-        for cog, commands in mapping.items():
-            name = 'No Category' if cog is None else cog.qualified_name
-            filtered = await self.filter_commands(commands, sort=True)
-            if filtered:
-                value = '\u2002'.join(c.name for c in commands)
-                if cog and cog.description:
-                    value = '{0}\n{1}'.format(cog.description, value)
+        all_commands = {}
+        for command in entries:
+            if command.cog is None:
+                continue
+            try:
+                all_commands[command.cog].append(command)
+            except KeyError:
+                all_commands[command.cog] = [command]
 
-                embed.add_field(name=name, value=value)
 
-        embed.set_footer(text=self.get_ending_note())
-        await self.get_destination().send(embed=embed)
+        menu = HelpMenu(BotHelpPageSource(self, all_commands))
+        await self.context.release()
+        await menu.start(self.context)
 
     async def send_cog_help(self, cog):
-        embed = discord.Embed(title='{0.qualified_name} Commands'.format(cog), colour=self.COLOUR)
-        if cog.description:
-            embed.description = cog.description
+        entries = await self.filter_commands(cog.get_commands(), sort=True)
+        menu = HelpMenu(GroupHelpPageSource(cog, entries, prefix=self.clean_prefix))
+        await self.context.release()
+        await menu.start(self.context)
 
-        filtered = await self.filter_commands(cog.get_commands(), sort=True)
-        for command in filtered:
-            embed.add_field(name=self.get_command_signature(command), value=command.short_doc or '...', inline=False)
+    def common_command_formatting(self, embed_like, command):
+        embed_like.title = self.get_command_signature(command)
+        if command.description:
+            embed_like.description = f'{command.description}\n\n{command.help}'
+        else:
+            embed_like.description = command.help or 'No help found...'
 
-        embed.set_footer(text=self.get_ending_note())
-        await self.get_destination().send(embed=embed)
+    async def send_command_help(self, command):
+        # No pagination necessary for a single command.
+        embed = discord.Embed(colour=discord.Colour.blurple())
+        self.common_command_formatting(embed, command)
+        await self.context.send(embed=embed)
 
     async def send_group_help(self, group):
-        embed = discord.Embed(title=group.qualified_name, colour=self.COLOUR)
-        if group.help:
-            embed.description = group.help
+        subcommands = group.commands
+        if len(subcommands) == 0:
+            return await self.send_command_help(group)
 
-        if isinstance(group, commands.Group):
-            filtered = await self.filter_commands(group.commands, sort=True)
-            for command in filtered:
-                embed.add_field(name=self.get_command_signature(command), value=command.short_doc or '...', inline=False)
+        entries = await self.filter_commands(subcommands, sort=True)
+        if len(entries) == 0:
+            return await self.send_command_help(group)
 
-        embed.set_footer(text=self.get_ending_note())
-        await self.get_destination().send(embed=embed)
-
-    # This makes it so it uses the function above
-    # Less work for us to do since they're both similar.
-    # If you want to make regular command help look different then override it
-    send_command_help = send_group_help
+        source = GroupHelpPageSource(group, entries, prefix=self.clean_prefix)
+        self.common_command_formatting(source, group)
+        menu = HelpMenu(source)
+        await self.context.release()
+        await menu.start(self.context)
 class MemberRoles(commands.MemberConverter):
     async def convert(self, ctx, argument):
         member = ctx.author if not argument else await super().convert(ctx, argument)
@@ -130,6 +252,7 @@ class MainCog(commands.Cog, name = "General"):
         onreadyblocker = False
         self.api = "https://some-random-api.ml"
         client.help_command = EmbedHelpCommand()
+        bot.help_command.cog = self
 
     async def save_users(self):
         await self.client.wait_until_ready()
