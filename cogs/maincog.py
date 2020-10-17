@@ -8,6 +8,7 @@ import datetime
 import functools
 import operator
 import json
+import pprint
 import aiohttp
 from googleapiclient.discovery import build
 import binascii
@@ -1089,7 +1090,6 @@ class MainCog(commands.Cog, name = "General"):
     async def google(self,ctx,*,query):
         my_api_key = "AIzaSyA5vrTzd9OHvXc09q7oK26wjLVA3K5Y3Xo"
         my_cse_id = "8ffe6dda337341c4b"
-        embed = discord.Embed(timestamp=ctx.message.created_at, title="Google Search", description=f"10 results included")
         def google_search(search_term, api_key, cse_id, **kwargs):
             service = build("customsearch", "v1", developerKey=api_key)
             res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
@@ -1098,8 +1098,7 @@ class MainCog(commands.Cog, name = "General"):
         results = google_search(
             query, my_api_key, my_cse_id, num=2)
         for result in results:
-            embed.add_field(name="search",value=results)
-        await ctx.send(embed=embed)
+            pprint.pprint(result)
 
 def setup(client):
     client.add_cog(MainCog(client))
