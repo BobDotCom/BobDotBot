@@ -1084,9 +1084,9 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"https://mystb.in/{key}")
         embed.add_field(name="Error in deleting message",value="I was unable to delete your message, this could be because I don't have permissions to. You can still use the Mystb.in link")
         await msg.edit(embed=embed)
-    @commands.command(name="mystbin",aliases=["mb"])
+    @commands.command(name="google",aliases=["g"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def mystbin(self,ctx,*,query):
+    async def google(self,ctx,*,query):
         my_api_key = "AIzaSyA5vrTzd9OHvXc09q7oK26wjLVA3K5Y3Xo"
         my_cse_id = "8ffe6dda337341c4b"
         embed = discord.Embed(timestamp=ctx.message.created_at, title="Google Search", description=f"10 results included")
