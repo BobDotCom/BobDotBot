@@ -1096,7 +1096,7 @@ class MainCog(commands.Cog, name = "General"):
             return res['items']
 
         results = google_search(
-            query, my_api_key, my_cse_id, num=10)
+            query, my_api_key, my_cse_id, num=2)
         for result in results:
             embed.add_field(name="search",value=results)
         await ctx.send(embed=embed)
