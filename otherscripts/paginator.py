@@ -25,7 +25,7 @@ class RoboPages(menus.MenuPages):
             messages.append(f'{emoji}: {button.action.__doc__}')
 
         embed.add_field(name='What are these reactions for?', value='\n'.join(messages), inline=False)
-        embed.set_footer(text=f'We were on page {self.current_page + 1} before this message.')
+        embed.set_footer(text=f'Previous page: {self.current_page + 1}')
         await self.message.edit(content=None, embed=embed)
 
         async def go_back_to_current_page():
