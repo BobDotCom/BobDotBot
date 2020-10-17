@@ -202,8 +202,6 @@ class PaginatedHelpCommand(commands.HelpCommand):
         await menu.start(self.context)
 
     async def send_cog_help(self, cog):
-        splice = cog[0]
-        cog = splice[0].upper() + splice[1:].lower()
         entries = await self.filter_commands(cog.get_commands(), sort=True)
         menu = HelpMenu(GroupHelpPageSource(cog, entries, prefix=self.clean_prefix))
         await menu.start(self.context)
