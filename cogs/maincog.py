@@ -9,6 +9,7 @@ import functools
 import operator
 import json
 import aiohttp
+from googleapiclient.discovery import build
 import binascii
 import sys
 import requests
@@ -19,7 +20,7 @@ from termcolor import colored, cprint
 from humanize import precisedelta as nd
 from discord.ext.commands import Bot, BucketType
 from discord.ext import commands
-#from .otherscripts import checks, formats, time
+#from .otherscripts import cheks, formats, time
 from otherscripts.paginator import RoboPages
 from collections import OrderedDict, deque, Counter
 import copy
@@ -1083,7 +1084,22 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"https://mystb.in/{key}")
         embed.add_field(name="Error in deleting message",value="I was unable to delete your message, this could be because I don't have permissions to. You can still use the Mystb.in link")
         await msg.edit(embed=embed)
+    @commands.command(name="mystbin",aliases=["mb"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def mystbin(self,ctx,*,query):
+        my_api_key = "AIzaSyA5vrTzd9OHvXc09q7oK26wjLVA3K5Y3Xo"
+        my_cse_id = "8ffe6dda337341c4b"
+        embed = discord.Embed(timestamp=ctx.message.created_at, title="Google Search", description=f"10 results included")
+        def google_search(search_term, api_key, cse_id, **kwargs):
+            service = build("customsearch", "v1", developerKey=api_key)
+            res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
+            return res['items']
 
+        results = google_search(
+            query, my_api_key, my_cse_id, num=10)
+        for result in results:
+            embed.add_field(title="search",description=results)
+        await ctx.send(embed=embed)
 
 def setup(client):
     client.add_cog(MainCog(client))
