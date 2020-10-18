@@ -1098,8 +1098,7 @@ class MainCog(commands.Cog, name = "General"):
         results = google_search(
             query, my_api_key, my_cse_id, num=2)
         for result in results:
-            search_items = result.get("items")
-            print(search_items)
+            print(result)
 
 def setup(client):
     client.add_cog(MainCog(client))
