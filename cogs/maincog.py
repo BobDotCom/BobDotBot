@@ -40,6 +40,14 @@ MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
 class MySource(menus.ListPageSource):
     def __init__(self, data):
         super().__init__(data, per_page=1)
+    async def finalize(self, timed_out):
+        try:
+            if timed_out:
+                await self.message.clear_reactions()
+            else:
+                await self.message.delete()
+        except discord.HTTPException:
+            pass
 
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
@@ -271,7 +279,7 @@ class MainCog(commands.Cog, name = "General"):
     def __init__(self, client):
         self.client = client
         self.bot = client
-        self.client.uptime1 = datetime.utcnow()
+        self.client.up1 = datetime.utcnow()
         owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
         self.client.helper1_id = 716503311402008577
@@ -1131,7 +1139,7 @@ class MainCog(commands.Cog, name = "General"):
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
         #MySource() will take any Iterable argument into it, you can also put in list of embeds
-        pages = menus.MenuPages(source=MySource(thisasdf), delete_after=30)
+        pages = menus.MenuPages(source=MySource(thisasdf))
         await pages.start(ctx)
 
 def setup(client):
