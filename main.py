@@ -128,7 +128,6 @@ async def on_command_error(ctx, error):
 @client.event
 async def on_message(message):
 	await client.process_commands(message)
-	print(f"{message.content} : {message.guild.name}")
 	if str(message.guild.id) not in Data.server_data:
             Data.server_data[str(message.guild.id)] = Data.create_new_data()
 
