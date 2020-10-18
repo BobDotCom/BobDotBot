@@ -34,7 +34,29 @@ from discord.ext.commands import MissingPermissions
 from discord.ext import menus
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
+class Google:
+    def __init__(self,ctx,*,search):
+        pass
 
+    def search(self,ctx,*,search):
+        my_api_key = "AIzaSyA5vrTzd9OHvXc09q7oK26wjLVA3K5Y3Xo"
+        my_cse_id = "8ffe6dda337341c4b"
+        def google_search(search_term, api_key, cse_id, **kwargs):
+            service = build("customsearch", "v1", developerKey=api_key)
+            res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
+            return res['items']
+        
+        embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Google results for: {query}", description=f"10 results provided")
+
+        results = google_search(
+            query, my_api_key, my_cse_id, num=2)
+        thisasdf = []
+        for result in results:
+            thisasdf += [result, ]
+        return thisasdf
+
+# Create an instance of a class
+google = Google()
 # Create an instance of a class
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel, thisasdf):
@@ -1124,7 +1146,7 @@ class MainCog(commands.Cog, name = "General"):
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
         m = MyMenu()
-        await m.start(ctx)
+        await m.start(ctx,thisasdf)
 
 def setup(client):
     client.add_cog(MainCog(client))
