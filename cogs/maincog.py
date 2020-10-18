@@ -44,7 +44,7 @@ class MySource(menus.ListPageSource):
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
-        print(entries["pagemap"]["cse_thumbnail"][0]["src"])
+        embed.add_field(name=entries["pagemap"]["cse_thumbnail"][0]["src"], value="test")
         #try:
             #x = entries["pagemap"]["metatags"][0]["og:image"]
             #if x[:6] == "https:":
