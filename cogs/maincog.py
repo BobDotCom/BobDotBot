@@ -34,6 +34,31 @@ from discord.ext.commands import MissingPermissions
 from discord.ext import menus
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
+
+# Create an instance of a class
+class MyMenu(menus.Menu):
+    async def send_initial_message(self, ctx, channel):
+        #embed = discord.Embed(timestamp=ctx.message.created_at, title=result[1], description=f"10 results total provided")
+        return await channel.send(f'Hello {ctx.author}')
+        #embed.add_field(name="",value="")
+            #title link snippet
+    @menus.button('\N{THUMBS UP SIGN}')
+    async def on_thumbs_up(self, payload):
+        await self.message.edit(content=f'Thanks {self.ctx.author}!')
+
+    @menus.button('\N{THUMBS DOWN SIGN}')
+    async def on_thumbs_down(self, payload):
+        await self.message.edit(content=f"That's not nice {self.ctx.author}...")
+
+    @menus.button('\N{BLACK SQUARE FOR STOP}\ufe0f')
+    async def on_stop(self, payload):
+        self.stop()
+
+# later
+@bot.command()
+async def menu_example(ctx):
+    m = MyMenu()
+    await m.start(ctx)
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
         # entries = [(cog, len(sub)) for cog, sub in commands.items()]
@@ -1082,7 +1107,7 @@ class MainCog(commands.Cog, name = "General"):
       try:
         await ctx.message.delete()
       except:
-        embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"https://mystb.in/{key}")
+        embed = discord.Embed(timestamp=ctx.message.created_at, title="Mystb.in", description=f"[Mystb.in Link](https://mystb.in/{key})")
         embed.add_field(name="Error in deleting message",value="I was unable to delete your message, this could be because I don't have permissions to. You can still use the Mystb.in link")
         await msg.edit(embed=embed)
     @commands.command(name="google",aliases=["g"])
@@ -1094,11 +1119,17 @@ class MainCog(commands.Cog, name = "General"):
             service = build("customsearch", "v1", developerKey=api_key)
             res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
             return res['items']
+        
+        embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Google results for: {query}", description=f"10 results provided")
 
         results = google_search(
             query, my_api_key, my_cse_id, num=2)
+        adsf = []
         for result in results:
-            print(result)
+            asdf += [result, ]
+        print(asdf)
+        #m = MyMenu()
+        #await m.start(ctx,asdf)
 
 def setup(client):
     client.add_cog(MainCog(client))
