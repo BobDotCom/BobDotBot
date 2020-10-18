@@ -46,19 +46,19 @@ class MySource(menus.ListPageSource):
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
         print(entries)
         try:
-            embed.add_field(name=entries["pagemap"]["cse_thumbnail"][0]["src"], value="test")
+            embed.set_thumbnail(name=entries["pagemap"]["cse_thumbnail"][0]["src"], value="test")
         except:
-            embed.add_field(name=entries["pagemap"]["thumbnail"][0]["src"], value="test")
-        if True:
+            embed.set_thumbnail(name=entries["pagemap"]["thumbnail"][0]["src"], value="test")
+        try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
             if x[:6] == "https:":
                 print(x)
-                embed.add_field(url=entries["pagemap"]["metatags"][0]["og:image"])
+                embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"])
             else:
                 print(x)
-                embed.add_field(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
-        #except:
-            #pass
+                embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
+        except:
+            pass
         embed.set_footer(text=f"Result {menu.current_page + 1}/{menu._source.get_max_pages()}")
         return embed
 class BotHelpPageSource(menus.ListPageSource):
