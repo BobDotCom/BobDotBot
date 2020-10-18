@@ -43,7 +43,7 @@ class MySource(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
-        embed = discord.Embed(timestamp=ctx.message.created_at, title=entries["title"], url=entries["link"], description=entries["snippet"])
+        embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
         return embed
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
