@@ -1106,14 +1106,13 @@ class MainCog(commands.Cog, name = "General"):
             service = build("customsearch", "v1", developerKey=api_key)
             res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
             return res['items']
-        
-        embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Google results for: {query}", description=f"10 results provided")
 
         results = google_search(
-            query, my_api_key, my_cse_id, num=10)
+            query, my_api_key, my_cse_id, num=1)
         thisasdf = []
         for result in results:
             thisasdf += [result, ]
+        print(thisasdf)
         #await ctx.send(thisasdf[0]["title"])
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
