@@ -48,7 +48,10 @@ class MySource(menus.ListPageSource):
         try:
             embed.set_thumbnail(url=entries["pagemap"]["cse_thumbnail"][0]["src"])
         except:
-            embed.set_thumbnail(url=entries["pagemap"]["thumbnail"][0]["src"])
+            try:
+                embed.set_thumbnail(url=entries["pagemap"]["thumbnail"][0]["src"])
+            except:
+                pass
         try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
             if x[:6] == "https:":
