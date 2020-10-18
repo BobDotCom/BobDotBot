@@ -37,9 +37,9 @@ MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
 
 # Create an instance of a class
 class MyMenu(menus.Menu):
-    async def send_initial_message(self, ctx, thisasdf):
+    async def send_initial_message(self, ctx, channel, thisasdf):
         embed = discord.Embed(timestamp=ctx.message.created_at, title=thisasdf[0]["title"], url=thisasdf[0]["link"], description=thisasdf[0]["snippet"])
-        return await ctx.send(embed=embed)
+        return await channel.send(embed=embed)
     @menus.button('\N{THUMBS UP SIGN}')
     async def on_thumbs_up(self, payload):
         await self.message.edit(content=f'Thanks {self.ctx.author}!')
