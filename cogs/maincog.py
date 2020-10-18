@@ -40,14 +40,6 @@ MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
 class MySource(menus.ListPageSource):
     def __init__(self, data):
         super().__init__(data, per_page=1)
-    async def finalize(self, timed_out):
-        try:
-            if timed_out:
-                await self.message.clear_reactions()
-            else:
-                await self.message.delete()
-        except discord.HTTPException:
-            pass
 
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
