@@ -1119,10 +1119,10 @@ class MainCog(commands.Cog, name = "General"):
 
         results = google_search(
             query, my_api_key, my_cse_id, num=2)
-        adsf = []
+        thisasdf = []
         for result in results:
-            asdf += [result, ]
-        print(asdf)
+            thisasdf += [result, ]
+        print(thisasdf)
         #m = MyMenu()
         #await m.start(ctx,asdf)
 
