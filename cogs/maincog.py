@@ -1131,7 +1131,7 @@ class MainCog(commands.Cog, name = "General"):
             return res['items']
 
         results = google_search(
-            query, my_api_key, my_cse_id, num=10)
+            query, my_api_key, my_cse_id, num=15)
         thisasdf = []
         for result in results:
             thisasdf += [result, ]
@@ -1139,7 +1139,7 @@ class MainCog(commands.Cog, name = "General"):
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
         #MySource() will take any Iterable argument into it, you can also put in list of embeds
-        pages = menus.MenuPages(source=MySource(thisasdf))
+        pages = menus.MenuPages(source=MySource(thisasdf), clear_reactions_after=30)
         await pages.start(ctx)
 
 def setup(client):
