@@ -45,6 +45,7 @@ class MySource(menus.ListPageSource):
         #entries will be each element of your passed list.
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
         try:
+            print(entries["pagemap"]["metatags"][0]["og:image"])
             embed.set_thumbnail(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
         except:
             pass
