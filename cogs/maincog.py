@@ -51,9 +51,9 @@ class MySource(menus.ListPageSource):
         try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
             if x[:6] == "https:":
-                embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
+                embed.add_field(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
             else:
-                embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"])
+                embed.add_field(url=entries["pagemap"]["metatags"][0]["og:image"])
         except:
             pass
         embed.set_footer(text=f"Result {menu.current_page + 1}/{menu._source.get_max_pages()}")
