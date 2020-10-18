@@ -56,7 +56,7 @@ class Google:
         return thisasdf
 
 # Create an instance of a class
-google = Google()
+#google = Google()
 # Create an instance of a class
 class MyMenu(menus.Menu):
     async def send_initial_message(self, ctx, channel, thisasdf):
