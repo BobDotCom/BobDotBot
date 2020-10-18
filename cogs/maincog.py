@@ -271,7 +271,7 @@ class MainCog(commands.Cog, name = "General"):
     def __init__(self, client):
         self.client = client
         self.bot = client
-        self.client.up1 = datetime.utcnow()
+        self.client.uptime1 = datetime.utcnow()
         owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
         self.client.helper1_id = 716503311402008577
