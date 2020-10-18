@@ -37,8 +37,8 @@ MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
 
 # Create an instance of a class
 class MyMenu(menus.Menu):
-    async def send_initial_message(self, ctx, results):
-        embed = discord.Embed(timestamp=ctx.message.created_at, title=result[0]["title"], url=result[0]["link"], description=result[0]["snippet"])
+    async def send_initial_message(self, ctx, thisasdf):
+        embed = discord.Embed(timestamp=ctx.message.created_at, title=thisasdf[0]["title"], url=thisasdf[0]["link"], description=thisasdf[0]["snippet"])
         return await ctx.send(embed=embed)
     @menus.button('\N{THUMBS UP SIGN}')
     async def on_thumbs_up(self, payload):
@@ -1124,7 +1124,7 @@ class MainCog(commands.Cog, name = "General"):
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
         m = MyMenu()
-        await m.start(ctx,thisasdf)
+        await m.start(ctx)
 
 def setup(client):
     client.add_cog(MainCog(client))
