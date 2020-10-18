@@ -1122,7 +1122,7 @@ class MainCog(commands.Cog, name = "General"):
         thisasdf = []
         for result in results:
             thisasdf += [result, ]
-        print(thisasdf[0])
+        print(thisasdf[0][title])
         #m = MyMenu()
         #await m.start(ctx,asdf)
 
