@@ -56,10 +56,11 @@ class Google:
         return thisasdf
 
 # Create an instance of a class
-#google = Google()
 # Create an instance of a class
 class MyMenu(menus.Menu):
-    async def send_initial_message(self, ctx, channel, thisasdf):
+    google = Google(self,ctx,*,search)
+    thisasdf = google.search(self,ctx,*,search)
+    async def send_initial_message(self, ctx, channel):
         embed = discord.Embed(timestamp=ctx.message.created_at, title=thisasdf[0]["title"], url=thisasdf[0]["link"], description=thisasdf[0]["snippet"])
         return await channel.send(embed=embed)
     @menus.button('\N{THUMBS UP SIGN}')
