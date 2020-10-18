@@ -1098,7 +1098,7 @@ class MainCog(commands.Cog, name = "General"):
         embed.add_field(name="Error in deleting message",value="I was unable to delete your message, this could be because I don't have permissions to. You can still use the Mystb.in link")
         await msg.edit(embed=embed)
     @commands.command(name="google",aliases=["g"])
-    @commands.cooldown(1, 1, commands.BucketType.channel)
+    @commands.cooldown(5, 600, commands.BucketType.channel)
     async def google(self,ctx,*,query):
         my_api_key = "AIzaSyA5vrTzd9OHvXc09q7oK26wjLVA3K5Y3Xo"
         my_cse_id = "8ffe6dda337341c4b"
@@ -1118,7 +1118,7 @@ class MainCog(commands.Cog, name = "General"):
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
         #MySource() will take any Iterable argument into it, you can also put in list of embeds
-        pages = menus.MenuPages(source=MySource(thisasdf), clear_reactions_after=True)
+        pages = menus.MenuPages(source=MySource(thisasdf), clear_reactions_after=30)
         await pages.start(ctx)
 
 def setup(client):
