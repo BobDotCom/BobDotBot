@@ -1131,7 +1131,7 @@ class MainCog(commands.Cog, name = "General"):
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
         #MySource() will take any Iterable argument into it, you can also put in list of embeds
-        pages = menus.MenuPages(source=MySource(thisasdf), clear_reactions_after=30)
+        pages = menus.MenuPages(source=MySource(thisasdf))
         await pages.start(ctx)
 
 def setup(client):
