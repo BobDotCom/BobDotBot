@@ -51,6 +51,7 @@ class MySource(menus.ListPageSource):
             embed.add_field(name=entries["pagemap"]["thumbnail"][0]["src"], value="test")
         try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
+            print(x)
             if x[:6] == "https:":
                 embed.add_field(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
             else:
