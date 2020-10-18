@@ -45,10 +45,10 @@ class MySource(menus.ListPageSource):
         #entries will be each element of your passed list.
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
         print(entries)
-        try:
-            embed.add_field(name=entries["pagemap"]["cse_thumbnail"][0]["src"], value="test")
-        except:
-            embed.add_field(name=entries["pagemap"]["thumbnail"][0]["src"], value="test")
+        #try:
+            #embed.add_field(name=entries["pagemap"]["cse_thumbnail"][0]["src"], value="test")
+        #except:
+            #embed.add_field(name=entries["pagemap"]["thumbnail"][0]["src"], value="test")
         try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
             if x[:6] == "https:":
