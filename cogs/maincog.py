@@ -34,47 +34,17 @@ from discord.ext.commands import MissingPermissions
 from discord.ext import menus
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
-class Google:
-    def __init__(self,ctx,*,search):
-        pass
-
-    def search(self,ctx,*,search):
-        my_api_key = "AIzaSyA5vrTzd9OHvXc09q7oK26wjLVA3K5Y3Xo"
-        my_cse_id = "8ffe6dda337341c4b"
-        def google_search(search_term, api_key, cse_id, **kwargs):
-            service = build("customsearch", "v1", developerKey=api_key)
-            res = service.cse().list(q=search_term, cx=cse_id, **kwargs).execute()
-            return res['items']
-        
-        embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Google results for: {query}", description=f"10 results provided")
-
-        results = google_search(
-            query, my_api_key, my_cse_id, num=2)
-        thisasdf = []
-        for result in results:
-            thisasdf += [result, ]
-        return thisasdf
 
 # Create an instance of a class
 # Create an instance of a class
-class MyMenu(menus.Menu):
-    google = Google(self,ctx,*,search)
-    thisasdf = google.search(self,ctx,*,search)
-    async def send_initial_message(self, ctx, channel):
-        embed = discord.Embed(timestamp=ctx.message.created_at, title=thisasdf[0]["title"], url=thisasdf[0]["link"], description=thisasdf[0]["snippet"])
-        return await channel.send(embed=embed)
-    @menus.button('\N{THUMBS UP SIGN}')
-    async def on_thumbs_up(self, payload):
-        await self.message.edit(content=f'Thanks {self.ctx.author}!')
+class MySource(menus.ListPageSource):
+    def __init__(self, data):
+        super().__init__(data, per_page=1)
 
-    @menus.button('\N{THUMBS DOWN SIGN}')
-    async def on_thumbs_down(self, payload):
-        await self.message.edit(content=f"That's not nice {self.ctx.author}...")
-
-    @menus.button('\N{BLACK SQUARE FOR STOP}\ufe0f')
-    async def on_stop(self, payload):
-        self.stop()
-
+    async def format_page(self, menu, entries):
+        #entries will be each element of your passed list.
+        embed = discord.Embed(timestamp=ctx.message.created_at, title=entries["title"], url=entries["link"], description=entries["snippet"])
+        return embed
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
         # entries = [(cog, len(sub)) for cog, sub in commands.items()]
@@ -1146,8 +1116,9 @@ class MainCog(commands.Cog, name = "General"):
         #await ctx.send(thisasdf[0]["title"])
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
-        m = MyMenu()
-        await m.start(ctx,thisasdf)
+        #MySource() will take any Iterable argument into it, you can also put in list of embeds
+        pages = menus.MenuPages(source=MySource(thisasdf), clear_reactions_after=True)
+        await pages.start(ctx)
 
 def setup(client):
     client.add_cog(MainCog(client))
