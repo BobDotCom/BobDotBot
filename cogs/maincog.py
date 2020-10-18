@@ -1112,7 +1112,7 @@ class MainCog(commands.Cog, name = "General"):
         thisasdf = []
         for result in results:
             thisasdf += [result, ]
-        print("https" + thisasdf[0]["pagemap"]["metatags"]["og:url"])
+        print("https" + thisasdf[0]["pagemap"]["metatags"][0]["og:url"])
         #await ctx.send(thisasdf[0]["title"])
         #await ctx.send(thisasdf[0]["link"])
         #await ctx.send(thisasdf[0]["snippet"])
