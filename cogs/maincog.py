@@ -44,7 +44,7 @@ class MySource(menus.ListPageSource):
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
-        embed.set_footer(text=f"Page {menu.current_page + 1}/{menu._source.get_max_pages()}")
+        embed.set_footer(text=f"Result {menu.current_page + 1}/{menu._source.get_max_pages()}")
         return embed
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
@@ -1110,7 +1110,7 @@ class MainCog(commands.Cog, name = "General"):
         embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Google results for: {query}", description=f"10 results provided")
 
         results = google_search(
-            query, my_api_key, my_cse_id, num=2)
+            query, my_api_key, my_cse_id, num=10)
         thisasdf = []
         for result in results:
             thisasdf += [result, ]
