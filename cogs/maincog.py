@@ -44,7 +44,7 @@ class MySource(menus.ListPageSource):
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
-        embed.add_field(name="https" + entries["pagemap"]["metatags"][0]["og:image"], value="test")
+        embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
         embed.set_footer(text=f"Result {menu.current_page + 1}/{menu._source.get_max_pages()}")
         return embed
 class BotHelpPageSource(menus.ListPageSource):
