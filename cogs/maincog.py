@@ -44,7 +44,6 @@ class MySource(menus.ListPageSource):
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
-        print(entries)
         try:
             embed.set_thumbnail(url=entries["pagemap"]["cse_thumbnail"][0]["src"])
         except:
@@ -55,10 +54,8 @@ class MySource(menus.ListPageSource):
         try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
             if x[:6] == "https:":
-                print(x)
                 embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"])
             else:
-                print(x)
                 embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
         except:
             pass
