@@ -46,7 +46,7 @@ class MySource(menus.ListPageSource):
         embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
         try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
-            if x[:6] == "https:"
+            if x[:6] == "https:":
                 embed.set_thumbnail(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
             else:
                 embed.set_thumbnail(url=entries["pagemap"]["metatags"][0]["og:image"])
