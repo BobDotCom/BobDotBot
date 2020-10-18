@@ -54,11 +54,6 @@ class MyMenu(menus.Menu):
     async def on_stop(self, payload):
         self.stop()
 
-# later
-@bot.command()
-async def menu_example(ctx):
-    m = MyMenu()
-    await m.start(ctx)
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
         # entries = [(cog, len(sub)) for cog, sub in commands.items()]
