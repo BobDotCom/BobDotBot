@@ -54,6 +54,7 @@ class MySource(menus.ListPageSource):
                 #pass
         try:
             x = entries["pagemap"]["metatags"][0]["og:image"]
+            print(x)
             if x[:6] == "https:":
                 embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"])
             else:
