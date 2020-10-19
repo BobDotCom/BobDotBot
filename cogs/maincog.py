@@ -1103,10 +1103,10 @@ class MainCog(commands.Cog, name = "General"):
       code = code.strip("```js")
       code = code.strip("```")
       code = code.encode('utf-8')
-      for attatchment in ctx.message.attatchments:
+      for attachment in ctx.message.attachments:
         print(ctx.message.attatchment.filename)
-        if attatchment.filename[:-4] == ".txt":
-            code = read(attatchment)
+        if attachment.filename[:-4] == ".txt":
+            code = read(attachment)
       async with aiohttp.ClientSession() as cs:
         async with cs.post('https://mystb.in/documents', data = code) as r:
           res = await r.json()
