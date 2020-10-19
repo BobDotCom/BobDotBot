@@ -1093,7 +1093,7 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=aembed)
     @commands.command(name="mystbin",aliases=["mb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def mystbin(self,ctx,*,code):
+    async def mystbin(self,ctx,*,code = None):
       """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future.
       Uses `B.mystbin [\`\`\`][language]
       <code>[\`\`\`]`
