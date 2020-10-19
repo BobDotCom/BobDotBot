@@ -1098,11 +1098,12 @@ class MainCog(commands.Cog, name = "General"):
       Uses `B.mystbin [\`\`\`][language]
       <code>[\`\`\`]`
       Note: Arguments in brackets [] are optional"""
-      code = code.strip("```py")
-      code = code.strip("```python")
-      code = code.strip("```js")
-      code = code.strip("```")
-      code = code.encode('utf-8')
+      if code:
+        code = code.strip("```py")
+        code = code.strip("```python")
+        code = code.strip("```js")
+        code = code.strip("```")
+        code = code.encode('utf-8')
       print(len(ctx.message.attachments))
       if len(ctx.message.attachments) != 0:
         for attachment in ctx.message.attachments:
