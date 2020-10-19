@@ -1108,7 +1108,7 @@ class MainCog(commands.Cog, name = "General"):
       if len(ctx.message.attachments) != 0:
         for attachment in ctx.message.attachments:
             print(attachment.filename)
-            if attachment.filename[:-4] == ".txt":
+            if attachment.filename[-4:] == ".txt":
                 print("worked")
                 code = await attachment.read()
       async with aiohttp.ClientSession() as cs:
