@@ -325,6 +325,20 @@ class FunCog(commands.Cog, name = "Fun"):
         asdf = await api.get_joke()
         embed=discord.Embed(title="Joke",description=asdf,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
-
+    @commands.command(aliases=["yt"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def youtube(self,ctx,member: discord.Member,*,comment):
+      async with ctx.typing():
+        asdf = api.youtube_comment(member.avatar_url, member.name, comment)
+        buf = BytesIO(await asdf.read())
+        await ctx.send(file=discord.File(buf, filename=f"{member.name}_youtube.png"))
+    @commands.command(aliases=["ytm"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def youtubeme(self,ctx,*,comment):
+      async with ctx.typing():
+        member = ctx.author
+        asdf = api.youtube_comment(member.avatar_url, member.name, comment)
+        buf = BytesIO(await asdf.read())
+        await ctx.send(file=discord.File(buf, filename=f"{member.name}_youtube.png"))
 def setup(client):
     client.add_cog(FunCog(client))
