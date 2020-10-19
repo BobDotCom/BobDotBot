@@ -42,12 +42,9 @@ class MySource(menus.ListPageSource):
         super().__init__(data, per_page=1)
 
     async def format_page(self, menu, entries):
+      try:
         #entries will be each element of your passed list.
-        embed = discord.Embed(title=entries["title"], description=entries["snippet"])
-        try:
-            embed.set_url(url=entries["link"])
-        except:
-            pass
+        embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
         #try:
             #embed.set_thumbnail(url=entries["pagemap"]["cse_thumbnail"][0]["src"])
         #except:
@@ -64,7 +61,9 @@ class MySource(menus.ListPageSource):
         except:
             pass
         embed.set_footer(text=f"Result {menu.current_page + 1}/{menu._source.get_max_pages()}")
-        return embed
+      except:
+        embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
+      return embed
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
         # entries = [(cog, len(sub)) for cog, sub in commands.items()]
