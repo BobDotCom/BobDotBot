@@ -1109,7 +1109,7 @@ class MainCog(commands.Cog, name = "General"):
         for attachment in ctx.message.attachments:
             print(attachment.filename)
             if attachment.filename[:-4] == ".txt":
-                code = read(attachment)
+                code = await attachment.read()
       async with aiohttp.ClientSession() as cs:
         async with cs.post('https://mystb.in/documents', data = code) as r:
           res = await r.json()
