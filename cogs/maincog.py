@@ -56,9 +56,9 @@ class MySource(menus.ListPageSource):
             x = entries["pagemap"]["metatags"][0]["og:image"]
             print(x)
             if x[:6] == "https:" or x[:6] == "http:":
-                embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"])
+                embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"].partition('\n')[0])
             else:
-                embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
+                embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"].partition('\n')[0])
         except:
             pass
         embed.set_footer(text=f"Result {menu.current_page + 1}/{menu._source.get_max_pages()}")
