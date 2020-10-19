@@ -53,17 +53,16 @@ class MySource(menus.ListPageSource):
             #except:
                 #pass
         try:
-            x = entries["pagemap"]["metatags"][0]["og:image"].partition('\n')[0]
-            print(x)
-            if x[:6] == "https:" or x[:6] == "http:":
-                embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"].partition('\n')[0])
-            else:
-                embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"].partition('\n')[0])
+            x = entries["pagemap"]["metatags"][0]["og:image"]
+            if x[:6] == "https:":
+                embed.set_image(url=entries["pagemap"]["metatags"][0]["og:image"])
+            elif x[:6] != "http:":
+                embed.set_image(url="https:" + entries["pagemap"]["metatags"][0]["og:image"])
         except:
             pass
         embed.set_footer(text=f"Result {menu.current_page + 1}/{menu._source.get_max_pages()}")
       except:
-        embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
+        embed = discord.Embed(title="Error",description="Please press either the left or right button, I was unable to display this page")
       return embed
 class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
