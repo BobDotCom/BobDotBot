@@ -1099,17 +1099,12 @@ class MainCog(commands.Cog, name = "General"):
       <code>[\`\`\`]`
       Note: Arguments in brackets [] are optional"""
       if code:
-        code = code.strip("```py")
-        code = code.strip("```python")
-        code = code.strip("```js")
-        code = code.strip("```")
+        code = code.strip("```py").strip("```python").strip("```js").strip("```")
         code = code.encode('utf-8')
-      print(len(ctx.message.attachments))
       if len(ctx.message.attachments) != 0:
         for attachment in ctx.message.attachments:
             print(attachment.filename)
             if attachment.filename[-4:] == ".txt":
-                print("worked")
                 code = await attachment.read()
       async with aiohttp.ClientSession() as cs:
         async with cs.post('https://mystb.in/documents', data = code) as r:
