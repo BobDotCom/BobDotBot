@@ -45,7 +45,7 @@ class MySource(menus.ListPageSource):
         #entries will be each element of your passed list.
         embed = discord.Embed(title=entries["title"], description=entries["snippet"])
         try:
-            embed.set_url(url=url=entries["link"])
+            embed.set_url(url=entries["link"])
         except:
             pass
         #try:
