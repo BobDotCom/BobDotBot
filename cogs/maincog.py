@@ -43,7 +43,11 @@ class MySource(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
-        embed = discord.Embed(title=entries["title"], url=entries["link"], description=entries["snippet"])
+        embed = discord.Embed(title=entries["title"], description=entries["snippet"])
+        try:
+            embed.set_url(url=url=entries["link"])
+        except:
+            pass
         #try:
             #embed.set_thumbnail(url=entries["pagemap"]["cse_thumbnail"][0]["src"])
         #except:
