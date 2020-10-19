@@ -1103,7 +1103,8 @@ class MainCog(commands.Cog, name = "General"):
       code = code.strip("```js")
       code = code.strip("```")
       code = code.encode('utf-8')
-      if not len(ctx.message.attachments) == 0:
+      print(len(ctx.message.attachments))
+      if len(ctx.message.attachments) != 0:
         for attachment in ctx.message.attachments:
             print(ctx.message.attatchment.filename)
             if attachment.filename[:-4] == ".txt":
