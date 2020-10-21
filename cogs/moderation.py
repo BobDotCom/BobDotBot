@@ -33,8 +33,22 @@ class Moderator(commands.Cog):
             embed.add_field(name="Reason", value=reason)
             embed.add_field(name="This user has been warned",
                             value=f"{self.warn_count[str(user)]} time(s)")
+    @commands.command(aliases=['nick'])
+    @commands.has_guild_permissions(administrator=True)
+    async def nickname(self, ctx, member : discord.Member, *args):
+        if member == None:
+            await ctx.send('Give me a user dumbass')
+        elif member == ctx.guild.owner:
+            await ctx.send('You cant name the owner!')
+        else:
+          try:
+            x = ' '.join(map(str, args))
+            await member.edit(nick=f'{x}')
+            await ctx.send(f'{member.name} has been changed to {x}')
 
             await ctx.send(content=None, embed=embed)
+          except:
+            await ctx.send("I cant, stupid")
 
     @commands.command(name="clearwarn")
     @commands.has_guild_permissions(administrator=True)
