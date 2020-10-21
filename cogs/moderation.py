@@ -34,7 +34,7 @@ class Moderator(commands.Cog):
             embed.add_field(name="This user has been warned",
                             value=f"{self.warn_count[str(user)]} time(s)")
     @commands.command(aliases=['nick'])
-    @commands.has_guild_permissions(administrator=True)
+    @commands.has_guild_permissions(change_nickname=True)
     async def nickname(self, ctx, member : discord.Member, *args):
         if member == None:
             await ctx.send('Give me a user dumbass')
