@@ -9,6 +9,7 @@ acceptableImageFormats = [".png",".jpg",".jpeg",".gif",".gifv",".webm",".mp4","i
 memeHistory = deque()
 memeSubreddits = ["BikiniBottomTwitter", "memes", "2meirl4meirl", "deepfriedmemes", "MemeEconomy"]
 async def getSub(self, ctx, subreddit):
+      try:
         url = f"https://reddit.com/r/{subreddit}/random.json?limit=1"
         async with aiohttp.ClientSession() as session:
           async with session.get(f"https://reddit.com/r/{subreddit}/random.json?limit=1") as r:
@@ -27,6 +28,11 @@ async def getSub(self, ctx, subreddit):
                 embed.set_image(url = subredditDict['url'])
             embed.set_footer(text=f"Upvotes: {subredditDict['ups']} | Author: {subredditDict['author']}")
             await ctx.send(embed = embed)
+      except:
+        try: 
+          return await ctx.send("_{}! ({})_".format(str(subredditDict['message']), str(subredditDict['error'])))
+        except:
+          return await ctx.send("Error")
 async def getSubs(self, ctx, sub):
         """Get stuff from requested sub"""
         async with aiohttp.ClientSession() as session:
@@ -87,12 +93,15 @@ class Reddit(commands.Cog):
       """Memes from various subreddits
       Uses: `B.meme`"""
       async with ctx.typing():
-        async with aiohttp.ClientSession() as session:
+        if True:
+          await getSub(self, ctx, arg)
+        else:
+          async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/{0}/hot.json?limit=450".format(random.choice(memeSubreddits))) as response:
                 request = await response.json()
 
-        attempts = 1
-        while attempts < 5:
+          attempts = 1
+          while attempts < 5:
             if 'error' in request:
                 print("failed request {}".format(attempts))
                 await asyncio.sleep(2)
@@ -122,7 +131,7 @@ class Reddit(commands.Cog):
                 embed.set_image(url=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed)
                 return
-        await ctx.send(url="_{}! ({})_".format(str(request['message']), str(request['error'])))
+          await ctx.send(url="_{}! ({})_".format(str(request['message']), str(request['error'])))
     
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -130,12 +139,15 @@ class Reddit(commands.Cog):
       """A random showerthought from r/showerthoughts
       Uses: `B.showerthought`"""
       async with ctx.typing():
-        async with aiohttp.ClientSession() as session:
+        if True:
+          await getSub(self, ctx, arg)
+        else:
+          async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=450") as response:
                 request = await response.json()
 
-        attempts = 1
-        while attempts < 5:
+          attempts = 1
+          while attempts < 5:
             if 'error' in request:
                 print("failed request {}".format(attempts))
                 await asyncio.sleep(2)
@@ -167,7 +179,7 @@ class Reddit(commands.Cog):
                 embed = discord.Embed(title=f"Showerthought", timestamp=ctx.message.created_at, description=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed)
                 return
-        await ctx.send("_{}! ({})_".format(str(request['message']), str(request['error'])))
+          await ctx.send("_{}! ({})_".format(str(request['message']), str(request['error'])))
 
     
     @commands.command(aliases=['dankmeme', 'dank'])
