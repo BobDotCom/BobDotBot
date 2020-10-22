@@ -271,37 +271,42 @@ class FunCog(commands.Cog, name = "Fun"):
           await ctx.send(embed=embed)
         except:
           await ctx.send("error")
-    @commands.command()
+    @commands.command(aliases=["ttb", "text_to_binary"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def binary1(self,ctx,*,arg):
-      async with ctx.typing():
-        asdf = await api.encode_binary(arg)
-        embed=discord.Embed(title="Text to Binary",description=asdf,timestamp=ctx.message.created_at)
+    async def binary(self,ctx,*,arg):
+        """Take a string of ASCII text and translate it to binary"""
+        binary = ' '.join(format(ord(i), 'b') for i in arg)
+        embed = discord.Embed(timestamp=ctx.message.created_at, title="Text to binary", description=binary)
         await ctx.send(embed=embed)
-    @commands.command()
+    @commands.command(aliases=["btt", "binary_to_text"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def text1(self,ctx,*,arg):
-      async with ctx.typing():
-        asdf = await api.decode_binary(arg)
-        embed=discord.Embed(title="Binary to text",description=asdf,timestamp=ctx.message.created_at)
+    async def text(self,ctx,*,arg):
+        """Take a string of binary and translate it back to ASCII text"""
+        lists = ""
+        newarg = arg.split(" ")
+        for x in newarg:
+            asdf = chr(int(x, 2))
+            thevar = (lists,asdf)
+            lists = "".join(thevar)
+        embed = discord.Embed(timestamp=ctx.message.created_at, title="Binary to text", description=lists)
         await ctx.send(embed=embed)
-    @commands.command()
+    @commands.command(aliases=["base64'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def base64(self,ctx,*,arg):
+    async def encode(self,ctx,*,arg):
       async with ctx.typing():
         asdf = await api.encode_base64(arg)
         embed=discord.Embed(title="Text to Base64",description=asdf,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
-    @commands.command()
+    @commands.command(aliases=["base64_decode"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def debase64(self,ctx,*,arg):
+    async def decode(self,ctx,*,arg):
       async with ctx.typing():
         asdf = await api.decode_base64(arg)
         embed=discord.Embed(title="Base64 to Text",description=asdf,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def meme1(self,ctx):
+    async def anothermemecommandlol(self,ctx):
       async with ctx.typing():
         asdf = await api.get_meme()
         embed = discord.Embed(title=asdf.category,description=asdf.caption,timestamp=ctx.message.created_at)
