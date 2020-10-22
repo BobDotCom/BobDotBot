@@ -28,13 +28,13 @@ class Serversettings(commands.Cog, name = "Settings"):
         """Set one or multiple prefixes for BobDotBot in your server. If no prefix is specified, it will reset to defaults"""
         with open('prefixes.json', 'r') as f:
             prefixes = json.load(f)
-        prefixes[str(_guild.id)] = args if args else ['B.', 'b.']
+        prefixes[str(ctx.guild.id)] = args if args else ['B.', 'b.']
         if args:
             with open('prefixes.json', 'w') as f:
                 json.dump(prefixes, f, indent=4)
-            await _ctx.send(f'Prefix(s) changed to {args}')
+            await ctx.send(f'Prefix(s) changed to {args}')
         else:
-            await _ctx.send('Since you did not specify any prefixes this time, I reset your server prefixes to the default B. or b. If you need help, use my help command')
+            await ctx.send('Since you did not specify any prefixes this time, I reset your server prefixes to the default B. or b. If you need help, use my help command')
             with open('prefixes.json', 'w') as f:
                 json.dump(prefixes, f, indent=4)
     @commands.command(name="welcomer")
