@@ -737,7 +737,7 @@ class MainCog(commands.Cog, name = "General"):
             api_ping = await asyncio.wait_for(api_ping(), timeout=5.0)
         except asyncio.TimeoutError:
             embedVar.add_field(name="API ping",value="API did not respond")
-        if api_ping
+        if api_ping:
             embedVar.add_field(name="API ping",value="*" + str(api_ping) + "ms*")
         await message.edit(embed=embedVar)```
 
