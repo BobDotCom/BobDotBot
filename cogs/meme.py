@@ -24,7 +24,7 @@ async def getSub(self, ctx, sub):
                     async with session.get(f"https://www.reddit.com/r/{sub}/hot.json?limit=450") as response:
                         request = await response.json()
                 attempts += 1
-                subredditDict = dict(request[0]['data']['children'][0]['data'])
+                subredditDict = dict(request['data']['children'][0]['data'])
             else:
                 index = 0
                 for index, val in enumerate(request['data']['children']):
