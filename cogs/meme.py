@@ -18,13 +18,13 @@ async def getSub(self, ctx, subreddit):
             if subredditDict['over_18'] == True:
                 await ctx.send("Thats an nsfw reddit, nonono")
                 return
-            embed = discord.Embed(title = f"{subredditDict['title']} | {subredditDict['subreddit_name_prefixed']}", description = f"Upvotes: {subredditDict['ups']}", url =  f"https://reddit.com{subredditDict['permalink']}")
+            embed = discord.Embed(title = f"{subredditDict['title']}", description = f"{subredditDict['subreddit_name_prefixed']}", url =  f"https://reddit.com{subredditDict['permalink']}")
             
             if subredditDict['selftext'] != "":
                 embed.add_field(name = "Post Content:", value = subredditDict['selftext'])
-            else:
+            if subredditDict['url'] != "":
                 embed.set_image(url = subredditDict['url'])
-            embed.set_footer(text = f"Author: {subredditDict['author']}")
+            embed.set_footer(text=f"Upvotes: {subredditDict['ups']} | Author: {subredditDict['author']}")
             await ctx.send(embed = embed)
 async def getSubs(self, ctx, sub):
         """Get stuff from requested sub"""
