@@ -988,27 +988,6 @@ class MainCog(commands.Cog, name = "General"):
         #m = MyMenu()
         #await m.start(ctx)
         # Python3 code to demonstrate working of 
-    @commands.command(aliases=["ttb", "text_to_binary", "binary"])
-    @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def encode(self,ctx,*,arg):
-        """Take a string of ASCII text and translate it to binary
-        Uses: `B.encode <text>`"""
-        binary = ' '.join(format(ord(i), 'b') for i in arg)
-        embed = discord.Embed(timestamp=ctx.message.created_at, title="Text to binary", description=binary)
-        await ctx.send(embed=embed)
-    @commands.command(aliases=["btt", "binary_to_text", "text"])
-    @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def decode(self,ctx,*,arg):
-        """Take a string of binary and translate it back to ASCII text
-        Uses: `B.decode <binary>`"""
-        lists = ""
-        newarg = arg.split(" ")
-        for x in newarg:
-            asdf = chr(int(x, 2))
-            thevar = (lists,asdf)
-            lists = "".join(thevar)
-        embed = discord.Embed(timestamp=ctx.message.created_at, title="Binary to text", description=lists)
-        await ctx.send(embed=embed)
     @commands.command(name="serverinfo", aliases=["si"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def serverinfo(self, ctx):
