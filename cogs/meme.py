@@ -45,7 +45,7 @@ async def getSub(self, ctx, sub):
 
                                 break #done with this loop, can send image
                 subredditDict = dict(request['data']['children'][0]['data'])
-                embed = discord.Embed(f"{subredditDict['title']} | {subredditDict['subreddit_name_prefixed']}", description = f"Upvotes: {subredditDict['ups']}", url =  f"https://reddit.com{subredditDict['permalink']}",timestamp=ctx.message.created_at)
+                embed = discord.Embed(title= f"{subredditDict['title']} | {subredditDict['subreddit_name_prefixed']}", description = f"Upvotes: {subredditDict['ups']}", url =  f"https://reddit.com{subredditDict['permalink']}",timestamp=ctx.message.created_at)
                 embed.set_image(url=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed) #send the last image
                 return
