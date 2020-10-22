@@ -15,10 +15,11 @@ async def getSub(self, ctx, subreddit):
             res = await r.json()
             s = ""
             subredditDict = dict(res[0]['data']['children'][0]['data'])
-            if subredditDict['over_18'] == True:
-                await ctx.send("Thats an nsfw reddit, nonono")
+            if subredditDict['over_18'] and not ctx.channel.is_nsfw():
+                embed = discord.embed(title="NSFW", description="Thats an nsfw reddit, nonono", timestamp=ctx.message.created_at)
+                await ctx.send(embed=embed)
                 return
-            embed = discord.Embed(title = f"{subredditDict['title']}", description = f"{subredditDict['subreddit_name_prefixed']}", url =  f"https://reddit.com{subredditDict['permalink']}")
+            embed = discord.Embed(title = f"{subredditDict['title']}", description = f"{subredditDict['subreddit_name_prefixed']}", url =  f"https://reddit.com{subredditDict['permalink']}", timestamp=ctx.message.created_at)
             
             if subredditDict['selftext'] != "":
                 embed.add_field(name = "Post Content:", value = subredditDict['selftext'])
