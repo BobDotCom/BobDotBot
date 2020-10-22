@@ -269,6 +269,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
 async def apiPing():
     start = time.perf_counter()
     await api.get_joke()
+    await asyncio.sleep(10)
     end = time.perf_counter()
     duration = int((end - start) * 1000)
     return duration 
