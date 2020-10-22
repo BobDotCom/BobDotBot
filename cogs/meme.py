@@ -24,7 +24,6 @@ async def getSub(self, ctx, sub):
                     async with session.get(f"https://www.reddit.com/r/{sub}/hot.json?limit=450") as response:
                         request = await response.json()
                 attempts += 1
-                subredditDict = dict(request['data']['children'][0]['data'])
             else:
                 index = 0
                 for index, val in enumerate(request['data']['children']):
@@ -45,6 +44,7 @@ async def getSub(self, ctx, sub):
                                     memeHistory.popleft() #remove the oldest
 
                                 break #done with this loop, can send image
+                subredditDict = dict(request['data']['children'][0]['data'])
                 embed = discord.Embed(f"{subredditDict['title']} | {subredditDict['subreddit_name_prefixed']}", description = f"Upvotes: {subredditDict['ups']}", url =  f"https://reddit.com{subredditDict['permalink']}",timestamp=ctx.message.created_at)
                 embed.set_image(url=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed) #send the last image
