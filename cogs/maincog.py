@@ -269,7 +269,6 @@ class PaginatedHelpCommand(commands.HelpCommand):
 async def apiPing():
     start = time.perf_counter()
     await api.get_joke()
-    await asyncio.sleep(10)
     end = time.perf_counter()
     duration = int((end - start) * 1000)
     return duration 
@@ -730,12 +729,14 @@ class MainCog(commands.Cog, name = "General"):
         owner = self.client.get_user(self.client.owner_id)
         embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description="My ping is:")
         embedVar.add_field(name="Websocket ping",value="*" + str(ping) + "ms*")
-        embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
+        embedVar.set_footer(text=f"Getting total ping")
         start = time.perf_counter()
         message = await ctx.send(embed=embedVar)
         end = time.perf_counter()
         duration = int((end - start) * 1000)
         embedVar.add_field(name="Total ping",value="*" + str(duration) + "ms*")
+        embedVar.set_footer(text=f"Getting API ping")
+        await message.edit(embed=embedVar)
         try:
             api_ping = None
             api_ping = await asyncio.wait_for(apiPing(), timeout=5.0)
@@ -744,8 +745,8 @@ class MainCog(commands.Cog, name = "General"):
             api_ping = False
         if api_ping:
             embedVar.add_field(name="API ping",value="*" + str(api_ping) + "ms*")
+        embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await message.edit(embed=embedVar)
-
         
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
