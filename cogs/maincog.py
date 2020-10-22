@@ -725,7 +725,7 @@ class MainCog(commands.Cog, name = "General"):
         ping = int(self.client.latency * 1000)
         owner = self.client.get_user(self.client.owner_id)
         embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description="My ping is:")
-        embedVar.add_field(name="Websocket ping",value="*" + str(ping) + "ms*"
+        embedVar.add_field(name="Websocket ping",value="*" + str(ping) + "ms*")
         embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         start = time.perf_counter()
         message = await ctx.send(embed=embedVar)
