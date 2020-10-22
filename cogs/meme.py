@@ -16,7 +16,7 @@ async def getSub(self, ctx, subreddit):
             s = ""
             subredditDict = dict(res[0]['data']['children'][0]['data'])
             if subredditDict['over_18'] and not ctx.channel.is_nsfw():
-                embed = discord.Embed(title="Thats an NSFW subreddit!", description="To get an image from this subreddit, please use this command again in an NSFW channel", timestamp=ctx.message.created_at)
+                embed = discord.Embed(title="Thats an NSFW subreddit!", description="To get an image from this subreddit, please use this command again in an NSFW channel", timestamp=ctx.message.created_at, color=discord.Color.red())
                 await ctx.send(embed=embed)
                 return
             embed = discord.Embed(title = f"{subredditDict['title']}", description = f"{subredditDict['subreddit_name_prefixed']}", url =  f"https://reddit.com{subredditDict['permalink']}", timestamp=ctx.message.created_at)
