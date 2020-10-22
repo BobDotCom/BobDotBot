@@ -8,8 +8,25 @@ from collections import deque
 acceptableImageFormats = [".png",".jpg",".jpeg",".gif",".gifv",".webm",".mp4","imgur.com"]
 memeHistory = deque()
 memeSubreddits = ["BikiniBottomTwitter", "memes", "2meirl4meirl", "deepfriedmemes", "MemeEconomy"]
-
-async def getSub(self, ctx, sub):
+async def getSub(self, ctx, subreddit):
+        url = f"https://reddit.com/r/{subreddit}/random.json?limit=1"
+      
+        async with self.session.get(f"https://reddit.com/r/{subreddit}/random.json?limit=1") as r:
+            res = await r.json()
+            s = ""
+            subredditDict = dict(res[0]['data']['children'][0]['data'])
+            if subredditDict['over_18'] == True:
+                await ctx.send("Thats an nsfw reddit, nonono")
+                return
+            embed = discord.Embed(title = f"{subredditDict['title']} | {subredditDict['subreddit_name_prefixed']}", description = f"Upvotes: {subredditDict['ups']}", url =  f"https://reddit.com{subredditDict['permalink']}")
+            
+            if subredditDict['selftext'] != "":
+                embed.add_field(name = "Post Content:", value = subredditDict['selftext'])
+            else:
+                embed.set_image(url = subredditDict['url'])
+            embed.set_footer(text = f"Author: {subredditDict['author']}")
+            await ctx.send(embed = embed)
+async def getSubs(self, ctx, sub):
         """Get stuff from requested sub"""
         async with aiohttp.ClientSession() as session:
             async with session.get(f"https://www.reddit.com/r{sub}/hot.json?limit=450") as response:
