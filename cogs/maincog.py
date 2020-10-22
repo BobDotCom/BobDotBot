@@ -264,7 +264,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
         self.common_command_formatting(source, group)
         menu = HelpMenu(source)
         await menu.start(self.context)
-async def api_ping():
+async def apiPing():
     start = time.perf_counter()
     await client.get_joke()
     end = time.perf_counter()
@@ -734,7 +734,8 @@ class MainCog(commands.Cog, name = "General"):
         duration = (end - start) * 1000
         embedVar.add_field(name="Total ping",value="*" + str(duration) + "ms*")
         try:
-            api_ping = await asyncio.wait_for(api_ping(), timeout=5.0)
+            api_ping = None
+            api_ping = await asyncio.wait_for(apiPing(), timeout=5.0)
         except asyncio.TimeoutError:
             embedVar.add_field(name="API ping",value="API did not respond")
             api_ping = False
