@@ -314,7 +314,7 @@ class FunCog(commands.Cog, name = "Fun"):
       async with ctx.typing():
         asdf = await api.anime_quote()
         anime = asdf.anime.strip(" ")
-        character = asdf.anime.strip(" ")
+        character = asdf.character.strip(" ")
         embed = discord.Embed(title=f"From: {anime} | Said by: {character}",description=asdf.quote,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
     @commands.command()
