@@ -313,8 +313,7 @@ class FunCog(commands.Cog, name = "Fun"):
     async def animequote(self,ctx):
       async with ctx.typing():
         asdf = await api.anime_quote()
-        embed = discord.Embed(title="Anime quote",description=asdf.quote,timestamp=ctx.message.created_at)
-        embed.add_field(name=f"Quote from: {asdf.anime}",value=f"Said by: {asdf.character}")
+        embed = discord.Embed(title=f"From: {asdf.anime} | Said by: {asdf.character}",description=asdf.quote,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
