@@ -140,7 +140,7 @@ class Reddit(commands.Cog):
       Uses: `B.showerthought`"""
       async with ctx.typing():
         if True:
-          await getSub(self, ctx, "showerthought)
+          await getSub(self, ctx, "showerthought")
         else:
           async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=450") as response:
