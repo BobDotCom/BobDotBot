@@ -11,7 +11,7 @@ memeSubreddits = ["BikiniBottomTwitter", "memes", "2meirl4meirl", "deepfriedmeme
 async def getSub(self, ctx, subreddit):
         url = f"https://reddit.com/r/{subreddit}/random.json?limit=1"
       
-        async with self.session.get(f"https://reddit.com/r/{subreddit}/random.json?limit=1") as r:
+        async with session.get(f"https://reddit.com/r/{subreddit}/random.json?limit=1") as r:
             res = await r.json()
             s = ""
             subredditDict = dict(res[0]['data']['children'][0]['data'])
