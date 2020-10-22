@@ -457,7 +457,7 @@ class Music(commands.Cog):
             ctx.voice_state.voice.pause()
             await ctx.message.add_reaction('⏯')
 
-    @commands.command(name='resume', aliases=['re', 'res'])
+    @commands.command(name='resume', aliases=['res'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def _resume(self, ctx: commands.Context):
       """Resumes a currently paused song."""
