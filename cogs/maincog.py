@@ -35,7 +35,8 @@ from discord.ext.commands import MissingPermissions
 from discord.ext import menus
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
-
+SR_API_TOKEN = os.getenv("SR_API_TOKEN")
+api = sr_api.Client(SR_API_TOKEN)
 # Create an instance of a class
 # Create an instance of a class
 class MySource(menus.ListPageSource):
@@ -266,7 +267,7 @@ class PaginatedHelpCommand(commands.HelpCommand):
         await menu.start(self.context)
 async def apiPing():
     start = time.perf_counter()
-    await client.get_joke()
+    await api.get_joke()
     end = time.perf_counter()
     duration = (end - start) * 1000
     return duration 
