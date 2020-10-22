@@ -293,7 +293,7 @@ async def unload(ctx, extension):
     print(f'Cog "{extension}" was unloaded')
     await ctx.send(f'Unloaded Cog "{extension}"')
 
-@client.command(aliases=['r'])
+@client.command(aliases=['re'])
 @commands.is_owner()
 async def reload(ctx, extension):
     """Reloads the specified Cog"""
