@@ -32,6 +32,10 @@ async def getSub(self, ctx, sub):
                             return await ctx.send("Thats an nsfw reddit, nonono")
                     if 'url' in val['data']:
                         url = val['data']['url']
+                        thetitle = val['data']['title']
+                        thereddit = val['data']['subreddit_name_prefixed']
+                        upvotes = val['data']['ups']
+                        link = val['data']['permalink']
                         urlLower = url.lower()
                         accepted = False
                         for j, v, in enumerate(acceptableImageFormats): #check if it's an acceptable image
@@ -45,7 +49,7 @@ async def getSub(self, ctx, sub):
 
                                 break #done with this loop, can send image
                 subredditDict = dict(request['data']['children'][0]['data'])
-                embed = discord.Embed(title= f"{subredditDict['title']} | {subredditDict['subreddit_name_prefixed']}", description = f"Upvotes: {subredditDict['ups']}", url =  f"https://reddit.com{subredditDict['permalink']}",timestamp=ctx.message.created_at)
+                embed = discord.Embed(title=f"{thereddit}", description=f"{thetitle}", url=f"{link}", footer=f"Upvotes: {upvotes}", timestamp=ctx.message.created_at)
                 embed.set_image(url=memeHistory[len(memeHistory) - 1])
                 await ctx.send(embed=embed) #send the last image
                 return
