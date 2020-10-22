@@ -38,7 +38,8 @@ def get_logs(client, message):
 	return logs[str(message.guild.id)]
 
 intents = discord.Intents.all()
-client = commands.Bot(command_prefix=get_prefix,intents=intents, embed_color=discord.Color.blurple())
+client = commands.Bot(command_prefix=get_prefix,intents=intents)
+client.embed_color = discord.Color.blurple()
 #client.remove_command('help')
 client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
