@@ -334,7 +334,7 @@ async def reloadall(ctx):
         embedvar1 = discord.Embed(title='Reloading Cogs...', description=f"Reloaded cog(s): {', '.join(reloaded)}\nNot loaded: {', '.join(notr)}", color=0xff0000)
         embedvar1.add_field(name='Failure', value="Failed to reload all cogs")
         for x in notr:
-            await ctx.invoke(debug, command_string=f"r {x}")
+            await ctx.invoke(debug, command_string=f"reload {x}")
     await msg.edit(embed=embedvar1)
 
 
