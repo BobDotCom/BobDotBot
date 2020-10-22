@@ -290,7 +290,7 @@ class FunCog(commands.Cog, name = "Fun"):
             lists = "".join(thevar)
         embed = discord.Embed(timestamp=ctx.message.created_at, title="Binary to text", description=lists)
         await ctx.send(embed=embed)
-    @commands.command(aliases=["base64'])
+    @commands.command(aliases=["base64"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def encode(self,ctx,*,arg):
       async with ctx.typing():
