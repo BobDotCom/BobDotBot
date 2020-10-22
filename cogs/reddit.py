@@ -9,7 +9,7 @@ acceptableImageFormats = [".png",".jpg",".jpeg",".gif",".gifv",".webm",".mp4","i
 memeHistory = deque()
 memeSubreddits = ["BikiniBottomTwitter", "memes", "2meirl4meirl", "deepfriedmemes", "MemeEconomy"]
 async def getSub(self, ctx, subreddit):
-      if True:
+      try:
         url = f"https://reddit.com/r/{subreddit}/random.json?limit=1"
         async with aiohttp.ClientSession() as session:
           async with session.get(f"https://reddit.com/r/{subreddit}/random.json?limit=1") as r:
@@ -28,7 +28,7 @@ async def getSub(self, ctx, subreddit):
                 embed.set_image(url = subredditDict['url'])
             embed.set_footer(text=f"Upvotes: {subredditDict['ups']} | Author: {subredditDict['author']}")
             await ctx.send(embed = embed)
-      else:
+      except:
         try: 
           return await ctx.send("_{}! ({})_".format(str(subredditDict['message']), str(subredditDict['error'])))
         except:
@@ -140,8 +140,6 @@ class Reddit(commands.Cog):
       Uses: `B.showerthought`"""
       async with ctx.typing():
         if True:
-          await getSub(self, ctx, "showerthought")
-        else:
           async with aiohttp.ClientSession() as session:
             async with session.get("https://www.reddit.com/r/showerthoughts/hot.json?limit=450") as response:
                 request = await response.json()
