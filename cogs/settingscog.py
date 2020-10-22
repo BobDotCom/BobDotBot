@@ -25,23 +25,18 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild = True)
     async def prefix(self, ctx, *args):
-        """Set one or multiple prefixes for BobDotBot in your server. If no prefix is specified, it will reset to defaults
-        Uses: `B.prefix [prefix] [prefix2] [prefix3]`...
-        Note: Arguments in brackets[] are optional"""
+    """Set one or multiple prefixes for BobDotBot in your server. If no prefix is specified, it will reset to defaults"""
         with open('prefixes.json', 'r') as f:
             prefixes = json.load(f)
-            notprefixes = prefixes
-        prefixes[str(ctx.guild.id)] = args
-        notprefixes[str(ctx.guild.id)] = ['B.', 'b.']
-        args = None if not args else args
+        prefixes[str(_guild.id)] = args if args else ['B.', 'b.']
         if args:
             with open('prefixes.json', 'w') as f:
                 json.dump(prefixes, f, indent=4)
-            await ctx.send(f'Prefix(s) changed to {args}')
+            await _ctx.send(f'Prefix(s) changed to {args}')
         else:
-            await ctx.send('To use the prefixes command, type B.prefix prefix1 prefix2(optional) etc. Since you did not specify any prefixes this time, I reset your server prefixes to the default B. or b.')
+            await _ctx.send('Since you did not specify any prefixes this time, I reset your server prefixes to the default B. or b. If you need help, use my help command')
             with open('prefixes.json', 'w') as f:
-                json.dump(notprefixes, f, indent=4)
+                json.dump(prefixes, f, indent=4)```
     @commands.command(name="welcomer")
     @commands.has_guild_permissions(administrator=True)
     async def welcome_message(self, ctx, *, msg: str = ""):
