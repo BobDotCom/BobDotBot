@@ -270,7 +270,7 @@ async def apiPing():
     start = time.perf_counter()
     await api.get_joke()
     end = time.perf_counter()
-    duration = (end - start) * 1000
+    duration = int((end - start) * 1000)
     return duration 
 class MemberRoles(commands.MemberConverter):
     async def convert(self, ctx, argument):
@@ -733,7 +733,7 @@ class MainCog(commands.Cog, name = "General"):
         start = time.perf_counter()
         message = await ctx.send(embed=embedVar)
         end = time.perf_counter()
-        duration = (end - start) * 1000
+        duration = int((end - start) * 1000)
         embedVar.add_field(name="Total ping",value="*" + str(duration) + "ms*")
         try:
             api_ping = None
