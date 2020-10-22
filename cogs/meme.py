@@ -38,7 +38,7 @@ async def getSub(self, ctx, sub):
                         upvotes = val['data']['ups']
                         link = val['data']['permalink']
                         if val['data']['selftext'] != "":
-                            selftext = val['data']['selftext'])
+                            selftext = val['data']['selftext']
                         urlLower = url.lower()
                         accepted = False
                         for j, v, in enumerate(acceptableImageFormats): #check if it's an acceptable image
