@@ -194,9 +194,9 @@ class Reddit(commands.Cog):
       async with ctx.typing():
         await getSub(self, ctx, 'ProgrammerHumor')
         
-    @commands.command(aliases=["ri"])
+    @commands.command(aliases=["r"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def redditimage(self, ctx, arg):
+    async def reddit(self, ctx, arg):
       """Get an image from a subreddit.
       Uses: `B.redditimage <subreddit name>`"""
       async with ctx.typing():
