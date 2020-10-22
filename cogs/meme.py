@@ -31,11 +31,14 @@ async def getSub(self, ctx, sub):
                         if not ctx.channel.is_nsfw():
                             return await ctx.send("Thats an nsfw reddit, nonono")
                     if 'url' in val['data']:
+                        print(val['data'])
                         url = val['data']['url']
                         thetitle = val['data']['title']
                         thereddit = val['data']['subreddit_name_prefixed']
                         upvotes = val['data']['ups']
                         link = val['data']['permalink']
+                        if val['data']['selftext'] != "":
+                            selftext = val['data']['selftext'])
                         urlLower = url.lower()
                         accepted = False
                         for j, v, in enumerate(acceptableImageFormats): #check if it's an acceptable image
