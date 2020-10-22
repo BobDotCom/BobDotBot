@@ -315,7 +315,10 @@ class FunCog(commands.Cog, name = "Fun"):
         asdf = await api.anime_quote()
         embed = discord.Embed(title="Anime quote",description=asdf.quote,timestamp=ctx.message.created_at)
         embed.add_field(name=f"Quote from: {asdf.anime}",value=f"Said by: {asdf.character}")
-        embed.set_image(url=asdf.image)
+        try:
+            embed.set_image(url=asdf.image)
+        except:
+            pass
         embed.set_footer(text=f"Meme ID: {asdf.id}")
         await ctx.send(embed=embed)
     @commands.command()
