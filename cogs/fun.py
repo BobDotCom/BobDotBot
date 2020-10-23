@@ -348,7 +348,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def define(self,ctx,*,arg):
       async with ctx.typing():
-        asdf = await api.decode_base64(arg)
+        asdf = await api.define(arg)
         embed=discord.Embed(title=asdf.word,description=asdf.definition,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
 def setup(client):
