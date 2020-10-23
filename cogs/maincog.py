@@ -1148,8 +1148,8 @@ class MainCog(commands.Cog, name = "General"):
         pages = menus.MenuPages(source=MySource(thisasdf), clear_reactions_after=30)
         await pages.start(ctx)
     @commands.command(name="rules",aliases=["ruleschannel"])
-    @commands.cooldown(5, 600, commands.BucketType.channel)
-    async def rule(self,ctx,*,query):
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def rule(self,ctx):
         rules = ctx.guild.rules_channel
         if rules:
             text = f"Hey, your rules channel is {rules.mention}"
