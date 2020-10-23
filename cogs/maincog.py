@@ -1150,30 +1150,30 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="rules",aliases=["ruleschannel"])
     @commands.cooldown(5, 600, commands.BucketType.channel)
     async def rule(self,ctx,*,query):
-    rules = ctx.guild.rules_channel
-    if rules:
-        text = f"Hey, your rules channel is {rules.mention}"
-    else:
-        rules_channel = None
-        if "COMMUNITY" in ctx.guild.features:
+        rules = ctx.guild.rules_channel
+        if rules:
+            text = f"Hey, your rules channel is {rules.mention}"
+        else:
+            rules_channel = None
+            if "COMMUNITY" in ctx.guild.features:
+                for channel in ctx.guild.channels:
+                    if "rules" in channel.name.lower():
+                        rules_channel = channel
+                        break
+            if rules_channel:
+                text = f"I think that your rules channel is {rules_channel.mention}, but I am not sure, because this server is not a community server! Please ask an admin to enable communitry server and set a rules channel, so I can be sure"
+            else:
+                text = f"I couldn't find a rules channel, because this server is not a community server! Please ask an admin to enable communitry server and set a rules channel, so I can be sure"
+        else:
             for channel in ctx.guild.channels:
                 if "rules" in channel.name.lower():
                     rules_channel = channel
                     break
-        if rules_channel:
-            text = f"I think that your rules channel is {rules_channel.mention}, but I am not sure, because this server is not a community server! Please ask an admin to enable communitry server and set a rules channel, so I can be sure"
-        else:
-            text = f"I couldn't find a rules channel, because this server is not a community server! Please ask an admin to enable communitry server and set a rules channel, so I can be sure"
-    else:
-        for channel in ctx.guild.channels:
-            if "rules" in channel.name.lower():
-                rules_channel = channel
-                break
-        if rules_channel:
-            text = f"I think that your rules channel is {rules_channel.mention}, but I am not sure, because this server does not have a rules channel set! Please ask an admin to set a rules channel in the community server settings, so I can be sure"
-        else:
-            text = f"I couldn't find a rules channel, because this server does not have a rules channel set! Please ask an admin to set a rules channel in the community server settings, so I can be sure"
-    embed = discord.Embed(title="Rules Channel", description=text,timestamp=ctx.message.created_at)
-    await ctx.send(embed=embed)
+            if rules_channel:
+                text = f"I think that your rules channel is {rules_channel.mention}, but I am not sure, because this server does not have a rules channel set! Please ask an admin to set a rules channel in the community server settings, so I can be sure"
+            else:
+                text = f"I couldn't find a rules channel, because this server does not have a rules channel set! Please ask an admin to set a rules channel in the community server settings, so I can be sure"
+        embed = discord.Embed(title="Rules Channel", description=text,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(MainCog(client))
