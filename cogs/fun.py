@@ -344,5 +344,12 @@ class FunCog(commands.Cog, name = "Fun"):
         asdf = api.youtube_comment(member.avatar_url, member.name, comment)
         buf = BytesIO(await asdf.read())
         await ctx.send(file=discord.File(buf, filename=f"{member.name}_youtube.png"))
+    @commands.command(aliases=["base64_decode"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def decode(self,ctx,*,arg):
+      async with ctx.typing():
+        asdf = await api.decode_base64(arg)
+        embed=discord.Embed(title=asdf.word,description=asdf.definition,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(FunCog(client))
