@@ -346,7 +346,7 @@ class FunCog(commands.Cog, name = "Fun"):
         await ctx.send(file=discord.File(buf, filename=f"{member.name}_youtube.png"))
     @commands.command(aliases=["word"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def define(self,ctx,*,arg):
+    async def define(self,ctx,arg):
       async with ctx.typing():
         asdf = await api.define(arg)
         embed=discord.Embed(title=asdf.word,description=asdf.definition,timestamp=ctx.message.created_at)
