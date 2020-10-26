@@ -11,8 +11,21 @@ class Timezone(commands.Cog, name = "Time"):
         self.client = client
 
     @commands.Cog.listener()
-    async def on_ready(self):
-        print('MainCog is active')
+    async def on_ready():
+      print("TimeZoneCog is active")
+      create_users_table = """
+      CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        userid INTEGER,
+        timezone TEXT
+      );
+      """
+      db = await aiosqlite.connect("timezone.sql")
+
+      cursor = await db.execute(create_users_table)
+      await cursor.close()
+      await db.close()
 
     @commands.command()
     async def settime(self,ctx,timezone1):
