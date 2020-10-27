@@ -30,6 +30,16 @@ class Timezone(commands.Cog, name = "Time"):
     @commands.command()
     async def settime(self,ctx,timezone1):
       member = ctx.author
+      timezone5 = timezone1.lower()
+      splitter = timezone5[3]
+      contents = timezone5.split(splitter)
+      splitter = "+" if splitter == "-" else "-"
+      timezone5 = contents[0] + splitter + contents[1]
+      if timezone5[:3] in ["gmt","utc"] and timezone5[3] in ["-", "+"] and contents[1].isdigit():
+        timezone5 = "GMT" + timezone5[3:]
+        timezone1 = "Etc/" + timezone5
+      else:
+        timezone1 = "fuck"
       db = await aiosqlite.connect("timezone.sql")
       cursor = await db.execute("SELECT * FROM users WHERE userid = ?", (member.id,))
       rows = await cursor.fetchone()
