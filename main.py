@@ -388,7 +388,7 @@ async def unloadall(ctx):
 
 @client.check
 def blacklist(ctx):
-    return ctx.message.author.id != 706898741499789364
+    return ctx.message.author.id != 0
 for filename in os.listdir('./cogs'):
     try:
         if filename.endswith('.py'):
