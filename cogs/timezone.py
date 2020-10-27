@@ -76,7 +76,7 @@ class Timezone(commands.Cog, name = "Time"):
           except:
             await ctx.send(embed=embed)
       else:
-        if True:
+        try:
           timezone2 = pytz.timezone(timezone1)
           timezone2 = datetime.now(timezone2)
           timezone2 = timezone2.strftime('%Y-%m-%d %H:%M:%S %Z %z')
@@ -93,7 +93,7 @@ class Timezone(commands.Cog, name = "Time"):
           await db.close()
           embed1 = discord.Embed(title="Successfully set time to " + timezone2,timestamp=ctx.message.created_at,color=discord.Color.green())
           await msg.edit(embed=embed1)
-        else:
+        except:
           embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones. You can also use GMT/UTC offset by typing `gmt+0`, replaced with your GMT offset",color=discord.Color.red(),timestamp=ctx.message.created_at)
           try:
                 await msg.edit(embed=embed)
@@ -126,7 +126,7 @@ class Timezone(commands.Cog, name = "Time"):
           timezone2 = pytz.timezone(timezone1)
           timezone2 = datetime.now(timezone2)
           timezone2 = timezone2.strftime('%Y-%m-%d %H:%M:%S %Z %z')
-          embed1 = discord.Embed(title="Setting time to" + timezone2,timestamp=ctx.message.created_at)
+          embed1 = discord.Embed(title="Setting time to " + timezone2,timestamp=ctx.message.created_at)
           msg = await ctx.send(embed=embed1)
           db = await aiosqlite.connect("timezone.sql")
 
