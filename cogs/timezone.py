@@ -58,7 +58,7 @@ class Timezone(commands.Cog, name = "Time"):
           await db.close()
           await ctx.send("Success!")
         except:
-          embed = discord.Embed(title="Error",description="Invalid time zone",color=discord.Color.red(),timestamp=ctx.message.created_at)
+          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones",color=discord.Color.red(),timestamp=ctx.message.created_at)
           await ctx.send(embed=embed)
       else:
         try:
