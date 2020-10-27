@@ -212,7 +212,7 @@ class Timezone(commands.Cog, name = "Time"):
             currentzone = timezone2.strftime("%Z(UTC%z)")
             tzvar = rows[3]
             try:
-                splitter = tzvar[8]
+                splitter = tzvar[7]
                 if tzvar[:7].lower() == "etc/gmt":
                     asdf = tzvar.split(splitter)
                     splitter = "+" if splitter == "-" else "-"
