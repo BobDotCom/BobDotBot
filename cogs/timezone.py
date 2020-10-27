@@ -21,7 +21,13 @@ class Timezone(commands.Cog, name = "Time"):
         timezone TEXT
       );
       """
+      
       db = await aiosqlite.connect("timezone.sql")
+
+      cursor = await db.execute(create_users_table)
+      await cursor.close()
+      await db.close()
+      db = await aiosqlite.connect("timezone1.sql")
 
       cursor = await db.execute(create_users_table)
       await cursor.close()
@@ -159,6 +165,78 @@ class Timezone(commands.Cog, name = "Time"):
           rows = await cursor.fetchone()
           await cursor.close()
           cursor = await db.execute("UPDATE users SET timezone = ? WHERE userid = ?", (timezone1, member.id,))
+          await db.commit()
+          await cursor.close()
+          await db.close()
+          embed1 = discord.Embed(title="Successfully set time to " + timezone2,timestamp=ctx.message.created_at,color=discord.Color.green())
+          await msg.edit(embed=embed1)
+        except:
+          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones. You can also use GMT/UTC offset by typing `gmt+0`, replaced with your GMT offset",color=discord.Color.red(),timestamp=ctx.message.created_at)
+          try:
+                await msg.edit(embed=embed)
+          except:
+            await ctx.send(embed=embed)
+    @commands.command()
+    @commands.is_owner()
+    async def settimefor1(self,ctx,member: discord.Member,timezone1):
+      timezone5 = timezone1.lower()
+      splitter = timezone5[3]
+      contents = timezone5.split(splitter)
+      splitter = "+" if splitter == "-" else "-"
+      timezone5 = contents[0] + splitter + contents[1]
+      if timezone5[:3] in ["gmt","utc"] and timezone5[3] in ["-", "+"] and contents[1].isdigit():
+        timezone5 = "GMT" + timezone5[3:]
+        timezone1 = "Etc/" + timezone5
+      else:
+        timezone1 = "fuck"
+      db = await aiosqlite.connect("timezone.sql")
+      cursor = await db.execute("SELECT * FROM users WHERE userid = ?", (member.id,))
+      rows = await cursor.fetchone()
+      await cursor.close()
+      await db.close()
+      try:
+        timezone2 = pytz.timezone(rows[3])
+      except:
+        timezone2 = None
+      if not timezone2:
+        try:
+          timezone2 = pytz.timezone(timezone1)
+          timezone2 = datetime.now(timezone2)
+          timezone2 = timezone2.strftime('%Y-%m-%d %H:%M:%S %Z %z')
+          embed1 = discord.Embed(title="Setting time to " + timezone2,timestamp=ctx.message.created_at)
+          msg = await ctx.send(embed=embed1)
+          db = await aiosqlite.connect("timezone1.sql")
+
+          cursor = await db.execute("""
+          INSERT INTO
+            users (name, userid, timezone)
+          VALUES
+            (?, ?, ?);
+          """, (member.name,member.id,timezone1,))
+          await db.commit()
+          await cursor.close()
+          await db.close()
+          embed1 = discord.Embed(title="Successfully set time to " + timezone2,timestamp=ctx.message.created_at,color=discord.Color.green())
+          await msg.edit(embed=embed1)
+        except:
+          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones. You can also use GMT/UTC offset by typing `gmt+0`, replaced with your GMT offset",color=discord.Color.red(),timestamp=ctx.message.created_at)
+          try:
+                await msg.edit(embed=embed)
+          except:
+            await ctx.send(embed=embed)
+      else:
+        try:
+          timezone2 = pytz.timezone(timezone1)
+          timezone2 = datetime.now(timezone2)
+          timezone2 = timezone2.strftime('%Y-%m-%d %H:%M:%S %Z %z')
+          embed1 = discord.Embed(title="Setting time to " + timezone2,timestamp=ctx.message.created_at)
+          msg = await ctx.send(embed=embed1)
+          db = await aiosqlite.connect("timezone1.sql")
+          member = ctx.author if not member else member
+          cursor = await db.execute("SELECT * FROM users WHERE userid = ?", (member.id,))
+          rows = await cursor.fetchone()
+          await cursor.close()
+          cursor = await db.execute("UPDATE users SET timezone = {timezone1}")
           await db.commit()
           await cursor.close()
           await db.close()
