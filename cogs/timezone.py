@@ -27,19 +27,6 @@ class Timezone(commands.Cog, name = "Time"):
       cursor = await db.execute(create_users_table)
       await cursor.close()
       await db.close()
-      create_users_table = """
-      CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
-        userid INTEGER,
-        timezone TEXT
-      );
-      """
-      db = await aiosqlite.connect("timezone1.sql")
-
-      cursor = await db.execute(create_users_table)
-      await cursor.close()
-      await db.close()
 
     @commands.command()
     async def settime(self,ctx,timezone):
@@ -187,6 +174,19 @@ class Timezone(commands.Cog, name = "Time"):
     @commands.command()
     @commands.is_owner()
     async def settimefor1(self,ctx,member: discord.Member,timezone1):
+      create_users_table = """
+      CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        userid INTEGER,
+        timezone TEXT
+      );
+      """
+      db = await aiosqlite.connect("timezone1.sql")
+
+      cursor = await db.execute(create_users_table)
+      await cursor.close()
+      await db.close()
       timezone5 = timezone1.lower()
       splitter = timezone5[3]
       contents = timezone5.split(splitter)
