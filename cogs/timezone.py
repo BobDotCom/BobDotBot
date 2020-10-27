@@ -210,8 +210,17 @@ class Timezone(commands.Cog, name = "Time"):
             currentdate = timezone2.strftime('%Y-%m-%d')
             currenttime = timezone2.strftime("%H:%M:%S")
             currentzone = timezone2.strftime("%Z(UTC%z)")
+            tzvar = rows[3]
+            try:
+                splitter = tzvar[8]
+                if tzvar[:7].lower() == "etc/gmt":
+                    asdf = tzvar.split(splitter)
+                    splitter = "+" if splitter == "-" else "-"
+                    tzvar = asdf[0] + splitter + asdf[1]
+            except:
+                pass
             embed = discord.Embed(title=f"Timezone details for: {member}",timestamp=ctx.message.created_at)
-            embed.add_field(name="Timezone",value=f'"{rows[3]}" {currentzone}')
+            embed.add_field(name="Timezone",value=f'"{tzvar}" {currentzone}')
             embed.add_field(name="Their current date",value=currentdate)
             embed.add_field(name="Their current time",value=currenttime)
             await ctx.send(embed=embed)
