@@ -58,7 +58,7 @@ class Timezone(commands.Cog, name = "Time"):
           await db.close()
           await ctx.send("Success!")
         except:
-          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones",color=discord.Color.red(),timestamp=ctx.message.created_at)
+          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones. To use GMT offset, type `etc/gmt-5`, replaced with your GMT offset",color=discord.Color.red(),timestamp=ctx.message.created_at)
           await ctx.send(embed=embed)
       else:
         try:
@@ -77,7 +77,7 @@ class Timezone(commands.Cog, name = "Time"):
           await db.close()
           await ctx.send("success")
         except:
-          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones",color=discord.Color.red(),timestamp=ctx.message.created_at)
+          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones. To use GMT offset, type `etc/gmt-5`, replaced with your GMT offset",color=discord.Color.red(),timestamp=ctx.message.created_at)
           await ctx.send(embed=embed)
     @commands.command()
     @commands.is_owner()
@@ -110,7 +110,7 @@ class Timezone(commands.Cog, name = "Time"):
           await db.close()
           await ctx.send("Success!")
         except:
-          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones",color=discord.Color.red(),timestamp=ctx.message.created_at)
+          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones. To use GMT offset, type `etc/gmt-5`, replaced with your GMT offset",color=discord.Color.red(),timestamp=ctx.message.created_at)
           await ctx.send(embed=embed)
       else:
         try:
@@ -129,7 +129,7 @@ class Timezone(commands.Cog, name = "Time"):
           await db.close()
           await ctx.send("success")
         except:
-          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones",color=discord.Color.red(),timestamp=ctx.message.created_at)
+          embed = discord.Embed(title="Error",description="Invalid time zone. See [this list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) for valid time zones. To use GMT offset, type `etc/gmt-5`, replaced with your GMT offset",color=discord.Color.red(),timestamp=ctx.message.created_at)
           await ctx.send(embed=embed)
     @commands.command()
     @commands.is_owner()
