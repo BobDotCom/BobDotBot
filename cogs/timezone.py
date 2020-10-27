@@ -27,6 +27,14 @@ class Timezone(commands.Cog, name = "Time"):
       cursor = await db.execute(create_users_table)
       await cursor.close()
       await db.close()
+      create_users_table = """
+      CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        userid INTEGER,
+        timezone TEXT
+      );
+      """
       db = await aiosqlite.connect("timezone1.sql")
 
       cursor = await db.execute(create_users_table)
@@ -236,7 +244,7 @@ class Timezone(commands.Cog, name = "Time"):
           cursor = await db.execute("SELECT * FROM users WHERE userid = ?", (member.id,))
           rows = await cursor.fetchone()
           await cursor.close()
-          cursor = await db.execute("UPDATE users SET timezone = {timezone1}")
+          cursor = await db.execute(f"UPDATE users SET timezone = {timezone1}")
           await db.commit()
           await cursor.close()
           await db.close()
