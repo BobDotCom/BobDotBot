@@ -38,8 +38,6 @@ class Timezone(commands.Cog, name = "Time"):
       if timezone5[:3] in ["gmt","utc"] and timezone5[3] in ["-", "+"] and contents[1].isdigit():
         timezone5 = "GMT" + timezone5[3:]
         timezone1 = "Etc/" + timezone5
-      else:
-        timezone1 = "fuck"
       db = await aiosqlite.connect("timezone.sql")
       cursor = await db.execute("SELECT * FROM users WHERE userid = ?", (member.id,))
       rows = await cursor.fetchone()
