@@ -27,6 +27,18 @@ async def get_the_image(self, ctx, animal):
       embed.set_image(url=data)
     await ctx.send(embed=embed)
 
+async def get_animate(self, ctx, choice, member):
+    try:
+      data = await api.filter(choice,member.avatar_url)
+    except:
+      data = "None"
+    embed = discord.Embed(title=f"{choice}: {member}",timestamp=ctx.message.created_at)
+    if data != "None":
+      embed.set_image(url=data)
+    else:
+      embed.add_field(name="ERROR")
+    await ctx.send(embed=embed)
+    
 async def get_the_gif(self, ctx, option):
   try:
     data = await api.get_gif(option)
@@ -351,5 +363,11 @@ class FunCog(commands.Cog, name = "Fun"):
         asdf = await api.define(arg)
         embed=discord.Embed(title=asdf.word,description=asdf.definition,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
+        @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def triggered(self,ctx,member: discord.Member = None):
+      async with ctx.typing():
+        member = ctx.author if not member else member
+        await get_animate(self,ctx,"triggered",member)
 def setup(client):
     client.add_cog(FunCog(client))
