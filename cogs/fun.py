@@ -27,6 +27,21 @@ async def get_the_image(self, ctx, animal):
       embed.set_image(url=data)
     await ctx.send(embed=embed)
     
+async def get_thingy(self,ctx,type,member):
+        try:
+          gif = api.filter(type, member.avatar_url)
+          buf = BytesIO(await gif.read())
+          await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
+          worked = True
+        except: #HTTPError as error
+          try:
+            await ctx.send(f'Error: {error.code}, Reason:{error.reason}. API may be down')
+          except:
+            await ctx.send("error")
+        else:
+          if not worked:
+            await ctx.send('i am dead')
+    
 async def get_the_gif(self, ctx, option):
   try:
     data = await api.get_gif(option)
@@ -353,29 +368,18 @@ class FunCog(commands.Cog, name = "Fun"):
         await ctx.send(embed=embed)
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def triggered(self,ctx,member: discord.Member = None):
+    async def gay(self,ctx,member: discord.Member = None):
       async with ctx.typing():
         member = ctx.author if not member else member
-        await get_animate(self,ctx,"triggered",member)
+        await get_thingy(self,ctx,"gay",member)
         
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def triggered(self, ctx, *, member: discord.Member = None):
       async with ctx.typing():
         member = ctx.author if not member else member
-        try:
-          gif = api.filter("triggered", member.avatar_url)
-          buf = BytesIO(await gif.read())
-          await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
-          worked = True
-        except: #HTTPError as error
-          try:
-            await ctx.send(f'Error: {error.code}, Reason:{error.reason}. API may be down')
-          except:
-            await ctx.send("error")
-        else:
-          if not worked:
-            await ctx.send('i am dead')
+        await get_thingy(self,ctx,"triggered",member)
+        
 
 def setup(client):
     client.add_cog(FunCog(client))
