@@ -363,7 +363,7 @@ class FunCog(commands.Cog, name = "Fun"):
         asdf = await api.define(arg)
         embed=discord.Embed(title=asdf.word,description=asdf.definition,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
-        @commands.command()
+    @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def triggered(self,ctx,member: discord.Member = None):
       async with ctx.typing():
