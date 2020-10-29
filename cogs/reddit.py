@@ -27,7 +27,10 @@ async def getSub(self, ctx, subreddit):
             if subredditDict['url'] != "":
                 embed.set_image(url = subredditDict['url'])
             embed.set_footer(text=f"Upvotes: {subredditDict['ups']} | Author: {subredditDict['author']}")
-            await ctx.send(embed = embed)
+            if subredditDict['selftext'] != "&amp;#x200B;":
+                  await ctx.send(embed = embed)
+            else:
+                  await ctx.send("Annoying error with reddit being stupid please re use the command thanks")
       except:
         try: 
           return await ctx.send("_{}! ({})_".format(str(subredditDict['message']), str(subredditDict['error'])))
