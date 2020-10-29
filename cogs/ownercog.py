@@ -169,9 +169,9 @@ class OwnerCog(commands.Cog, name = "Owner"):
         embedvar = discord.Embed(title="Synced", description="Sync with the GitHub repository has completed, check the logs to make sure it worked", color=0x00ff00, timestamp=ctx.message.created_at)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         await msg.edit(embed=embedvar)
-    @commands.command(aliases=['pull'])
+    @commands.command()
     @commands.is_owner()
-    async def sync(self,ctx,member: discord.Member, times = None):
+    async def pings(self,ctx,member: discord.Member, times = None):
         times = 1 if not times else int(times)
         for i in range(times):
             await asyncio.sleep(1)
