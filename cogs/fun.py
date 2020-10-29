@@ -26,18 +26,6 @@ async def get_the_image(self, ctx, animal):
     if data != "None":
       embed.set_image(url=data)
     await ctx.send(embed=embed)
-
-async def get_animate(self, ctx, choice, member):
-    try:
-      data = await api.filter(choice,member.avatar_url)
-    except:
-      data = "None"
-    embed = discord.Embed(title=f"{choice}: {member}",timestamp=ctx.message.created_at)
-    if data != "None":
-      embed.set_image(url=data)
-    else:
-      embed.add_field(name="ERROR")
-    await ctx.send(embed=embed)
     
 async def get_the_gif(self, ctx, option):
   try:
@@ -369,5 +357,25 @@ class FunCog(commands.Cog, name = "Fun"):
       async with ctx.typing():
         member = ctx.author if not member else member
         await get_animate(self,ctx,"triggered",member)
+        
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def triggered(self, ctx, *, member: discord.Member = None):
+      async with ctx.typing():
+        member = ctx.author if not member else member
+        try:
+          gif = api.filter("triggered", member.avatar_url)
+          buf = BytesIO(await gif.read())
+          await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
+          worked = True
+        except: #HTTPError as error
+          try:
+            await ctx.send(f'Error: {error.code}, Reason:{error.reason}. API may be down')
+          except:
+            await ctx.send("error")
+        else:
+          if not worked:
+            await ctx.send('i am dead')
+
 def setup(client):
     client.add_cog(FunCog(client))
