@@ -1,50 +1,42 @@
 import aiosqlite
 import discord
-import pytz
 from datetime import datetime
 from discord.ext import commands
+cog_name = "Moderation" # change this if u want
 
-class Timezone(commands.Cog, name = "Time"):
-    """Time commands so ppl can stalk you"""
+class Moderation(commands.Cog, name = cog_name):
+    """Mod commands testing"""
 
     def __init__(self, client):
         self.client = client
 
     @commands.Cog.listener()
     async def on_ready():
-      print("TimeZoneCog is active")
+      print("ModCog is active")
       create_users_table = """
       CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL,
         userid INTEGER,
-        timezone TEXT
+        guildid INTEGER,
+        bantime INTEGER,
+        mutetime INTEGER
       );
       """
       
-      db = await aiosqlite.connect("timezone.sql")
+      db = await aiosqlite.connect("punishments.sql")
 
       cursor = await db.execute(create_users_table)
       await cursor.close()
       await db.close()
 
     @commands.command()
-    async def settime(self,ctx,timezone):
-      member = ctx.author
-      timezone1 = timezone
-      timezone5 = timezone1.lower()
-      splitter = timezone5[3]
-      contents = timezone5.split(splitter)
-      splitter = "+" if splitter == "-" else "-"
-      timezone5 = contents[0] + splitter + contents[1]
-      if timezone5[:3] in ["gmt","utc"] and timezone5[3] in ["-", "+"] and contents[1].isdigit():
-        timezone5 = "GMT" + timezone5[3:]
-        timezone1 = "Etc/" + timezone5
-      db = await aiosqlite.connect("timezone.sql")
-      cursor = await db.execute("SELECT * FROM users WHERE userid = ?", (member.id,))
-      rows = await cursor.fetchone()
-      await cursor.close()
-      await db.close()
+    async def mute(self,ctx,member: discord.Member,*,time = None):
+      if not time:
+          db = await aiosqlite.connect("timezone.sql")
+          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
+          rows = await cursor.fetchone()
+          await cursor.close()
+          await db.close()
       try:
         timezone2 = pytz.timezone(rows[3])
       except:
@@ -228,4 +220,4 @@ class Timezone(commands.Cog, name = "Time"):
 
 
 def setup(client):
-    client.add_cog(Timezone(client))
+    client.add_cog(Moderation(client))
