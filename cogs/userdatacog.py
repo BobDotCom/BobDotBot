@@ -171,7 +171,7 @@ class Levels(commands.Cog, name = "User database"):
               id = {the_id}
             """
             execute_query(connection, update_level)
-            if not message.guild.id == 336642139381301249 and not message.guild.id == 432915254922575873:
+            if not True:
                 msg = await message.channel.send(f"{message.author.mention} is now level {newlevel}!")
                 await asyncio.sleep(30)
                 await msg.delete()
