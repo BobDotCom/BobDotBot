@@ -156,23 +156,23 @@ async def on_message(message):
 async def on_guild_join(guild):
 	guild_count = 0
 	users = 0
-	Data.server_data[str(guild.id)]["welcome_msg"] = ""
-	Data.server_data[str(guild.id)]["leave_msg"] = ""
+	#Data.server_data[str(guild.id)]["welcome_msg"] = ""
+	#Data.server_data[str(guild.id)]["leave_msg"] = ""
 	with open('prefixes.json', 'r') as f:
 		prefixes = json.load(f)
 	prefixes[str(guild.id)] = ['B.', 'b.']
 	with open('prefixes.json', 'w') as f:
 		json.dump(prefixes, f, indent=4)
-	for guild in client.guilds:
-		# prints guild name
+	#for guild in client.guilds:
+	# prints guild name
 
-		# guild counter
-		guild_count = guild_count + 1
-		for member in guild.members:
-			users = users + 1
+	# guild counter
+	#guild_count = guild_count + 1
+	#for member in guild.members:
+	#users = users + 1
 
 	# prints amount of servers
-	print("BobDotBot is now in " + str(guild_count) + " guilds.")
+	#print("BobDotBot is now in " + str(guild_count) + " guilds.")
 	#await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
 
 @loop(seconds=0)
