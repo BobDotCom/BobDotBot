@@ -29,7 +29,11 @@ def get_prefix(client, message):
 		return ['B!', 'b!']
 	with open('prefixes.json', 'r') as f:
 		prefixes = json.load(f)
-	return prefixes[str(message.guild.id)]
+	try:
+		x = prefixes[str(message.guild.id)]
+	except:
+		x = ["B.","b."]
+	return x
 def get_logs(client, message):
 	if not message.guild:
 		return ["None"]
