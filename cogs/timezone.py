@@ -11,7 +11,7 @@ class Timezone(commands.Cog, name = "Time"):
         self.client = client
 
     @commands.Cog.listener()
-    async def on_ready():
+    async def on_ready(self):
       print("TimeZoneCog is active")
       create_users_table = """
       CREATE TABLE IF NOT EXISTS users (
