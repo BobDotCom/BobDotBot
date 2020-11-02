@@ -73,7 +73,7 @@ class BotHelpPageSource(menus.ListPageSource):
     def __init__(self, help_command, commands):
         # entries = [(cog, len(sub)) for cog, sub in commands.items()]
         # entries.sort(key=lambda t: (t[0].qualified_name, t[1]), reverse=True)
-        super().__init__(entries=sorted(commands.keys(), key=lambda c: c.qualified_name), per_page=6)
+        super().__init__(entries=sorted(commands.keys(), key=lambda c: c.qualified_name), per_page=3)
         self.commands = commands
         self.help_command = help_command
         self.prefix = help_command.clean_prefix
