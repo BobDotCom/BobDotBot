@@ -45,8 +45,6 @@ class Moderator(commands.Cog):
             x = ' '.join(map(str, args))
             await member.edit(nick=f'{x}')
             await ctx.send(f'{member.name} has been changed to {x}')
-
-            await ctx.send(content=None, embed=embed)
           except:
             await ctx.send("I cant, stupid")
 
@@ -202,9 +200,9 @@ class Moderator(commands.Cog):
             except:
                 await ctx.send(f"Hmmm, I do not have permission to ban {member}, or that is not a valid member")
             try:
-                await members.send(f"You have been **banned** from **{ctx.guild}** server due to the following reason:\n**{reason}**")
+                await member.send(f"You have been **banned** from **{ctx.guild}** server due to the following reason:\n**{reason}**")
             except:
-                return
+                pass
 
     @commands.command(name="unban")
     @commands.has_guild_permissions(ban_members=True)
@@ -257,7 +255,7 @@ class Moderator(commands.Cog):
                     await ctx.send("Error, this person has a higher or equal role to you")
             except:
                 await ctx.send(f"Hmmm, I do not have permission to kick {member}, or that is not a valid member")
-            await user.send(f"You have been **kicked** from **{ctx.guild}** server due to the following reason:\n**{reason}**")
+            await member.send(f"You have been **kicked** from **{ctx.guild}** server due to the following reason:\n**{reason}**")
 
     @commands.command(name="lockchannel")
     @commands.has_guild_permissions(administrator=True)
