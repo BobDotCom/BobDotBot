@@ -1106,6 +1106,7 @@ class MainCog(commands.Cog, name = "General"):
       Uses `B.mystbin [\`\`\`][language]
       <code>[\`\`\`]`
       Note: Arguments in brackets [] are optional"""
+      code = code.content if code else None
       if len(ctx.message.attachments) != 0:
         for attachment in ctx.message.attachments:
             print(attachment.filename)
