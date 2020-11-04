@@ -33,6 +33,7 @@ import itertools
 from typing import Union
 from datetime import datetime
 from discord.ext.commands import MissingPermissions
+from jishaku.codeblocks import codeblock_converter
 from discord.ext import menus
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
@@ -1100,17 +1101,11 @@ class MainCog(commands.Cog, name = "General"):
         await ctx.send(embed=aembed)
     @commands.command(name="mystbin",aliases=["mb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def mystbin(self,ctx,*,code = None):
+    async def mystbin(self,ctx,*,code: codeblock_converter = None):
       """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future.
       Uses `B.mystbin [\`\`\`][language]
       <code>[\`\`\`]`
       Note: Arguments in brackets [] are optional"""
-      if code:
-        code = code.strip("```")
-        code = code.strip("py")
-        code = code.strip("python")
-        code = code.strip("js")
-        code = code.encode('utf-8')
       if len(ctx.message.attachments) != 0:
         for attachment in ctx.message.attachments:
             print(attachment.filename)
