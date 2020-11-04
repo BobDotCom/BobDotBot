@@ -287,6 +287,7 @@ class MainCog(commands.Cog, name = "General"):
     def __init__(self, client):
         self.client = client
         self.bot = client
+        self.session = aiohttp.ClientSession(loop=self.loop)
         self.client.uptime1 = datetime.utcnow()
         owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
