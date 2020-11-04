@@ -176,5 +176,12 @@ class OwnerCog(commands.Cog, name = "Owner"):
         for i in range(times):
             await asyncio.sleep(1)
             await ctx.send(member.mention)
+    @commands.command()
+    @commands.is_owner()
+    async def eval(self,ctx,*,code):
+        class arg:
+            content = code
+        py = _bot.get_command("jishaku python")
+        await _ctx.invoke(py,argument=arg)
 def setup(client):
     client.add_cog(OwnerCog(client))
