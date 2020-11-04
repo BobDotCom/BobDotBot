@@ -1,42 +1,21 @@
 # All 25 of the gay imports
 import discord
 import os
-import random
-import typing
 import asyncio
 import datetime
-import zlib
-import functools
-import io
 import time
 import sr_api
-import re
-import operator
 import json
-import pprint
+from termcolor import cprint
 import aiohttp
 from googleapiclient.discovery import build
-import binascii
-import sys
-import requests
 import sqlite3
 from dotenv import load_dotenv
 from sqlite3 import Error
-from termcolor import colored, cprint
 from humanize import precisedelta as nd
-from discord.ext.commands import Bot, BucketType
 from discord.ext import commands
 #from .otherscripts import cheks, formats, time
 from otherscripts.paginator import RoboPages
-from .utils import fuzzy
-from collections import OrderedDict, deque, Counter
-import copy
-import unicodedata
-import inspect
-import itertools
-from typing import Union
-from datetime import datetime
-from discord.ext.commands import MissingPermissions
 from jishaku.codeblocks import codeblock_converter
 from discord.ext import menus
 load_dotenv()
@@ -291,7 +270,6 @@ class MainCog(commands.Cog, name = "General"):
         self.client = client
         self.bot = client
         self.client.uptime1 = datetime.utcnow()
-        owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
         self.client.helper1_id = 716503311402008577
         self.client.helper2_id = 280667989370732545
