@@ -1,22 +1,9 @@
 # import stuff
-import discord
-
-# import stuff
-import os
-import json
-# import stuff
-import typing
 import asyncio
-import datetime
 import sqlite3
-import sys
-# import stuff
-from dotenv import load_dotenv
 from sqlite3 import Error
-from termcolor import colored, cprint
-from discord.ext.commands import Bot
+from termcolor import cprint
 from discord.ext import commands
-from datetime import datetime
 
 class Levels(commands.Cog, name = "User database"):
     """There are no commands in this category"""
