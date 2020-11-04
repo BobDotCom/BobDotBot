@@ -6,6 +6,7 @@ import typing
 import asyncio
 import datetime
 import functools
+import io
 import time
 import sr_api
 import re
