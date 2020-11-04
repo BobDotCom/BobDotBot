@@ -1177,5 +1177,88 @@ class MainCog(commands.Cog, name = "General"):
                     text = f"I couldn't find a rules channel, because this server does not have a rules channel set! Please ask an admin to set a rules channel in the community server settings, so I can be sure"
         embed = discord.Embed(title="Rules Channel", description=text,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
+    async def do_rtfm(self, ctx, key, obj):
+        page_types = {
+            'latest': 'https://discordpy.readthedocs.io/en/latest',
+            'latest-jp': 'https://discordpy.readthedocs.io/ja/latest',
+            'python': 'https://docs.python.org/3',
+            'python-jp': 'https://docs.python.org/ja/3',
+        }
+
+        if obj is None:
+            await ctx.send(page_types[key])
+            return
+
+        if not hasattr(self, '_rtfm_cache'):
+            await ctx.trigger_typing()
+            await self.build_rtfm_lookup_table(page_types)
+
+        obj = re.sub(r'^(?:discord\.(?:ext\.)?)?(?:commands\.)?(.+)', r'\1', obj)
+
+        if key.startswith('latest'):
+            # point the abc.Messageable types properly:
+            q = obj.lower()
+            for name in dir(discord.abc.Messageable):
+                if name[0] == '_':
+                    continue
+                if q == name:
+                    obj = f'abc.Messageable.{name}'
+                    break
+
+        cache = list(self._rtfm_cache[key].items())
+        def transform(tup):
+            return tup[0]
+
+        matches = fuzzy.finder(obj, cache, key=lambda t: t[0], lazy=False)[:8]
+
+        e = discord.Embed(colour=discord.Colour.blurple())
+        if len(matches) == 0:
+            return await ctx.send('Could not find anything. Sorry.')
+
+        e.description = '\n'.join(f'[`{key}`]({url})' for key, url in matches)
+        await ctx.send(embed=e)
+
+        if ctx.guild and ctx.guild.id in (DISCORD_API_ID, DISCORD_PY_GUILD):
+            query = 'INSERT INTO rtfm (user_id) VALUES ($1) ON CONFLICT (user_id) DO UPDATE SET count = rtfm.count + 1;'
+            await ctx.db.execute(query, ctx.author.id)
+
+    def transform_rtfm_language_key(self, ctx, prefix):
+        if ctx.guild is not None:
+            #                             日本語 category
+            if ctx.channel.category_id == 490287576670928914:
+                return prefix + '-jp'
+            #                    d.py unofficial JP
+            elif ctx.guild.id == 463986890190749698:
+                return prefix + '-jp'
+        return prefix
+
+    @commands.group(aliases=['rtfd'], invoke_without_command=True)
+    async def rtfm(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a discord.py entity.
+        Events, objects, and functions are all supported through a
+        a cruddy fuzzy algorithm.
+        """
+        key = self.transform_rtfm_language_key(ctx, 'latest')
+        await self.do_rtfm(ctx, key, obj)
+
+    @rtfm.command(name='jp')
+    async def rtfm_jp(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a discord.py entity (Japanese)."""
+        await self.do_rtfm(ctx, 'latest-jp', obj)
+
+    @rtfm.command(name='python', aliases=['py'])
+    async def rtfm_python(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a Python entity."""
+        key = self.transform_rtfm_language_key(ctx, 'python')
+        await self.do_rtfm(ctx, key, obj)
+
+    @rtfm.command(name='py-jp', aliases=['py-ja'])
+    async def rtfm_python_jp(self, ctx, *, obj: str = None):
+        """Gives you a documentation link for a Python entity (Japanese)."""
+        await self.do_rtfm(ctx, 'python-jp', obj)
+
+    async def _member_stats(self, ctx, member, total_uses):
+        e = discord.Embed(title='RTFM Stats')
+        e.set_author(name=str(member), icon_url=member.avatar_url)
 def setup(client):
     client.add_cog(MainCog(client))
