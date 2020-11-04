@@ -181,7 +181,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     async def eval(self,ctx,*,code):
         class arg:
             content = code
-        py = _bot.get_command("jishaku python")
-        await _ctx.invoke(py,argument=arg)
+        py = client.get_command("jishaku python")
+        await ctx.invoke(py,argument=arg)
 def setup(client):
     client.add_cog(OwnerCog(client))
