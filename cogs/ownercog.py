@@ -1,19 +1,8 @@
 # import stuff
 import discord
-
-# import stuff
-import os
-
-# import stuff
-import typing
 import asyncio
-import datetime
 import subprocess as sp
-# import stuff
-from dotenv import load_dotenv
-from discord.ext.commands import Bot
 from discord.ext import commands
-from datetime import datetime
 from jishaku.codeblocks import codeblock_converter
 
 class OwnerCog(commands.Cog, name = "Owner"):
