@@ -1,27 +1,13 @@
 # import stuff
 import discord
-
-# import stuff
-import os
-import json
-# import stuff
-import typing
-import asyncio
 import aiohttp
-import requests
-import datetime
-# import stuff
-from dotenv import load_dotenv
-from discord.ext.commands import Bot
 from discord.ext import commands
-from datetime import datetime
 
 class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     """Commands relating to the online sandbox game, Growtopia"""
 
     def __init__(self, client):
         self.client = client
-        owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
         self.url = "https://growtopiagame.com"
 
