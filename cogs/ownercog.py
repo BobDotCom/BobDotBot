@@ -178,10 +178,9 @@ class OwnerCog(commands.Cog, name = "Owner"):
             await ctx.send(member.mention)
     @commands.command()
     @commands.is_owner()
-    async def eval(self,ctx,*,code):
-        class arg:
-            content = code
-        py = self.client.get_command("jishaku python")
-        await ctx.invoke(py,argument=arg)
+    async def eval(self, ctx, *, code: str):
+        cog = self.bot.get_cog("Jishaku")
+        res = codeblock_converter(code)
+        await cog.jsk_python(ctx, argument=res)
 def setup(client):
     client.add_cog(OwnerCog(client))
