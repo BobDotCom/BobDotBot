@@ -1,17 +1,8 @@
+# import stuff
 import discord
 from discord.ext import commands
-
 from otherscripts.data import Data
-# import stuff
-import os
 import json
-# import stuff
-import typing
-import asyncio
-import datetime
-# import stuff
-from dotenv import load_dotenv
-from datetime import datetime
 
 class Serversettings(commands.Cog, name = "Settings"):
     """Special commands that only administrators in the server can use"""
