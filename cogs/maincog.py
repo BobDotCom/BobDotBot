@@ -1191,7 +1191,6 @@ class MainCog(commands.Cog, name = "General"):
 
         if not hasattr(self, '_rtfm_cache'):
             await ctx.trigger_typing()
-            await self.build_rtfm_lookup_table(page_types)
 
         obj = re.sub(r'^(?:discord\.(?:ext\.)?)?(?:commands\.)?(.+)', r'\1', obj)
 
@@ -1217,10 +1216,6 @@ class MainCog(commands.Cog, name = "General"):
 
         e.description = '\n'.join(f'[`{key}`]({url})' for key, url in matches)
         await ctx.send(embed=e)
-
-        if ctx.guild and ctx.guild.id in (DISCORD_API_ID, DISCORD_PY_GUILD):
-            query = 'INSERT INTO rtfm (user_id) VALUES ($1) ON CONFLICT (user_id) DO UPDATE SET count = rtfm.count + 1;'
-            await ctx.db.execute(query, ctx.author.id)
 
     def transform_rtfm_language_key(self, ctx, prefix):
         if ctx.guild is not None:
