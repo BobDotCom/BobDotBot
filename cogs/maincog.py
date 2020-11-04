@@ -28,7 +28,7 @@ from discord.ext.commands import Bot, BucketType
 from discord.ext import commands
 #from .otherscripts import cheks, formats, time
 from otherscripts.paginator import RoboPages
-from .otherscripts import fuzzy
+from .utils import fuzzy
 from collections import OrderedDict, deque, Counter
 import copy
 import unicodedata
