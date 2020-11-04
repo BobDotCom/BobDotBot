@@ -1,14 +1,10 @@
 import sr_api
 import discord
-import datetime
 import asyncio
 import os
-import aiohttp
 from io import BytesIO
 from dotenv import load_dotenv
 from discord.ext import commands
-from discord.ext.commands import Bot, BucketType
-from aiohttp import request
 load_dotenv()
 SR_API_TOKEN = os.getenv("SR_API_TOKEN")
 api = sr_api.Client(SR_API_TOKEN)
@@ -34,13 +30,9 @@ async def get_thingy(self,ctx,type,member):
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
           worked = True
         except: #HTTPError as error
-          try:
-            await ctx.send(f'Error: {error.code}, Reason:{error.reason}. API may be down')
-          except:
-            await ctx.send("error")
-        else:
-          if not worked:
-            await ctx.send('i am dead')
+          await ctx.send("error")
+        if not worked:
+          await ctx.send('i am dead')
     
 async def get_the_gif(self, ctx, option):
   try:
@@ -70,13 +62,9 @@ class FunCog(commands.Cog, name = "Fun"):
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
           worked = True
         except: #HTTPError as error
-          try:
-            await ctx.send(f'Error: {error.code}, Reason:{error.reason}. API may be down')
-          except:
-            await ctx.send("error")
-        else:
-          if not worked:
-            await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.(This could also mean that the website is down)')
+          await ctx.send("error")
+        if not worked:
+          await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.(This could also mean that the website is down)')
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -181,7 +169,7 @@ class FunCog(commands.Cog, name = "Fun"):
     
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    @commands.max_concurrency(1, per=BucketType.channel)
+    @commands.max_concurrency(1, per=commands.BucketType.channel)
     async def chatbot(self,ctx,*,chat = None):
       """Start a chat with a bot. Once you send your first message
       Uses `chatbot <chat>`
