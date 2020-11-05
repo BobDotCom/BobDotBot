@@ -177,12 +177,12 @@ class OwnerCog(commands.Cog, name = "Owner"):
         """Gets a markdown styled document for all of the commands and their categories and their help"""
         x = ""
         z = ""
-        for extension in client.extensions:
+        for extension in self.client.extensions:
           if extension.startswith("cogs."):
             try:
               y = extension[5:]
               y = y[0].upper() + y[1:]
-              asdf = client.get_cog(y)
+              asdf = self.client.get_cog(y)
               entries = asdf.get_commands()
               z += "\n### " + y + "\n#### " + asdf.description
               for a in entries:
