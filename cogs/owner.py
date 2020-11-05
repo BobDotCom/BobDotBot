@@ -1,6 +1,7 @@
 # import stuff
 import discord
 import asyncio
+import aiohttp
 import subprocess as sp
 from discord.ext import commands
 from jishaku.codeblocks import codeblock_converter
