@@ -1160,5 +1160,9 @@ class MainCog(commands.Cog, name = "General"):
                     text = f"I couldn't find a rules channel, because this server does not have a rules channel set! Please ask an admin to set a rules channel in the community server settings, so I can be sure"
         embed = discord.Embed(title="Rules Channel", description=text,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
+    @commands.command(name="github",aliases=["source","info"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def github(self,ctx):
+        await ctx.send("https://github.com/BobDotCom/BobDotBot")
 def setup(client):
     client.add_cog(MainCog(client))
