@@ -171,5 +171,29 @@ class OwnerCog(commands.Cog, name = "Owner"):
     async def eval(self, ctx, *, code: codeblock_converter):
         cog = self.client.get_cog("Jishaku")
         await cog.jsk_python(ctx, argument=code)
+    @commands.command()
+    @commands.is_owner()
+    async def markdown_all_commands(self, ctx):
+        """Gets a markdown styled document for all of the commands and their categories and their help"""
+        x = ""
+        z = ""
+        for extension in client.extensions:
+          if extension.startswith("cogs."):
+            try:
+              y = extension[5:]
+              y = y[0].upper() + y[1:]
+              asdf = client.get_cog(y)
+              entries = asdf.get_commands()
+              z += "\n### " + y + "\n#### " + asdf.description
+              for a in entries:
+                b = a.help if a.help else ""
+                z += "\n##### " + a.name + "\n" + b
+            except AttributeError:
+              continue
+        async with aiohttp.ClientSession() as cs:
+          async with cs.post('https://mystb.in/documents', data = z) as r:
+            res = await r.json()
+            key = res["key"]
+        await ctx.send(f"https://mystb.in/{key}")
 def setup(client):
     client.add_cog(OwnerCog(client))
