@@ -200,7 +200,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.is_owner()
     async def pip(self, ctx, *, code):
         cog = self.client.get_cog("Jishaku")
-        code = codeblock_converter("python3 -m pip install -U" + code)
+        code = codeblock_converter("python3 -m pip install -U " + code)
         await cog.jsk_shell(ctx, argument=code)
 def setup(client):
     client.add_cog(OwnerCog(client))
