@@ -209,7 +209,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
             f.close()
             #write
             f = open('requirements.txt','wb')
-            f.write(f'{message}\n{code}')
+            f.write(f'{message}\n{code}'.encode('utf-8'))
             f.close()
         else:
             await ctx.send("error")
