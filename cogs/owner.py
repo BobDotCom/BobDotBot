@@ -204,9 +204,13 @@ class OwnerCog(commands.Cog, name = "Owner"):
         await cog.jsk_shell(ctx, argument=codes)
         if True:
             #read
-            file1 = open("requirements.txt","a")#append mode 
-            file1.write("\n" + code) 
-            file1.close()
+            f = open('requirements.txt','r')
+            message = f.read()
+            f.close()
+            #write
+            f = open('requirements.txt','wb')
+            f.write(f'{message}\n{code}')
+            f.close()
         else:
             await ctx.send("error")
 def setup(client):
