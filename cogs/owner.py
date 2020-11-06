@@ -204,11 +204,11 @@ class OwnerCog(commands.Cog, name = "Owner"):
         await cog.jsk_shell(ctx, argument=codes)
         try:
             #read
-            f = open('requirements.txt','r')
+            f = open('/root/main-bot/requirements.txt','r')
             message = f.read()
             f.close()
             #write
-            f = open('requirements.txt','wb')
+            f = open('/root/main-bot/requirements.txt','wb')
             f.write(message + f'\n{code}')
             f.close()
         except:
