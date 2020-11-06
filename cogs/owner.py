@@ -200,8 +200,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.is_owner()
     async def pip(self, ctx, *, code):
         cog = self.client.get_cog("Jishaku")
-        code = codeblock_converter("python3 -m pip install -U " + code)
-        await cog.jsk_shell(ctx, argument=code)
+        codes = codeblock_converter("python3 -m pip install -U " + code)
+        await cog.jsk_shell(ctx, argument=codes)
         try:
             #read
             f = open('requirements.txt','r')
