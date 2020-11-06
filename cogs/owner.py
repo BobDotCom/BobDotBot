@@ -202,7 +202,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
         cog = self.client.get_cog("Jishaku")
         codes = codeblock_converter("python3 -m pip install -U " + code)
         await cog.jsk_shell(ctx, argument=codes)
-        try:
+        if True:
             #read
             f = open('/root/main-bot/requirements.txt','r')
             message = f.read()
@@ -211,7 +211,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
             f = open('/root/main-bot/requirements.txt','wb')
             f.write(message + f'\n{code}')
             f.close()
-        except:
+        else:
             await ctx.send("error")
 def setup(client):
     client.add_cog(OwnerCog(client))
