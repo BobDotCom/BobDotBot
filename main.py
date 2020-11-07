@@ -33,10 +33,10 @@ def get_prefix(client, message):
 		x = prefixes[str(message.guild.id)]
 	except:
 		x = ["B.","b."]
-  if not client.user.id == 745044803732897802:
+	if not client.user.id == 745044803732897802:
 	  return x
-  else:
-    return ['B,','b,','Bob,','bob,']
+	else:
+	  return ['B,','b,','Bob,','bob,']
 def get_logs(client, message):
 	if not message.guild:
 		return ["None"]
