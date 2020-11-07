@@ -42,6 +42,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.command(aliases=["wiki"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def gt_wiki(self,ctx,*,item):
+        item = item.replace(" ","_")
         url = "https://growtopia.fandom.com/wiki/"
         async with aiohttp.ClientSession() as cs:
             async with cs.get(url + item) as r:
