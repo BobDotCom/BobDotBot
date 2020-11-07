@@ -44,7 +44,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     async def gt_wiki(self,ctx,*,item):
         url = "https://growtopia.fandom.com/wiki/"
         async with aiohttp.ClientSession() as cs:
-            async with cs.get(url + 'Laser_Grid') as r:
+            async with cs.get(url + item) as r:
                 html = await r.text()
         s = html
 
