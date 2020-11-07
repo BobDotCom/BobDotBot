@@ -58,7 +58,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         for i in content.findAll("img"):
             x = x + ' ' +  i["src"]
         class html:
-          content = article
+          content = article[:-53]
           thumbnail = x
         embed = discord.Embed(title=item,description=html.content,timestamp=ctx.message.created_at)
         embed.set_thumbnail(url=html.thumbnail)
