@@ -39,6 +39,29 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
               data = data["online_user"]
         embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
         await ctx.send(embed=embed)
+    @commands.command(aliases=["wiki"])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def gt_wiki(self,ctx,*,item):
+        url = "https://growtopia.fandom.com/wiki/"
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get(url + 'Laser_Grid') as r:
+                html = await r.text()
+        s = html
 
+        # number of the line you want
+        line_number = 15
+
+        i = 0
+        line = ''
+        for c in s:
+           if i > line_number:
+             break
+           else:
+             if i == line_number-1 and c != '\n':
+               line += c
+             elif c == '\n':
+               i += 1
+        embed = discord.Embed(title="Wiki result for: " + item,description=line[61:-3],timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(GrowtopiaCog(client))
