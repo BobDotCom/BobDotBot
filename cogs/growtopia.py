@@ -2,6 +2,7 @@
 import discord
 import aiohttp
 from discord.ext import commands
+from bs4 import BeautifulSoup
 
 class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     """Commands relating to the online sandbox game, Growtopia"""
@@ -44,25 +45,24 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     async def gt_wiki(self,ctx,*,item):
         item = item.replace(" ","_")
         url = "https://growtopia.fandom.com/wiki/"
+        item = "Laser_Grid"
         async with aiohttp.ClientSession() as cs:
             async with cs.get(url + item) as r:
                 html = await r.text()
-        s = html
-
-        # number of the line you want
-        line_number = 15
-
-        i = 0
-        line = ''
-        for c in s:
-           if i > line_number:
-             break
-           else:
-             if i == line_number-1 and c != '\n':
-               line += c
-             elif c == '\n':
-               i += 1
-        embed = discord.Embed(title="Wiki result for: " + item,description=line[61:-3],timestamp=ctx.message.created_at)
+        soup = BeautifulSoup(html, 'html.parser')
+        content = soup.find('div', {"class": "gtw-card item-card"})
+        article = ''
+        for i in content.findAll('div',"card-text"):
+            article = article + ' ' +  i.text
+        content = soup.find('span', {"class": "growsprite"})
+        x = ''
+        for i in content.findAll("img"):
+            x = x + ' ' +  i["src"]
+        class html:
+          content = article
+          thumbnail = x
+        embed = discord.Embed(title=item,description=html.content,timestamp=ctx.message.created_at)
+        embed.set_thumbnail(url=html.thumbnail)
         await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(GrowtopiaCog(client))
