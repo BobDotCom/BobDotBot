@@ -56,6 +56,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
           article = article + ' ' +  i.text
         start = article.find("https://")
         item_link = article[start:]
+        await ctx.send(item_link)
         content = soup.find('span', {"class": "growsprite"})
         async with aiohttp.ClientSession() as cs:
             async with cs.get(item_link) as r:
