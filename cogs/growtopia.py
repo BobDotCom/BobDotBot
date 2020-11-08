@@ -55,11 +55,8 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         for i in content.findAll('article'):
           article = article + ' ' +  i.text
         start = article.find("https://")
-        items_link = article[start:]
-        await ctx.send(items_link)
-        
+        items_link = article[start:].replace("\n","")
         async with aiohttp.ClientSession() as cs:
-            await ctx.send(items_link)
             async with cs.get(url + "Dirt") as r:
                 html = await r.text()
         soup1 = BeautifulSoup(html, 'html.parser')
