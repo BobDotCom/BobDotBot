@@ -43,10 +43,22 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.command(aliases=["wiki"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def gt_wiki(self,ctx,*,item):
-        item = item.replace(" ","_")
+        item = item.replace(" ","+")
         url = "https://growtopia.fandom.com/wiki/"
+        search = "Special:Search?query=" + item
         async with aiohttp.ClientSession() as cs:
-            async with cs.get(url + item) as r:
+          async with cs.get(url + search) as r:
+            html = await r.text()
+        soup = BeautifulSoup(html, 'html.parser')
+        article = ''
+        content = soup.find('li', {"class": "unified-search__result"})
+        for i in content.findAll('article'):
+          article = article + ' ' +  i.text
+        start = article.find("https://")
+        item_link = article[start:]
+        content = soup.find('span', {"class": "growsprite"})
+        async with aiohttp.ClientSession() as cs:
+            async with cs.get(item_link) as r:
                 html = await r.text()
         soup = BeautifulSoup(html, 'html.parser')
         content = soup.find('div', {"class": "gtw-card item-card"})
