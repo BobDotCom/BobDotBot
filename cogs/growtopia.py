@@ -62,6 +62,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         soup1 = BeautifulSoup(html, 'html.parser')
         contents = soup1.find('div', {"class": "gtw-card item-card"})
         article = ''
+        article1 = ''
         for i in contents.findAll('div',"card-text"):
             article = article + ' ' +  i.text
         for i in contents.findAll('div',"card-header"):
