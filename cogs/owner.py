@@ -198,11 +198,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
         await ctx.send(f"https://mystb.in/{key}")
     @commands.command()
     @commands.is_owner()
-    async def pip(self, ctx, *, code):
-        cog = self.client.get_cog("Jishaku")
-        codes = codeblock_converter("python3 -m pip install -U " + code)
-        await cog.jsk_shell(ctx, argument=codes)
-        if True:
+    async def pip(self, ctx, *, code = None):
+        if code:
             #read
             f = open('requirements.txt','r')
             message = f.read()
@@ -211,7 +208,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
             f = open('requirements.txt','wb')
             f.write(f'{message}\n{code}'.encode('utf-8'))
             f.close()
-        else:
-            await ctx.send("error")
+        cog = self.client.get_cog("Jishaku")
+        codes = codeblock_converter("python3 -m pip install -r requirements.txt")
+        await cog.jsk_shell(ctx, argument=codes)
 def setup(client):
     client.add_cog(OwnerCog(client))
