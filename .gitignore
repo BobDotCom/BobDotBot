@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -134,4 +132,3 @@ dmypy.json
 *.db
 *.env
 Users.db
->>>>>>> 5c37bd60685a96c617e042b6f4e0ce23e85eac7c
