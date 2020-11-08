@@ -43,46 +43,47 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.command(aliases=["wiki","item"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def gt_wiki(self,ctx,*,item):
-        item = item.replace(" ","+")
-        url = "https://growtopia.fandom.com/wiki/"
-        search = "Special:Search?query=" + item
-        async with aiohttp.ClientSession() as cs:
-          async with cs.get(url + search) as r:
-            html = await r.text()
-        soup = BeautifulSoup(html, 'html.parser')
-        article = ''
-        content = soup.find('li', {"class": "unified-search__result"})
-        for i in content.findAll('article'):
-          article = article + ' ' +  i.text
-        start = article.find("https://")
-        items_link = article[start:].replace("\n","")
-        async with aiohttp.ClientSession() as cs:
-            async with cs.get(items_link) as r:
-                html = await r.text()
-        soup1 = BeautifulSoup(html, 'html.parser')
-        contents = soup1.find('div', {"class": "gtw-card item-card"})
-        article,article1,article2 = '','',''
-        for i in contents.findAll('div',"card-text"):
-            article = article + ' ' +  i.text
-        for i in contents.findAll('div',"card-header"):
-            article1 = article1 + ' ' +  i.text
-        for i in contents.findAll('table',"card-field"):
-            article2 = article2 + ' ' +  i.text
-        contents1 = soup1.find('span', {"class": "growsprite"})
-        x = ''
-        for i in contents1.findAll("img"):
-            x = x + ' ' +  i["src"]
-        class html:
-          content = article.replace("None None Red Yellow Green Aqua Blue Purple Charcoal","")
-          content = content.replace("None Red Yellow Green Aqua Blue Purple Charcoal","")
-          content1 = article1
-          thumbnail = x
-          field = article2
-          hits = article2.find("Hardness")
-        embed = discord.Embed(title=article1,description=html.content,timestamp=ctx.message.created_at)
-        embed.set_thumbnail(url=x)
-        embed.add_field(name="Hits",value=f"Normal: {html.field[html.hits + 9:html.hits + 10]} \nWith pickaxe: {html.field[html.hits + 16:html.hits + 17]}")
-        await ctx.send(embed=embed)
+        async with ctx.typing():
+            item = item.replace(" ","+")
+            url = "https://growtopia.fandom.com/wiki/"
+            search = "Special:Search?query=" + item
+            async with aiohttp.ClientSession() as cs:
+                async with cs.get(url + search) as r:
+                    html = await r.text()
+            soup = BeautifulSoup(html, 'html.parser')
+            article = ''
+            content = soup.find('li', {"class": "unified-search__result"})
+            for i in content.findAll('article'):
+                article = article + ' ' +  i.text
+            start = article.find("https://")
+            items_link = article[start:].replace("\n","")
+            async with aiohttp.ClientSession() as cs:
+                async with cs.get(items_link) as r:
+                    html = await r.text()
+            soup1 = BeautifulSoup(html, 'html.parser')
+            contents = soup1.find('div', {"class": "gtw-card item-card"})
+            article,article1,article2 = '','',''
+            for i in contents.findAll('div',"card-text"):
+                article = article + ' ' +  i.text
+            for i in contents.findAll('div',"card-header"):
+                article1 = article1 + ' ' +  i.text
+            for i in contents.findAll('table',"card-field"):
+                article2 = article2 + ' ' +  i.text
+            contents1 = soup1.find('span', {"class": "growsprite"})
+            x = ''
+            for i in contents1.findAll("img"):
+                x = x + ' ' +  i["src"]
+            class html:
+                content = article.replace("None None Red Yellow Green Aqua Blue Purple Charcoal","")
+                content = content.replace("None Red Yellow Green Aqua Blue Purple Charcoal","")
+                content1 = article1
+                thumbnail = x
+                field = article2
+                hits = article2.find("Hardness")
+            embed = discord.Embed(title=article1,description=html.content,timestamp=ctx.message.created_at)
+            embed.set_thumbnail(url=x)
+            embed.add_field(name="Hits",value=f"Normal: {html.field[html.hits + 9:html.hits + 10]} \nWith pickaxe: {html.field[html.hits + 16:html.hits + 17]}")
+            await ctx.send(embed=embed)
         
 def setup(client):
     client.add_cog(GrowtopiaCog(client))
