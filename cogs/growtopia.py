@@ -64,14 +64,17 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         article = ''
         for i in contents.findAll('div',"card-text"):
             article = article + ' ' +  i.text
+        for i in contents.findAll('div',"card-header"):
+            article1 = article1 + ' ' +  i.text
         contents1 = soup1.find('span', {"class": "growsprite"})
         x = ''
         for i in contents1.findAll("img"):
             x = x + ' ' +  i["src"]
         class html:
           content = article[:-53]
+          content1 = article1
           thumbnail = x
-        embed = discord.Embed(title=item,description=html.content,timestamp=ctx.message.created_at)
+        embed = discord.Embed(title=article1,description=html.content,timestamp=ctx.message.created_at)
         embed.set_thumbnail(url=html.thumbnail)
         await ctx.send(embed=embed)
 def setup(client):
