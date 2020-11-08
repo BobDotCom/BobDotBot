@@ -131,3 +131,4 @@ dmypy.json
 *.sql
 *.db
 *.env
+Users.db
