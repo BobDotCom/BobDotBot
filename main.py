@@ -51,6 +51,7 @@ client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
 client.owner_ids = {690420846774321221}
 client.load_extension("jishaku")
+client.case_insensitive = True
 client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
 logs = get_logs
