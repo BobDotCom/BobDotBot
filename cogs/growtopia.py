@@ -73,7 +73,9 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         for i in contents1.findAll("img"):
             x = x + ' ' +  i["src"]
         class html:
-          content = article[:-53]
+          content = article
+          #content = article.replace("None None Red Yellow Green Aqua Blue Purple Charcoal","")
+          #content = content.replace("None Red Yellow Green Aqua Blue Purple Charcoal","")
           content1 = article1
           thumbnail = x
           field = article2
