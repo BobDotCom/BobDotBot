@@ -40,7 +40,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
               data = data["online_user"]
         embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
         await ctx.send(embed=embed)
-    @commands.command(aliases=["wiki"])
+    @commands.command(aliases=["wiki","item"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def gt_wiki(self,ctx,*,item):
         item = item.replace(" ","+")
@@ -73,16 +73,16 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         for i in contents1.findAll("img"):
             x = x + ' ' +  i["src"]
         class html:
-          content = article
-          #content = article.replace("None None Red Yellow Green Aqua Blue Purple Charcoal","")
-          #content = content.replace("None Red Yellow Green Aqua Blue Purple Charcoal","")
+          content = article.replace("None None Red Yellow Green Aqua Blue Purple Charcoal","")
+          content = content.replace("None Red Yellow Green Aqua Blue Purple Charcoal","")
           content1 = article1
           thumbnail = x
           field = article2
           hits = article2.find("Hardness")
         embed = discord.Embed(title=article1,description=html.content,timestamp=ctx.message.created_at)
         embed.set_thumbnail(url=x)
-        embed.add_field(name="Hits",description=f"Normal: {html.field[html.hits + 9:html.hits + 10]} \nWith pickaxe: {html.field[html.hits + 16:html.hits + 17]}"
+        embed.add_field(name="Hits",value=f"Normal: {html.field[html.hits + 9:html.hits + 10]} \nWith pickaxe: {html.field[html.hits + 16:html.hits + 17]}")
         await ctx.send(embed=embed)
+        
 def setup(client):
     client.add_cog(GrowtopiaCog(client))
