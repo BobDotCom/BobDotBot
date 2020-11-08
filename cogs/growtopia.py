@@ -55,19 +55,20 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         for i in content.findAll('article'):
           article = article + ' ' +  i.text
         start = article.find("https://")
-        item_link = article[start:]
-        await ctx.send(item_link)
+        items_link = article[start:]
+        await ctx.send(items_link)
+        
         async with aiohttp.ClientSession() as cs:
-            async with cs.get(item_link) as r:
+            async with cs.get(f"{items_link}") as r:
                 html = await r.text()
-        soup = BeautifulSoup(html, 'html.parser')
-        content = soup.find('div', {"class": "gtw-card item-card"})
+        soup1 = BeautifulSoup(html, 'html.parser')
+        contents = soup1.find('div', {"class": "gtw-card item-card"})
         article = ''
-        for i in content.findAll('div',"card-text"):
+        for i in contents.findAll('div',"card-text"):
             article = article + ' ' +  i.text
-        content = soup.find('span', {"class": "growsprite"})
+        contents1 = soup1.find('span', {"class": "growsprite"})
         x = ''
-        for i in content.findAll("img"):
+        for i in contents1.findAll("img"):
             x = x + ' ' +  i["src"]
         class html:
           content = article[:-53]
