@@ -80,7 +80,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
           hits = article2.find("Hardness")
         embed = discord.Embed(title=article1,description=html.content,timestamp=ctx.message.created_at)
         embed.set_thumbnail(url=x)
+        embed.add_field(name="Hits",description=f"Normal: {html.field[html.hits + 9:html.hits + 10]} \nWith pickaxe: {html.field[html.hits + 16:html.hits + 17]}"
         await ctx.send(embed=embed)
-        await ctx.send(f"Hits: {html.field[html.hits + 9:html.hits + 10]}\nWith pickaxe: {html.field[html.hits + 16:html.hits + 17]}")
 def setup(client):
     client.add_cog(GrowtopiaCog(client))
