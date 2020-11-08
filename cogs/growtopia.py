@@ -59,6 +59,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         await ctx.send(items_link)
         
         async with aiohttp.ClientSession() as cs:
+            await ctx.send(items_link)
             async with cs.get(url + "Dirt") as r:
                 html = await r.text()
         soup1 = BeautifulSoup(html, 'html.parser')
