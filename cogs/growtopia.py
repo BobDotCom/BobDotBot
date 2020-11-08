@@ -59,7 +59,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         await ctx.send(items_link)
         
         async with aiohttp.ClientSession() as cs:
-            async with cs.get(f"{items_link}") as r:
+            async with cs.get(url + "Dirt") as r:
                 html = await r.text()
         soup1 = BeautifulSoup(html, 'html.parser')
         contents = soup1.find('div', {"class": "gtw-card item-card"})
