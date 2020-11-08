@@ -16,3 +16,4 @@ python-dotenv
 git+https://github.com/Rapptz/discord-ext-menus
 
 sympy
+beautifulsoup4
