@@ -213,15 +213,12 @@ class FunCog(commands.Cog, name = "Fun"):
                 try:
                   try:
                     data = await asyncio.wait_for(api.chatbot(source), timeout=5)
-                    embed = discord.Embed(title="Chatbot says:",description=data)
-                    embed.set_footer(text=f"Say cancel to exit - Timeout:45s - started at: {ctx.message.created_at}")
-                    await ctx.send(embed=embed)
                   except asyncio.TimeoutError:
                     await asyncio.sleep(5)
                     data = await asyncio.wait_for(api.chatbot(source), timeout=5)
-                    embed = discord.Embed(title="Chatbot says:",description=data)
-                    embed.set_footer(text=f"Say cancel to exit - Timeout:45s - started at: {ctx.message.created_at}")
-                    await ctx.send(embed=embed)
+                  embed = discord.Embed(title="Chatbot says:",description=data)
+                  embed.set_footer(text=f"Say cancel to exit - Timeout:45s - started at: {ctx.message.created_at}")
+                  await ctx.send(embed=embed)
                 except:
                   if errortimes <= 3:
                     await ctx.send("Error with Chatbot, please send another message. If this continues, it will automatically exit. Send cancel to cancel")
