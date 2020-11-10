@@ -248,7 +248,7 @@ async def on_member_join(member):
         server_wlcm_msg = data["welcome_msg"]
         server_wlcm_msg = server_wlcm_msg.replace(
             "{member_mention}", f"{member.mention}")
-	server_wlcm_msg = server_wlcm_msg.replace(
+        server_wlcm_msg = server_wlcm_msg.replace(
             "{member_count}", f"{len(member.guild.members)}")
         server_wlcm_msg = server_wlcm_msg.replace(
             "{server_name}", f"{member.guild.name}")
