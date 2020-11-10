@@ -247,7 +247,17 @@ async def on_member_join(member):
     else:
         server_wlcm_msg = data["welcome_msg"]
         server_wlcm_msg = server_wlcm_msg.replace(
-            "[mention]", f"{member.mention}")
+            "{member_mention}", f"{member.mention}")
+	server_wlcm_msg = server_wlcm_msg.replace(
+            "{member_count}", f"{len(member.guild.members)}")
+        server_wlcm_msg = server_wlcm_msg.replace(
+            "{server_name}", f"{member.guild.name}")
+        server_wlcm_msg = server_wlcm_msg.replace(
+            "{member}", f"{member}")
+        server_wlcm_msg = server_wlcm_msg.replace(
+            "{member_name}", f"{member.name}")
+        server_wlcm_msg = server_wlcm_msg.replace(
+            "{server_name}", f"{member.guild.name}")
 
     for channel in channels:
         if str(channel).find("welcome") != -1:
