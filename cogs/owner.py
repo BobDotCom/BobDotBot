@@ -213,7 +213,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
         await cog.jsk_shell(ctx, argument=codes)
     @commands.command()
     @commands.is_owner()
-    async def loopcommand(self, ctx, command, keyword = "f", times = 10, useable_by = "me"):
+    async def loopcommand(self, ctx, command, times = 10, keyword = "f", timeout = 15, useable_by = "me"):
         ph = self.client.get_command(command)
         for i in range(times):
           def check(m):
@@ -222,7 +222,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
             else:
                 return m.content == keyword and m.channel == ctx.channel
           
-          msg = await self.client.wait_for('message', check=check,timeout=15)
+          msg = await self.client.wait_for('message', check=check,timeout=timeout)
           await ctx.invoke(ph)
 def setup(client):
     client.add_cog(OwnerCog(client))
