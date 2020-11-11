@@ -15,7 +15,7 @@ async def getSub(self, ctx, subreddit):
           async with session.get(f"https://reddit.com/r/{subreddit}/hot.json?limit=50") as r:
             res = await r.json()
             s = ""
-            subredditDict = dict(res[randint(0,49)]['data']['children'][0]['data'])
+            subredditDict = dict(res['data']['children'][0]['data'])
             if subredditDict['over_18'] and not ctx.channel.is_nsfw():
                 embed = discord.Embed(title="Thats an NSFW subreddit!", description="To get an image from this subreddit, please use this command again in an NSFW channel", timestamp=ctx.message.created_at, color=discord.Color.red())
                 await ctx.send(embed=embed)
