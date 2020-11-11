@@ -159,7 +159,6 @@ class YTDLSource(discord.PCMVolumeTransformer):
                 if 0 < sel <= 10:
                     for key, value in info.items():
                         if key == 'entries':
-                            await ctx.send(value)
                             """data = value[sel - 1]"""
                             VId = asdf[sel - 1]
                             VUrl = 'https://www.youtube.com/watch?v=%s' % (VId)
