@@ -126,13 +126,15 @@ class YTDLSource(discord.PCMVolumeTransformer):
         cls.search["author"] = {'name': f'{ctx.author.name}', 'url': f'{ctx.author.avatar_url}', 'icon_url': f'{ctx.author.avatar_url}'}
         
         lst = []
-
+        x = 1
         for e in info['entries']:
             #lst.append(f'`{info["entries"].index(e) + 1}.` {e.get("title")} **[{YTDLSource.parse_duration(int(e.get("duration")))}]**\n')
             VId = e.get('id')
             VUrl = 'https://www.youtube.com/watch?v=%s' % (VId)
             #await ctx.send(info["entries"])
-            lst.append(f'`{e.index(e) + 1}.` [{e.get("title")}]({VUrl})\n')
+            #lst.append(f'`{info["entries"].index(e) + 1}.` [{e.get("title")}]({VUrl})\n')
+            lst.append(f'`{x}.` [{e.get("title")}]({VUrl})\n')
+            x += 1
 
         lst.append('\n**Type a number to make a choice, Type `cancel` to exit**')
         cls.search["description"] = "\n".join(lst)
