@@ -127,6 +127,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
         
         lst = []
         x = 1
+        asdf = []
         for e in info['entries']:
             #lst.append(f'`{info["entries"].index(e) + 1}.` {e.get("title")} **[{YTDLSource.parse_duration(int(e.get("duration")))}]**\n')
             VId = e.get('id')
@@ -134,6 +135,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
             #await ctx.send(info["entries"])
             #lst.append(f'`{info["entries"].index(e) + 1}.` [{e.get("title")}]({VUrl})\n')
             lst.append(f'`{x}.` [{e.get("title")}]({VUrl})\n')
+            asdf.append(VId)
             x += 1
 
         lst.append('\n**Type a number to make a choice, Type `cancel` to exit**')
@@ -159,7 +161,7 @@ class YTDLSource(discord.PCMVolumeTransformer):
                         if key == 'entries':
                             await ctx.send(value)
                             """data = value[sel - 1]"""
-                            VId = value[sel - 1]['id']
+                            VId = asdf[sel - 1]
                             VUrl = 'https://www.youtube.com/watch?v=%s' % (VId)
                             partial = functools.partial(cls.ytdl.extract_info, VUrl, download=False)
                             data = await loop.run_in_executor(None, partial)
