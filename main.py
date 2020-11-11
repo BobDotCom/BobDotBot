@@ -94,7 +94,8 @@ async def on_command_error(ctx, error):
 
 
   if isinstance(error, commands.CommandNotFound):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Sorry, {error}. Use my help command for a command list", icon_url=ctx.author.avatar_url))
+    if ctx.prefix.lower() != "bob ":
+      await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Sorry, {error}. Use my help command for a command list", icon_url=ctx.author.avatar_url))
 
   elif isinstance(error, commands.BadArgument):
     await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
