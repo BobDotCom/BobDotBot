@@ -211,5 +211,15 @@ class OwnerCog(commands.Cog, name = "Owner"):
         cog = self.client.get_cog("Jishaku")
         codes = codeblock_converter("python3 -m pip install -r requirements.txt")
         await cog.jsk_shell(ctx, argument=codes)
+    @commands.command()
+    @commands.is_owner()
+    async def loopcommand(self, ctx, command, keyword = None, times = 10):
+        ph = _bot.get_command(command)
+        for i in range(times):
+          def check(m):
+                    return m.content == keyword and m.channel == ctx.channel
+
+          msg = await client.wait_for('message', check=check,timeout=15)
+          await ctx.invoke(ph)
 def setup(client):
     client.add_cog(OwnerCog(client))
