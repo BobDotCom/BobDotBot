@@ -12,10 +12,10 @@ async def getSub(self, ctx, subreddit):
       if True:
         url = f"https://reddit.com/r/{subreddit}/random.json?limit=1"
         async with aiohttp.ClientSession() as session:
-          async with session.get(f"https://reddit.com/r/{subreddit}/random.json?limit=1") as r:
+          async with session.get(f"https://reddit.com/r/{subreddit}/hot.json?limit=1") as r:
             res = await r.json()
             s = ""
-            subredditDict = dict(res[0]['data']['children'][0]['data'])
+            subredditDict = dict(res['data']['children'][0]['data'])
             if subredditDict['over_18'] and not ctx.channel.is_nsfw():
                 embed = discord.Embed(title="Thats an NSFW subreddit!", description="To get an image from this subreddit, please use this command again in an NSFW channel", timestamp=ctx.message.created_at, color=discord.Color.red())
                 await ctx.send(embed=embed)
