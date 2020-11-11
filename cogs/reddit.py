@@ -9,7 +9,7 @@ acceptableImageFormats = [".png",".jpg",".jpeg",".gif",".gifv",".webm",".mp4","i
 memeHistory = deque()
 memeSubreddits = ["BikiniBottomTwitter", "memes", "2meirl4meirl", "deepfriedmemes", "MemeEconomy"]
 async def getSub(self, ctx, subreddit):
-      try:
+      if True:
         url = f"https://reddit.com/r/{subreddit}/random.json?limit=1"
         async with aiohttp.ClientSession() as session:
           async with session.get(f"https://reddit.com/r/{subreddit}/hot.json?limit=1") as r:
@@ -31,7 +31,7 @@ async def getSub(self, ctx, subreddit):
                   await ctx.send(embed = embed)
             else:
                   await ctx.send("Annoying error with reddit being stupid please re use the command thanks")
-      except:
+      else:
         try: 
           return await ctx.send("_{}! ({})_".format(str(subredditDict['message']), str(subredditDict['error'])))
         except:
