@@ -84,7 +84,7 @@ async def make_user(self,ctx,member):
     await db.close()
     await ctx.send("Success!")
 
-class Moderation(commands.Cog, name = cog_name):
+class Moderations(commands.Cog, name = cog_name):
     """Mod commands testing"""
 
     def __init__(self, client):
@@ -236,4 +236,4 @@ class Moderation(commands.Cog, name = cog_name):
               print("fail")
 
 def setup(client):
-    client.add_cog(Moderation(client))
+    client.add_cog(Moderations(client))
