@@ -217,16 +217,12 @@ class Moderation(commands.Cog, name = cog_name):
     async def unmute_members(self):
         await asyncio.sleep(5)
         db = await aiosqlite.connect("punishments.sql")
-        cursor = await db.execute("SELECT * FROM users WHERE mutetime != -1")
+        cursor = await db.execute("SELECT * FROM users WHERE mutetime > 0")
         rows = await cursor.fetchall()
         await cursor.close()
         await db.close()
-        print("here")
-        print(rows)
         for row in rows:
-          print("1")
           if datetime.datetime.utcfromtimestamp(row[4]) <= datetime.datetime.utcnow():
-            print("2")
             try:
               guild = self.client.get_guild(row[2])
               user = guild.get_member(row[1])
