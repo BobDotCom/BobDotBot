@@ -222,6 +222,7 @@ class Moderation(commands.Cog, name = cog_name):
         await cursor.close()
         await db.close()
         print("here")
+        print(rows)
         for row in rows:
           print("1")
           if datetime.datetime.utcfromtimestamp(row[4]) <= datetime.datetime.utcnow():
