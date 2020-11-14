@@ -168,6 +168,7 @@ class Moderation(commands.Cog, name = cog_name):
             await ctx.send(rows)
           else:
             await make_user(self,ctx,member)
+          db = await aiosqlite.connect("punishments.sql")
           cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (NextDay_Date.timestamp(), member.id, guild.id,))
           await db.commit()
           await cursor.close()
