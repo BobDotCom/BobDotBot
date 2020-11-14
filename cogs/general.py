@@ -270,7 +270,7 @@ class MainCog(commands.Cog, name = "General"):
     def __init__(self, client):
         self.client = client
         self.bot = client
-        self.deleted_messages = {}
+        self.client.sniper = {}
         self.client.uptime1 = datetime.utcnow()
         self.client.owner_id = 690420846774321221
         self.client.helper1_id = 716503311402008577
@@ -499,14 +499,14 @@ class MainCog(commands.Cog, name = "General"):
       channel = message.channel.id
       guild = message.guild.id
       try:
-        self.deleted_messages[guild][channel] = f"{message.author}: {message.content}"
+        self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
       except:
-        self.deleted_messages[guild] = {}
-        self.deleted_messages[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
+        self.client.sniper[guild] = {}
+        self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
     @commands.command()
     async def snipe(self,ctx):
       try:
-        x = self.deleted_messages[ctx.guild.id][ctx.channel.id]
+        x = self.client.sniper[ctx.guild.id][ctx.channel.id]
         title = x["author"]
         content = x["content"]
         avatar = x["avatar"]
