@@ -270,6 +270,7 @@ class MainCog(commands.Cog, name = "General"):
     def __init__(self, client):
         self.client = client
         self.bot = client
+        self.deleted_messages = {}
         self.client.uptime1 = datetime.utcnow()
         self.client.owner_id = 690420846774321221
         self.client.helper1_id = 716503311402008577
@@ -493,6 +494,29 @@ class MainCog(commands.Cog, name = "General"):
           elif str(reaction) == '✅' and user == owner:
             send_to = self.client.get_user(int(info2))
             await send_to.send("Your suggestion did not get approved")
+    @commands.Cog.listener()
+    async def on_message_delete(self,message):
+      channel = message.channel.id
+      guild = message.guild.id
+      try:
+        self.deleted_messages[guild][channel] = f"{message.author}: {message.content}"
+      except:
+        self.deleted_messages[guild] = {}
+        self.deleted_messages[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
+    @commands.command()
+    async def snipe(self,ctx):
+      try:
+        x = self.deleted_messages[ctx.guild.id][ctx.channel.id]
+        title = x["author"]
+        content = x["content"]
+        avatar = x["avatar"]
+      except:
+        title = None
+        content = "There is nothing to snipe!"
+      embed = discord.Embed(title="Sniped message content:",description=content,timestamp=ctx.message.created_at)
+      if title:
+        embed.set_author(name=title,icon_url=avatar)
+      await ctx.send(embed=embed)
     @commands.Cog.listener()
     async def on_raw_reaction_add(self,payload):
         if payload.message_id == 762754787602595840 and not payload.member.bot:
