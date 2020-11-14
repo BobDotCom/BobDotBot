@@ -17,25 +17,27 @@ async def mute_member(self,ctx,member,time):
         if h > f or ctx.guild.owner == ctx.author and not user == ctx.author:
           if user.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
             await ctx.send("This person has to not have the ban members permission.")
-            return
+            return False
         else:
           if user == ctx.author:
             await ctx.send("You can't mute yourself. -_-")
-            return
+            return False
           else:
             await ctx.send("Error, this person has a higher or equal role to you")
-            return
+            return False
     except:
-        return await ctx.send("error, please report this to the developer")
+        await ctx.send("error, please report this to the developer")
+        return False
     guild = ctx.guild
     mute_role = None
 
     for role in guild.roles:
-        if role.name.lower() == "muted":
+        if "muted" in role.name.lower():
             mute_role = role
             break
     if mute_role in user.roles:
         await ctx.send("This user is already muted.")
+        return False
     else:
         if not mute_role:
             await ctx.send("This server does not have a `Muted` Role. Creating one right now.")
@@ -47,6 +49,7 @@ async def mute_member(self,ctx,member,time):
             await ctx.send(f"User {user} has been muted! They cannot speak.")
         else:
             await user.add_roles(mute_role)
+        return True
 
 async def unmute_member(self,guild,user):
         """Unmute a member. This will remove all roles named muted from the member
@@ -137,8 +140,9 @@ async def mutes(self,ctx,member,time):
           await db.commit()
           await cursor.close()
           await db.close()
-          await mute_member(self,ctx,member,time)
-          await ctx.send(f"Successfully muted {member} for {time}")
+          y = await mute_member(self,ctx,member,time)
+          if y:
+            await ctx.send(f"Successfully muted {member} for {time}")
 
 class Moderation(commands.Cog, name = cog_name):
     """Mod commands testing"""
