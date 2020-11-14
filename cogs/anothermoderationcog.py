@@ -84,7 +84,7 @@ async def make_user(self,ctx,member):
     await db.close()
     await ctx.send("Success!")
 
-class Moderations(commands.Cog, name = cog_name):
+class Moderation(commands.Cog, name = cog_name):
     """Mod commands testing"""
 
     def __init__(self, client):
@@ -108,6 +108,7 @@ class Moderations(commands.Cog, name = cog_name):
       db = await aiosqlite.connect("punishments.sql")
 
       cursor = await db.execute(create_users_table)
+      await db.commit()
       await cursor.close()
       await db.close()
 
@@ -236,4 +237,4 @@ class Moderations(commands.Cog, name = cog_name):
               print("fail")
 
 def setup(client):
-    client.add_cog(Moderations(client))
+    client.add_cog(Moderation(client))
