@@ -3,8 +3,10 @@ import discord
 import datetime
 import asyncio
 from discord.ext import tasks, commands
+from humanize import precisedelta as pd
 from otherscripts.helpers import create_mute_role
 cog_name = "Moderation" # change this if u want
+
 
 async def mute_member(self,ctx,member,time):
     user = member
@@ -45,7 +47,6 @@ async def mute_member(self,ctx,member,time):
             await ctx.send(f"User {user} has been muted! They cannot speak.")
         else:
             await user.add_roles(mute_role)
-            await ctx.send(f"User {user} has been tempmuted! They cannot speak until that time is up.")
 
 async def unmute_member(self,guild,user):
         """Unmute a member. This will remove all roles named muted from the member
@@ -82,7 +83,62 @@ async def make_user(self,ctx,member):
     await db.commit()
     await cursor.close()
     await db.close()
-    await ctx.send("Success!")
+
+async def mutes(self,ctx,member,time):
+      if not time:
+          guild = ctx.guild
+          db = await aiosqlite.connect("punishments.sql")
+          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
+          rows = await cursor.fetchone()
+          await cursor.close()
+          await db.close()
+          if not rows:
+            await make_user(self,ctx,member)
+          db = await aiosqlite.connect("punishments.sql")
+          cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (-1, member.id, guild.id,))
+          await db.commit()
+          await cursor.close()
+          await db.close()
+          await mute_member(self,ctx,member,time)
+
+          # MUTE HERE
+
+      else:
+          guild = ctx.guild
+          timelist = time.split(" ")
+          oldtime = datetime.datetime.utcnow()
+          week,day,hour,minute = 0,0,0,0
+          if len(timelist) > 4:
+            return await ctx.send("Err")
+          for i in range(len(timelist)):
+            test_str = timelist[i].lower()
+            if "w" in test_str:
+              new_str = test_str.replace('w', '')
+              week += int(new_str)
+            elif "d" in test_str:
+              new_str = test_str.replace('d', '')
+              day += int(new_str)
+            elif "h" in test_str:
+              new_str = test_str.replace('h', '')
+              hour += int(new_str)
+            elif "m" in test_str:
+              new_str = test_str.replace('m', '')
+              minute += int(new_str)
+          NextDay_Date = oldtime + datetime.timedelta(weeks=week,days=day,hours=hour,minutes=minute)
+          db = await aiosqlite.connect("punishments.sql")
+          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
+          rows = await cursor.fetchone()
+          await cursor.close()
+          await db.close()
+          if not rows:
+            await make_user(self,ctx,member)
+          db = await aiosqlite.connect("punishments.sql")
+          cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (NextDay_Date.timestamp(), member.id, guild.id,))
+          await db.commit()
+          await cursor.close()
+          await db.close()
+          await mute_member(self,ctx,member,time)
+          await ctx.send(f"Successfully muted {member} for {time}")
 
 class Moderation(commands.Cog, name = cog_name):
     """Mod commands testing"""
@@ -111,70 +167,6 @@ class Moderation(commands.Cog, name = cog_name):
       await db.commit()
       await cursor.close()
       await db.close()
-
-    @commands.command()
-    @commands.is_owner()
-    async def mutes(self,ctx,member: discord.Member,*,time = None):
-      if not time:
-          guild = ctx.guild
-          db = await aiosqlite.connect("punishments.sql")
-          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
-          rows = await cursor.fetchone()
-          await cursor.close()
-          await db.close()
-          if rows:
-            await ctx.send(rows)
-          else:
-            await make_user(self,ctx,member)
-          cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (-1, member.id, guild.id,))
-          await db.commit()
-          await cursor.close()
-          await db.close()
-          await mute_member(self,ctx,member,time)
-          await ctx.send("success")
-
-          # MUTE HERE
-
-      else:
-          guild = ctx.guild
-          timelist = time.split(" ")
-          oldtime = datetime.datetime.utcnow()
-          week,day,hour,minute = 0,0,0,0
-          if len(timelist) > 4:
-            return await ctx.send("Err")
-          for i in range(len(timelist)):
-            test_str = timelist[i].lower()
-            if "w" in test_str:
-              new_str = test_str.replace('w', '')
-              week += int(new_str)
-            elif "d" in test_str:
-              new_str = test_str.replace('d', '')
-              day += int(new_str)
-            elif "h" in test_str:
-              new_str = test_str.replace('h', '')
-              hour += int(new_str)
-            elif "m" in test_str:
-              new_str = test_str.replace('m', '')
-              minute += int(new_str)
-          NextDay_Date = oldtime + datetime.timedelta(weeks=week,days=day,hours=hour,minutes=minute)
-          await ctx.send(NextDay_Date)
-          await ctx.send(timelist)
-          db = await aiosqlite.connect("punishments.sql")
-          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
-          rows = await cursor.fetchone()
-          await cursor.close()
-          await db.close()
-          if rows:
-            await ctx.send(rows)
-          else:
-            await make_user(self,ctx,member)
-          db = await aiosqlite.connect("punishments.sql")
-          cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (NextDay_Date.timestamp(), member.id, guild.id,))
-          await db.commit()
-          await cursor.close()
-          await db.close()
-          await mute_member(self,ctx,member,time)
-          await ctx.send("success")
 
     @commands.command(aliases=["strikes"])
     @commands.is_owner()

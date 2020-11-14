@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 from typing import Optional
 from otherscripts.helpers import create_mute_role
-
+from cogs.anothermoderationcog import mutes
 
 class Moderator(commands.Cog):
     """Special moderation commands for moderators in the server"""
@@ -73,79 +73,14 @@ class Moderator(commands.Cog):
 
     @commands.command(name="mute")
     @commands.has_guild_permissions(kick_members=True)
-    async def mute(self, ctx, user: discord.Member = None, time: str = None):
+    async def mute(self, ctx, user: discord.Member = None, time = None):
         """Mute a member in the server. If you already have a role named muted, it will use that. If not, it will make one for you.
         Uses: `B.mute <member> [time]`
         Note: Arguments in brackets[] are not required
         If a time is given, the user may remain muted for longer than that time if the bot is reloaded during that time. As the bot is still in development, this is very likely"""
         if user is None:
             await ctx.send("Insufficient arguments.")
-        if True:
-            try:
-                asdf = ctx.author
-                f = user.top_role
-                h = asdf.top_role
-                if h > f or ctx.guild.owner == ctx.author and not user == ctx.author:
-                  if user.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
-                    await ctx.send("This person has to not have the ban members permission.")
-                    return
-                else:
-                  if user == ctx.author:
-                    await ctx.send("You can't mute yourself. -_-")
-                    return
-                  else:
-                    await ctx.send("Error, this person has a higher or equal role to you")
-                    return
-            except:
-                return
-            guild = ctx.guild
-            mute_role = None
-
-            for role in guild.roles:
-                if role.name.lower() == "muted":
-                    mute_role = role
-                    break
-        if True:
-            if mute_role in user.roles:
-                await ctx.send("This user is already muted.")
-            else:
-                if not mute_role:
-                    await ctx.send("This server does not have a `Muted` Role. Creating one right now.")
-                    await ctx.send("This may take some time.")
-                    mute_role = await create_mute_role(guild)
-
-                if time is None:
-                    await user.add_roles(mute_role)
-                    await ctx.send(f"User {user} has been muted! They cannot speak.")
-                else:
-                    time_unit = None
-                    parsed_time = None
-
-                    if "s" in time:
-                        time_unit = "seconds"
-                        parsed_time = time[0:(len(time) - 1)]
-                    elif "m" in time:
-                        time_unit = "minutes"
-                        parsed_time = time[0:(len(time) - 1)]
-                    elif "h" in time:
-                        time_unit = "hours"
-                        parsed_time = time[0:(len(time) - 1)]
-                    else:
-                        time_unit = "minutes"  # default to minutes if user doesn't provide a time unit
-                        parsed_time = time[0:len(time)]
-
-                    await user.add_roles(mute_role)
-                    await ctx.send(f"User {user} has been muted for {parsed_time} {time_unit}! They cannot speak.")
-
-                    if time_unit == "seconds":
-                        await asyncio.sleep(int(parsed_time))
-                    elif time_unit == "minutes":
-                        await asyncio.sleep(int(parsed_time) * 60)
-                    elif time_unit == "hours":
-                        await asyncio.sleep(int(parsed_time) * 3600)
-
-                    await user.remove_roles(mute_role)
-                    await ctx.send(f"User {user} has been unmuted after {parsed_time} {time_unit}! They can speak now.")
+        await mutes(self,ctx,user,time)
 
     @commands.command(name="unmute")
     @commands.has_guild_permissions(kick_members=True)
