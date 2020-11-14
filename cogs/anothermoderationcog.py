@@ -126,7 +126,6 @@ class Moderation(commands.Cog, name = cog_name):
             await ctx.send(rows)
           else:
             await make_user(self,ctx,member)
-          db = await aiosqlite.connect("punishments.sql")
           cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (-1, member.id, guild.id,))
           await db.commit()
           await cursor.close()
@@ -161,6 +160,14 @@ class Moderation(commands.Cog, name = cog_name):
           await ctx.send(NextDay_Date)
           await ctx.send(timelist)
           db = await aiosqlite.connect("punishments.sql")
+          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
+          rows = await cursor.fetchone()
+          await cursor.close()
+          await db.close()
+          if rows:
+            await ctx.send(rows)
+          else:
+            await make_user(self,ctx,member)
           cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (NextDay_Date.timestamp(), member.id, guild.id,))
           await db.commit()
           await cursor.close()
