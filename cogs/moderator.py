@@ -73,14 +73,14 @@ class Moderator(commands.Cog):
 
     @commands.command(name="mute")
     @commands.has_guild_permissions(kick_members=True)
-    async def mute(self, ctx, user: discord.Member = None, time = None):
+    async def mute(self, ctx, user: discord.Member = None, time = None, *, reason = None):
         """Mute a member in the server. If you already have a role named muted, it will use that. If not, it will make one for you.
         Uses: `B.mute <member> [time]`
         Note: Arguments in brackets[] are not required
         If a time is given, the user may remain muted for longer than that time if the bot is reloaded during that time. As the bot is still in development, this is very likely"""
         if user is None:
             await ctx.send("Insufficient arguments.")
-        await mutes(self,ctx,user,time)
+        await mutes(self,ctx,user,time,reason)
 
     @commands.command(name="unmute")
     @commands.has_guild_permissions(kick_members=True)

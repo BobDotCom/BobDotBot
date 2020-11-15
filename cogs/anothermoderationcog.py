@@ -87,7 +87,7 @@ async def make_user(self,ctx,member):
     await cursor.close()
     await db.close()
 
-async def mutes(self,ctx,member,time):
+async def mutes(self,ctx,member,time,reason):
       if not time:
           guild = ctx.guild
           db = await aiosqlite.connect("punishments.sql")
@@ -103,6 +103,8 @@ async def mutes(self,ctx,member,time):
           await cursor.close()
           await db.close()
           await mute_member(self,ctx,member,time)
+          if reason:
+            await ctx.send(f"Reason: {reason}")
 
           # MUTE HERE
 
@@ -142,7 +144,7 @@ async def mutes(self,ctx,member,time):
           await db.close()
           y = await mute_member(self,ctx,member,time)
           if y:
-            await ctx.send(f"Successfully muted {member} for {time}")
+            await ctx.send(f"Successfully muted {member} for {time}. Reason: {reason}")
 
 class Moderation(commands.Cog, name = cog_name):
     """Mod commands testing"""
