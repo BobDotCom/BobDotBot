@@ -315,7 +315,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                           'port': 2333,
                           'rest_uri': 'http://45.76.248.11:2333',
                           'password': '.u6CB[6A*{-{S?8b',
-                          'identifier': 'MAIN',
+                          'identifier': 'root',
                           'region': 'us_central'
                           }}
 
