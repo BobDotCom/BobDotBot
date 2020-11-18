@@ -7,6 +7,7 @@ import math
 import random
 import re
 import typing
+import humanize
 import wavelink
 from discord.ext import commands, menus
 
