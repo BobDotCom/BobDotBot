@@ -224,5 +224,9 @@ class OwnerCog(commands.Cog, name = "Owner"):
           
           msg = await self.client.wait_for('message', check=check,timeout=timeout)
           await ctx.invoke(ph)
+    @commands.command()
+    @commands.is_owner()
+    async def blacklist(self,ctx,user_id):
+        open("blacklisted.json",'x')
 def setup(client):
     client.add_cog(OwnerCog(client))
