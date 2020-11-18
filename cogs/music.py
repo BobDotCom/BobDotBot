@@ -311,10 +311,10 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             for node in previous.values():
                 await node.destroy()
 
-        nodes = {'MAIN': {'host': 'x',
+        nodes = {'MAIN': {'host': '45.76.248.11',
                           'port': 2333,
-                          'rest_uri': 'http://x:2333',
-                          'password': 'yournodepassword',
+                          'rest_uri': 'http://45.76.248.11:2333',
+                          'password': '.u6CB[6A*{-{S?8b',
                           'identifier': 'MAIN',
                           'region': 'us_central'
                           }}
