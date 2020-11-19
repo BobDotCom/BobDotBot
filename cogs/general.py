@@ -683,6 +683,8 @@ class MainCog(commands.Cog, name = "General"):
     async def invite(self, ctx, bot: discord.Member = None, permissions = None):
         """Invite a bot to your server! Defaults to me, but you can mention another bot to get their invite too"""
         bot = bot or self.client.user
+        if not bot.bot:
+            return await ctx.send(embed=discord.Embed(color=discord.Color.red(),title="Error",description="That's not a bot, that's a user."))
         permissions = permissions or "none"
         permissions = permissions if permissions.lower() in ["normal","admin"] else "admin" if bot == self.client.user else "normal"
         permissions = 8 if permissions.lower() == "admin" else 0
