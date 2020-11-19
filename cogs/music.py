@@ -751,7 +751,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         await ctx.send(fmt)
     @commands.command(name='lyrics', aliases=['ly'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def _lyrics(self, ctx, *, title = None):
+    async def lyrics(self, ctx, *, title = None):
         """Get the lyrics to a song
         If a song is not specified, it will get the current song
         If the song is too long, it will send it as a file"""
@@ -785,7 +785,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
                     
     @commands.command(name='cancerlyrics', aliases=['cl'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def _cancerlyrics(self, ctx, *, title = None):
+    async def cancerlyrics(self, ctx, *, title = None):
         """Get the OwOified lyrics to a song
         If a song is not specified, it will get the current song
         If the song is too long, it will send it as a file"""
