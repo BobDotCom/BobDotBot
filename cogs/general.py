@@ -680,13 +680,13 @@ class MainCog(commands.Cog, name = "General"):
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def invite(self, ctx):
-        """Invite me to your own server!
-        Uses: `B.invite`"""
+    async def invite(self, ctx, bot: discord.Member = None, permissions = None):
+        """Invite a bot to your server! Defaults to me, but you can mention another bot to get their invite too"""
+        bot = bot or self.client.user
+        permissions = permissions.lower() if permissions.lower() in ["normal","admin"] else "admin" if bot == self.client.user else "normal"
+        permissions = 8 if permissions == "admin" else 0
         owner = self.client.get_user(self.client.owner_id)
-        embedvar = discord.Embed(title="Wow! I'm really that special?", timestamp=ctx.message.created_at, description="I have 2 different versions, here they are:")
-        embedvar.add_field(name="BobDotBot(Reccomended)", value="This bot is online almost 24/7, and the code works a lot better than alpha, though it still has lots of new features. [Click Here](https://discord.com/api/oauth2/authorize?client_id=746045299125911562&permissions=8&scope=bot)", inline=False)
-        embedvar.add_field(name="BobDotBot Alpha(Unstable)", value="This bot has code that updates as I write it, so it may be buggy. Only online part of the day.(You will have to request permission from the owner to invite this bot) [Click Here](https://discord.com/api/oauth2/authorize?client_id=745044803732897802&permissions=8&scope=bot)", inline=False)
+        embedvar = discord.Embed(title=f"Bot invite for: {bot.name}", timestamp=ctx.message.created_at, description=f"[Click Here]({str(discord.utils.oauth_url(bot.id, discord.Permissions(permissions=permissions), guild=ctx.guild))}")
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedvar)
 
