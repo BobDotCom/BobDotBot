@@ -765,7 +765,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if not title:
             track = player.lyrics()
             if track:
-                title = self.current.title
+                title = track.title
         lyrics = await api.get_lyrics(str(title))
         embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
         try:
@@ -800,7 +800,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         if not title:
             track = player.lyrics()
             if track:
-                title = self.current.title
+                title = track.title
         lyrics = await api.get_lyrics(title, owo=True)
         embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}(but its cancer)",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
         try:
