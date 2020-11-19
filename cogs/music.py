@@ -163,6 +163,12 @@ class Player(wavelink.Player):
             await self.destroy()
         except KeyError:
             pass
+    async def lyrics(self):
+        """returns current song name"""
+        track = self.current
+        if not track:
+            return
+        return track
 
 
 class InteractiveController(menus.Menu):
@@ -755,8 +761,9 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         """Get the lyrics to a song
         If a song is not specified, it will get the current song
         If the song is too long, it will send it as a file"""
+        player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
         if not title:
-            track = self.current
+            track = player.lyrics()
             if track:
                 title = self.current.title
         lyrics = await api.get_lyrics(str(title))
@@ -789,8 +796,9 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         """Get the OwOified lyrics to a song
         If a song is not specified, it will get the current song
         If the song is too long, it will send it as a file"""
+        player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
         if not title:
-            track = self.current
+            track = player.lyrics()
             if track:
                 title = self.current.title
         lyrics = await api.get_lyrics(title, owo=True)
