@@ -687,7 +687,7 @@ class MainCog(commands.Cog, name = "General"):
         permissions = permissions if permissions.lower() in ["normal","admin"] else "admin" if bot == self.client.user else "normal"
         permissions = 8 if permissions.lower() == "admin" else 0
         owner = self.client.get_user(self.client.owner_id)
-        embedvar = discord.Embed(title=f"Bot invite for: {bot.name}", timestamp=ctx.message.created_at, description=f"Link: [Click Here}({str(discord.utils.oauth_url(bot.id, discord.Permissions(permissions=permissions), guild=ctx.guild))})")
+        embedvar = discord.Embed(title=f"Bot invite for: {bot.name}", timestamp=ctx.message.created_at, description=f"Link: [Click Here]({str(discord.utils.oauth_url(bot.id, discord.Permissions(permissions=permissions), guild=ctx.guild))})")
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedvar)
 
