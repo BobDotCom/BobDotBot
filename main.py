@@ -33,7 +33,7 @@ def get_prefix(client, message):
 		x = prefixes[str(message.guild.id)]
 	except:
 		x = ["B.","b."]
-	if x = []:
+	if x == []:
 		x += ["B.","b.",]
 	if not client.user.id == 745044803732897802:
 		return commands.when_mentioned_or(*x)(client, message)
