@@ -9,6 +9,7 @@ import re
 import typing
 import os
 import humanize
+import sr_api
 import wavelink
 from discord.ext import commands, menus
 from dotenv import load_dotenv
