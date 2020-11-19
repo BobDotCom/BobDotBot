@@ -763,7 +763,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         If the song is too long, it will send it as a file"""
         player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
         if not title:
-            track = player.lyrics()
+            track = await player.lyrics()
             if track:
                 title = track.title
         lyrics = await api.get_lyrics(str(title))
@@ -798,7 +798,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         If the song is too long, it will send it as a file"""
         player: Player = self.bot.wavelink.get_player(guild_id=ctx.guild.id, cls=Player, context=ctx)
         if not title:
-            track = player.lyrics()
+            track = await player.lyrics()
             if track:
                 title = track.title
         lyrics = await api.get_lyrics(title, owo=True)
