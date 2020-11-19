@@ -146,10 +146,10 @@ async def on_message(message):
 	data = Data.server_data[str(message.guild.id)]
 	if client.user.mentioned_in(message):
             try:
-		if message.channel.last_message.author == client.user:
+                if message.channel.last_message.author == client.user:
                     return
             except:
-		pass
+                pass
             if not message.mention_everyone:
                 with open("prefixes.json","r") as f:
                     prefixes = json.load(f)
