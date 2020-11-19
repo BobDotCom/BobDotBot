@@ -36,10 +36,10 @@ def get_prefix(client, message):
 	if x = []:
 		x += ["B.","b.",]
 	if not client.user.id == 745044803732897802:
-		return commands.when_mentioned_or(*x)(bot, message)
+		return commands.when_mentioned_or(*x)(client, message)
 	else:
 		y = ['B,','b,','Bob,','bob,']
-		return commands.when_mentioned_or(*y)(bot, message)
+		return commands.when_mentioned_or(*y)(client, message)
 def get_logs(client, message):
 	if not message.guild:
 		return ["None"]
