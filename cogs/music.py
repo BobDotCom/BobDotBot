@@ -10,6 +10,10 @@ import typing
 import humanize
 import wavelink
 from discord.ext import commands, menus
+from dotenv import load_dotenv
+load_dotenv()
+SR_API_TOKEN = os.getenv("SR_API_TOKEN")
+api = sr_api.Client(SR_API_TOKEN)
 
 # URL matching REGEX...
 URL_REG = re.compile(r'https?://(?:www\.)?.+')
@@ -743,7 +747,73 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
               f'Server CPU: `{cpu}`\n\n' \
               f'Server Uptime: `{datetime.timedelta(milliseconds=node.stats.uptime)}`'
         await ctx.send(fmt)
-            
-
+    @commands.command(name='lyrics', aliases=['ly'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def _lyrics(self, ctx, *, title = None):
+        """Get the lyrics to a song
+        If a song is not specified, it will get the current song
+        If the song is too long, it will send it as a file"""
+        if not title:
+            track = self.current
+            if track:
+                title = self.current.title
+        lyrics = await api.get_lyrics(str(title))
+        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
+        try:
+            try:
+                embed.set_thumbnail(url=lyrics.thumbnail)
+                await ctx.send(embed=embed)
+            except:
+                await ctx.send(embed=embed)
+        except:
+            try:
+                await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
+                if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
+                    lyrics.save()
+                    with open(f"{lyrics.title}.txt") as fp:
+                        await ctx.send(file=discord.File(fp))
+                    os.remove(f"{lyrics.title}.txt")
+            except:
+                try:
+                    if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
+                        os.remove(f"{lyrics.title}.txt")
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
+                except:
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
+                    
+    @commands.command(name='cancerlyrics', aliases=['cl'])
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def _cancerlyrics(self, ctx, *, title = None):
+        """Get the OwOified lyrics to a song
+        If a song is not specified, it will get the current song
+        If the song is too long, it will send it as a file"""
+        if not title:
+            track = self.current
+            if track:
+                title = self.current.title
+        lyrics = await api.get_lyrics(title, owo=True)
+        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}(but its cancer)",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
+        try:
+            try:
+                embed.set_thumbnail(url=lyrics.thumbnail)
+                await ctx.send(embed=embed)
+            except:
+                await ctx.send(embed=embed)
+        except:
+            try:
+                await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
+                if lyrics.title not in ["requirements", "runtime", "main"]:
+                    lyrics.save()
+                    with open(f"{lyrics.title}.txt") as fp:
+                        await ctx.send(file=discord.File(fp))
+                    os.remove(f"{lyrics.title}.txt")
+            except:
+                try:
+                    if lyrics.title not in ["requirements", "runtime", "main"]:
+                        os.remove(f"{lyrics.title}.txt")
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
+                except:
+                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
+                    
 def setup(bot: commands.Bot):
     bot.add_cog(Music(bot))
