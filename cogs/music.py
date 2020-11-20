@@ -22,9 +22,13 @@ class MySource(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
-        embed = discord.Embed(title=f'{menu.current_page + 1}/{menu._source.get_max_pages()}')
-        embed.add_field(name=f'content of {menu.current_page + 1}' ,value=entries.content)
-        return embed
+        embed = discord.Embed(title=f"Lyrics for {entries.title}",description=f"Page: {menu.current_page + 1}/{menu._source.get_max_pages()}",url=entries.link,timestamp=ctx.message.created_at)
+        embed.add_field(name=f'{entries.title} - {entries.author}' ,value=entries.content)
+        try:
+            embed.set_thumbnail(url=lyrics.thumbnail)
+            return embed
+        except:
+            return embed
 # URL matching REGEX...
 URL_REG = re.compile(r'https?://(?:www\.)?.+')
 
@@ -799,29 +803,6 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
           final += [asdf,]
         pages = menus.MenuPages(source=MySource(final), clear_reactions_after=True)
         await pages.start(ctx)
-        return
-        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
-        try:
-            try:
-                embed.set_thumbnail(url=lyrics.thumbnail)
-                await ctx.send(embed=embed)
-            except:
-                await ctx.send(embed=embed)
-        except:
-            try:
-                await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
-                if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
-                    lyrics.save()
-                    with open(f"{lyrics.title}.txt") as fp:
-                        await ctx.send(file=discord.File(fp))
-                    os.remove(f"{lyrics.title}.txt")
-            except:
-                try:
-                    if lyrics.title != "requirements" and lyrics.title != "runtime" and lyrics.title != "main":
-                        os.remove(f"{lyrics.title}.txt")
-                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
-                except:
-                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
                     
     @commands.command(name='cancerlyrics', aliases=['cl'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
