@@ -22,7 +22,7 @@ class MySource(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         #entries will be each element of your passed list.
-        embed = discord.Embed(title=f"Lyrics for {entries.title}",description=f"Page: {menu.current_page + 1}/{menu._source.get_max_pages()}",url=entries.link,timestamp=ctx.message.created_at)
+        embed = discord.Embed(title=f"Lyrics for {entries.title}",description=f"Page: {menu.current_page + 1}/{menu._source.get_max_pages()}",url=entries.link)
         embed.add_field(name=f'{entries.title} - {entries.author}' ,value=entries.content)
         try:
             embed.set_thumbnail(url=lyrics.thumbnail)
