@@ -16,7 +16,15 @@ from dotenv import load_dotenv
 load_dotenv()
 SR_API_TOKEN = os.getenv("SR_API_TOKEN")
 api = sr_api.Client(SR_API_TOKEN)
+class MySource(menus.ListPageSource):
+    def __init__(self, data):
+        super().__init__(data, per_page=1)
 
+    async def format_page(self, menu, entries):
+        #entries will be each element of your passed list.
+        embed = discord.Embed(title=f'{menu.current_page + 1}/{menu._source.get_max_pages()}')
+        embed.add_field(name=f'content of {menu.current_page + 1}' ,value=entries.content)
+        return embed
 # URL matching REGEX...
 URL_REG = re.compile(r'https?://(?:www\.)?.+')
 
@@ -766,7 +774,32 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             track = await player.lyrics()
             if track:
                 title = track.title
-        lyrics = await api.get_lyrics(str(title))
+        lyric = await api.get_lyrics(str(title))
+        lyrics = lyric.lyrics
+        entries=lyrics.splitlines()
+        x = []
+        current_string = ''
+        for entry in entries:
+          if len(current_string) < 900:
+            current_string += "\n" + entry
+          else:
+            x += [current_string,]
+            current_string = ''
+        if not current_string == '':
+          x += [current_string,]
+        x[-1] += '\n' + entries[-1]
+        final = []
+        for y in x:
+          class asdf:
+            title = lyric.title
+            author = lyric.author
+            picture = lyric.thumbnail
+            link = lyric.link
+            content = y
+          final += asdf
+        pages = menus.MenuPages(source=MySource(final), clear_reactions_after=True)
+        await pages.start(ctx)
+        return
         embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
         try:
             try:
