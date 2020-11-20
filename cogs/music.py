@@ -796,7 +796,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             picture = lyric.thumbnail
             link = lyric.link
             content = y
-          final += asdf
+          final += [asdf,]
         pages = menus.MenuPages(source=MySource(final), clear_reactions_after=True)
         await pages.start(ctx)
         return
