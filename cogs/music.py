@@ -25,7 +25,7 @@ class MySource(menus.ListPageSource):
         embed = discord.Embed(title=f"Lyrics for {entries.title}",description=f"Page: {menu.current_page + 1}/{menu._source.get_max_pages()}",url=entries.link)
         embed.add_field(name=f'{entries.title} - {entries.author}' ,value=entries.content)
         try:
-            embed.set_thumbnail(url=entries.thumbnail)
+            embed.set_thumbnail(url=entries.picture)
             return embed
         except:
             return embed
