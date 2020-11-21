@@ -48,13 +48,12 @@ def get_logs(client, message):
 	return logs[str(message.guild.id)]
 
 intents = discord.Intents.all()
-client = commands.Bot(command_prefix=get_prefix,intents=intents,embed_color = discord.Color.blurple())
+client = commands.Bot(command_prefix=get_prefix,intents=intents,embed_color = discord.Color.blurple(),case_insensitive = True)
 #client.remove_command('help')
 client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
 client.owner_ids = {690420846774321221}
 client.load_extension("jishaku")
-client.case_insensitive = True
 client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
 logs = get_logs
