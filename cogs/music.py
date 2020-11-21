@@ -815,29 +815,31 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
             track = await player.lyrics()
             if track:
                 title = track.title
-        lyrics = await api.get_lyrics(title, owo=True)
-        embed = discord.Embed(title=f"{lyrics.title} - {lyrics.author}(but its cancer)",description=lyrics.lyrics,url=lyrics.link,timestamp=ctx.message.created_at)
-        try:
-            try:
-                embed.set_thumbnail(url=lyrics.thumbnail)
-                await ctx.send(embed=embed)
-            except:
-                await ctx.send(embed=embed)
-        except:
-            try:
-                await ctx.send("I tried to send an embed, but it was too long. Here is the text file.")
-                if lyrics.title not in ["requirements", "runtime", "main"]:
-                    lyrics.save()
-                    with open(f"{lyrics.title}.txt") as fp:
-                        await ctx.send(file=discord.File(fp))
-                    os.remove(f"{lyrics.title}.txt")
-            except:
-                try:
-                    if lyrics.title not in ["requirements", "runtime", "main"]:
-                        os.remove(f"{lyrics.title}.txt")
-                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
-                except:
-                    await ctx.send("Hmmm, I was unable to send an embed, and I couldn't send a file either.")
-                    
+        lyric = await api.get_lyrics(str(title),owo=True)
+        lyrics = lyric.lyrics
+        entries=lyrics.splitlines()
+        x = []
+        current_string = ''
+        for entry in entries:
+          if len(current_string) < 900:
+            current_string += "\n" + entry
+          else:
+            x += [current_string,]
+            current_string = ''
+        if not current_string == '':
+          x += [current_string,]
+        x[-1] += '\n' + entries[-1]
+        final = []
+        for y in x:
+          class asdf:
+            title = lyric.title
+            author = lyric.author
+            picture = lyric.thumbnail
+            link = lyric.link
+            content = y
+          final += [asdf,]
+        pages = menus.MenuPages(source=MySource(final), clear_reactions_after=True)
+        await pages.start(ctx)
+
 def setup(bot: commands.Bot):
     bot.add_cog(Music(bot))
