@@ -832,7 +832,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         final = []
         for y in x:
           class asdf:
-            title = lyric.title
+            title = lyric.title - "OwO Version"
             author = lyric.author
             picture = lyric.thumbnail
             link = lyric.link
