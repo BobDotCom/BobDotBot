@@ -245,9 +245,9 @@ class OwnerCog(commands.Cog, name = "Owner"):
             if not "cogs." + x in extensions:
                 final += [f":x: {x}",]
             else:
-                final += [f":white_check_mark: {x}",]
+                final += [f":white_check_mark: cogs.{x}",]
         for x in extensions:
-            if not x in final:
+            if not f":white_check_mark: {x}" in final:
                 final += [f":white_check_mark: {x}",]
         displayed = '\n'.join(final)
         embed = discord.Embed(title="Cogs",description=displayed,timestamp=ctx.message.created_at)
