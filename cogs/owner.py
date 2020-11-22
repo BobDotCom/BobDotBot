@@ -241,11 +241,12 @@ class OwnerCog(commands.Cog, name = "Owner"):
         for cog in cogs:
             if not cog in extensions:
                 notloaded += [cog,]
-        for x in extensions:
-            final += [f":white_check_mark: {x}",]
         for x in cogs:
             if not "cogs." + x in extensions:
                 final += [f":x: {x}",]
+        for x in extensions:
+            if not x in final:
+                final += [f":white_check_mark: {x}",]
         displayed = '\n'.join(final)
         embed = discord.Embed(title="Cogs",description=displayed,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
