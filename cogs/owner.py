@@ -236,7 +236,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
         for filename in os.listdir('./cogs'):
             if filename.endswith('.py'):
                 cogs += [filename[:-3], ]
-        for extension in client.extensions:
+        for extension in self.client.extensions:
             extensions += [extension,]
         for cog in cogs:
             if not cog in extensions:
