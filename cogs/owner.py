@@ -244,6 +244,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
         for x in cogs:
             if not "cogs." + x in extensions:
                 final += [f":x: {x}",]
+            else:
+                final += [f":white_check_mark: {x}",]
         for x in extensions:
             if not x in final:
                 final += [f":white_check_mark: {x}",]
