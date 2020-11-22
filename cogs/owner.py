@@ -2,6 +2,7 @@
 import discord
 import asyncio
 import aiohttp
+import os
 import subprocess as sp
 from discord.ext import commands
 from jishaku.codeblocks import codeblock_converter
@@ -235,7 +236,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
         for filename in os.listdir('./cogs'):
             if filename.endswith('.py'):
                 cogs += [filename[:-3], ]
-        for extension in _bot.extensions:
+        for extension in client.extensions:
             extensions += [extension,]
         for cog in cogs:
             if not cog in extensions:
