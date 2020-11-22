@@ -228,5 +228,25 @@ class OwnerCog(commands.Cog, name = "Owner"):
     @commands.is_owner()
     async def blacklist(self,ctx,user_id):
         open("blacklisted.json",'x')
+    @commands.command()
+    @commands.is_owner()
+    async def cogs(self,ctx):
+        cogs,extensions,notloaded,final = [], [], [], []
+        for filename in os.listdir('./cogs'):
+            if filename.endswith('.py'):
+                cogs += [filename[:-3], ]
+        for extension in _bot.extensions:
+            extensions += [extension,]
+        for cog in cogs:
+            if not cog in extensions:
+                notloaded += [cog,]
+        for x in extensions:
+            final += [f":white_check_mark: {x}",]
+        for x in cogs:
+            if not x in extensions:
+                final += [f":x: {x}",]
+        displayed = '\n'.join(final)
+        embed = discord.Embed(title="Cogs",description=displayed,timestamp=ctx.message.created_at)
+        await ctx.send(embed=embed)
 def setup(client):
     client.add_cog(OwnerCog(client))
