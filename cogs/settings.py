@@ -31,9 +31,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="welcomer")
     @commands.has_guild_permissions(administrator=True)
     async def welcome_message(self, ctx, *, msg: str = ""):
-        """Set a message to send when a user joins your server. It will automatically send in any channnel with "welcome" in the name. To mention the joining user in the message, type [mention], and to mention a channel, just mention that channel in your message.
-        Uses: `B.welcomer [message]`
-        Note: Arguments in brackets[] are optional"""
+        """Set a message to send when a user joins your server. It will automatically send in any channnel with "welcome" in the name. To mention the joining user in the message, type [mention], and to mention a channel, just mention that channel in your message."""
         if str(ctx.guild.id) not in Data.server_data:
             Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
 
@@ -45,9 +43,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="leaver")
     @commands.has_guild_permissions(administrator=True)
     async def leave_message(self, ctx, *, msg: str = ""):
-        """Set a message to send when a user leaves your server. It will automatically send in any channnel with "leave" or "bye" in the name. To send the name of the leaving user in the message, type [member].
-        Uses: `B.leaver [message]`
-        Note: Arguments in brackets[] are optional"""
+        """Set a message to send when a user leaves your server. It will automatically send in any channnel with "leave" or "bye" in the name. To send the name of the leaving user in the message, type [member]."""
         if str(ctx.guild.id) not in Data.server_data:
             Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
 
@@ -60,8 +56,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="joinrole")
     @commands.has_guild_permissions(administrator=True)
     async def join_role(self, ctx, *, role: discord.Role):
-        """Set a role to give users when they join your server. Just typing the role name should work, but mentioning it will too.
-        Uses: `B.joinrole <role>`"""
+        """Set a role to give users when they join your server. Just typing the role name should work, but mentioning it will too."""
         if str(ctx.guild.id) not in Data.server_data:
             Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
 
@@ -71,8 +66,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="activateautomod")
     @commands.has_guild_permissions(administrator=True)
     async def activateautomod(self, ctx):
-        """Turn on AutoMod in your server.
-        Uses: `B.activateautomod`"""
+        """Turn on AutoMod in your server."""
         if str(ctx.guild.id) not in Data.server_data:
             Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
 
@@ -83,8 +77,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="stopautomod")
     @commands.has_guild_permissions(administrator=True)
     async def stopautomod(self, ctx):
-        """Turn off AutoMod in your server.
-        Uses: `B.stopautomod`"""
+        """Turn off AutoMod in your server."""
         if str(ctx.guild.id) not in Data.server_data:
             Data.server_data[str(ctx.guild.id)] = Data.create_new_data()
 
@@ -95,8 +88,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="whitelistuser")
     @commands.has_guild_permissions(administrator=True)
     async def whitelistuser(self, ctx, user: discord.User = None):
-        """Whitelist a user from the AutoMod
-        Uses: `B.whitelistuser <user>`"""
+        """Whitelist a user from the AutoMod"""
         if user is None:
             ctx.send("Insufficient Arguments")
         else:
@@ -110,8 +102,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="whitelisturl")
     @commands.has_guild_permissions(administrator=True)
     async def whitelisturl(self, ctx, url: str = None):
-        """Whitelist a URL from the AutoMod
-        Uses: `B.whitelisturl <URL>`"""
+        """Whitelist a URL from the AutoMod"""
         if url is None:
             ctx.send("Insufficient Arguments")
         else:
@@ -125,8 +116,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     @commands.command(name="whitelistchannel")
     @commands.has_guild_permissions(administrator=True)
     async def whitelistchannel(self, ctx, channel: discord.TextChannel = None):
-        """Whitelist a channel from the AutoMod\
-        Uses: `B.whitelistchannel <channel>`"""
+        """Whitelist a channel from the AutoMod"""
         if channel is None:
             ctx.send("Insufficient Arguments")
         else:
@@ -141,13 +131,12 @@ class Serversettings(commands.Cog, name = "Settings"):
     async def data(self, ctx):
         """Owner Command"""
         is_owner = await self.bot.is_owner(ctx.author)
-        if is_owner:  # for real sparta
+        if is_owner: 
             data_file = discord.File("data.json")
             await ctx.send(file=data_file)
     @commands.command(name="automodstatus")
     async def automodstatus(self, ctx):
-        """Get the status of AutoMod in your server
-        Uses: `B.automodstatus`"""
+        """Get the status of AutoMod in your server"""
         status = Data.server_data[str(ctx.guild.id)]["active"]
         await ctx.send(f"AutoMod Active: **{status}**")
 

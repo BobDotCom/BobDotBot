@@ -505,6 +505,7 @@ class MainCog(commands.Cog, name = "General"):
         self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
     @commands.command()
     async def snipe(self,ctx):
+      """See the last message that someone deleted from chat"""
       try:
         x = self.client.sniper[ctx.guild.id][ctx.channel.id]
         title = x["author"]
@@ -634,8 +635,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def uptime(self, ctx):
-            """See how long the bot has been online
-            Uses: `B.uptime`"""
+            """See how long the bot has been online"""
             owner = self.client.get_user(self.client.owner_id)
             url = "https://api.uptimerobot.com/v2/getMonitors"
             payload = f"api_key={MONITOR_TOKEN}&format=json&logs=1&response_times=1&custom_uptime_ratios=1-7-30"
@@ -674,8 +674,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["nub"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def noob(self, ctx):
-        """Ur nub
-        Uses: `B.noob`"""
+        """Ur nub"""
         await ctx.send("NOOOOOB")
 
     @commands.command()
@@ -696,8 +695,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def add(self, ctx, a: int, b: int):
-        """I'm a baby bot, so I only do baby math
-        Uses: `B.add <number> <number>`"""
+        """I'm learning new math, but I only do addition for now. I'm pretty fast at it though!"""
         answer = (a + b)
         owner = self.client.get_user(self.client.owner_id)
         embedvar = discord.Embed(title="Math", timestamp=ctx.message.created_at, description="I think the answer to that is **" + str(answer) + "**") 
@@ -708,8 +706,6 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def slap(self, ctx, members: commands.Greedy[discord.Member], *, reason='no reason'):
         """Use this to slap someone
-        Uses: `B.slap [user] [reason]`
-        Note: Arguments in brackets[] are not required
         Note: If the user has a multi word name, put it in "quotes", or mention it"""
         slapped = ", ".join(x.name for x in members)
         slapself = f"{ctx.author.name}"
@@ -724,8 +720,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def say(self, ctx, *, arg):
-        """Use the bot to say something
-        Uses: `B.say <text>`"""
+        """Use the bot to say something"""
         quote = arg
         author = ctx.author.name
         owner = self.client.get_user(self.client.owner_id)
@@ -736,8 +731,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=['pong'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def ping(self, ctx):
-        """Checks the latency of the bot(lower is better)
-        Uses: `B.ping`"""
+        """Checks the latency of the bot (lower is better)"""
         ping = int(self.client.latency * 1000)
         owner = self.client.get_user(self.client.owner_id)
         embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description="My ping is:")
@@ -764,16 +758,14 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def porn(self, ctx):
-        """Use if you are really horny
-        Uses: `B.porn`"""
+        """Use if you are really horny"""
         await ctx.send("Shut up, horny kid.")
 
 
     @commands.command(aliases=["credit", "owner"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def credits(self, ctx):
-        """Shows the credits for the bot
-        Uses: `B.credits`"""
+        """Shows the credits for the bot"""
         owner = self.client.get_user(self.client.owner_id)
         routergtx = self.client.get_user(self.client.helper1_id)
         gamin = self.client.get_user(self.client.helper2_id)
@@ -785,16 +777,14 @@ class MainCog(commands.Cog, name = "General"):
         embed.add_field(name=f"Others", value=f"Special thanks to everyone who helped me with learning how to create this bot, especially the following people and servers", inline=False)
         embed.add_field(name=f'{routergtx}', value=f"RouterGTX was a really big help with learning how the code worked, and giving me examples, but still letting me figure out most of it on my own", inline=False)
         embed.add_field(name=f'{gamin}', value=f'Okct was one of the first people to help me, and was able to help me solve problems that I was having trouble with at the beginning', inline=False)
-        embed.add_field(name=f'{yo56789}', value=f'Yo56789 helped me learn that if you give someone admin, they will grief your server :/', inline=False)
+        embed.add_field(name=f'{yo56789}', value=f'Yo56789 helped me get started when I was new.', inline=False)
         embed.add_field(name=f'Servers', value=f'{tcc} -- This was the first server that I got help from, and they are quite active and able to help.\n{dpy} -- This is the official discord.py server, and it has an extremely active help chat, where you can get help with almost anything about discord.py.', inline=False)
         await ctx.send(embed=embed)
 
     @commands.command(aliases=['xp', 'rank', 'levels'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def level(self, ctx, member: discord.Member = None):
-        """Lists a user's level. You can level up by talking in any channel/server that the bot is in
-        Uses: `B.level [member]`
-        Note: Arguments in brackets[] are optional"""
+        """Lists a user's level. You can level up by talking in any channel/server that the bot is in"""
         if True:
           def create_connection(path):
             connection = None
@@ -916,15 +906,13 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def ligma(self, ctx):
-        """Ligmabols
-        Uses: `B.ligma`"""
+        """Ligmabols"""
         await ctx.send("slurp")
 
     @commands.command(aliases=['suggestion'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def suggest(self, ctx, *, arg):
-      """Make a suggestion about the bot, it can be a new command that you would like to see, or anything else that you want to suggest. NOTE: do not use this command for bugs. To report a bug, use the bug command.
-        Uses: `B.suggest <suggestion>`"""
+      """Make a suggestion about the bot, it can be a new command that you would like to see, or anything else that you want to suggest. NOTE: do not use this command for bugs. To report a bug, use the bug command."""
       def create_connection(path):
         connection = None
         try:
@@ -972,8 +960,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=['bugs'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def bug(self, ctx, *, arg):
-        """Let the owner know about a bug in the bot. NOTE: do not use this command for suggestions. To make a suggestion, use the suggestion command.
-        Uses: `B.bug <report>`"""
+        """Let the owner know about a bug in the bot. NOTE: do not use this command for suggestions. To make a suggestion, use the suggestion command."""
         #load the database, collapseable
         suggestion = arg
         owner = self.client.get_user(self.client.owner_id)
@@ -988,9 +975,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(aliases=["emoji"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def emoji_id(self,ctx,emoji: discord.Emoji):
-        """Get the ID of any custom emoji that the bot can see
-        Uses: `B.emoji_id <emoji>`
-        Example: B.emoji_id <:computer:762783497315811358>"""
+        """Get the ID of any custom emoji that the bot can see"""
         owner = self.client.get_user(self.client.owner_id)
         emoji = self.client.get_emoji(emoji.id)
         embed = discord.Embed(timestamp=ctx.message.created_at, title=f'{emoji} Emoji id for :{emoji.name}: {emoji}',description=f'ID: {emoji.id}')
@@ -1004,8 +989,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="serverinfo", aliases=["si"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def serverinfo(self, ctx):
-        """Get the info of the server that you are in
-        Uses `B.serverinfo`"""
+        """Get the info of the server that you are in"""
         name = ctx.guild.name
         description = ctx.guild.description
         owner = ctx.guild.owner
@@ -1030,8 +1014,6 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def userinfo(self, ctx, member: discord.Member = None):
         """Tells you some info about the member.
-        Uses: `B.userinfo [member]`
-        Note: Arguments in brackets[] are optional
         Note: If the user has a multi word name, put it in "quotes", or mention it"""
         member = ctx.author if not member else member
 
@@ -1098,9 +1080,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="avatar")
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def avatar(self, ctx, member: discord.Member = None):
-        """Get the avatar of a user
-        Uses `B.avatar [user]`
-        Note: Arguments in brackets [] are optional"""
+        """Get the avatar of a user"""
         member = ctx.author if not member else member
 
         aembed = discord.Embed(
@@ -1112,10 +1092,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="mystbin",aliases=["mb"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def mystbin(self,ctx,*,code: codeblock_converter = None):
-      """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future.
-      Uses `B.mystbin [\`\`\`][language]
-      <code>[\`\`\`]`
-      Note: Arguments in brackets [] are optional"""
+      """Send your code to [Mystb.in](https://mystb.in). You may use codeblocks(by putting your code inside \`\`\`, followed by the language you want to use) Currently, this bot recognizes python and javascript codeblocks, but will support more in the future."""
       code = code.content if code else None
       if len(ctx.message.attachments) != 0:
         for attachment in ctx.message.attachments:
@@ -1137,6 +1114,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="google",aliases=["g"])
     @commands.cooldown(5, 600, commands.BucketType.channel)
     async def google(self,ctx,*,query):
+        """Google something. Returns the first 10 results. Has a cooldown to avoid hitting the google api ratelimit."""
         my_api_key = GOOGLE_API_KEY
         my_cse_id = GOOGLE_CSE_ID
         def google_search(search_term, api_key, cse_id, **kwargs):
@@ -1162,6 +1140,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="rules",aliases=["ruleschannel"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def rule(self,ctx):
+        """Get the rule channel in the current server"""
         rules = ctx.guild.rules_channel
         if rules:
             text = f"Hey, your rules channel is {rules.mention}"
@@ -1190,6 +1169,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.command(name="github",aliases=["source","info"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def github(self,ctx):
+        """Get my github link"""
         await ctx.send("https://github.com/BobDotCom/BobDotBot")
 def setup(client):
     client.add_cog(MainCog(client))

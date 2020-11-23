@@ -54,6 +54,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def amongus(self, ctx, *, member: discord.Member = None):
+      """Eject a member of the current server into space"""
       async with ctx.typing():
         member = ctx.author if not member else member
         try:
@@ -69,79 +70,93 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def dog(self,ctx):
+      """Get an image/fact about dogs"""
       async with ctx.typing():
         await get_the_image(self,ctx,"dog")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def cat(self,ctx):
+      """Get an image/fact about cats"""
       async with ctx.typing():
         await get_the_image(self,ctx,"cat")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def panda(self, ctx):
+      """Get an image/fact about pandas"""
       async with ctx.typing():
         await get_the_image(self, ctx, "panda")
         
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def red_panda(self,ctx):
+      """Get an image/fact about red pandas"""
       async with ctx.typing():
         await get_the_image(self,ctx,"red_panda")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def fox(self,ctx):
+      """Get an image/fact about foxes"""
       async with ctx.typing():
         await get_the_image(self,ctx,"fox")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def bird(self, ctx):
+      """Get an image/fact about birds"""
       async with ctx.typing():
         await get_the_image(self, ctx, "birb")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def koala(self, ctx):
+      """Get an image/fact about koalas"""
       async with ctx.typing():
         await get_the_image(self, ctx, "koala")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def kangaroo(self, ctx):
+      """Get an image/fact about kangaroos"""
       async with ctx.typing():
         await get_the_image(self, ctx, "kangaroo")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def giraffe(self,ctx):
+      """Get an image/fact about giraffes"""
       async with ctx.typing():
         await get_the_image(self,ctx,"giraffe")
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def whale(self,ctx):
+      """Get an image/fact about whales"""
       async with ctx.typing():
         await get_the_image(self,ctx,"whale")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def raccoon(self,ctx):
+      """Get an image/fact about racoons"""
       async with ctx.typing():
         await get_the_image(self,ctx,"raccoon")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def pikachu(self,ctx):
+      """Get an image/fact about pikachu"""
       async with ctx.typing():
         await get_the_image(self,ctx,"pikachu")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def elephant(self,ctx):
+      """Get an image/fact about elephants"""
       async with ctx.typing():
         await get_the_image(self,ctx,"elephant")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def random_token(self, ctx):
+      """Get a random token (they are fake, just randomly generated)"""
       async with ctx.typing():
         token = await api.bot_token()
         await ctx.send(token)
@@ -149,21 +164,25 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def wink(self, ctx):
+      """Get a wink gif"""
       async with ctx.typing():
         await get_the_gif(self, ctx, "wink")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def pat(self,ctx):
+      """Get a pat gif"""
       async with ctx.typing():
         await get_the_gif(self,ctx,"pat")
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def hug(self,ctx):
+      """Get a hug gif"""
       async with ctx.typing():
         await get_the_gif(self,ctx,"hug")
     @commands.command(aliases=["fp"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def facepalm(self,ctx):
+      """Get a facepalm gif"""
       async with ctx.typing():
         await get_the_gif(self,ctx,"face-palm")
     
@@ -171,9 +190,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.max_concurrency(1, per=commands.BucketType.channel)
     async def chatbot(self,ctx,*,chat = None):
-      """Start a chat with a bot. Once you send your first message
-      Uses `chatbot <chat>`
-      Once you send your first message, the bot will reply to your messages until you say cancel"""
+      """Start a chat with a bot. Once you send your first message, the bot will reply to your messages until you say cancel, or it times out"""
       errortimes = 0
       try:
         if chat:
@@ -235,6 +252,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command(aliases=["mc"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def minecraft(self,ctx,*,username):
+      """Get information about a minecraft player"""
       async with ctx.typing():
         user = await api.mc_user(username)
         try:
@@ -249,6 +267,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def pokemon(self, ctx, name):
+      """Get information about a pokemon from a pokedex"""
       async with ctx.typing():
         x = await api.get_pokemon(name)
         try:
@@ -300,6 +319,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command(aliases=["base64"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def encode(self,ctx,*,arg):
+      """Take a string of ASCII text and translate it to base64"""
       async with ctx.typing():
         asdf = await api.encode_base64(arg)
         embed=discord.Embed(title="Text to Base64",description=asdf,timestamp=ctx.message.created_at)
@@ -307,6 +327,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command(aliases=["base64_decode"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def decode(self,ctx,*,arg):
+      """Take a string of base64 and translate it back to ASCII text"""
       async with ctx.typing():
         asdf = await api.decode_base64(arg)
         embed=discord.Embed(title="Base64 to Text",description=asdf,timestamp=ctx.message.created_at)
@@ -314,6 +335,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def anothermemecommandlol(self,ctx):
+      """A less advanced meme command. Not reccomended for use"""
       async with ctx.typing():
         asdf = await api.get_meme()
         embed = discord.Embed(title=asdf.category,description=asdf.caption,timestamp=ctx.message.created_at)
@@ -323,6 +345,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def animequote(self,ctx):
+      """Get a random quote from an anime"""
       async with ctx.typing():
         asdf = await api.anime_quote()
         anime = asdf.anime.strip(" ")
@@ -332,6 +355,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def joke(self,ctx):
+      """Get a random joke"""
       async with ctx.typing():
         asdf = await api.get_joke()
         embed=discord.Embed(title="Joke",description=asdf,timestamp=ctx.message.created_at)
@@ -339,6 +363,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command(aliases=["yt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def youtube(self,ctx,member: discord.Member,*,comment):
+      """Pretend to comment as someone else on youtube"""
       async with ctx.typing():
         asdf = api.youtube_comment(member.avatar_url, member.name, comment)
         buf = BytesIO(await asdf.read())
@@ -346,6 +371,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command(aliases=["ytm"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def youtubeme(self,ctx,*,comment):
+      """Get an image of you commenting on youtube"""
       async with ctx.typing():
         member = ctx.author
         asdf = api.youtube_comment(member.avatar_url, member.name, comment)
@@ -354,6 +380,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command(aliases=["word"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def define(self,ctx,arg):
+      """Get the definition of a word. Currently not working"""
       async with ctx.typing():
         asdf = await api.define(arg)
         embed=discord.Embed(title=asdf.word,description=asdf.definition,timestamp=ctx.message.created_at)
@@ -361,6 +388,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def gay(self,ctx,member: discord.Member = None):
+      """Get a gay pfp of any user"""
       async with ctx.typing():
         member = ctx.author if not member else member
         await get_thingy(self,ctx,"gay",member)
@@ -368,6 +396,7 @@ class FunCog(commands.Cog, name = "Fun"):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def triggered(self, ctx, *, member: discord.Member = None):
+      """Get a triggered photo of any user"""
       async with ctx.typing():
         member = ctx.author if not member else member
         await get_thingy(self,ctx,"triggered",member)

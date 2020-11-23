@@ -17,8 +17,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         print('GrowtopiaCog is active')
     @commands.command(aliases=["rw", "render"])
     async def renderworld(self,ctx,world):
-        """Get a render of a world in Growtopia
-        Uses: `B.renderworld <world>`"""
+        """Get a render of a world in Growtopia"""
         async with ctx.typing():
             async with aiohttp.ClientSession() as sess:
                 async with sess.get(self.url+f'/worlds/{world.lower()}.png') as resp:
@@ -32,8 +31,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
-        """See how many people are playing the game right now
-        Uses: `B.online`"""
+        """See how many people are playing the game right now"""
         async with aiohttp.ClientSession() as sess:
             async with sess.get(self.url+'/detail') as resp:
               data = await resp.json(content_type="text/html")
@@ -43,6 +41,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.command(aliases=["wiki","item"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def gt_wiki(self,ctx,*,item):
+        """Search the wiki for an item"""
         async with ctx.typing():
             item = item.replace(" ","+")
             url = "https://growtopia.fandom.com/wiki/"

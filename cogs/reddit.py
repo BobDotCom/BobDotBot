@@ -93,8 +93,7 @@ class Reddit(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def meme(self, ctx):
-      """Memes from various subreddits
-      Uses: `B.meme`"""
+      """Memes from various subreddits"""
       async with ctx.typing():
         if True:
           await getSub(self, ctx, choice(memeSubreddits))
@@ -139,8 +138,7 @@ class Reddit(commands.Cog):
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def showerthought(self, ctx):
-      """A random showerthought from r/showerthoughts
-      Uses: `B.showerthought`"""
+      """A random showerthought from r/showerthoughts. CURRENTLY NOT WORKING"""
       async with ctx.typing():
         if True:
           async with aiohttp.ClientSession() as session:
@@ -186,32 +184,28 @@ class Reddit(commands.Cog):
     @commands.command(aliases=['dankmeme', 'dank'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def dankmemes(self, ctx):
-      """Get an image from the dankmemes subreddit.
-      Uses: `B.dankmemes`"""
+      """Get an image from the dankmemes subreddit."""
       async with ctx.typing():
         await getSub(self, ctx, 'dankmemes')
         
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def me_irl(self, ctx):
-      """Get an image from the me_irl subreddit.
-      Uses: `B.me_irl`"""
+      """Get an image from the me_irl subreddit."""
       async with ctx.typing():
         await getSub(self, ctx, 'me_irl')
 
     @commands.command(aliases=["ph"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def programmerhumor(self, ctx):
-      """Get an image from the ProgrammerHumor subreddit.
-      Uses: `B.programmerhumor`"""
+      """Get an image from the ProgrammerHumor subreddit."""
       async with ctx.typing():
         await getSub(self, ctx, 'ProgrammerHumor')
         
     @commands.command(aliases=["r"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def reddit(self, ctx, arg):
-      """Get an image from a subreddit.
-      Uses: `B.redditimage <subreddit name>`"""
+      """Get an image from a subreddit."""
       async with ctx.typing():
         await getSub(self, ctx, arg)
 def setup(client):

@@ -30,6 +30,7 @@ class Timezone(commands.Cog, name = "Time"):
 
     @commands.command()
     async def settime(self,ctx,timezone):
+      """Set your timezone for other people to see"""
       member = ctx.author
       timezone1 = timezone
       timezone5 = timezone1.lower()
@@ -102,6 +103,7 @@ class Timezone(commands.Cog, name = "Time"):
     @commands.command()
     @commands.is_owner()
     async def settimefor(self,ctx,member: discord.Member,timezone1):
+      """Owner command"""
       timezone5 = timezone1.lower()
       splitter = timezone5[3]
       contents = timezone5.split(splitter)
@@ -172,6 +174,7 @@ class Timezone(commands.Cog, name = "Time"):
     @commands.command()
     @commands.is_owner()
     async def newjob(self,ctx,member: discord.Member,job,amt = 1):
+      """Owner command"""
       jobs = None
       if job == "wc":
         jobs = "wcdone"
@@ -195,6 +198,7 @@ class Timezone(commands.Cog, name = "Time"):
       await ctx.send("success")
     @commands.command()
     async def gettime(self,ctx,member: discord.Member = None):
+        """Get the current time of a user"""
         try:
             member = ctx.author if not member else member
             db = await aiosqlite.connect("timezone.sql")

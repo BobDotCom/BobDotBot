@@ -14,9 +14,7 @@ class Moderator(commands.Cog):
     @commands.command(name="warn")
     @commands.has_guild_permissions(administrator=True)
     async def warn(self, ctx, user: discord.User = None, *, reason=None):
-        """Give a warning to a member. If automod is enabled, it will give them certain punishments at different increments
-        Uses: `B.warn <member> [reason]`
-        Note: Arguments in brackets[] are not required"""
+        """Give a warning to a member. If automod is enabled, it will give them certain punishments at different increments"""
         reason = "No specified reason" if not reason else reason
         if user is None:
             await ctx.send("Please choose a user")
@@ -36,8 +34,9 @@ class Moderator(commands.Cog):
     @commands.command(aliases=['nick'])
     @commands.has_guild_permissions(manage_nicknames=True)
     async def nickname(self, ctx, member : discord.Member, *args):
+        """Change the nickname of a user"""
         if member == None:
-            await ctx.send('Give me a user dumbass')
+            await ctx.send('Give me a user please')
         elif member == ctx.guild.owner:
             await ctx.send('You cant name the owner!')
         else:
@@ -46,14 +45,12 @@ class Moderator(commands.Cog):
             await member.edit(nick=f'{x}')
             await ctx.send(f'{member.name} has been changed to {x}')
           except:
-            await ctx.send("I cant, stupid")
+            await ctx.send("I cant")
 
     @commands.command(name="clearwarn")
     @commands.has_guild_permissions(administrator=True)
     async def clearwarn(self, ctx, user: discord.User = None):
-        """Clear warnings of every user, or just the set user
-        Uses: `B.clearwarn [user]`
-        Note: Arguments in brackets[] are not required"""
+        """Clear warnings of every user, or just the set user"""
         if user is None:
             self.warn_count = {}
             await ctx.send("Clearing all warns.")
@@ -63,8 +60,7 @@ class Moderator(commands.Cog):
 
     @commands.command(name="warncount")
     async def warncount(self, ctx, user: discord.User):
-        """Get the amount of warnings that a user has
-        Uses: `B.warncount <user>`"""
+        """Get the amount of warnings that a user has"""
         if str(user) not in self.warn_count:
             self.warn_count[str(user)] = 0
 
@@ -74,10 +70,7 @@ class Moderator(commands.Cog):
     @commands.command(name="mute")
     @commands.has_guild_permissions(kick_members=True)
     async def mute(self, ctx, user: discord.Member = None, time = None, *, reason = None):
-        """Mute a member in the server. If you already have a role named muted, it will use that. If not, it will make one for you.
-        Uses: `B.mute <member> [time]`
-        Note: Arguments in brackets[] are not required
-        If a time is given, the user may remain muted for longer than that time if the bot is reloaded during that time. As the bot is still in development, this is very likely"""
+        """Mute a member in the server. If you already have a role named muted, it will use that. If not, it will make one for you."""
         if user is None:
             await ctx.send("Insufficient arguments.")
         await mutes(self,ctx,user,time,reason)
@@ -85,8 +78,7 @@ class Moderator(commands.Cog):
     @commands.command(name="unmute")
     @commands.has_guild_permissions(kick_members=True)
     async def unmute(self, ctx, user: discord.Member = None):
-        """Unmute a member. This will remove all roles named muted from the member
-        Uses: `B.unmute <member>`"""
+        """Unmute a member. This will remove all roles named muted from the member"""
         if user is None:
             await ctx.send("Insufficient arguments.")
         else:
@@ -113,8 +105,6 @@ class Moderator(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def ban(self, ctx, member: discord.Member, delete_days: Optional[int] = 0, *,reason: str = None):
         """Ban a member with an optional delete_days parameter
-        Uses: `B.ban <member> [delete messages in days] [reason]`
-        Note: Arguments in brackets[] are optional
         The reason must not start with a number, and you may give a reason without deleting messages"""
         if True:
             try:
@@ -142,8 +132,7 @@ class Moderator(commands.Cog):
     @commands.command(name="unban")
     @commands.has_guild_permissions(ban_members=True)
     async def unban(self, ctx, username: str = None, *, reason=None):
-        """Unban a member. Use this format: `"Username 1234#0001"`
-        Uses: `B.unban "<member>"`"""
+        """Unban a member. Use this format: `"Username 1234#0001"`"""
         if username is None:
             await ctx.send("Insufficient arguments.")
         else:
@@ -169,9 +158,7 @@ class Moderator(commands.Cog):
     @commands.has_permissions(kick_members=True)
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def kick(self, ctx, member : discord.Member, *, reason=None):
-        """Kick someone
-        Uses: `B.kick <member> [reason]`
-        Note: Arguments in brackets[] are optional"""
+        """Kick someone"""
         if True:
             try:
                 asdf = ctx.author
@@ -195,9 +182,7 @@ class Moderator(commands.Cog):
     @commands.command(name="lockchannel")
     @commands.has_guild_permissions(administrator=True)
     async def lockchannel(self, ctx, channel: discord.TextChannel = None):
-        """Prevent users from speaking in a channel. If no channel is specified, it will lock the current channel
-        Uses: `B.lockchannel [channel]`
-        Note: Arguments in brackets[] are optional"""
+        """Prevent users from speaking in a channel. If no channel is specified, it will lock the current channel"""
         if channel is None:
             channel = ctx.channel
 
@@ -212,9 +197,7 @@ class Moderator(commands.Cog):
     @commands.command(name="unlockchannel")
     @commands.has_guild_permissions(administrator=True)
     async def unlockchannel(self, ctx, channel: discord.TextChannel = None):
-        """Allow everyone to talk in a channel. If no channel is specified, it will lock the current channel
-        Uses: `B.unlockchannel [channel]`
-        Note: Arguments in brackets[] are optional"""
+        """Allow everyone to talk in a channel. If no channel is specified, it will unlock the current channel"""
         if channel is None:
             channel = ctx.channel
 
@@ -225,9 +208,7 @@ class Moderator(commands.Cog):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_messages = True)
     async def clear(self, ctx,amount=2):
-        """Clears messages. If not amount is specified, it will clear 2 messages
-        Uses: `B.clear [amount]`
-        Note: Arguments in brackets[] are optional"""
+        """Clears messages. If not amount is specified, it will clear 2 messages"""
         await ctx.channel.purge(limit = amount + 1)
         msg = await ctx.send(f"I ate {amount} messages for you! ;)")
         await asyncio.sleep(5)
