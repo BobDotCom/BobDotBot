@@ -35,7 +35,7 @@ class TopGG(commands.Cog):
     logger.info('Received an upvote') 
     print(data) 
 
-  @commands.command()
+  @commands.command(aliases=["top.gg",'dbl'])
   async def topgg(self,ctx):
     await ctx.send(embed=discord.Embed(title="Top.gg link",description="[Click Here](https://top.gg/bot/746045299125911562) to go to the main page"))
 
