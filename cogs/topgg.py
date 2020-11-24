@@ -34,6 +34,14 @@ class TopGG(commands.Cog):
   async def on_dbl_vote(self, data): 
     logger.info('Received an upvote') 
     print(data) 
+    
+  @commands.command()
+  async def topgg(self,ctx):
+    await ctx.send(discord.Embed(title="Top.gg link",description"[Click Here](https://top.gg/bot/746045299125911562) to go to the main page"))
+
+  @commands.command()
+  async def topgg(self,ctx):
+    await ctx.send(discord.Embed(title="Top.gg vote link",description"[Click Here](https://top.gg/bot/746045299125911562/vote) to vote for my bot! Thank you!"))
 
 def setup(bot): 
   global logger 
