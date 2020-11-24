@@ -23,6 +23,7 @@ THEME_COLOR = discord.Colour.blurple()
 # Grab api token
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
 SR_API_TOKEN = os.getenv("SR_API_TOKEN")
+DBL_TOKEN = os.getenv("DBL_TOKEN")
 # gets client stuff
 def get_prefix(client, message):
 	if not message.guild:
@@ -52,11 +53,13 @@ client = commands.Bot(command_prefix=get_prefix,intents=intents,embed_color = di
 #client.remove_command('help')
 client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
-client.owner_ids = {690420846774321221}
+client.owner_id = None
+client.owner_ids = [690420846774321221]
 client.load_extension("jishaku")
 client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
 logs = get_logs
+client.dbltoken = DBL_TOKEN
 
 @client.event
 async def on_ready():

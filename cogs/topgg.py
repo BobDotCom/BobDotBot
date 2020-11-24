@@ -7,7 +7,7 @@ class TopGG(commands.Cog):
  
   def __init__(self, bot): 
     self.bot = bot 
-    self.token = 'dbl_token' # set this to your DBL token 
+    self.token = self.bot.dbltoken # set this to your DBL token 
     self.dblpy = dbl.DBLClient(self.bot, self.token, webhook_path='/dblwebhook', webhook_auth='password', webhook_port=5000) 
 
   # The decorator below will work only on discord.py 1.1.0+ 
