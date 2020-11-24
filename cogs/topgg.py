@@ -16,11 +16,13 @@ class TopGG(commands.Cog):
 
   @tasks.loop(minutes=30.0) 
   async def update_stats(self): 
+    print("test")
     """This function runs every 30 minutes to automatically update your server count"""
     logger.info('Attempting to post server count') 
     try: 
       await self.dblpy.post_guild_count() 
       logger.info('Posted server count ({})'.format(self.dblpy.guild_count())) 
+      print("test2")
     except Exception as e: 
       logger.exception('Failed to post server count\n{}: {}'.format(type(e).__name__, e)) 
 
