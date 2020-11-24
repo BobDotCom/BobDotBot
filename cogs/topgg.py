@@ -1,7 +1,8 @@
 import dbl
 import discord 
 from discord.ext import commands, tasks
-import asyncio import logging 
+import asyncio 
+import logging 
 class TopGG(commands.Cog): 
   """Handles interactions with the top.gg API"""
  
