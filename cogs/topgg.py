@@ -40,7 +40,7 @@ class TopGG(commands.Cog):
     await ctx.send(embed=discord.Embed(title="Top.gg link",description="[Click Here](https://top.gg/bot/746045299125911562) to go to the main page"))
 
   @commands.command()
-  async def topgg(self,ctx):
+  async def vote(self,ctx):
     await ctx.send(embed=discord.Embed(title="Top.gg vote link",description="[Click Here](https://top.gg/bot/746045299125911562/vote) to vote for my bot! Thank you!"))
 
 def setup(bot): 
