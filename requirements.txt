@@ -17,3 +17,7 @@ git+https://github.com/Rapptz/discord-ext-menus
 sympy
 beautifulsoup4
 enhanced-dpy
+
+wavelink
+enhanced-dpy
+dblpy
