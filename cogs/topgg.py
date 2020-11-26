@@ -34,6 +34,10 @@ class TopGG(commands.Cog):
   async def on_dbl_vote(self, data): 
     logger.info('Received an upvote') 
     print(data) 
+    channel = await self.bot.fetch_channel(781291858071912448)
+    await channel.send("Upvoted!")
+    chnl = await self.bot.fetch_channel(781292491576049665)
+    await chnl.send(str(data))
 
   @commands.command(aliases=["top.gg",'dbl'])
   async def topgg(self,ctx):
