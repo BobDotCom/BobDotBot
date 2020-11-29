@@ -141,6 +141,10 @@ async def on_command_error(ctx, error):
     await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
 @client.event
 async def on_message(message):
+	if message.author == client.owner and (message.content.startswith(":") or message.content.startswith(";")):
+		for emoji in client.emojis:
+			if emoji.name == asdf[1:-1]:
+				return await message.channel.send(emoji)
 	await client.process_commands(message)
 	if str(message.guild.id) not in Data.server_data:
             Data.server_data[str(message.guild.id)] = Data.create_new_data()
