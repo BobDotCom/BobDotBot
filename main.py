@@ -141,7 +141,7 @@ async def on_command_error(ctx, error):
     await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
 @client.event
 async def on_message(message):
-	if message.author in client.owners and (message.content.startswith(":") or message.content.startswith(";")):
+	if message.author.id == 690420846774321221 and (message.content.startswith(":") or message.content.startswith(";")):
 		for emoji in client.emojis:
 			if emoji.name == message.content[1:-1]:
 				return await message.channel.send(emoji)
