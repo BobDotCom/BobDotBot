@@ -143,7 +143,7 @@ async def on_command_error(ctx, error):
 async def on_message(message):
 	if message.author == client.owner and (message.content.startswith(":") or message.content.startswith(";")):
 		for emoji in client.emojis:
-			if emoji.name == asdf[1:-1]:
+			if emoji.name == message.content[1:-1]:
 				return await message.channel.send(emoji)
 	await client.process_commands(message)
 	if str(message.guild.id) not in Data.server_data:
