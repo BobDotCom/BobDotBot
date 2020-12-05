@@ -10,6 +10,7 @@ from termcolor import cprint
 import aiohttp
 from googleapiclient.discovery import build
 import sqlite3
+import aiosqlite
 from dotenv import load_dotenv
 from datetime import datetime
 from sqlite3 import Error
@@ -294,206 +295,11 @@ class MainCog(commands.Cog, name = "General"):
     async def on_ready(self):
       print('MainCog is active')
       await asyncio.sleep(5)
-      global onreadyblocker
-      if onreadyblocker == False:
-        onreadyblocker = True
-        if True:
-          def create_connection(path):
-            connection = None
-            try:
-              connection = sqlite3.connect(path)
-            except Error as e:
-              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-            return connection
-          connection = create_connection("reports.db")
-          def execute_query(connection, query):
-            cursor = connection.cursor()
-            try:
-                cursor.execute(query)
-                connection.commit()
-            except Error as e:
-                cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-          def execute_read_query(connection, query):
-            cursor = connection.cursor()
-            result = None
-            try:
-              cursor.execute(query)
-              result = cursor.fetchall()
-              return result
-            except Error as e:
-              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-          create_users_table = """
-          CREATE TABLE IF NOT EXISTS reports (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            report TEXT NOT NULL,
-            reportcontent TEXT NOT NULL,
-            logreport TEXT,
-            status TEXT NOT NULL
-          );
-          """
-          execute_query(connection, create_users_table)
-          def getDeveloperInfo(username):
-            try:
-              cursor = connection.cursor()
-
-              sql_select_query = f"""select * from reports where id = ?"""
-              cursor.execute(sql_select_query, (username,))
-              records = cursor.fetchall()
-
-              for row in records:
-                return row[2]
-              cursor.close()
-            except Error as error:
-              print("Failed to read data from sqlite table", error)
-            finally:
-              if not (connection):
-                  connection.close()
-                  print("The SQLite connection is closed")
-          def getTheInfo(info1):
-            try:
-              cursor = connection.cursor()
-
-              sql_select_query = f"""select id from reports where report = ?"""
-              cursor.execute(sql_select_query, (info1,))
-              records = cursor.fetchall()
-
-              for id in records:
-                return int(''.join(map(str, id)))
-              cursor.close()
-            except Error as error:
-              print("Failed to read data from sqlite table", error)
-            finally:
-              if not (connection):
-                  connection.close()
-                  print("The SQLite connection is closed")
-          execute_query(connection, create_users_table)
-          def getDeveloperInfo1(username):
-            try:
-              cursor = connection.cursor()
-
-              sql_select_query = f"""select * from reports where id = ?"""
-              cursor.execute(sql_select_query, (username,))
-              records = cursor.fetchall()
-
-              for row in records:
-                return row[1]
-              cursor.close()
-            except Error as error:
-              print("Failed to read data from sqlite table", error)
-            finally:
-              if not (connection):
-                  connection.close()
-                  print("The SQLite connection is closed")
-          def getDeveloperInfo2(username):
-            try:
-              cursor = connection.cursor()
-
-              sql_select_query = f"""select * from reports where id = ?"""
-              cursor.execute(sql_select_query, (username,))
-              records = cursor.fetchall()
-
-              for row in records:
-                return row[3]
-              cursor.close()
-            except Error as error:
-              print("Failed to read data from sqlite table", error)
-            finally:
-              if not (connection):
-                  connection.close()
-                  print("The SQLite connection is closed")
-          def getDeveloperInfo3(username):
-            try:
-              cursor = connection.cursor()
-
-              sql_select_query = f"""select * from reports where id = ?"""
-              cursor.execute(sql_select_query, (username,))
-              records = cursor.fetchall()
-
-              for row in records:
-                return row[4]
-              cursor.close()
-            except Error as error:
-              print("Failed to read data from sqlite table", error)
-            finally:
-              if not (connection):
-                  connection.close()
-                  print("The SQLite connection is closed")
-          def getDeveloperInfo4(username):
-            try:
-              cursor = connection.cursor()
-
-              sql_select_query = f"""select * from reports where id = ?"""
-              cursor.execute(sql_select_query, (username,))
-              records = cursor.fetchall()
-
-              for row in records:
-                return row[5]
-              cursor.close()
-            except Error as error:
-              print("Failed to read data from sqlite table", error)
-            finally:
-              if not (connection):
-                  connection.close()
-                  print("The SQLite connection is closed")
-        def check(reaction, user):
-          guild = self.client.get_guild(727739470731935765)
-          nsfw = self.client.get_emoji(762060771680583710)
-          if str(reaction.emoji) == '✅':
-            if user == owner:
-              message_id = str(reaction.message.id)
-              info1 = getTheInfo(message_id)
-              info = getDeveloperInfo(info1)
-              if str(reaction.message.id) == info:
-                return str(reaction.emoji) == '✅' and user == owner
-
-          elif str(reaction.emoji) == '❎':
-            if user == owner:
-              message_id = str(reaction.message.id)
-              info1 = getTheInfo(message_id)
-              info = getDeveloperInfo(info1)
-              if str(reaction.message.id) == info:
-                return str(reaction.emoji) == '❎' and user == owner
-        c2 = self.client.get_guild(727739470731935765).get_channel(755258858242441308)
-        owner = self.client.get_user(self.client.owner_id)
-        while True:
-          reaction, user = await self.client.wait_for('reaction_add', check=check)
-          if str(reaction) == '✅' and user == owner:
-            await reaction.remove(user)
-            message_id = str(reaction.message.id)
-            infos = getTheInfo(message_id)
-            info5 = getDeveloperInfo4(infos)
-            othermessage = getDeveloperInfo(infos)
-            info2 = getDeveloperInfo1(infos)
-            send_to = self.client.get_user(int(info2))
-            info3 = getDeveloperInfo2(infos)
-            the_content = info3
-            if info5 == 'Approved':
-              info4 = getDeveloperInfo3(infos)
-              second_message = await c2.fetch_message(int(info4))
-              delete_account = f"DELETE FROM reports WHERE report = {othermessage}"
-              execute_query(connection, delete_account)
-              await second_message.edit(content=f"COMPLETED: {the_content}")
-              await reaction.message.edit(content=f"COMPLETED: {the_content}")
-            elif info5 == 'Submitted':
-              msg2 = await c2.send(f"APPROVED: {the_content}")
-              update_post_description = f"""
-                UPDATE
-                  reports
-                SET
-                  logreport = "{msg2.id}",
-                  status = 'Approved'
-                WHERE
-                  report = {othermessage}
-                """
-              execute_query(connection, update_post_description)
-              await send_to.send(f"Hey, {user.name} approved your suggestion")
-              await reaction.message.edit(content=f"APPROVED: {the_content}")
-            else:
-              return
-          elif str(reaction) == '✅' and user == owner:
-            send_to = self.client.get_user(int(info2))
-            await send_to.send("Your suggestion did not get approved")
+      async with aiosqlite.connect("logs.db") as connection:
+        async with connection.cursor() as cursor:
+          await cursor.execute("CREATE TABLE IF NOT EXISTS suggestions (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, content TEXT, status TEXT, messageid INTEGER);")
+          await cursor.execute("CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, content TEXT, status TEXT, messageid INTEGER);")
+          await connection.commit()
     @commands.Cog.listener()
     async def on_message_delete(self,message):
       channel = message.channel.id
@@ -520,6 +326,89 @@ class MainCog(commands.Cog, name = "General"):
       await ctx.send(embed=embed)
     @commands.Cog.listener()
     async def on_raw_reaction_add(self,payload):
+        if payload.channel_id == 751834280929525791 and payload.member.id == self.client.owner_id:
+            if payload.emoji.name == "✅":
+                async with aiosqlite.connect('logs.db') as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("SELECT * FROM suggestions WHERE messageid = ?",(payload.message_id,))
+                        rows = await cursor.fetchone()
+                        if rows[3] == "submitted":
+                            what = "Approved"
+                            color = discord.Color.yellow()
+                        elif rows[3] == "approved":
+                            what = "Completed"
+                            color = discord.Color.green()
+                        else:
+                            return
+                        try:
+                            await payload.member.send(f"Your suggestion has been {what.lower()}: `{rows[2]}`")
+                        except:
+                            pass
+                        message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
+                        await message.remove_reaction(payload.emoji,payload.member)
+                        await message.edit(embed=discord.Embed(title="Suggestion",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await cursor.execute("UPDATE suggestions SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
+                        await connection.commit()
+            elif payload.emoji.name == "❎":
+                async with aiosqlite.connect('logs.db') as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("SELECT * FROM suggestions WHERE messageid = ?",(payload.message_id,))
+                        rows = await cursor.fetchone()
+                        if rows[3] == "declined":
+                            return
+                        what = "Declined"
+                        color = discord.Color.red()
+                        try:
+                            await payload.member.send(f"Your suggestion has been {what.lower()}: `{rows[2]}`")
+                        except:
+                            pass
+                        message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
+                        await message.remove_reaction(payload.emoji,payload.member)
+                        await message.edit(embed=discord.Embed(title="Suggestion",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await cursor.execute("UPDATE suggestions SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
+                        await connection.commit()
+                
+        elif payload.channel_id == 751971356865986731 and payload.member.id == self.client.owner_id:
+            if payload.emoji.name == "✅":
+                async with aiosqlite.connect('logs.db') as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("SELECT * FROM reports WHERE messageid = ?",(payload.message_id,))
+                        rows = await cursor.fetchone()
+                        if rows[3] == "reported":
+                            what = "Verified"
+                            color = discord.Color.yellow()
+                        elif rows[3] == "verified":
+                            what = "Fixed"
+                            color = discord.Color.green()
+                        else:
+                            return
+                        try:
+                            await payload.member.send(f"Your bug report has been {what.lower()}: `{rows[2]}`")
+                        except:
+                            pass
+                        message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
+                        await message.remove_reaction(payload.emoji,payload.member)
+                        await message.edit(embed=discord.Embed(title="Bug Report",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await cursor.execute("UPDATE reports SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
+                        await connection.commit()
+            elif payload.emoji.name == "❎":
+                async with aiosqlite.connect('logs.db') as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("SELECT * FROM reports WHERE messageid = ?",(payload.message_id,))
+                        rows = await cursor.fetchone()
+                        if rows[3] == "declined":
+                            return
+                        what = "Declined"
+                        color = discord.Color.red()
+                        try:
+                            await payload.member.send(f"Your bug report has been {what.lower()}: `{rows[2]}`")
+                        except:
+                            pass
+                        message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
+                        await message.remove_reaction(payload.emoji,payload.member)
+                        await message.edit(embed=discord.Embed(title="Bug Report",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await cursor.execute("UPDATE reports SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
+                        await connection.commit()
         if payload.message_id == 762754787602595840 and not payload.member.bot:
             guild = self.client.get_guild(payload.guild_id)
             nsfw = "<:nsfw:762060771680583710>"
@@ -911,64 +800,36 @@ class MainCog(commands.Cog, name = "General"):
 
     @commands.command(aliases=['suggestion'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def suggest(self, ctx, *, arg):
-      """Make a suggestion about the bot, it can be a new command that you would like to see, or anything else that you want to suggest. NOTE: do not use this command for bugs. To report a bug, use the bug command."""
-      def create_connection(path):
-        connection = None
-        try:
-          connection = sqlite3.connect(path)
-        except Error as e:
-          cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-
-        return connection
-      connection = create_connection("reports.db")
-      def execute_query(connection, query,params:tuple=()):
-        cursor = connection.cursor()
-        try:
-            cursor.execute(query,params)
-            connection.commit()
-        except Error as e:
-            cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-        def execute_read_query(connection, query):
-            cursor = connection.cursor()
-            result = None
-            try:
-              cursor.execute(query)
-              result = cursor.fetchall()
-              return result
-            except Error as e:
-              cprint(f"The error '{e}' occurred, clearing the database file will erase all data, but will make this script useable", 'red')
-
-      report = arg
-      owner = self.client.get_user(self.client.owner_id)
-      reporter = ctx.author.name
-      embed = discord.Embed(timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
-      embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
-      c = self.client.get_guild(727739470731935765).get_channel(751834280929525791)
-      msg = await c.send(f"{reporter} suggested {report}")
-      create_users = f"""
-        INSERT INTO
-          reports (username, report, reportcontent, logreport, status)
-        VALUES
-          (?,?,?,?,?);
-        """
-      execute_query(connection, create_users,(ctx.author.id,msg.id,msg.content,'None','Submitted',))
-      await msg.add_reaction(emoji='✅')
-      await msg.add_reaction(emoji='❎')
-      await ctx.send(embed=embed)
+    async def suggest(self, ctx, *, suggestion):
+        """Make a suggestion about the bot, it can be a new command that you would like to see, or anything else that you want to suggest. NOTE: do not use this command for bugs. To report a bug, use the bug command."""
+        embed = discord.Embed(timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
+        c = self.client.get_guild(727739470731935765).get_channel(751834280929525791)
+        embed1 = discord.Embed(title="Suggestion",description=suggestion,timestamp=ctx.message.created_at)
+        embed1.set_footer(text="Submitted")
+        embed1.set_author(name=ctx.author,icon_url=ctx.author.avatar_url)
+        msg = await c.send(embed=embed1)
+        async with aiosqlite.connect('logs.db') as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("INSERT INTO suggestions (userid, content, status, messageid) VALUES (?,?,?,?);",(ctx.author.id,suggestion,"submitted",msg.id,))
+                await connection.commit()
+        await msg.add_reaction(emoji='✅')
+        await msg.add_reaction(emoji='❎')
+        await ctx.send(embed=embed)
 
     @commands.command(aliases=['bugs'])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def bug(self, ctx, *, arg):
+    async def bug(self, ctx, *, report):
         """Let the owner know about a bug in the bot. NOTE: do not use this command for suggestions. To make a suggestion, use the suggestion command."""
-        #load the database, collapseable
-        suggestion = arg
-        owner = self.client.get_user(self.client.owner_id)
         embed = discord.Embed(timestamp=ctx.message.created_at, title='Success!',description='Also, consider joining the support server: [Click here](https://discord.gg/3seAXGr)')
-        embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
-        suggestor = ctx.author.name
         c = self.client.get_guild(727739470731935765).get_channel(751971356865986731)
-        msg = await c.send(f"{suggestor} reported {suggestion}")
+        embed1 = discord.Embed(title="Bug Report",description=report,timestamp=ctx.message.created_at)
+        embed1.set_footer(text="Reported")
+        embed1.set_author(name=ctx.author,icon_url=ctx.author.avatar_url)
+        msg = await c.send(embed=embed1)
+        async with aiosqlite.connect('logs.db') as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("INSERT INTO reports (userid, content, status, messageid) VALUES (?,?,?,?);",(ctx.author.id,report,"reported",msg.id,))
+                await connection.commit()
         await msg.add_reaction(emoji='✅')
         await msg.add_reaction(emoji='❎')
         await ctx.send(embed=embed)
