@@ -1052,9 +1052,11 @@ class MainCog(commands.Cog, name = "General"):
                     return
                 if row[0] == "true":
                     set_to = "false"
+                    self.client.emoji_users.remove(ctx.author.id)
                     await ctx.send("Disabled autoemoji")
                 else:
                     set_to = "true"
+                    self.client.emoji_users.append(ctx.author.id)
                     await ctx.send("Enabled autoemoji")
                 await cursor.execute("UPDATE users SET status = ? WHERE userid = ?",(set_to,ctx.author.id))
                 await connection.commit() 
