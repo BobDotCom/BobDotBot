@@ -300,6 +300,10 @@ class MainCog(commands.Cog, name = "General"):
           await cursor.execute("CREATE TABLE IF NOT EXISTS suggestions (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, content TEXT, status TEXT, messageid INTEGER);")
           await cursor.execute("CREATE TABLE IF NOT EXISTS reports (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, content TEXT, status TEXT, messageid INTEGER);")
           await connection.commit()
+      async with aiosqlite.connect("emojis.db") as connection:
+        async with connection.cursor() as cursor:
+          await cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, status INTEGER);")
+          await connection.commit()
     @commands.Cog.listener()
     async def on_message_delete(self,message):
       channel = message.channel.id
@@ -1032,5 +1036,27 @@ class MainCog(commands.Cog, name = "General"):
     async def github(self,ctx):
         """Get my github link"""
         await ctx.send("https://github.com/BobDotCom/BobDotBot")
+
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def autoemoji(self,ctx):
+        """Toggle autoemoji"""
+        async with aiosqlite.connect("emojis.db") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT status FROM users WHERE userid = ?",(ctx.author.id,))
+                row = await cursor.fetchone()
+                if not row:
+                    await cursor.execute("INSERT INTO users (userid, status) VALUES (?,?)",(ctx.author.id,"true",))
+                    await connection.commit()
+                    await ctx.send("Enabled autoemoji")
+                    return
+                if row[0] == "true":
+                    set_to = "false"
+                    await ctx.send("Disabled autoemoji")
+                else:
+                    set_to = "true"
+                    await ctx.send("Enabled autoemoji")
+                await cursor.execute("UPDATE users SET status = ? WHERE userid = ?",(set_to,ctx.author.id))
+                await connection.commit() 
 def setup(client):
     client.add_cog(MainCog(client))
