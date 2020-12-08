@@ -3654,3 +3654,567 @@ Caused by: java.net.SocketException: Network is unreachable
 2020-12-05 20:09:58.490  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAggIAHEF2ZW51ZSBCZWF0IC0gRjIwMjAgKEx5cmljcykADFNoYWRvdyBNdXNpYwAAAAAAAsrYAAtpSThBb09fd1F5cwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWlJOEFvT193UXlzAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
 2020-12-05 20:11:22.264  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
 2020-12-05 20:11:22.272  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-05 23:49:29.232  INFO 742 --- [ XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:like a stone"
+2020-12-05 23:49:29.272  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "078a93bd066f70546625fea84e0f8511", "event": {"token": "c2dac6e3267d1cd7", "guild_id": "727739470731935765", "endpoint": "us-central4157.discord.media:443"}}
+2020-12-05 23:49:29.807  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: like a stone
+2020-12-05 23:49:29.982  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAkgIAKkF1ZGlvc2xhdmUgLSBMaWtlIGEgU3RvbmUgKE9mZmljaWFsIFZpZGVvKQAOQXVkaW9zbGF2ZVZFVk8AAAAAAASbsAALN1FVMW52dXhhTUEAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj03UVUxbnZ1eGFNQQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-05 23:56:30.083  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:sweeeeeeeet caroline"
+2020-12-05 23:56:30.545  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: sweeeeeeeet caroline
+2020-12-05 23:56:30.819  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjgIAJE5laWwgRGlhbW9uZCAtIFN3ZWV0IENhcm9saW5lIEx5cmljcwAQbHlyaWNzcGVvcGxlMTIzNAAAAAAAAyDIAAtqelh0N1l2SzlIdwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWp6WHQ3WXZLOUh3AAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-06 00:00:08.594  INFO 742 --- [ XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:country road"
+2020-12-06 00:00:09.189  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: country road
+2020-12-06 00:00:09.476  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAlgIAMUpvaG4gRGVudmVyIC0gVGFrZSBNZSBIb21lLCBDb3VudHJ5IFJvYWRzIChBdWRpbykAC0pvaG4gRGVudmVyAAAAAAADCVgACzF2ckVsak1mWFlvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9MXZyRWxqTWZYWW8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 00:01:05.909  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-06 00:01:05.915  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-06 00:24:16.210  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:37738 -- CloseStatus[code=1006, reason=]
+2020-12-06 00:24:16.210  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-06 00:24:22.246  INFO 742 --- [  XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:38298
+2020-12-06 00:24:22.308  INFO 742 --- [  XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:38298
+2020-12-06 00:25:44.436  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:38298 -- CloseStatus[code=1006, reason=]
+2020-12-06 00:25:44.436  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-06 00:25:56.476  INFO 742 --- [ XNIO-1 task-16] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:38304
+2020-12-06 00:25:56.490  INFO 742 --- [ XNIO-1 task-16] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:38304
+2020-12-06 00:26:50.983  INFO 742 --- [  XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:cantry road take me home"
+2020-12-06 00:26:51.148  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "feffc2b39b0dbc9a9e432cac6e86f770", "event": {"token": "245c715f4de503ad", "guild_id": "727739470731935765", "endpoint": "us-central1911.discord.media:443"}}
+2020-12-06 00:26:51.571  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: cantry road take me home
+2020-12-06 00:26:51.698  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAlgIAMUpvaG4gRGVudmVyIC0gVGFrZSBNZSBIb21lLCBDb3VudHJ5IFJvYWRzIChBdWRpbykAC0pvaG4gRGVudmVyAAAAAAADCVgACzF2ckVsak1mWFlvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9MXZyRWxqTWZYWW8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 00:30:49.807  INFO 742 --- [  XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:kings and queens 30 seconds to"
+2020-12-06 00:30:50.455  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: kings and queens 30 seconds to
+2020-12-06 00:30:50.563  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAmQIAKVRoaXJ0eSBTZWNvbmRzIFRvIE1hcnMgLSBLaW5ncyBhbmQgUXVlZW5zABZUSElSVFkgU0VDT05EUyBUTyBNQVJTAAAAAAAIGjgAC2hUTXJsSEhWeDhBAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9aFRNcmxISFZ4OEEAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 00:30:56.543  INFO 742 --- [  XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:this is war music 30 second"
+2020-12-06 00:30:57.082  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: this is war music 30 second
+2020-12-06 00:36:52.688  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:38304 -- CloseStatus[code=1006, reason=]
+2020-12-06 00:36:52.688  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 1 playing players.
+2020-12-06 00:37:56.123  INFO 742 --- [  XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:38340
+2020-12-06 00:37:56.148  INFO 742 --- [  XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:38340
+2020-12-06 00:38:27.309  INFO 742 --- [  XNIO-1 task-9] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:this is war music 30 second"
+2020-12-06 00:38:27.359  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "0f0388f7933ba489c78f91562938fe23", "event": {"token": "1145218160fcdcbc", "guild_id": "727739470731935765", "endpoint": "us-central1911.discord.media:443"}}
+2020-12-06 00:38:27.894  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: this is war music 30 second
+2020-12-06 00:38:28.019  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAqwIAO1RoaXJ0eSBTZWNvbmRzIHRvIE1hcnMgLSBUaGlzIGlzIFdhciAoT2ZmaWNpYWwgTHlyaWMgVmlkZW8pABZUSElSVFkgU0VDT05EUyBUTyBNQVJTAAAAAAAFCRAAC2hNQVZMWGs5UVdBAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9aE1BVkxYazlRV0EAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 00:47:18.925  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:38340 -- CloseStatus[code=1006, reason=]
+2020-12-06 00:47:18.925  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-06 00:47:24.287  INFO 742 --- [ XNIO-1 task-11] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:38376
+2020-12-06 00:47:24.305  INFO 742 --- [ XNIO-1 task-11] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:38376
+2020-12-06 00:47:37.476  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:killer queen queen"
+2020-12-06 00:47:37.644  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "1145218160fcdcbc", "guild_id": "727739470731935765", "endpoint": "us-central1911.discord.media:443"}}
+2020-12-06 00:47:38.197  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: killer queen queen
+2020-12-06 00:47:38.338  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAgQIAHVF1ZWVuIC0gS2lsbGVyIFF1ZWVuIChMeXJpY3MpAApGcml0emVzMDA3AAAAAAACytgAC2FTUXdJM3JERVRrAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9YVNRd0kzckRFVGsAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 00:51:53.256  INFO 742 --- [ XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:another one bites the dust"
+2020-12-06 00:51:53.874  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: another one bites the dust
+2020-12-06 00:51:53.984  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAmwIAM1F1ZWVuIC0gQW5vdGhlciBPbmUgQml0ZXMgdGhlIER1c3QgKE9mZmljaWFsIFZpZGVvKQAOUXVlZW4gT2ZmaWNpYWwAAAAAAANnGAALclkwV3hnU1hkRUUAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1yWTBXeGdTWGRFRQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 00:56:24.166  INFO 742 --- [  XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:f 2020"
+2020-12-06 00:56:24.612  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: f 2020
+2020-12-06 00:56:24.727  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAggIAHEF2ZW51ZSBCZWF0IC0gRjIwMjAgKEx5cmljcykADFNoYWRvdyBNdXNpYwAAAAAAAsrYAAtpSThBb09fd1F5cwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWlJOEFvT193UXlzAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-06 00:56:26.702  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-06 00:56:26.703  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-06 00:57:00.684  INFO 742 --- [  XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the only exception"
+2020-12-06 00:57:00.734  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "f8fd845dd93f9f78", "guild_id": "727739470731935765", "endpoint": "us-central1911.discord.media:443"}}
+2020-12-06 00:57:01.234  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the only exception
+2020-12-06 00:57:01.353  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjwIALVBhcmFtb3JlOiBUaGUgT25seSBFeGNlcHRpb24gW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQW4AALLUo3Sl9JV1VobHMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj0tSjdKX0lXVWhscwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 01:02:31.889  INFO 742 --- [  XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:misery business"
+2020-12-06 01:02:32.545  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: misery business
+2020-12-06 01:02:32.734  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjAIAKlBhcmFtb3JlOiBNaXNlcnkgQnVzaW5lc3MgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAMNQAALYUN5R3ZHRXRPd2MAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1hQ3lHdkdFdE93YwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 01:06:48.480  INFO 742 --- [  XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:brick by boring brick"
+2020-12-06 01:06:48.952  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: brick by boring brick
+2020-12-06 01:06:49.068  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAkgIAMFBhcmFtb3JlOiBCcmljayBCeSBCb3JpbmcgQnJpY2sgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQDWAALQTYzVndXejFpajAAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1BNjNWd1d6MWlqMAAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 01:13:39.896  INFO 742 --- [  XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:piano ca"
+2020-12-06 01:13:40.375  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: piano ca
+2020-12-06 01:13:40.474  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAmgIAL0NoYXJsaWUgU2NobWlkdCdzIEtleWJvYXJkIENhdCEgLSBUSEUgT1JJR0lOQUwhABFLZXlib2FyZCBDYXQgMjAyMAAAAAAAANbYAAtKLS0tYWl5em5HUQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUotLS1haXl6bkdRAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-06 01:15:03.842  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-06 01:15:03.842  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-06 01:19:36.135  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-06 01:19:36.139  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-06 15:35:56.022  INFO 742 --- [ XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:the only exception"
+2020-12-06 15:35:56.135  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "73ace62ff493d390", "guild_id": "727739470731935765", "endpoint": "us-central687.discord.media:443"}}
+2020-12-06 15:35:56.646  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: the only exception
+2020-12-06 15:35:56.756  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjwIALVBhcmFtb3JlOiBUaGUgT25seSBFeGNlcHRpb24gW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQW4AALLUo3Sl9JV1VobHMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj0tSjdKX0lXVWhscwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 15:40:57.641  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:misery business"
+2020-12-06 15:40:58.305  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: misery business
+2020-12-06 15:40:58.399  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjAIAKlBhcmFtb3JlOiBNaXNlcnkgQnVzaW5lc3MgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAMNQAALYUN5R3ZHRXRPd2MAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1hQ3lHdkdFdE93YwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 15:41:08.325  INFO 742 --- [ XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:brick by boring brick"
+2020-12-06 15:41:08.753  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: brick by boring brick
+2020-12-06 15:44:18.004  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAkgIAMFBhcmFtb3JlOiBCcmljayBCeSBCb3JpbmcgQnJpY2sgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQDWAALQTYzVndXejFpajAAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1BNjNWd1d6MWlqMAAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 15:49:27.119  INFO 742 --- [  XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:this is war music 30 second"
+2020-12-06 15:49:27.594  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: this is war music 30 second
+2020-12-06 15:49:27.699  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAqwIAO1RoaXJ0eSBTZWNvbmRzIHRvIE1hcnMgLSBUaGlzIGlzIFdhciAoT2ZmaWNpYWwgTHlyaWMgVmlkZW8pABZUSElSVFkgU0VDT05EUyBUTyBNQVJTAAAAAAAFCRAAC2hNQVZMWGs5UVdBAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9aE1BVkxYazlRV0EAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 15:59:58.123  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-06 15:59:58.123  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-06 16:55:18.532  INFO 742 --- [  XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:never gonna give you up"
+2020-12-06 16:55:18.561  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "736336082597314740", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "5f3bcb6429563871", "guild_id": "736336082597314740", "endpoint": "us-east3345.discord.media:443"}}
+2020-12-06 16:55:19.365  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: never gonna give you up
+2020-12-06 16:55:19.456  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "736336082597314740", "track": "QAAAmwIALVJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKFZpZGVvKQAUT2ZmaWNpYWwgUmljayBBc3RsZXkAAAAAAANACAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-06 16:55:23.389  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "736336082597314740"}
+2020-12-06 16:55:23.391  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "736336082597314740"}
+2020-12-06 16:55:31.570  INFO 742 --- [  XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:test"
+2020-12-06 16:55:31.600  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "736336082597314740", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "ee120b58973bbf81", "guild_id": "736336082597314740", "endpoint": "us-east3345.discord.media:443"}}
+2020-12-06 16:55:32.101  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: test
+2020-12-06 16:55:32.202  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "736336082597314740", "track": "QAAAtQIAT1NORUFLWSBTQ0hPT0wgSEFDS1MgRk9SIEEgVEVTVCEgfHwgRnVubnkgU2Nob29sIERJWXMgQW5kIFRyaWNrcyBieSAxMjMgR28hIExpdmUADDEyMyBHTyEgTGl2ZQAAAAAACnewAAtoNm9ScmFTT3lvcwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWg2b1JyYVNPeW9zAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-06 16:55:35.586  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "736336082597314740"}
+2020-12-06 17:00:35.649  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "736336082597314740"}
+2020-12-06 17:00:35.649  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "736336082597314740"}
+2020-12-06 17:30:38.865  INFO 742 --- [  XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:kings and queens 30 seconds to"
+2020-12-06 17:30:39.032  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "4d2a866397449d13", "guild_id": "727739470731935765", "endpoint": "us-central1718.discord.media:443"}}
+2020-12-06 17:30:39.475  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: kings and queens 30 seconds to
+2020-12-06 17:30:39.650  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAmQIAKVRoaXJ0eSBTZWNvbmRzIFRvIE1hcnMgLSBLaW5ncyBhbmQgUXVlZW5zABZUSElSVFkgU0VDT05EUyBUTyBNQVJTAAAAAAAIGjgAC2hUTXJsSEhWeDhBAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9aFRNcmxISFZ4OEEAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 17:38:50.058  INFO 742 --- [  XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:this is war music 30 seconds"
+2020-12-06 17:38:50.637  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: this is war music 30 seconds
+2020-12-06 17:38:54.453  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-06 17:38:54.455  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAqwIAO1RoaXJ0eSBTZWNvbmRzIHRvIE1hcnMgLSBUaGlzIGlzIFdhciAoT2ZmaWNpYWwgTHlyaWMgVmlkZW8pABZUSElSVFkgU0VDT05EUyBUTyBNQVJTAAAAAAAFCRAAC2hNQVZMWGs5UVdBAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9aE1BVkxYazlRV0EAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-06 17:44:14.911  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-06 17:44:14.912  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 00:49:24.549  INFO 742 --- [ XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:do i wanna know"
+2020-12-07 00:49:24.598  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "d8f4fddcbac91491", "guild_id": "727739470731935765", "endpoint": "us-central3881.discord.media:443"}}
+2020-12-07 00:49:25.217  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: do i wanna know
+2020-12-07 00:49:25.382  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAowIAMkFyY3RpYyBNb25rZXlzIC0gRG8gSSBXYW5uYSBLbm93PyAoT2ZmaWNpYWwgVmlkZW8pABdPZmZpY2lhbCBBcmN0aWMgTW9ua2V5cwAAAAAABA8QAAticE9TeE0wck5QTQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWJwT1N4TTByTlBNAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 00:49:27.826  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:505"
+2020-12-07 00:49:28.375  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 505
+2020-12-07 00:53:51.779  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAfwIAFDUwNSAtIEFyY3RpYyBNb25rZXlzABFBSUl0aGF0Z0lpdHRlcnMybAAAAAAAA+QYAAtNcm1QRFV2S3lMcwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PU1ybVBEVXZLeUxzAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 00:57:59.196  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 00:57:59.198  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 01:01:24.147  INFO 742 --- [ XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:mongodb is webscale"
+2020-12-07 01:01:24.202  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "d5a1b0b36e5b9e6d", "guild_id": "727739470731935765", "endpoint": "us-central304.discord.media:443"}}
+2020-12-07 01:01:24.588  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: mongodb is webscale
+2020-12-07 01:01:24.862  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAgAIAIUVwaXNvZGUgMSAtIE1vbmdvIERCIElzIFdlYiBTY2FsZQAFZ2FyMXQAAAAAAAUggAALYjJGLURJdFh0WnMAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1iMkYtREl0WHRacwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-07 01:07:32.224  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 01:07:32.224  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 01:12:01.209  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 01:12:01.210  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 01:14:16.798  INFO 742 --- [  XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:r U MINE ??????????"
+2020-12-07 01:14:16.845  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "749642a357e802c9", "guild_id": "727739470731935765", "endpoint": "us-central417.discord.media:443"}}
+2020-12-07 01:14:17.377  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: r U MINE ??????????
+2020-12-07 01:14:17.488  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAnAIAK0FyY3RpYyBNb25rZXlzIC0gUiBVIE1pbmU/IChPZmZpY2lhbCBWaWRlbykAF09mZmljaWFsIEFyY3RpYyBNb25rZXlzAAAAAAADawAAC1ZRSDhaVGduYTNRAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9VlFIOFpUZ25hM1EAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 01:18:23.318  INFO 742 --- [  XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:brick by borin brick"
+2020-12-07 01:18:23.789  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: brick by borin brick
+2020-12-07 01:18:23.969  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAkgIAMFBhcmFtb3JlOiBCcmljayBCeSBCb3JpbmcgQnJpY2sgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQDWAALQTYzVndXejFpajAAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1BNjNWd1d6MWlqMAAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-07 01:24:09.347  INFO 742 --- [  XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:scotland forever"
+2020-12-07 01:24:09.824  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: scotland forever
+2020-12-07 01:24:09.959  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAcgIAEFNDT1RMQU5EIEZPUkVWRVIACEdsaXRjaHkxAAAAAAAA8jAAC2l4TUhHMERJQUs0AAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9aXhNSEcwRElBSzQAB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 01:24:10.381  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of ixMHG0DIAK4
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 01:24:20.353  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 01:24:20.354  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 01:24:24.778  INFO 742 --- [  XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:sweet caroline"
+2020-12-07 01:24:24.827  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "5bcb40c9d5cf3643", "guild_id": "727739470731935765", "endpoint": "us-central417.discord.media:443"}}
+2020-12-07 01:24:25.486  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: sweet caroline
+2020-12-07 01:24:25.612  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjgIAJE5laWwgRGlhbW9uZCAtIFN3ZWV0IENhcm9saW5lIEx5cmljcwAQbHlyaWNzcGVvcGxlMTIzNAAAAAAAAyDIAAtqelh0N1l2SzlIdwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWp6WHQ3WXZLOUh3AAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 01:27:15.506  INFO 742 --- [  XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:country road"
+2020-12-07 01:27:16.204  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: country road
+2020-12-07 01:27:51.528  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAlgIAMUpvaG4gRGVudmVyIC0gVGFrZSBNZSBIb21lLCBDb3VudHJ5IFJvYWRzIChBdWRpbykAC0pvaG4gRGVudmVyAAAAAAADCVgACzF2ckVsak1mWFlvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9MXZyRWxqTWZYWW8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 01:29:10.489  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 01:29:10.493  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 01:29:21.974  INFO 742 --- [ XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:country riad"
+2020-12-07 01:29:22.022  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "a9da0df35b16c0c0", "guild_id": "727739470731935765", "endpoint": "us-central417.discord.media:443"}}
+2020-12-07 01:29:22.660  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: country riad
+2020-12-07 01:29:22.811  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAlgIAMUpvaG4gRGVudmVyIC0gVGFrZSBNZSBIb21lLCBDb3VudHJ5IFJvYWRzIChBdWRpbykAC0pvaG4gRGVudmVyAAAAAAADCVgACzF2ckVsak1mWFlvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9MXZyRWxqTWZYWW8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 01:29:27.087  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 01:29:27.088  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 01:29:31.527  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:missery business"
+2020-12-07 01:29:31.583  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "b07d9ffbd049b87e", "guild_id": "727739470731935765", "endpoint": "us-central417.discord.media:443"}}
+2020-12-07 01:29:32.091  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: missery business
+2020-12-07 01:29:32.188  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjAIAKlBhcmFtb3JlOiBNaXNlcnkgQnVzaW5lc3MgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAMNQAALYUN5R3ZHRXRPd2MAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1hQ3lHdkdFdE93YwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-07 01:37:51.813  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 01:37:51.814  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 02:11:35.952  INFO 742 --- [ XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:505"
+2020-12-07 02:11:35.995  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "1243d7ee34542893", "guild_id": "727739470731935765", "endpoint": "us-central417.discord.media:443"}}
+2020-12-07 02:11:36.500  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 505
+2020-12-07 02:11:36.669  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAfwIAFDUwNSAtIEFyY3RpYyBNb25rZXlzABFBSUl0aGF0Z0lpdHRlcnMybAAAAAAAA+QYAAtNcm1QRFV2S3lMcwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PU1ybVBEVXZLeUxzAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 02:16:08.001  INFO 742 --- [  XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:do i wanna know"
+2020-12-07 02:16:08.692  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: do i wanna know
+2020-12-07 02:16:08.842  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAowIAMkFyY3RpYyBNb25rZXlzIC0gRG8gSSBXYW5uYSBLbm93PyAoT2ZmaWNpYWwgVmlkZW8pABdPZmZpY2lhbCBBcmN0aWMgTW9ua2V5cwAAAAAABA8QAAticE9TeE0wck5QTQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWJwT1N4TTByTlBNAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 02:20:47.949  INFO 742 --- [  XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:i bet that you look good on the dance floor"
+2020-12-07 02:20:48.549  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: i bet that you look good on the dance floor
+2020-12-07 02:20:48.789  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAtQIAR0FyY3RpYyBNb25rZXlzIC0gSSBCZXQgWW91IExvb2sgR29vZCBPbiBUaGUgRGFuY2VmbG9vciAoT2ZmaWNpYWwgVmlkZW8pABREb21pbm8gUmVjb3JkaW5nIENvLgAAAAAAArdQAAtwSzdlZ1phVDNocwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PXBLN2VnWmFUM2hzAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 02:23:45.121  INFO 742 --- [  XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:knights of cyndonia"
+2020-12-07 02:23:45.626  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: knights of cyndonia
+2020-12-07 02:23:46.048  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAgAIAIk11c2UgLSBLbmlnaHRzIE9mIEN5ZG9uaWEgIChWaWRlbykABE11c2UAAAAAAAWVsAALR19zQk9zaC12eUkAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1HX3NCT3NoLXZ5SQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-07 02:30:11.145  INFO 742 --- [  XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:idk idk idk"
+2020-12-07 02:30:11.690  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: idk idk idk
+2020-12-07 02:30:11.791  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAuAIATldBVENIIE5FVyBWSURFTyBWSUEgREVTQ1JJUFRJT04gLSBTdXBhIER1cGEgSHVtYmxlIC0gU3RlcHBpbiBmdC4gTWlsbHMgU3VwcmVtZQAQU3VwYSBEdXBhIEh1bWJsZQAAAAAAAmFgAAs2VVRNVGdWb29lMAABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PTZVVE1UZ1Zvb2UwAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 02:30:13.436  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 02:30:13.437  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 02:30:30.704  INFO 742 --- [  XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:super massive blackhole"
+2020-12-07 02:30:30.754  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "f90a48401c961264", "guild_id": "727739470731935765", "endpoint": "us-central417.discord.media:443"}}
+2020-12-07 02:30:31.224  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: super massive blackhole
+2020-12-07 02:30:31.316  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAiwIAI011c2UtU3VwZXJtYXNzaXZlIEJsYWNrIEhvbGUgbHlyaWNzAA5UaGVSZWFsTXVzaWM3NgAAAAAAA0vAAAtPZ3ZMZWo4bG4ydwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PU9ndkxlajhsbjJ3AAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 02:33:22.001  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 02:33:22.002  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 03:47:19.225  INFO 742 --- [ XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:47:19.368  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "771160800266027029", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "cee918d10746fbdc", "guild_id": "771160800266027029", "endpoint": "us-central8773.discord.media:443"}}
+2020-12-07 03:47:19.593  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:47:20.684  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:47:21.090  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:47:26.313  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:47:26.663  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:47:27.467  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:47:27.896  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:47:31.608  INFO 742 --- [ XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:47:31.975  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:47:32.910  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:47:33.381  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:52:33.528  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "771160800266027029"}
+2020-12-07 03:52:33.529  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "771160800266027029"}
+2020-12-07 03:53:40.019  INFO 742 --- [  XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:53:40.217  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "771160800266027029", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "42f645810eba5dd8", "guild_id": "771160800266027029", "endpoint": "us-central8773.discord.media:443"}}
+2020-12-07 03:53:40.424  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:53:41.277  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:53:41.694  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:53:43.657  INFO 742 --- [  XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:53:44.014  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:53:45.113  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:53:45.490  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:54:03.044  INFO 742 --- [  XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:54:03.373  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:54:04.191  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:54:04.675  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:54:06.051  INFO 742 --- [  XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:54:06.466  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:54:07.677  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:54:08.135  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:54:24.695  INFO 742 --- [  XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:54:25.130  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:54:25.955  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:54:26.455  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:54:37.094  INFO 742 --- [ XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:54:37.549  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:54:38.628  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:54:39.088  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 03:55:48.123  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "https://www.youtube.com/watch?v=IlouAA8mRZo"
+2020-12-07 03:55:48.468  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded track BALDI'S BASICS SONG (YOU'RE MINE) | LYRIC VIDEO | DAGames
+2020-12-07 03:55:49.321  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "771160800266027029", "track": "QAAAmgIAOUJBTERJJ1MgQkFTSUNTIFNPTkcgKFlPVSdSRSBNSU5FKSB8IExZUklDIFZJREVPIHwgREFHYW1lcwAHREFHYW1lcwAAAAAAAtp4AAtJbG91QUE4bVJabwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PUlsb3VBQThtUlpvAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-07 03:55:49.723  WARN 742 --- [ack-1-thread-19] c.s.d.l.t.p.LocalAudioTrackExecutor      : Suspicious exception for playback of IlouAA8mRZo
+
+com.sedmelluq.discord.lavaplayer.tools.FriendlyException: Track information is unavailable.
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadTrackBaseInfoFromEmbedPage(DefaultYoutubeTrackDetailsLoader.java:199) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadBaseResponse(DefaultYoutubeTrackDetailsLoader.java:83) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.load(DefaultYoutubeTrackDetailsLoader.java:54) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.DefaultYoutubeTrackDetailsLoader.loadDetails(DefaultYoutubeTrackDetailsLoader.java:40) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.loadBestFormatWithUrl(YoutubeAudioTrack.java:76) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioTrack.process(YoutubeAudioTrack.java:42) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.track.playback.LocalAudioTrackExecutor.execute(LocalAudioTrackExecutor.java:105) ~[lavaplayer-1.3.53.jar!/:na]
+	at com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager.lambda$executeTrack$1(DefaultAudioPlayerManager.java:349) ~[lavaplayer-1.3.53.jar!/:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+Caused by: java.lang.IllegalStateException: Expected player config is not present in embed page.
+	... 11 common frames omitted
+
+2020-12-07 20:37:05.580  INFO 742 --- [ XNIO-1 task-14] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:sweet caroline"
+2020-12-07 20:37:05.628  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "60961b3ccf7b4415", "guild_id": "727739470731935765", "endpoint": "us-central1960.discord.media:443"}}
+2020-12-07 20:37:06.133  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: sweet caroline
+2020-12-07 20:37:06.287  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAdAIADlN3ZWV0IENhcm9saW5lAAxOZWlsIERpYW1vbmQAAAAAAAMc4AALR21LNV9sblFVYkUAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1HbUs1X2xuUVViRQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-07 20:37:09.071  INFO 742 --- [  XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch::kek:758146909683712041"
+2020-12-07 20:37:09.244  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : No matches found
+2020-12-07 20:40:33.452  INFO 742 --- [  XNIO-1 task-2] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:country road"
+2020-12-07 20:40:34.240  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: country road
+2020-12-07 20:40:34.357  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAlgIAMUpvaG4gRGVudmVyIC0gVGFrZSBNZSBIb21lLCBDb3VudHJ5IFJvYWRzIChBdWRpbykAC0pvaG4gRGVudmVyAAAAAAADCVgACzF2ckVsak1mWFlvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9MXZyRWxqTWZYWW8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 20:43:52.889  INFO 742 --- [  XNIO-1 task-4] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:sweet home alabama"
+2020-12-07 20:43:53.504  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: sweet home alabama
+2020-12-07 20:43:53.663  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAjQIAI0x5bnlyZCBTa3lueXJkIC0gU3dlZXQgSG9tZSBBbGFiYW1hABBTaGF3bnhYeE1pY2hhZWxzAAAAAAAEl8gAC3llNUJ1WWY4cTRvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9eWU1QnVZZjhxNG8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 20:48:37.500  INFO 742 --- [  XNIO-1 task-6] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:in bloom"
+2020-12-07 20:48:38.020  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: in bloom
+2020-12-07 20:48:45.715  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 20:48:45.716  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAhAIAI05pcnZhbmEgLSBJbiBCbG9vbSAoT2ZmaWNpYWwgVmlkZW8pAAdOaXJ2YW5hAAAAAAAEk+AAC1BiZ0tFak5CSHFNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9UGJnS0VqTkJIcU0AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 20:48:48.992  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 20:48:48.993  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-07 20:48:57.150  INFO 742 --- [  XNIO-1 task-8] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:music in bloom lyrics"
+2020-12-07 20:48:57.192  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "adf06e7a05be6972", "guild_id": "727739470731935765", "endpoint": "us-central1960.discord.media:443"}}
+2020-12-07 20:48:57.622  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: music in bloom lyrics
+2020-12-07 20:48:57.768  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAhAIAI05pcnZhbmEgLSBJbiBCbG9vbSAoT2ZmaWNpYWwgVmlkZW8pAAdOaXJ2YW5hAAAAAAAEk+AAC1BiZ0tFak5CSHFNAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9UGJnS0VqTkJIcU0AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-07 20:53:57.461  INFO 742 --- [ XNIO-1 task-10] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:brick by borin brick"
+2020-12-07 20:53:57.886  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: brick by borin brick
+2020-12-07 20:53:58.046  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAkgIAMFBhcmFtb3JlOiBCcmljayBCeSBCb3JpbmcgQnJpY2sgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQDWAALQTYzVndXejFpajAAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1BNjNWd1d6MWlqMAAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-07 20:58:24.372  INFO 742 --- [ XNIO-1 task-12] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:missery busines"
+2020-12-07 20:58:25.002  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: missery busines
+2020-12-07 20:58:25.118  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAcQIAD01pc2VyeSBCdXNpbmVzcwAIUGFyYW1vcmUAAAAAAAM8IAALMVZQb3R6aHBBR0UAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj0xVlBvdHpocEFHRQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-07 21:04:11.190  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "pause", "guildId": "727739470731935765", "pause": true}
+2020-12-07 21:06:57.272  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-07 21:06:57.272  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-08 00:56:31.515  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "771160800266027029"}
+2020-12-08 00:56:31.526  INFO 742 --- [ XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:39630
+2020-12-08 00:56:31.532  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "771160800266027029"}
+2020-12-08 00:56:31.587  INFO 742 --- [ XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:39630
+2020-12-08 02:24:55.584  INFO 742 --- [ XNIO-1 task-15] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:brick by borin brick"
+2020-12-08 02:24:55.639  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "6d08c58bbf773daf7f9b517998fd785f", "event": {"token": "adb8aecd716b37c1", "guild_id": "727739470731935765", "endpoint": "us-central731.discord.media:443"}}
+2020-12-08 02:24:56.061  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: brick by borin brick
+2020-12-08 02:24:56.193  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAkgIAMFBhcmFtb3JlOiBCcmljayBCeSBCb3JpbmcgQnJpY2sgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQDWAALQTYzVndXejFpajAAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1BNjNWd1d6MWlqMAAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-08 02:29:22.852  INFO 742 --- [ XNIO-1 task-16] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:misery business"
+2020-12-08 02:29:23.326  INFO 742 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: misery business
+2020-12-08 02:29:23.462  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAcQIAD01pc2VyeSBCdXNpbmVzcwAIUGFyYW1vcmUAAAAAAAM8IAALMVZQb3R6aHBBR0UAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj0xVlBvdHpocEFHRQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-08 02:30:25.584  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-08 02:30:25.585  INFO 742 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-08 03:26:18.283  INFO 742 --- [       Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-12-08 03:26:18.332  INFO 742 --- [       Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2020-12-08 03:26:18.441  INFO 742 --- [       Thread-1] io.undertow.servlet                      : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2020-12-08 03:26:18.468 ERROR 742 --- [   XNIO-1 I/O-2] org.xnio.listener                        : XNIO001007: A channel event listener threw an exception
+
+java.util.concurrent.RejectedExecutionException: XNIO007007: Thread is terminating
+	at org.xnio.nio.WorkerThread.execute(WorkerThread.java:590) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at io.undertow.websockets.jsr.UndertowSession$3.handleEvent(UndertowSession.java:396) ~[undertow-websockets-jsr-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.websockets.jsr.UndertowSession$3.handleEvent(UndertowSession.java:388) ~[undertow-websockets-jsr-2.0.26.Final.jar!/:2.0.26.Final]
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:92) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at io.undertow.server.protocol.framed.AbstractFramedChannel$FrameCloseListener.handleEvent(AbstractFramedChannel.java:1063) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.protocol.framed.AbstractFramedChannel$FrameCloseListener.handleEvent(AbstractFramedChannel.java:978) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:92) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.conduits.WriteReadyHandler$ChannelListenerHandler.terminated(WriteReadyHandler.java:70) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.writeTerminated(NioSocketConduit.java:234) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.terminateWrites(NioSocketConduit.java:223) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.truncateWrites(NioSocketConduit.java:228) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at io.undertow.conduits.IdleTimeoutConduit.truncateWrites(IdleTimeoutConduit.java:387) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at org.xnio.conduits.ConduitStreamSinkChannel.close(ConduitStreamSinkChannel.java:186) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.IoUtils.safeClose(IoUtils.java:134) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.conduits.WriteReadyHandler$ChannelListenerHandler.forceTermination(WriteReadyHandler.java:57) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.forceTermination(NioSocketConduit.java:107) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.WorkerThread.run(WorkerThread.java:494) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+
+2020-12-08 03:26:18.468 ERROR 742 --- [   XNIO-1 I/O-2] org.xnio.listener                        : XNIO001007: A channel event listener threw an exception
+
+java.util.concurrent.RejectedExecutionException: XNIO007007: Thread is terminating
+	at org.xnio.nio.WorkerThread.execute(WorkerThread.java:590) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at io.undertow.websockets.jsr.UndertowSession$3.handleEvent(UndertowSession.java:396) ~[undertow-websockets-jsr-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.websockets.jsr.UndertowSession$3.handleEvent(UndertowSession.java:388) ~[undertow-websockets-jsr-2.0.26.Final.jar!/:2.0.26.Final]
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:92) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at io.undertow.server.protocol.framed.AbstractFramedChannel$FrameCloseListener.handleEvent(AbstractFramedChannel.java:1063) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at io.undertow.server.protocol.framed.AbstractFramedChannel$FrameCloseListener.handleEvent(AbstractFramedChannel.java:978) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at org.xnio.ChannelListeners.invokeChannelListener(ChannelListeners.java:92) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.conduits.WriteReadyHandler$ChannelListenerHandler.terminated(WriteReadyHandler.java:70) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.writeTerminated(NioSocketConduit.java:234) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.terminateWrites(NioSocketConduit.java:223) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.truncateWrites(NioSocketConduit.java:228) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at io.undertow.conduits.IdleTimeoutConduit.truncateWrites(IdleTimeoutConduit.java:387) ~[undertow-core-2.0.26.Final.jar!/:2.0.26.Final]
+	at org.xnio.conduits.ConduitStreamSinkChannel.close(ConduitStreamSinkChannel.java:186) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.IoUtils.safeClose(IoUtils.java:134) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.conduits.WriteReadyHandler$ChannelListenerHandler.forceTermination(WriteReadyHandler.java:57) ~[xnio-api-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.NioSocketConduit.forceTermination(NioSocketConduit.java:107) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+	at org.xnio.nio.WorkerThread.run(WorkerThread.java:494) ~[xnio-nio-3.3.8.Final.jar!/:3.3.8.Final]
+
+2020-12-08 03:29:44.077  INFO 778 --- [           main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        3.3.2.1
+	Build:          1132
+	Build time:     28.10.2020 21:44:36 UTC
+	Branch          master
+	Commit:         833f72e
+	Commit time:    28.10.2020 21:39:31 UTC
+	JVM:            13.0.4
+	Lavaplayer      1.3.53
+
+2020-12-08 03:29:44.484  INFO 778 --- [           main] lavalink.server.Launcher                 : Starting Launcher on bobdotbot with PID 778 (/root/main-bot/lavalink.jar started by root in /root/main-bot)
+2020-12-08 03:29:44.485  INFO 778 --- [           main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2020-12-08 03:29:44.890  WARN 778 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2020-12-08 03:29:48.200  WARN 778 --- [           main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2020-12-08 03:29:48.282  INFO 778 --- [           main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2020-12-08 03:29:48.283  INFO 778 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 3603 ms
+2020-12-08 03:29:49.258  WARN 778 --- [           main] l.server.config.SentryConfiguration      : Turning off sentry
+2020-12-08 03:29:50.210  INFO 778 --- [           main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2020-12-08 03:29:50.819  INFO 778 --- [           main] lavalink.server.config.KoeConfiguration  : OS: Linux, Arch: amd64
+2020-12-08 03:29:50.820  INFO 778 --- [           main] lavalink.server.config.KoeConfiguration  : Enabling JDA-NAS
+2020-12-08 03:29:50.831  INFO 778 --- [           main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2020-12-08 03:29:50.846  INFO 778 --- [           main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2020-12-08 03:29:51.537  INFO 778 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-08 03:29:52.282  INFO 778 --- [           main] org.xnio                                 : XNIO version 3.3.8.Final
+2020-12-08 03:29:52.310  INFO 778 --- [           main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.xnio.nio.NioXnio$2 (jar:file:/root/main-bot/lavalink.jar!/BOOT-INF/lib/xnio-nio-3.3.8.Final.jar!/) to constructor sun.nio.ch.EPollSelectorProvider()
+WARNING: Please consider reporting this to the maintainers of org.xnio.nio.NioXnio$2
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2020-12-08 03:29:52.494  INFO 778 --- [           main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) 2333 (http) with context path ''
+2020-12-08 03:29:52.503  INFO 778 --- [           main] lavalink.server.Launcher                 : Started Launcher in 10.228 seconds (JVM running for 11.774)
+2020-12-08 03:29:52.505  INFO 778 --- [           main] lavalink.server.Launcher                 : You can safely ignore the big red warning about illegal reflection. See https://github.com/Frederikam/Lavalink/issues/295
+2020-12-08 03:44:55.961  INFO 778 --- [  XNIO-1 task-1] io.undertow.servlet                      : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-08 03:44:55.962  INFO 778 --- [  XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-12-08 03:44:56.005  INFO 778 --- [  XNIO-1 task-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 42 ms
+2020-12-08 03:44:56.037  INFO 778 --- [  XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:56628
+2020-12-08 03:44:56.216  INFO 778 --- [  XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:56628
+2020-12-08 03:54:21.292  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:56628 -- CloseStatus[code=1006, reason=]
+2020-12-08 03:54:21.297  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-08 03:55:48.911  INFO 778 --- [  XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:56644
+2020-12-08 03:55:48.926  INFO 778 --- [  XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:56644
+2020-12-08 03:55:58.261  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:56644 -- CloseStatus[code=1006, reason=]
+2020-12-08 03:55:58.262  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-08 03:56:03.387  INFO 778 --- [  XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:56650
+2020-12-08 03:56:03.394  INFO 778 --- [  XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:56650
+2020-12-08 03:58:50.224  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:56650 -- CloseStatus[code=1006, reason=]
+2020-12-08 03:58:50.224  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-08 03:58:55.342  INFO 778 --- [  XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:56672
+2020-12-08 03:58:55.364  INFO 778 --- [  XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:56672
+2020-12-08 19:51:31.076  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-08 19:51:31.100  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-08 19:51:31.108  INFO 778 --- [  XNIO-1 task-5] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57068
+2020-12-08 19:51:31.151  INFO 778 --- [  XNIO-1 task-5] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57068
+2020-12-08 19:52:34.489  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:56672 -- CloseStatus[code=1006, reason=]
+2020-12-08 19:52:34.490  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-08 19:52:34.497  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57068 -- CloseStatus[code=1006, reason=]
+2020-12-08 19:52:34.498  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-08 19:52:40.494  INFO 778 --- [  XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57076
+2020-12-08 19:52:40.519  INFO 778 --- [  XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57076
+2020-12-08 22:19:43.286  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57076 -- CloseStatus[code=1006, reason=]
+2020-12-08 22:19:43.287  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-08 22:20:47.560  INFO 778 --- [  XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57204
+2020-12-08 22:20:47.600  INFO 778 --- [  XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57204
