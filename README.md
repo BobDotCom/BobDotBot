@@ -9,9 +9,8 @@ Most of the code is written by me, but the RTFM and Help commands are taken from
 [Click here](https://discord.com/api/oauth2/authorize?client_id=746045299125911562&permissions=8&scope=bot)
 ### Support Server
 [Click here](https://discord.gg/EHpET2zq)
-## Why is there no source code?
-BobDotBot is currently *Not* open source, but may be in the future
-## Commands
+## Source Code
+All of the old tokens in the source code have been regenerated, and will not work anymore. Also, most of the old code that I had made is pretty bad, as I wrote it at the beginning of learning the programming language. I am currently in the process of fixing the old code.
 ### Growtopia
 #### Commands relating to the online sandbox game, Growtopia
 ##### renderworld
