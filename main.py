@@ -86,9 +86,14 @@ async def on_ready():
 
 @client.event
 async def on_command_error(ctx, error):
-  if hasattr(ctx.command, 'on_error'):
-    return
-  setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
+        if hasattr(ctx.command, 'on_error'):
+            return
+        
+        #ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions)   
+        error = getattr(error, 'original', error)
+
+        """ someone gave me this code, may use at some point
+        setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
   owner_reinvoke_errors = (
     commands.MissingAnyRole, commands.MissingPermissions,
     commands.MissingRole, commands.CommandOnCooldown, commands.DisabledCommand
@@ -96,51 +101,63 @@ async def on_command_error(ctx, error):
 
   if ctx.original_author_id in client.owner_ids and isinstance(error, owner_reinvoke_errors):
     return await ctx.reinvoke()
-  ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions, commands.MaxConcurrencyReached)
-  error = getattr(error, 'original', error)
+        """
+        
 
+        if isinstance(error, commands.CommandNotFound):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  if isinstance(error, commands.CommandNotFound):
-    if ctx.prefix.lower() != "bob ":
-      await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Sorry, {error}. Use my help command for a command list", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.BadArgument):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.BadArgument):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.MissingRequiredArgument):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.MissingRequiredArgument):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.NoPrivateMessage):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.NoPrivateMessage):
-    return
+        elif isinstance(error, commands.CheckFailure):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.CheckFailure):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"You do not have the required permissions to run this command", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.DisabledCommand):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.DisabledCommand):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like this command in disabled.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.CommandInvokeError):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.CommandInvokeError):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like something went wrong. Report this issue to the developer.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.TooManyArguments):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.TooManyArguments):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like you gave too many arguments.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.UserInputError):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.UserInputError):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like you did something wrong.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.CommandOnCooldown):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.CommandOnCooldown):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.NotOwner):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.NotOwner):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like you do not own this bot.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.MissingPermissions):
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.MissingPermissions):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.BotMissingPermissions):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
-  elif isinstance(error, commands.BotMissingPermissions):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
-  elif isinstance(error, commands.MaxConcurrencyReached):
-    await ctx.send(embed=discord.Embed(color=0xff0000).set_footer(text=f"Seems like {error}.", icon_url=ctx.author.avatar_url))
+        elif isinstance(error, commands.MaxConcurrencyReached):
+            error=str(error)
+            await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 @client.event
 async def on_message(message):
 	if message.author.id in client.emoji_users and (message.content.startswith(":") or message.content.startswith(";")):
