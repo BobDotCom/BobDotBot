@@ -627,7 +627,7 @@ class MainCog(commands.Cog, name = "General"):
         """Checks the latency of the bot (lower is better)"""
         ping = int(self.client.latency * 1000)
         owner = self.client.get_user(self.client.owner_id)
-        embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description=f"My websocket ping is: *{ping}*")
+        embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description=f"My websocket ping is: **{ping}**")
         embedVar.set_footer(text=f"Getting database ping")
         message = await ctx.send(embed=embedVar)
         db_start = time.perf_counter()
@@ -635,7 +635,7 @@ class MainCog(commands.Cog, name = "General"):
             async with connection.cursor() as cursor:
                 pass
         db_end = time.perf_counter()
-        db_ping = int((db_end - db_start) * 1000)
+        db_ping = (db_end - db_start) * 1000
         embedVar.add_field(name="Database ping",value=f'*{db_ping}*')
         embedVar.set_footer(text=f"Getting total ping")
         start = time.perf_counter()
