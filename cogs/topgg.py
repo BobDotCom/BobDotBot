@@ -1,3 +1,6 @@
+"""
+This is copied from their docs, honestly I didn't look what it did but it appears to work
+"""
 import dbl
 import discord 
 from discord.ext import commands, tasks
@@ -10,6 +13,7 @@ class TopGG(commands.Cog):
     self.bot = bot 
     self.token = self.bot.dbltoken # set this to your DBL token 
     self.dblpy = dbl.DBLClient(self.bot, self.token, webhook_path='/dblwebhook', webhook_auth='password', webhook_port=5000) 
+    self.update_stats.start()
 
   # The decorator below will work only on discord.py 1.1.0+ 
   # In case your discord.py version is below that, you can use self.bot.loop.create_task(self.update_stats()) 

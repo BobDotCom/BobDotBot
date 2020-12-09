@@ -61,7 +61,7 @@ client.load_extension("jishaku")
 client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
 logs = get_logs
-client.dbltoken = DBL_TOKEN or "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc0NjA0NTI5OTEyNTkxMTU2MiIsImJvdCI6dHJ1ZSwiaWF0IjoxNjA2MzQyOTI5fQ.mYjpp6MXO69h9HZDRiPHa6pZsduzQuK541so8IV4CCQ"
+client.dbltoken = DBL_TOKEN
 
 @client.event
 async def on_ready():
