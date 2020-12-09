@@ -115,7 +115,7 @@ class Moderator(commands.Cog):
                   if member.guild_permissions.ban_members and not ctx.guild.owner == ctx.author:
                     await ctx.send("This person has to not have the ban members permission.")
                   else:
-                    await member.ban(delete_message_days=delete_days, reason=reason)
+                    await member.ban(delete_message_days=delete_days, reason="Banned by: " + ctx.author.mention + ": " + (reason or "No reason specified"))
                     await ctx.send("Ok, I banned them for you")
                 else:
                   if member == ctx.author:
@@ -143,7 +143,7 @@ class Moderator(commands.Cog):
                 user = ban_entry.user
 
                 if (user.name, user.discriminator) == (member_name, member_discriminator):
-                    await ctx.guild.unban(user)
+                    await ctx.guild.unban(user,reason="Unbanned by: " + ctx.author.mention + ": " + (reason or "No reason specified"))
 
             try:
                 if reason:
