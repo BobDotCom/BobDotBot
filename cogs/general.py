@@ -627,11 +627,19 @@ class MainCog(commands.Cog, name = "General"):
         """Checks the latency of the bot (lower is better)"""
         ping = int(self.client.latency * 1000)
         owner = self.client.get_user(self.client.owner_id)
-        embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description="My ping is:")
-        embedVar.add_field(name="Websocket ping",value="*" + str(ping) + "ms*")
+        embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description=f"My websocket ping is: *{ping}*")
+        embedVar.set_footer(text=f"Getting database ping")
+        message = await ctx.send(embed=embedVar)
+        db_start = time.perf_counter()
+        async with aiosqlite.connect('users.db') as connection:
+            async with connection.cursor() as cursor:
+                pass
+        db_end = time.perf_counter()
+        db_ping = int((db_end - db_start) * 1000)
+        embedVar.add_field(name="Database ping",value=f'*{db_ping}*')
         embedVar.set_footer(text=f"Getting total ping")
         start = time.perf_counter()
-        message = await ctx.send(embed=embedVar)
+        await message.edit(embed=embedVar)
         end = time.perf_counter()
         duration = int((end - start) * 1000)
         embedVar.add_field(name="Total ping",value="*" + str(duration) + "ms*")
@@ -647,6 +655,7 @@ class MainCog(commands.Cog, name = "General"):
             embedVar.add_field(name="API ping",value="*" + str(api_ping) + "ms*")
         embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await message.edit(embed=embedVar)
+        
         
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
