@@ -11,6 +11,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         self.client = client
         self.client.owner_id = 690420846774321221
         self.url = "https://growtopiagame.com"
+        self.session = aiohttp.ClientSession()
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -19,25 +20,24 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     async def renderworld(self,ctx,world):
         """Get a render of a world in Growtopia"""
         async with ctx.typing():
-            async with aiohttp.ClientSession() as sess:
-                async with sess.get(self.url+f'/worlds/{world.lower()}.png') as resp:
-                    if not resp.status == 200:
-                        embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
-                        await ctx.send(embed=embed)
-                        return
-                    embed = discord.Embed(title=f"Here is a render of the world: {world.upper()}")
-                    embed.set_image(url=self.url+f'/worlds/{world.lower()}.png') 
-                    await ctx.send(embed=embed)             
+            async with self.session.get(self.url+f'/worlds/{world.lower()}.png') as resp:
+                if not resp.status == 200:
+                    embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"That world hasn't been rendered yet")
+                    await ctx.send(embed=embed)
+                    return
+                embed = discord.Embed(title=f"Here is a render of the world: {world.upper()}")
+                embed.set_image(url=self.url+f'/worlds/{world.lower()}.png') 
+                await ctx.send(embed=embed)             
     @commands.command(aliases=["gt"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
         """See how many people are playing the game right now"""
-        async with aiohttp.ClientSession() as sess:
-            async with sess.get(self.url+'/detail') as resp:
+        async with self.session.get(self.url+'/detail') as resp:
               data = await resp.json(content_type="text/html")
               data = data["online_user"]
         embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
         await ctx.send(embed=embed)
+        
     @commands.command(aliases=["wiki","item"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def gt_wiki(self,ctx,*,item):
