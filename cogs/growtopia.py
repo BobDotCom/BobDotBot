@@ -32,7 +32,7 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def online(self,ctx):
         """See how many people are playing the game right now"""
-            async with self.session.get(self.url+'/detail') as resp:
+        async with self.session.get(self.url+'/detail') as resp:
               data = await resp.json(content_type="text/html")
               data = data["online_user"]
         embed = discord.Embed(timestamp=ctx.message.created_at, title=f"Growtopia stats", description=f"Players online: {data}")
