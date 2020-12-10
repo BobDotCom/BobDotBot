@@ -599,7 +599,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def slap(self, ctx, members: commands.Greedy[discord.Member], *, reason='no reason'):
         """Use this to slap someone
-        Note: If the user has a multi word name, put it in "quotes", or mention it"""
+        Note: If the user has a multi word name, put it in "quotes", or mention it."""
         slapped = ", ".join(x.name for x in members)
         slapself = f"{ctx.author.name}"
         owner = self.client.get_user(self.client.owner_id)
