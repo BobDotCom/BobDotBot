@@ -245,7 +245,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
             time_amount = f"**{time_amount}** \nOnce this time is up, you may make an appeal to my developer."
         else:
             time_amount = f"**{time_amount}**"
-        if True:
+        try:
             user = self.client.get_user(user_id)
             if action == "add":
                 embed = discord.Embed(title="You've been blacklisted!",description=f"This means you will not be able to use the bot. If you would like to appeal this, or if you think this is a mistake, please contact my developer {self.client.get_user(self.client.owner_ids[0])}.",color=discord.Color.red())
@@ -256,8 +256,8 @@ class OwnerCog(commands.Cog, name = "Owner"):
             elif action == 'remove':
                 await user.send('You have been removed from the blacklist. You may use the bot now.')
                 await ctx.send(f'Successfully unblacklisted {user}')
-        else:
-            pass
+        except:
+            await ctx.send('failed')
 
     @commands.command()
     @commands.is_owner()
