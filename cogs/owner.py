@@ -3,6 +3,7 @@ import discord
 import asyncio
 import aiohttp
 import os
+import json
 import subprocess as sp
 from discord.ext import commands
 from jishaku.codeblocks import codeblock_converter
@@ -225,10 +226,39 @@ class OwnerCog(commands.Cog, name = "Owner"):
           
           msg = await self.client.wait_for('message', check=check,timeout=timeout)
           await ctx.invoke(ph)
+
     @commands.command()
     @commands.is_owner()
-    async def blacklist(self,ctx,user_id):
-        open("blacklisted.json",'x')
+    async def blacklist(self,ctx,action,user_id,time_amount='Permanent',*,reason=None):
+        user_id = int(user_id)
+        with open("blacklisted.json",'r') as f:
+            data = json.load(f)
+        data['users'] = data['users'] or []
+        if action == "add":
+            data['users'].append(user_id)
+        elif action == 'remove':
+            data['users'].remove(user_id)
+        self.client.blacklisted = data["users"]
+        with open("blacklisted.json",'w') as f:
+            json.dump(data,f,indent=4)
+        if not time_amount.lower() in ['permanent',"forever"]:
+            time_amount = f"**{time_amount}** \nOnce this time is up, you may make an appeal to my developer."
+        else:
+            time_amount = f"**{time_amount}**"
+        if True:
+            user = self.client.get_user(user_id)
+            if action == "add":
+                embed = discord.Embed(title="You've been blacklisted!",description=f"This means you will not be able to use the bot. If you would like to appeal this, or if you think this is a mistake, please contact my developer {self.client.get_user(self.client.owner_ids[0])}.",color=discord.Color.red())
+                embed.add_field(name='Time',value=time_amount)
+                embed.add_field(name='Reason',value=reason or 'None specified')
+                await user.send(embed=embed)
+                await ctx.send(f'Successfully blacklisted {user}')
+            elif action == 'remove':
+                await user.send('You have been removed from the blacklist. You may use the bot now.')
+                await ctx.send(f'Successfully unblacklisted {user}')
+        else:
+            pass
+
     @commands.command()
     @commands.is_owner()
     async def cogs(self,ctx):

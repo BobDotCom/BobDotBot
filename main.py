@@ -51,6 +51,13 @@ def get_logs(client, message):
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix=get_prefix,intents=intents,embed_color = discord.Color.blurple(),case_insensitive = True)
+try:
+    with open('blacklisted.json','r') as f:
+        data = json.load(f)
+    client.blacklisted = data['users']
+except:
+    client.blacklisted = []
+    print('Blacklist not loaded')
 #client.remove_command('help')
 client.uptime = datetime.utcnow()
 owner = client.get_user(client.owner_id)
@@ -446,7 +453,7 @@ async def unloadall(ctx):
 
 @client.check
 def blacklist(ctx):
-    return ctx.message.author.id != 0
+    return not ctx.message.author.id in client.blacklisted
 for filename in os.listdir('./cogs'):
     try:
         if filename.endswith('.py'):
