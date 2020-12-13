@@ -293,7 +293,6 @@ class MainCog(commands.Cog, name = "General"):
                 await asyncio.sleep(60)
     @commands.Cog.listener()
     async def on_ready(self):
-      print('MainCog is active')
       await asyncio.sleep(5)
       async with aiosqlite.connect("logs.db") as connection:
         async with connection.cursor() as cursor:
@@ -1067,6 +1066,6 @@ class MainCog(commands.Cog, name = "General"):
                     self.client.emoji_users.append(ctx.author.id)
                     await ctx.send("Enabled autoemoji")
                 await cursor.execute("UPDATE users SET status = ? WHERE userid = ?",(set_to,ctx.author.id))
-                await connection.commit() 
+                await connection.commit()
 def setup(client):
     client.add_cog(MainCog(client))

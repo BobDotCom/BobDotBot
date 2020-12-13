@@ -47,10 +47,7 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
         self.bot = client
         self.client.owner_id = 690420846774321221
         self.client.session = aiohttp.ClientSession(loop=self.client.loop)
-
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('ProgrammingCog is active')
+        
     def parse_object_inv(self, stream, url):
         # key: URL
         # n.b.: key doesn't have `discord` or `discord.ext.commands` namespaces

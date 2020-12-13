@@ -13,9 +13,6 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
         self.url = "https://growtopiagame.com"
         self.session = aiohttp.ClientSession()
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('GrowtopiaCog is active')
     @commands.command(aliases=["rw", "render"])
     async def renderworld(self,ctx,world):
         """Get a render of a world in Growtopia"""

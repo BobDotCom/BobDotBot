@@ -17,7 +17,8 @@ git+https://github.com/Rapptz/discord-ext-menus
 sympy
 beautifulsoup4
 enhanced-dpy
-
+halo
 wavelink
 enhanced-dpy
 dblpy
+string-color

@@ -9,6 +9,8 @@ import typing
 import asyncio
 import aiosqlite
 import datetime
+import sys
+import traceback
 # import stuff
 from dotenv import load_dotenv
 from discord.ext.commands import Bot
@@ -16,6 +18,8 @@ from discord.ext import commands
 from datetime import datetime
 from discord.ext.tasks import loop
 from otherscripts.data import Data
+from halo import Halo
+from stringcolor import * 
 
 
 # Load .env file
@@ -69,102 +73,157 @@ client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
 logs = get_logs
 client.dbltoken = DBL_TOKEN
+connect_spinner = Halo(text='Connecting', spinner='dots')
+start_spinner = Halo(text='Starting up', spinner='dots')
+
+@client.event
+async def on_connect():
+    try:
+        connect_spinner.succeed('Connected')
+    except:
+        pass
+    start_spinner.start()
 
 @client.event
 async def on_ready():
-	client.loop.create_task(Data.auto_update_data())
-	# server counter
-	guild_count = 0
-	users = 0
-	# gets guild info
-	for guild in client.guilds:
+    try:
+        start_spinner.succeed('Ready')
+    except:
+        pass
+    print(f"Bot online.\nStats:\n• Python {sys.version} on {sys.platform}\n• discord.py {discord.__version__}".replace(' \n',' '))
 
-		# prints guild name
-		print(f"- {guild.id} (name: {guild.name})")
+    cache_summary = f"{len(client.guilds)} guilds and {len(client.users)} users"
+    if isinstance(client, discord.AutoShardedClient):
+        print(f"{client.user.name} is automatically sharded ({len(client.shards)} shards) and can see {cache_summary}.")
+    elif client.shard_count:
+        print(f"{client.user.name} is manually sharded ({len(client.shards)} shards) and can see {cache_summary}.")
+    else:
+        print(f"{client.user.name} is not sharded and can see {cache_summary}.")
+    print(cs('Bot is ready','green'))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"Bot starting up..."))
 
-		# guild counter
-		guild_count = guild_count + 1
-		for member in guild.members:
-			users = users + 1
-
-	# prints amount of servers
-	print("BobDotBot is in " + str(guild_count) + " guilds.")
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"Bot starting up..."))
+async def log_error(ctx,error,handled):
+    if not handled:
+        title = 'Ignoring exception in command {}:'.format(ctx.command)
+        err = ''.join(traceback.format_exception(type(error), error, error.__traceback__))
+        try:
+            channel = client.get_channel(787461422896513104)
+            embed = discord.Embed(title=title,description=f'```py\n{err}```',timestamp=ctx.message.created_at,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url)
+            await channel.send(embed=embed)
+        except:
+            try:
+                channel = client.get_channel(787461422896513104)
+                await channel.send(f"{client.get_user(client.owner_ids[0]).mention} **An error occurred but for an unknown reason, I couldn't log it here**")
+            except:
+                pass
+            print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+            traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+        finally:
+            return
+    else:
+        err = ''.join(traceback.format_exception(type(error), error, error.__traceback__))
+        title = 'Ignoring exception in command {}:'.format(ctx.command)
+        try:
+            channel = client.get_channel(787476834689744926)
+            embed = discord.Embed(title=title,description=f'```py\n{err}```',timestamp=ctx.message.created_at,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url)
+            await channel.send(embed=embed)
+        except:
+            try:
+                channel = client.get_channel(787476834689744926)
+                await channel.send(f"{client.get_user(client.owner_ids[0]).mention} **An error occurred but for an unknown reason, I couldn't log it here**")
+            except:
+                pass
+            print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
+            traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
+        finally:
+            pass
 
 @client.event
 async def on_command_error(ctx, error):
+        exception = error
         if hasattr(ctx.command, 'on_error'):
-            return
-        
+            pass
         #ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions)   
         error = getattr(error, 'original', error)
 
-        """ someone gave me this code, may use at some point
-        setattr(ctx, "original_author_id", getattr(ctx, "original_author_id", ctx.author.id))
-  owner_reinvoke_errors = (
-    commands.MissingAnyRole, commands.MissingPermissions,
-    commands.MissingRole, commands.CommandOnCooldown, commands.DisabledCommand
-    )
-
-  if ctx.original_author_id in client.owner_ids and isinstance(error, owner_reinvoke_errors):
-    return await ctx.reinvoke()
-        """
-        
-
         if isinstance(error, commands.CommandNotFound):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.BadArgument):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.MissingRequiredArgument):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.NoPrivateMessage):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.CheckFailure):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.DisabledCommand):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.CommandInvokeError):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.TooManyArguments):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.UserInputError):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.CommandOnCooldown):
-            error=str(error)
+            await log_error(ctx,exception,True)
+            time = datetime.timedelta(seconds=math.ceil(error.retry_after))
+            error = f'You are on cooldown. Try again after {humanize.precisedelta(time)}'
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.NotOwner):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.MissingPermissions):
+            await log_error(ctx,exception,True)
+            error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.BotMissingPermissions):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
 
         elif isinstance(error, commands.MaxConcurrencyReached):
+            await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
+        
+        else:
+            try:
+                await ctx.send(f"An Error occurred, my developer has been notified of it, but you may still report it (`{ctx.prefix}bug [error]`) if you wish.")
+            except:
+                pass
+            await log_error(ctx,exception,False)
+            
 @client.event
 async def on_message(message):
 	if message.author.id in client.emoji_users and (message.content.startswith(":") or message.content.startswith(";")):
@@ -454,14 +513,22 @@ async def unloadall(ctx):
 @client.check
 def blacklist(ctx):
     return not ctx.message.author.id in client.blacklisted
+print("----------Cogs----------")
 for filename in os.listdir('./cogs'):
     try:
         if filename.endswith('.py'):
-            client.load_extension(f'cogs.{filename[:-3]}')
+            filename = f'cogs.{filename[:-3]}'
+            cog_spinner = Halo(text=filename, spinner='dots')
+            cog_spinner.start()
+            client.load_extension(filename)
+            cog_spinner.succeed()
     except:
-    	continue
-
+    	cog_spinner.fail()
+print("")
 
 server_timer.start()
-# token
-client.run(DISCORD_TOKEN)
+connect_spinner.start()
+try:
+    client.run(DISCORD_TOKEN)
+except:
+    connect_spinner.fail('Failed to connect')

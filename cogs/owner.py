@@ -15,10 +15,6 @@ class OwnerCog(commands.Cog, name = "Owner"):
         self.client = client
         self.client.owner_id = 690420846774321221
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('OwnerCog is active')
-
     @commands.command(aliases=['update', 'maintenence', 'logout', 'die', 'kill'])
     @commands.is_owner()
     async def shutdown(self, ctx):

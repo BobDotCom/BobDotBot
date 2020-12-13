@@ -155,7 +155,6 @@ class Moderation(commands.Cog, name = cog_name):
 
     @commands.Cog.listener()
     async def on_ready(self):
-      print("ModCog is active")
       create_users_table = """
       CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -163,11 +163,5 @@ class Levels(commands.Cog, name = "User database"):
                 await asyncio.sleep(30)
                 await msg.delete()
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-      print('UserDataCog is active')
-      
-              
-
 def setup(client):
     client.add_cog(Levels(client))

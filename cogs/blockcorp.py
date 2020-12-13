@@ -24,9 +24,6 @@ class BlockCorpCog(commands.Cog, name = "BlockCorp"):
         owner = self.client.get_user(self.client.owner_id)
         self.client.owner_id = 690420846774321221
 
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('BlockCorpCog is active')
     @commands.command(aliases=["bc"])
     @commands.is_owner()
     async def blockcorp(self,ctx):

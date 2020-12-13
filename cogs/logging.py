@@ -14,7 +14,6 @@ class LogCog(commands.Cog, name = "Logging"):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print('LogCog is active')
         create_guilds_table = """
         CREATE TABLE IF NOT EXISTS guilds (
             id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -9,9 +9,7 @@ class Serversettings(commands.Cog, name = "Settings"):
     def __init__(self, client):
         self.bot = client
         self.theme_color = discord.Color.blurple()
-    @commands.Cog.listener()
-    async def on_ready(self):
-        print('SettingsCog is active')
+
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     @commands.has_permissions(manage_guild = True)
