@@ -219,7 +219,8 @@ async def on_command_error(ctx, error):
         
         else:
             try:
-                await ctx.send(f"An Error occurred, my developer has been notified of it, but you may still report it (`{ctx.prefix}bug [error]`) if you wish.")
+                embed = discord.Embed(title='Oh no!',description=f"An error occurred. My developer has been notified of it, but you may still report it (`{ctx.prefix}help bug`) if you wish.",color=discord.Color.red())
+                await ctx.send(embed=embed)
             except:
                 pass
             await log_error(ctx,exception,False)
