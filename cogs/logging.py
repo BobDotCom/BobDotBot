@@ -113,6 +113,8 @@ class LogCog(commands.Cog, name = "Logging"):
             if rows[2] == 1 and rows[3] != 0:
                 try:
                     channel = self.client.get_guild(payload.guild_id).get_channel(rows[3])
+                    if channel == payload.channel:
+                        return
                     embed = discord.Embed(title="Message Deleted",description=payload.cached_message.content,timestamp=datetime.datetime.utcnow())
                     embed.add_field(name="Author",value=payload.cached_message.author.mention)
                     embed.add_field(name="Channel",value=self.client.get_guild(payload.guild_id).get_channel(payload.channel_id))

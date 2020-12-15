@@ -282,6 +282,37 @@ class MainCog(commands.Cog, name = "General"):
         self.api = "https://some-random-api.ml"
         client.help_command = PaginatedHelpCommand()
         client.help_command.cog = self
+        self.create_url = "https://api.qrserver.com/v1/create-qr-code/?size={}&data={}.png"
+        self.session = aiohttp.ClientSession()
+
+    @commands.command(aliases=["qr"])
+    async def makeqr(self,ctx,*,text):
+        """Generate a qr code"""
+        if len(text) > 900:
+            return await ctx.send("The maximum is 900 characters")
+        async with ctx.typing():
+            async with self.session.get(self.create_url.format('200x200',text)) as resp:
+                if not resp.status == 200:
+                    embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"API could not handle this request. Please try again later.")
+                    await ctx.send(embed=embed)
+                    return
+                embed = discord.Embed(title=f"Here is your qr code!")
+                url = self.create_url.format('200x200',text)
+                embed.set_image(url=url) 
+                embed.set_footer(text="If this didn't work, type retry within 30 seconds")
+                await ctx.send(embed=embed)  
+        def check(m):
+            return m.author == ctx.author and m.content.lower() == "retry" and m.channel == ctx.channel
+        try:
+            msg = await self.client.wait_for('message', check=check,timeout=30)
+            await ctx.send(f"Ok {msg.author.mention}, I will send the raw image url.")
+            await ctx.send(url)
+        except asyncio.TimeoutError:
+            return
+
+    @commands.command()
+    async def readqr(self,ctx):
+        return
 
     async def save_users(self):
         await self.client.wait_until_ready()
