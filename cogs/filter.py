@@ -37,7 +37,7 @@ class FilterCog(commands.Cog, name = "Filter"):
         caught = False
         if enabled and not message.channel.id in ignored:
             for word in words:
-                if re.search('+'.join(word),message.content):
+                if re.search('+\s*'.join(word),message.content):
                     caught = True
                     try:
                         await message.delete()
@@ -169,10 +169,14 @@ class FilterCog(commands.Cog, name = "Filter"):
                         channels = json.loads(data[0])
                     else:
                         channels = []
-                    channels.append(channel.id)
+                    if not channel.id in channels:
+                        channels.append(channel.id)
+                        await ctx.send(f"Ok, I will start ignoring {channel.mention}")
+                    else:
+                        channels.remove(channel.id)
+                        await ctx.send(f"Ok, I will stop ignoring {channel.mention}")
                     await cursor.execute('UPDATE guilds SET ignored = ? WHERE id = ?',(json.dumps(channels),ctx.guild.id,))
                     await connection.commit()
-                    await ctx.send(f"Ok, I will start ignoring {channel.mention}")
                 else:
                     await ctx.send("Please enable the filter first!")
 

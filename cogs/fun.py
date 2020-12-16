@@ -401,6 +401,11 @@ class FunCog(commands.Cog, name = "Fun"):
         member = ctx.author if not member else member
         await get_thingy(self,ctx,"triggered",member)
         
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def wide(self, ctx, *, text):
+      """Widen your text"""
+      await ctx.send(' '.join([x for x in text]))
 
 def setup(client):
     client.add_cog(FunCog(client))
