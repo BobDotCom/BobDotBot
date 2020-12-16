@@ -639,7 +639,7 @@ class MainCog(commands.Cog, name = "General"):
             if int(final) == final:
                 final = int(final)
         except:
-            return await ctx.send("That isnt math. I only add, subtract, multiply, and divide.")
+            return await ctx.send("That isnt math. I only add, subtract, multiply, and divide. I follow order of operations but I don't like parentheses or other special characters besides +-*/")
         embedvar = discord.Embed(title="Math", timestamp=ctx.message.created_at, description="I think the answer to that is **" + str(final) + "**")
         await ctx.send(embed=embedvar)
         
