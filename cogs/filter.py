@@ -37,13 +37,13 @@ class FilterCog(commands.Cog, name = "Filter"):
         caught = False
         if enabled and not message.channel.id in ignored:
             for word in words:
-                if re.search('+.?'.join(word),message.content):
+                if re.search(r'(\b' + r'+\W*'.join(word) + f'|{word})',message.content):
                     caught = True
                     try:
                         await message.delete()
                     except:
                         pass
-                    new_message = re.sub('+.?'.join(word),'\*'*len(word),new_message)
+                    new_message = re.sub(r'(\b' + r'+\W*'.join(word) + f'|{word})',r'\*'*len(word),new_message)
             if caught:
                 webhooks = await message.channel.webhooks()
                 try:
@@ -54,11 +54,10 @@ class FilterCog(commands.Cog, name = "Filter"):
                     except:
                         pass
                 if webhook:
-                    member = message.author # We get the member
-                    await webhook.send( # We send 
-                        content=new_message, # The message
-                        username=member.nick or member.name, # The user name
-                        avatar_url=member.avatar_url # the user avatar
+                    await webhook.send(
+                        content=new_message,
+                        username=message.author.nick or message.author.name,
+                        avatar_url=message.author.avatar_url
                     )
 
     # COMMANDS #
