@@ -2,6 +2,7 @@
 import discord
 import os
 import asyncio
+from operator import pow, truediv, mul, add, sub  
 import datetime
 import time
 import sr_api
@@ -617,12 +618,29 @@ class MainCog(commands.Cog, name = "General"):
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def add(self, ctx, a: int, b: int):
-        """I'm learning new math, but I only do addition for now. I'm pretty fast at it though!"""
-        answer = (a + b)
-        owner = self.client.get_user(self.client.owner_id)
-        embedvar = discord.Embed(title="Math", timestamp=ctx.message.created_at, description="I think the answer to that is **" + str(answer) + "**") 
-        embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
+    async def math(self, ctx, *, equation):
+        """I can do math now!"""
+        try:
+            operators = {
+            '+': add,
+            '-': sub,
+            '*': mul,
+            '/': truediv
+            }
+
+            def calculate(s):
+                if s.isdigit():
+                    return float(s)
+                for c in operators.keys():
+                    left, operator, right = s.partition(c)
+                    if operator in operators:
+                        return operators[operator](calculate(left), calculate(right))
+            final = calculate(equation.replace(' ',''))
+            if int(final) == final:
+                final = int(final)
+        except:
+            return await ctx.send("That isnt math. I only add, subtract, multiply, and divide.")
+        embedvar = discord.Embed(title="Math", timestamp=ctx.message.created_at, description="I think the answer to that is **" + str(final) + "**")
         await ctx.send(embed=embedvar)
         
     @commands.command()
