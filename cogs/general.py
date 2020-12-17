@@ -360,7 +360,7 @@ class MainCog(commands.Cog, name = "General"):
       await ctx.send(embed=embed)
     @commands.Cog.listener()
     async def on_raw_reaction_add(self,payload):
-        if payload.channel_id == 751834280929525791 and payload.member.id == self.client.owner_id:
+        if payload.channel_id == 751834280929525791 and payload.member.id in self.client.owner_ids:
             if payload.emoji.name == "✅":
                 async with aiosqlite.connect('logs.db') as connection:
                     async with connection.cursor() as cursor:
