@@ -9,7 +9,6 @@ class GrowtopiaCog(commands.Cog, name = "Growtopia"):
 
     def __init__(self, client):
         self.client = client
-        self.client.owner_id = 690420846774321221
         self.url = "https://growtopiagame.com"
         self.session = aiohttp.ClientSession()
 

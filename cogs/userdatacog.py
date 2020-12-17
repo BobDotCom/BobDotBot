@@ -10,7 +10,6 @@ class Levels(commands.Cog, name = "User database"):
 
     def __init__(self, client):
         self.client = client
-        self.client.owner_id = 690420846774321221
         global onreadyblocker
         onreadyblocker = False
 

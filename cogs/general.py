@@ -274,7 +274,6 @@ class MainCog(commands.Cog, name = "General"):
         self.bot = client
         self.client.sniper = {}
         self.client.uptime1 = datetime.utcnow()
-        self.client.owner_id = 690420846774321221
         self.client.helper1_id = 716503311402008577
         self.client.helper2_id = 280667989370732545
         self.client.helper3_id = 706898741499789364

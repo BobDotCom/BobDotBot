@@ -13,7 +13,6 @@ class OwnerCog(commands.Cog, name = "Owner"):
 
     def __init__(self, client):
         self.client = client
-        self.client.owner_id = 690420846774321221
 
     @commands.command(aliases=['update', 'maintenence', 'logout', 'die', 'kill'])
     @commands.is_owner()

@@ -22,7 +22,6 @@ class BlockCorpCog(commands.Cog, name = "BlockCorp"):
     def __init__(self, client):
         self.client = client
         owner = self.client.get_user(self.client.owner_id)
-        self.client.owner_id = 690420846774321221
 
     @commands.command(aliases=["bc"])
     @commands.is_owner()

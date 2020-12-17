@@ -49,7 +49,6 @@ class FunCog(commands.Cog, name = "Fun"):
     def __init__(self, client):
         self.client = client
         self.bot = client
-        self.client.owner_id = 690420846774321221
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
