@@ -19,7 +19,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     async def shutdown(self, ctx):
         """Shuts the bot down
         Uses: `B.shutdown`"""
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedvar = discord.Embed(title="*Shutting Down...*", description="Goodbye!", color=0xff0000)
         embedvar.set_footer(text=f"Bot made by {owner}")
         await ctx.send(embed=embedvar)
@@ -31,7 +31,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     async def nopnop(self,ctx):
         """Restarts the bot
         Uses: `B.restart`"""
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedvar = discord.Embed(title="*Restarting...*", description="Be right back!")
         embedvar.set_footer(text=f"Bot made by {owner}")
         await ctx.send(embed=embedvar)
@@ -70,7 +70,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     async def help_jsk(self, ctx):
         """Lists the help command for jsk
         Uses: `B.help_jsk`"""
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedvar = discord.Embed(title="Jishaku Commands", description="Since help jsk doesnt work, these are the commands that jishaku has:", color=0x000000, timestamp=ctx.message.created_at)
         embedvar.add_field(name='cancel', value='Cancels a task with the given index.')
         embedvar.add_field(name='cat', value='Read out a file, using syntax highlighting if detected.')
@@ -100,7 +100,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     async def save(self, ctx):
         """Saves all data to the GitHub repository
         Uses: `B.save`"""
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedvar = discord.Embed(title="Saving...", description="Saving to the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         msg = await ctx.send(embed=embedvar)
@@ -140,7 +140,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     async def sync(self,ctx):
         """Get the most recent changes from the GitHub repository
         Uses: `B.sync`"""
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedvar = discord.Embed(title="Syncing...", description="Syncing with the GitHub repository, this should take up to 15 seconds", color=0xff0000, timestamp=ctx.message.created_at)
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
         msg = await ctx.send(embed=embedvar)
