@@ -559,7 +559,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def uptime(self, ctx):
             """See how long the bot has been online"""
-            owner = self.client.get_user(self.client.owner_id)
+            owner = self.client.get_user(self.client.owner_id[0])
             url = "https://api.uptimerobot.com/v2/getMonitors"
             payload = f"api_key={MONITOR_TOKEN}&format=json&logs=1&response_times=1&custom_uptime_ratios=1-7-30"
             headers = {
@@ -610,7 +610,7 @@ class MainCog(commands.Cog, name = "General"):
         permissions = permissions or "none"
         permissions = permissions if permissions.lower() in ["normal","admin"] else "admin" if bot == self.client.user else "normal"
         permissions = 8 if permissions.lower() == "admin" else 0
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedvar = discord.Embed(title=f"Bot invite for: {bot.name}", timestamp=ctx.message.created_at, description=f"Link: [Click Here]({str(discord.utils.oauth_url(bot.id, discord.Permissions(permissions=permissions), guild=ctx.guild))})")
         embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedvar)
@@ -649,7 +649,7 @@ class MainCog(commands.Cog, name = "General"):
         Note: If the user has a multi word name, put it in "quotes", or mention it."""
         slapped = ", ".join(x.name for x in members)
         slapself = f"{ctx.author.name}"
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         if slapped:
             embedvar = discord.Embed(title="***SLAP***", timestamp=ctx.message.created_at, description='*{}* just got **slapped** for {}'.format(slapped, reason)) 
             embedvar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
@@ -663,7 +663,7 @@ class MainCog(commands.Cog, name = "General"):
         """Use the bot to say something"""
         quote = arg
         author = ctx.author.name
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedVar = discord.Embed(title=f"{author} says:", timestamp=ctx.message.created_at, description=f'{quote}')
         embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await ctx.send(embed=embedVar)
@@ -673,7 +673,7 @@ class MainCog(commands.Cog, name = "General"):
     async def ping(self, ctx):
         """Checks the latency of the bot (lower is better)"""
         ping = int(self.client.latency * 1000)
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         embedVar = discord.Embed(title="***PONG!***  :ping_pong:", timestamp=ctx.message.created_at, description=f"My websocket ping is: **{ping}ms**")
         embedVar.set_footer(text=f"Getting database ping")
         message = await ctx.send(embed=embedVar)
@@ -837,7 +837,7 @@ class MainCog(commands.Cog, name = "General"):
                   print("The SQLite connection is closed")
         member = ctx.author if not member else member
         member_id = str(member.id)
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         the_id = get_id(member_id)
         userid = get_userid(the_id)
         if userid == None:
@@ -896,7 +896,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def emoji_id(self,ctx,emoji: discord.Emoji):
         """Get the ID of any custom emoji that the bot can see"""
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         emoji = self.client.get_emoji(emoji.id)
         embed = discord.Embed(timestamp=ctx.message.created_at, title=f'{emoji} Emoji id for :{emoji.name}: {emoji}',description=f'ID: {emoji.id}')
         embed.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url)
