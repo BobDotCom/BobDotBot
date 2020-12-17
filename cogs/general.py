@@ -559,7 +559,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def uptime(self, ctx):
             """See how long the bot has been online"""
-            owner = self.client.get_user(self.client.owner_id[0])
+            owner = self.client.get_user(self.client.owner_ids[0])
             url = "https://api.uptimerobot.com/v2/getMonitors"
             payload = f"api_key={MONITOR_TOKEN}&format=json&logs=1&response_times=1&custom_uptime_ratios=1-7-30"
             headers = {
@@ -714,7 +714,7 @@ class MainCog(commands.Cog, name = "General"):
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def credits(self, ctx):
         """Shows the credits for the bot"""
-        owner = self.client.get_user(self.client.owner_id)
+        owner = self.client.get_user(self.client.owner_ids[0])
         routergtx = self.client.get_user(self.client.helper1_id)
         gamin = self.client.get_user(self.client.helper2_id)
         yo56789 = self.client.get_user(self.client.helper3_id)
