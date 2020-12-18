@@ -1,7 +1,7 @@
 # Contributing
 
-When contributing to this repository, please first discuss the change you wish to make via issue,
-email, or any other method with the owners of this repository before making a change. 
+When contributing to this repository, it is reccomended to first discuss the change you wish to make via issue,
+email, or any other method with the owners of this repository before making a change. Otherwise, it may not be approved
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
