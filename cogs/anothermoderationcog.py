@@ -99,33 +99,30 @@ async def unmute_member(self,guild,user):
 
 async def make_user(self,ctx,member):
     guild = ctx.guild
-    db = await aiosqlite.connect("punishments.sql")
-
-    cursor = await db.execute("""
+    async with aiosqlite.connect("punishments.sql") as connection:
+        async with connection.cursor() as cursor:
+            await cursor.execute("""
     INSERT INTO
       users (userid, guildid, bantime, mutetime, warncount)
     VALUES
       (?, ?, ?, ?, ?);
     """, (member.id,guild.id,0,0,0))
-    await db.commit()
-    await cursor.close()
-    await db.close()
+            await connection.commit()
+           
 
 async def mutes(self,ctx,member,time,reason):
       if not time:
           guild = ctx.guild
-          db = await aiosqlite.connect("punishments.sql")
-          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
-          rows = await cursor.fetchone()
-          await cursor.close()
-          await db.close()
+          async with aiosqlite.connect("punishments.sql") as connection:
+                async with connection.cursor() as cursor:
+                    await cursor.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
+                    rows = await cursor.fetchone()
           if not rows:
             await make_user(self,ctx,member)
-          db = await aiosqlite.connect("punishments.sql")
-          cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (-1, member.id, guild.id,))
-          await db.commit()
-          await cursor.close()
-          await db.close()
+          async with aiosqlite.conncet("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (-1, member.id, guildid,))
+                await connection.commit()
           await mute_member(self,ctx,member,time)
           if reason:
             await ctx.send(f"Reason: {reason}")
@@ -154,18 +151,16 @@ async def mutes(self,ctx,member,time,reason):
               new_str = test_str.replace('m', '')
               minute += int(new_str)
           NextDay_Date = oldtime + datetime.timedelta(weeks=week,days=day,hours=hour,minutes=minute)
-          db = await aiosqlite.connect("punishments.sql")
-          cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
-          rows = await cursor.fetchone()
-          await cursor.close()
-          await db.close()
+          async with aiosqlite.connect("punishments.sql") as connection:
+                async with connection.cursor() as cursor:
+                    await cursor.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
+                    rows = await cursor.fetchone()      
           if not rows:
             await make_user(self,ctx,member)
-          db = await aiosqlite.connect("punishments.sql")
-          cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (NextDay_Date.timestamp(), member.id, guild.id,))
-          await db.commit()
-          await cursor.close()
-          await db.close()
+          async with aiosqlite.connect("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (NextDay_Date.timestamp(), member.id, guild.id,))
+                await connection.commit()
           y = await mute_member(self,ctx,member,time)
           if y:
             await ctx.send(f"Successfully muted {member} for {time}. Reason: {reason}")
@@ -189,23 +184,20 @@ class Moderation(commands.Cog, name = cog_name):
         warncount INTEGER
       );
       """
-      
+      async with aiosqlite.connect("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute(create_users_table)
+                await connection.commit()
       db = await aiosqlite.connect("punishments.sql")
-
-      cursor = await db.execute(create_users_table)
-      await db.commit()
-      await cursor.close()
-      await db.close()
 
     @commands.command(aliases=["strikes"])
     @commands.is_owner()
     async def warns(self,ctx,member: discord.Member,*,amount: int = 1):
       guild = ctx.guild
-      db = await aiosqlite.connect("punishments.sql")
-      cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
-      rows = await cursor.fetchone()
-      await cursor.close()
-      await db.close()
+      async with aiosqlite.connect("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id,))
+                rows = await cursor.fetchone()
       if not rows:
         await make_user(self,ctx,member)
         return await ctx.send("That would give this user less than 0 warnings")
@@ -213,22 +205,20 @@ class Moderation(commands.Cog, name = cog_name):
         warncount = rows[5] + amount
       if warncount > 100:
         return await ctx.send("That would give this user less than 0 warnings")
-      db = await aiosqlite.connect("punishments.sql")
-      cursor = await db.execute("UPDATE users SET warncount = ? WHERE userid = ? AND guildid = ?", (warncount, member.id, guild.id,))
-      await db.commit()
-      await cursor.close()
-      await db.close()
+      async with aiosqlite.connect("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("UPDATE users SET warncount = ? WHERE userid = ? AND guildid = ?", (warncount, member.id, guild.id,))
+                await connection.commit()   
       await ctx.send(f"Successfully added {amount} warns to {member}, they now have {warncount} warnings in this server")
 
     @commands.command(aliases=["clearstrike"])
     @commands.is_owner()
     async def clearwarns(self,ctx,member: discord.Member,*,amount: int = 1):
       guild = ctx.guild
-      db = await aiosqlite.connect("punishments.sql")
-      cursor = await db.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id))
-      rows = await cursor.fetchone()
-      await cursor.close()
-      await db.close()
+      async with aiosqlite.connect("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM users WHERE userid = ? AND guildid = ?", (member.id,ctx.guild.id,))
+                rows = await cursor.fetchone()
       if not rows:
         await make_user(self,ctx,member)
         return await ctx.send("That would give this user less than 0 warnings")
@@ -236,32 +226,29 @@ class Moderation(commands.Cog, name = cog_name):
         warncount = rows[5] - amount
       if warncount < 0:
         return await ctx.send("That would give this user less than 0 warnings")
-      db = await aiosqlite.connect("punishments.sql")
-      cursor = await db.execute("UPDATE users SET warncount = ? WHERE userid = ? AND guildid = ?", (warncount, member.id, guild.id,))
-      await db.commit()
-      await cursor.close()
-      await db.close()
+      async with aiosqlite.connect("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("UPDATE users SET warncount = ? WHERE userid = ? AND guildid = ?", (warncount, member.id, guild.id,))
+                await connection.commit()   
       await ctx.send(f"Successfully removed {amount} warns from {member}, they now have {warncount} warnings in this server")
 
     @tasks.loop(seconds=55)
     async def unmute_members(self):
         await asyncio.sleep(5)
-        db = await aiosqlite.connect("punishments.sql")
-        cursor = await db.execute("SELECT * FROM users WHERE mutetime > 0")
-        rows = await cursor.fetchall()
-        await cursor.close()
-        await db.close()
+        async with aiosqlite.connect("punishments.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM users WHERE mutetime > 0")
+                rows = await cursor.fetchall()
         for row in rows:
           if datetime.datetime.utcfromtimestamp(row[4]) <= datetime.datetime.utcnow():
             try:
               guild = self.client.get_guild(row[2])
               user = guild.get_member(row[1])
               await unmute_member(self,guild,user)
-              db = await aiosqlite.connect("punishments.sql")
-              cursor = await db.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (0, row[1], row[2],))
-              await db.commit()
-              await cursor.close()
-              await db.close()
+              async with aiosqlite.connect("punishments.sql") as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (0, row[1], row[2],))
+                        await connection.commit()
             except:
               print("fail")
 
