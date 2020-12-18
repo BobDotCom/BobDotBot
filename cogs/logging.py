@@ -49,22 +49,17 @@ class LogCog(commands.Cog, name = "Logging"):
             serverlog INTEGER
         );
         """
-        
-        db = await aiosqlite.connect("log.sql")
-
-        cursor = await db.execute(create_guilds_table)
-        await cursor.close()
-        await db.close()
-
-
+        async with aiosqlite.connect("log.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute(create_guilds_table)
+             
     @commands.Cog.listener()
     async def on_member_ban(self,guild,user):
-        db = await aiosqlite.connect("log.sql")
-        cursor = await db.execute("SELECT * FROM guilds WHERE guildid = ?", (guild.id,))
-        rows = await cursor.fetchone()
-        await cursor.close()
-        await db.commit()
-        await db.close()
+        async with aiosqlite.connect("log.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?", (guild.id,))
+                rows = await cursor.fetchone()
+
         if rows:
             if rows[2] == 1 and rows[3] != 0:
                 try:
@@ -87,12 +82,10 @@ class LogCog(commands.Cog, name = "Logging"):
 
     @commands.Cog.listener()
     async def on_member_unban(self,guild,user):
-        db = await aiosqlite.connect("log.sql")
-        cursor = await db.execute("SELECT * FROM guilds WHERE guildid = ?", (guild.id,))
-        rows = await cursor.fetchone()
-        await cursor.close()
-        await db.commit()
-        await db.close()
+        async with aiosqlite.connect("log.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?", (guild.id,))
+                rows = await cursor.fetchone()
         if rows:
             if rows[2] == 1 and rows[3] != 0:
                 try:
@@ -127,12 +120,10 @@ class LogCog(commands.Cog, name = "Logging"):
 
     @commands.Cog.listener()
     async def on_raw_message_delete(self,payload):
-        db = await aiosqlite.connect("log.sql")
-        cursor = await db.execute("SELECT * FROM guilds WHERE guildid = ?", (payload.guild_id,))
-        rows = await cursor.fetchone()
-        await cursor.close()
-        await db.commit()
-        await db.close()
+        async with aiosqlite.connect("log.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?". (payload.guild_id,))
+                rows = await cursor.fetchone()
         if rows:
             if rows[2] == 1 and rows[3] != 0:
                 try:
@@ -159,70 +150,61 @@ class LogCog(commands.Cog, name = "Logging"):
     @commands.command()
     @commands.has_guild_permissions(administrator=True)
     async def enablelogs(self,ctx):
-        db = await aiosqlite.connect("log.sql")
-        cursor = await db.execute("SELECT * FROM guilds WHERE guildid = ?", (ctx.guild.id,))
-        rows = await cursor.fetchone()
-        await cursor.close()
-        await db.commit()
-        await db.close()
+        async with aiosqlite.connect("log.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?", (ctx.guild.id,))
+                rows = await cursor.fetchone()
         if rows:
             if rows[2] == 0:
-                db = await aiosqlite.connect("log.sql")
-                cursor = await db.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (1, ctx.guild.id,))
-                await db.commit()
-                await cursor.close()
-                await db.close()
+                async with aiosqlite.connect("log.sql") as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (1, ctx.guild.id,))
+                        await connection.commit()
                 await ctx.send("Successfully enabled logs. Now use my other commands to set the log channels")
             elif rows[2] == 1:
                 await ctx.send("You already have logs enabled! Use my other commands to set log channels.")
             else:
                 await ctx.send("It appears something went wrong. If this continues, please notify my developer. I will try to fix it now.")
-                db = await aiosqlite.connect("log.sql")
-                cursor = await db.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (1, ctx.guild.id,))
-                await db.commit()
-                await cursor.close()
-                await db.close()
+                async with aiosqlite.connect("log.sql") as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (1, ctx.guild.id,))
+                        await connection.commit()
                 await ctx.send("It appears that the bug has been resolved. Logs are now enabled. You may use my other commands to set the log channels")
         else:
             await ctx.send("It appears you havent used my logs before. Give me a moment while I add your guild to my database...")
-            db = await aiosqlite.connect("log.sql")
-            cursor = await db.execute("""
+            async with aiosqlite.connect("log.sql") as connection:
+                async with connection.cursor() as cursor:
+                    await cursor.execute("""
             INSERT INTO
             guilds (guildid, enabled, modlog, messagelog, memberlog, serverlog)
             VALUES
             (?, ?, ?, ?, ?, ?);
             """, (ctx.guild.id,1,0,0,0,0,))
-            await db.commit()
-            await cursor.close()
-            await db.close()
+                    await connection.commit()
             await ctx.send("Sucess! Now use my other commands to set the log channels")
         
     @commands.command()
     @commands.has_guild_permissions(administrator=True)
     async def disablelogs(self,ctx):
-        db = await aiosqlite.connect("log.sql")
-        cursor = await db.execute("SELECT * FROM guilds WHERE guildid = ?", (ctx.guild.id,))
-        rows = await cursor.fetchone()
-        await cursor.close()
-        await db.commit()
-        await db.close()
+        async with aiosqlite.connect("log.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?", (ctx.guild.id,))
+                rows = await cursor.fetchone()
         if rows:
             if rows[2] == 1:
-                db = await aiosqlite.connect("log.sql")
-                cursor = await db.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (0, ctx.guild.id,))
-                await db.commit()
-                await cursor.close()
-                await db.close()
+                async with aiosqlite.connect("log.sql") as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (0, ctx.guild.id,))
+                        await connection.commit()
                 await ctx.send("Successfully disabled logs.")
             elif rows[2] == 0:
                 await ctx.send("You already have logs disabled! To use logs, please enable them instead.")
             else:
                 await ctx.send("It appears something went wrong. If this continues, please notify my developer. I will try to fix it now.")
-                db = await aiosqlite.connect("log.sql")
-                cursor = await db.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (0, ctx.guild.id,))
-                await db.commit()
-                await cursor.close()
-                await db.close()
+                async with aiosqlite.connect("log.sql") as connection:
+                    async with connection.cursor() as cursor:
+                        await cursor.execute("UPDATE guilds SET enabled = ? WHERE guildid = ?", (0, ctx.guild.id,))
+                        await connection.commit()
                 await ctx.send("It appears that the bug has been resolved. Logs are now disabled.")
         else:
             await ctx.send("It appears you havent used my logs before. Please enable them first.")
@@ -230,18 +212,15 @@ class LogCog(commands.Cog, name = "Logging"):
     @commands.command()
     @commands.has_guild_permissions(administrator=True)
     async def modlog(self,ctx):
-        db = await aiosqlite.connect("log.sql")
-        cursor = await db.execute("SELECT * FROM guilds WHERE guildid = ?", (ctx.guild.id,))
-        rows = await cursor.fetchone()
-        await cursor.close()
-        await db.commit()
-        await db.close()
+        async with aiosqlite.connect("log.sql") as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?", (ctx.guild.id,))
+                rows = await cursor.fetchone()
         if rows:
-            db = await aiosqlite.connect("log.sql")
-            cursor = await db.execute("UPDATE guilds SET modlog = ? WHERE guildid = ?", (ctx.channel.id, ctx.guild.id,))
-            await db.commit()
-            await cursor.close()
-            await db.close()
+            async with aiosqlite.connect("log.sql") as connection:
+                async with connection.cursor() as cursor:
+                    await cursor.execute("UPDATE guilds SET modlog = ? WHERE guildid = ?", (ctx.channel.id, ctx.guild.id,))
+                    await connection.commit()
             await ctx.send("Success!")
 
 
