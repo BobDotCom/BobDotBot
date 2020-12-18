@@ -12,10 +12,11 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+1. What server(id): '...'
+2. What channel(id): '....'
+3. What command(name): '....'
+4. What command arguments(for example, command from `b.help <command>`): '....'
+5. When during the command did it happen(during the song on a music command, or right when you ran it): '....'
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
@@ -23,16 +24,10 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+**Discord Version**:
+Desktop - App, Browser, or Other
+Mobile - App, Browser, Beta App, or Other
 
 **Additional context**
 Add any other context about the problem here.
+
