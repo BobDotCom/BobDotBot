@@ -37,7 +37,7 @@ class FilterCog(commands.Cog, name = "Filter"):
         caught = False
         if enabled and not message.channel.id in ignored:
             for word in words:
-                if re.search(r'(\b' + r'+\W*'.join(word) + f'|{word})',message.content):
+                if re.search(r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})',message.content):
                     caught = True
                     try:
                         await message.delete()
