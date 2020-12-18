@@ -18,8 +18,6 @@ from sqlite3 import Error
 from humanize import precisedelta as nd
 from discord.ext import commands
 #from .otherscripts import cheks, formats, time
-from discord_slash import SlashCommand
-from discord_slash import SlashContext
 from otherscripts.paginator import RoboPages
 from jishaku.codeblocks import codeblock_converter
 from discord.ext import menus
@@ -286,13 +284,6 @@ class MainCog(commands.Cog, name = "General"):
         client.help_command.cog = self
         self.create_url = "https://api.qrserver.com/v1/create-qr-code/?size={}&data={}.png"
         self.session = aiohttp.ClientSession()
-        self.slash = SlashCommand(client, override_type=True)
-        # Cog is only supported by commands ext, so just skip checking type.
-
-        @self.slash.slash(name="ping")
-        async def _test(ctx: SlashContext):
-            ping = client.get_command('ping')
-            await ctx.invoke(ping)
 
     @commands.command(aliases=["qr"])
     async def makeqr(self,ctx,*,text):
@@ -331,7 +322,6 @@ class MainCog(commands.Cog, name = "General"):
 
 
                 await asyncio.sleep(60)
-                
     @commands.Cog.listener()
     async def on_ready(self):
       await asyncio.sleep(5)
@@ -689,7 +679,8 @@ class MainCog(commands.Cog, name = "General"):
         message = await ctx.send(embed=embedVar)
         db_start = time.perf_counter()
         async with aiosqlite.connect('users.db') as connection:
-            pass
+            async with connection.cursor() as cursor:
+                pass
         db_end = time.perf_counter()
         embedVar.add_field(name="Database ping",value=f'*{(db_end - db_start) * 1000:,.2f}ms*')
         embedVar.set_footer(text=f"Getting total ping")
@@ -708,6 +699,7 @@ class MainCog(commands.Cog, name = "General"):
             api_ping = False
         if api_ping:
             embedVar.add_field(name="API ping",value="*" + str(api_ping) + "ms*")
+        embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
         await message.edit(embed=embedVar)
         
         
@@ -1123,8 +1115,5 @@ class MainCog(commands.Cog, name = "General"):
                     await ctx.send("Enabled autoemoji")
                 await cursor.execute("UPDATE users SET status = ? WHERE userid = ?",(set_to,ctx.author.id))
                 await connection.commit()
-
-    def cog_unload(self):
-        self.slash.remove()
 def setup(client):
     client.add_cog(MainCog(client))

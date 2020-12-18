@@ -1,5 +1,19 @@
-import discord, json, os, typing, asyncio, aiosqlite, datetime, sys, traceback, humanize, math
+# import stuff
+import discord
+import json
+# import stuff
+import os
+
+# import stuff
+import typing
+import asyncio
+import aiosqlite
+import datetime
+import sys
+import traceback
+# import stuff
 from dotenv import load_dotenv
+from discord.ext.commands import Bot
 from discord.ext import commands
 from datetime import datetime
 from discord.ext.tasks import loop
@@ -8,8 +22,13 @@ from halo import Halo
 from stringcolor import * 
 
 
+# Load .env file
 load_dotenv()
+THEME_COLOR = discord.Colour.blurple()
+# Grab api token
 DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+SR_API_TOKEN = os.getenv("SR_API_TOKEN")
+DBL_TOKEN = os.getenv("DBL_TOKEN")
 # gets client stuff
 def get_prefix(client, message):
 	if not message.guild:
@@ -27,6 +46,12 @@ def get_prefix(client, message):
 	else:
 		y = ['B,','b,','Bob,','bob,']
 		return commands.when_mentioned_or(*y)(client, message)
+def get_logs(client, message):
+	if not message.guild:
+		return ["None"]
+	with open('logs.json', 'r') as f1:
+		logs = json.load(f1)
+	return logs[str(message.guild.id)]
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix=get_prefix,intents=intents,embed_color = discord.Color.blurple(),case_insensitive = True)
@@ -37,15 +62,17 @@ try:
 except:
     client.blacklisted = []
     print('Blacklist not loaded')
+#client.remove_command('help')
 client.uptime = datetime.utcnow()
+owner = client.get_user(client.owner_id)
 client.owner_id = None
-client.owner_ids = [690420846774321221]
+client.owner_ids = [690420846774321221,748937160731918378]
 os.environ["JISHAKU_NO_UNDERSCORE"] = "True"
 client.load_extension("jishaku")
-client.sr_api = os.getenv("SR_API_TOKEN")
+client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
-client.dbltoken = os.getenv("DBL_TOKEN")
-
+logs = get_logs
+client.dbltoken = DBL_TOKEN
 connect_spinner = Halo(text='Connecting', spinner='dots')
 start_spinner = Halo(text='Starting up', spinner='dots')
 
@@ -200,46 +227,63 @@ async def on_command_error(ctx, error):
             
 @client.event
 async def on_message(message):
-    await client.process_commands(message)
-    if message.author.id in client.emoji_users and (message.content.startswith(":") or message.content.startswith(";")):
-        async with aiosqlite.connect("emojis.db") as connection:
-            async with connection.cursor() as cursor:
-                await cursor.execute("SELECT status FROM users WHERE userid = ?",(message.author.id,))
-                rows = await cursor.fetchone()
-        if rows[0] != "false":
-            for emoji in client.emojis:
-                if emoji.name == message.content[1:-1]:
-                    return await message.channel.send(emoji)
-    x = await client.get_context(message)
-    if client.user.mentioned_in(message) and not x.valid:
-        if not message.mention_everyone:
-            with open("prefixes.json","r") as f:
-                prefixes = json.load(f)
+	if message.author.id in client.emoji_users and (message.content.startswith(":") or message.content.startswith(";")):
+		async with aiosqlite.connect("emojis.db") as connection:
+			async with connection.cursor() as cursor:
+				await cursor.execute("SELECT status FROM users WHERE userid = ?",(message.author.id,))
+				rows = await cursor.fetchone()
+		if rows[0] != "false":
+			for emoji in client.emojis:
+				if emoji.name == message.content[1:-1]:
+					return await message.channel.send(emoji)
+	await client.process_commands(message)
+	if str(message.guild.id) not in Data.server_data:
+            Data.server_data[str(message.guild.id)] = Data.create_new_data()
 
-            if str(message.guild.id) in prefixes:
-                prefix = prefixes[str(message.guild.id)]
+	data = Data.server_data[str(message.guild.id)]
+	x = await client.get_context(message)
+	if client.user.mentioned_in(message) and not x.valid:
+            if not message.mention_everyone:
+                with open("prefixes.json","r") as f:
+                    prefixes = json.load(f)
 
-            else:
-                prefix = 'B. or b.'
-            owner = client.get_user(client.owner_id)
-            # await message.channel.send("Hi, i'm BobDotBot, and my prefix is `B.` If you don't know any of my commands yet, try doing `B.help`, and i will DM you a list of commands that you can use with me!")
-            embedVar = discord.Embed(title="Hi, i'm BobDotBot!", description=f"My prefix(es) here: `{', '.join(prefix)}`", color=0x00ff00, timestamp=message.created_at)
-            embedVar.add_field(name="What do I do?", value="If you don't know any of my commands yet, try using my `help` command, and I will DM you a list of commands that you can use with me!\nThis message will delete after 15 seconds")
-            embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
-            msg = await message.channel.send(embed=embedVar)
-            await asyncio.sleep(15)
-            await msg.delete()
+                if str(message.guild.id) in prefixes:
+                    prefix = prefixes[str(message.guild.id)]
+
+                else:
+                    prefix = 'B. or b.'
+                owner = client.get_user(client.owner_id)
+                # await message.channel.send("Hi, i'm BobDotBot, and my prefix is `B.` If you don't know any of my commands yet, try doing `B.help`, and i will DM you a list of commands that you can use with me!")
+                embedVar = discord.Embed(title="Hi, i'm BobDotBot!", description=f"My prefix(es) here: `{', '.join(prefix)}`", color=0x00ff00, timestamp=message.created_at)
+                embedVar.add_field(name="What do I do?", value="If you don't know any of my commands yet, try using my `help` command, and I will DM you a list of commands that you can use with me!\nThis message will delete after 15 seconds")
+                embedVar.set_footer(text=f"Bot made by {owner}", icon_url=owner.avatar_url) #if you like to
+                msg = await message.channel.send(embed=embedVar)
+                await asyncio.sleep(15)
+                await msg.delete()
 
 
 @client.event
 async def on_guild_join(guild):
-    embed = discord.Embed(title="Hey!",description="I was just added to your server. Thanks for adding me :). My default prefixes are `B.` and `b.` but you can change those using my prefix command if you want.",timestamp=datetime.datetime.utcnow()).set_footer(text="This message was only sent to you")
-    await guild.owner.send(embed=embed)
-    with open('prefixes.json', 'r') as f:
-        prefixes = json.load(f)
-    prefixes[str(guild.id)] = ['B.', 'b.']
-    with open('prefixes.json', 'w') as f:
-        json.dump(prefixes, f, indent=4)
+	guild_count = 0
+	users = 0
+	#Data.server_data[str(guild.id)]["welcome_msg"] = ""
+	#Data.server_data[str(guild.id)]["leave_msg"] = ""
+	with open('prefixes.json', 'r') as f:
+		prefixes = json.load(f)
+	prefixes[str(guild.id)] = ['B.', 'b.']
+	with open('prefixes.json', 'w') as f:
+		json.dump(prefixes, f, indent=4)
+	#for guild in client.guilds:
+	# prints guild name
+
+	# guild counter
+	#guild_count = guild_count + 1
+	#for member in guild.members:
+	#users = users + 1
+
+	# prints amount of servers
+	#print("BobDotBot is now in " + str(guild_count) + " guilds.")
+	#await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
 
 @loop(seconds=0)
 async def server_timer():
@@ -249,20 +293,45 @@ async def server_timer():
 			await cursor.execute("SELECT * FROM users")
 			rows = await cursor.fetchall()
 	client.emoji_users = [row[1] for row in rows]
+	guild_count = 0
+	users = 0
+	for guild in client.guilds:
+		# prints guild name
+
+		# guild counter
+		guild_count = guild_count + 1
+		for member in guild.members:
+			users = users + 1
 	await asyncio.sleep(15)
-	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(len(client.guilds)) + f" servers | " + str(len(client.users)) + " users"))
+	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
 	await asyncio.sleep(60)
 	await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"B.help | B.invite"))
 	await asyncio.sleep(45)
-
 @client.event
 async def on_guild_remove(guild):
+  guild_count = 0
+  users = 0
   with open('prefixes.json', 'r') as f:
     prefixes = json.load(f)
   prefixes.pop(str(guild.id))
   with open('prefixes.json', 'w') as f:
 	  json.dump(prefixes, f, indent=4)
+	#with open('logs.json', 'r') as f1:
+		#logs = json.load(f1)
+	#logs.pop(str(guild.id))
+	#with open('logs.json', 'w') as f1:
+		#json.dump(logs, f1, indent=4)
+  for guild in client.guilds:
+		# prints guild name
 
+		# guild counter
+	  guild_count = guild_count + 1
+	  for member in guild.members:
+		  users = users + 1
+
+	# prints amount of servers
+  print("BobDotBot is now in " + str(guild_count) + " guilds.")
+  #await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"" + str(guild_count) + f" servers | " + str(users) + " users"))
 @client.event
 async def on_member_join(member):
     """on member join"""
