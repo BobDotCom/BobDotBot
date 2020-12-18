@@ -43,7 +43,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                         await message.delete()
                     except:
                         pass
-                    new_message = re.sub(r'(\b' + r'+\W*'.join(word) + f'|{word})',r'\*'*len(word),new_message)
+                    new_message = re.sub(r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})',r'\*'*len(word),new_message)
             if caught:
                 webhooks = await message.channel.webhooks()
                 try:
