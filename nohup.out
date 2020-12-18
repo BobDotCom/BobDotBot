@@ -4218,3 +4218,219 @@ WARNING: All illegal access operations will be denied in a future release
 2020-12-08 22:19:43.287  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2020-12-08 22:20:47.560  INFO 778 --- [  XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57204
 2020-12-08 22:20:47.600  INFO 778 --- [  XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57204
+2020-12-09 00:58:20.034  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57204 -- CloseStatus[code=1006, reason=]
+2020-12-09 00:58:20.047  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-09 01:22:34.354  INFO 778 --- [  XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57374
+2020-12-09 01:22:34.399  INFO 778 --- [  XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57374
+2020-12-09 13:55:51.075  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57374 -- CloseStatus[code=1006, reason=]
+2020-12-09 13:55:51.079  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-09 14:01:58.446  INFO 778 --- [  XNIO-1 task-9] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57544
+2020-12-09 14:01:58.514  INFO 778 --- [  XNIO-1 task-9] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57544
+2020-12-09 22:39:20.084  WARN 778 --- [ XNIO-1 task-10] l.s.config.RequestAuthorizationFilter    : Authorization missing for 37.49.230.164 on GET /000000000000.cfg
+2020-12-09 23:00:32.987  INFO 778 --- [ XNIO-1 task-11] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57952
+2020-12-09 23:00:33.036  INFO 778 --- [ XNIO-1 task-11] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57952
+2020-12-09 23:04:12.972  INFO 778 --- [ XNIO-1 task-12] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57972
+2020-12-09 23:04:12.977  INFO 778 --- [ XNIO-1 task-12] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57972
+2020-12-09 23:06:47.095  INFO 778 --- [ XNIO-1 task-13] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:57984
+2020-12-09 23:06:47.118  INFO 778 --- [ XNIO-1 task-13] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:57984
+2020-12-10 01:35:38.687  INFO 778 --- [ XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:58072
+2020-12-10 01:35:38.732  INFO 778 --- [ XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:58072
+2020-12-10 01:36:33.637  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:58072 -- CloseStatus[code=1006, reason=]
+2020-12-10 01:36:33.637  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-10 01:36:45.350  INFO 778 --- [ XNIO-1 task-15] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:58088
+2020-12-10 01:36:45.366  INFO 778 --- [ XNIO-1 task-15] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:58088
+2020-12-10 23:16:59.522  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "5666e8d249dfc6656b96ecde022257e4", "event": {"token": "063a4163e5dd8b34", "guild_id": "727739470731935765", "endpoint": "us-central176.discord.media:443"}}
+2020-12-10 23:16:59.657  INFO 778 --- [ XNIO-1 task-16] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:i want it that way le boeuf"
+2020-12-10 23:17:02.094  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: i want it that way le boeuf
+2020-12-10 23:17:02.319  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAhgIAKkxlIEJvZXVmIHggQW1hbmRhIExhdyAtIEkgV2FudCBJdCBUaGF0IFdheQACWE8AAAAAAAP3oAALdG9XOEU5b0pOa3cAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj10b1c4RTlvSk5rdwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-10 23:17:50.211  WARN 778 --- [ager-3-thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : Suspicious GC results for the last 2 minutes: [Bucket 0 = 11] [Bucket 20 = 1] [Bucket 50 = 2] [Bucket 200 = 0] [Bucket 500 = 0] [Bucket 2000 = 0] 
+2020-12-10 23:26:23.700  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-10 23:26:23.701  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-12 01:05:07.367  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:58088 -- CloseStatus[code=1006, reason=]
+2020-12-12 01:05:07.393  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 01:07:10.170  INFO 778 --- [  XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:59346
+2020-12-12 01:07:10.228  INFO 778 --- [  XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:59346
+2020-12-12 01:07:23.270  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57984 -- CloseStatus[code=1006, reason=]
+2020-12-12 01:07:23.271  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 01:07:23.277  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57952 -- CloseStatus[code=1006, reason=]
+2020-12-12 01:07:23.277  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 01:07:23.279  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57972 -- CloseStatus[code=1006, reason=]
+2020-12-12 01:07:23.279  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 01:07:23.280  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:57544 -- CloseStatus[code=1006, reason=]
+2020-12-12 01:07:23.281  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 01:07:28.432  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:59346 -- CloseStatus[code=1006, reason=]
+2020-12-12 01:07:28.432  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 01:07:52.027  INFO 778 --- [  XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:59356
+2020-12-12 01:07:52.041  INFO 778 --- [  XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:59356
+2020-12-12 03:16:04.841  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:59356 -- CloseStatus[code=1006, reason=]
+2020-12-12 03:16:04.841  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 03:16:09.974  INFO 778 --- [  XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:59460
+2020-12-12 03:16:10.027  INFO 778 --- [  XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:59460
+2020-12-12 03:19:43.530  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:59460 -- CloseStatus[code=1006, reason=]
+2020-12-12 03:19:43.530  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 03:19:49.649  INFO 778 --- [  XNIO-1 task-5] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:59482
+2020-12-12 03:19:49.662  INFO 778 --- [  XNIO-1 task-5] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:59482
+2020-12-12 04:16:03.189  INFO 778 --- [  XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:59530
+2020-12-12 04:16:03.206  INFO 778 --- [  XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:59530
+2020-12-12 04:16:16.798  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:59482 -- CloseStatus[code=1006, reason=]
+2020-12-12 04:16:16.799  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 04:16:16.804  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:59530 -- CloseStatus[code=1006, reason=]
+2020-12-12 04:16:16.804  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-12 04:16:23.058  INFO 778 --- [  XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:59540
+2020-12-12 04:16:23.090  INFO 778 --- [  XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:59540
+2020-12-13 02:25:30.033  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:59540 -- CloseStatus[code=1006, reason=]
+2020-12-13 02:25:30.044  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-13 02:25:37.101  INFO 778 --- [  XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:59862
+2020-12-13 02:25:37.149  INFO 778 --- [  XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:59862
+2020-12-14 20:45:44.063  INFO 778 --- [  XNIO-1 task-9] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:do i wanna know"
+2020-12-14 20:45:44.080  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "776310200709414932", "sessionId": "37a272b6aac4ff75b054a4e31049fda1", "event": {"token": "5e7a21d65b00ecf9", "guild_id": "776310200709414932", "endpoint": "us-east5053.discord.media:443"}}
+2020-12-14 20:45:44.989  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: do i wanna know
+2020-12-14 20:45:45.075  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAowIAMkFyY3RpYyBNb25rZXlzIC0gRG8gSSBXYW5uYSBLbm93PyAoT2ZmaWNpYWwgVmlkZW8pABdPZmZpY2lhbCBBcmN0aWMgTW9ua2V5cwAAAAAABA8QAAticE9TeE0wck5QTQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWJwT1N4TTByTlBNAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-14 20:45:48.456  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "volume", "guildId": "776310200709414932", "volume": 20}
+2020-12-14 20:45:48.485  INFO 778 --- [back-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library libmpg123-0: loading with filter com.sedmelluq.discord.lavaplayer.natives.ConnectorNativeLibLoader$$Lambda$568/0x000000080116ac40@7a287357
+2020-12-14 20:45:48.485  INFO 778 --- [back-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: loading with filter null
+2020-12-14 20:45:48.556  INFO 778 --- [back-1-thread-1] c.s.l.c.natives.NativeLibraryLoader      : Native library connector: successfully loaded.
+2020-12-14 20:50:21.170  INFO 778 --- [ XNIO-1 task-11] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:r u mine"
+2020-12-14 20:50:21.796  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: r u mine
+2020-12-14 20:50:21.874  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAgAIAGkFyY3RpYyBNb25rZXlzIC0gUiBVIE1pbmU/AAxSb2RyaWdvIExpbWEAAAAAAAMVEAALbmd6Q184enFJbmsAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1uZ3pDXzh6cUluawAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-14 20:53:51.930  INFO 778 --- [ XNIO-1 task-13] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:505"
+2020-12-14 20:53:52.492  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: 505
+2020-12-14 20:53:52.570  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAfwIAFDUwNSAtIEFyY3RpYyBNb25rZXlzABFBSUl0aGF0Z0lpdHRlcnMybAAAAAAAA+QYAAtNcm1QRFV2S3lMcwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PU1ybVBEVXZLeUxzAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-14 21:03:06.988  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "776310200709414932"}
+2020-12-14 21:03:06.996  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "776310200709414932"}
+2020-12-14 21:21:39.921  INFO 778 --- [ XNIO-1 task-15] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:i bet that you look good"
+2020-12-14 21:21:39.943  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "776310200709414932", "sessionId": "37a272b6aac4ff75b054a4e31049fda1", "event": {"token": "0defc45fbb341cc3", "guild_id": "776310200709414932", "endpoint": "us-east5053.discord.media:443"}}
+2020-12-14 21:21:40.563  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: i bet that you look good
+2020-12-14 21:21:40.678  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAtQIAR0FyY3RpYyBNb25rZXlzIC0gSSBCZXQgWW91IExvb2sgR29vZCBPbiBUaGUgRGFuY2VmbG9vciAoT2ZmaWNpYWwgVmlkZW8pABREb21pbm8gUmVjb3JkaW5nIENvLgAAAAAAArdQAAtwSzdlZ1phVDNocwABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PXBLN2VnWmFUM2hzAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-14 21:25:03.083  INFO 778 --- [  XNIO-1 task-1] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:sweet caroline"
+2020-12-14 21:25:03.769  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: sweet caroline
+2020-12-14 21:25:03.882  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAdAIADlN3ZWV0IENhcm9saW5lAAxOZWlsIERpYW1vbmQAAAAAAAMc4AALR21LNV9sblFVYkUAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1HbUs1X2xuUVViRQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-14 21:28:55.568  INFO 778 --- [  XNIO-1 task-3] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:country road"
+2020-12-14 21:28:56.100  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: country road
+2020-12-14 21:28:56.215  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAlgIAMUpvaG4gRGVudmVyIC0gVGFrZSBNZSBIb21lLCBDb3VudHJ5IFJvYWRzIChBdWRpbykAC0pvaG4gRGVudmVyAAAAAAADCVgACzF2ckVsak1mWFlvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9MXZyRWxqTWZYWW8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-14 21:32:18.123  INFO 778 --- [  XNIO-1 task-5] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:sweet home alabama"
+2020-12-14 21:32:18.751  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: sweet home alabama
+2020-12-14 21:32:18.844  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAjQIAI0x5bnlyZCBTa3lueXJkIC0gU3dlZXQgSG9tZSBBbGFiYW1hABBTaGF3bnhYeE1pY2hhZWxzAAAAAAAEl8gAC3llNUJ1WWY4cTRvAAEAK2h0dHBzOi8vd3d3LnlvdXR1YmUuY29tL3dhdGNoP3Y9eWU1QnVZZjhxNG8AB3lvdXR1YmUAAAAAAAAAAA==", "noReplace": false, "startTime": "0"}
+2020-12-14 21:38:18.112  INFO 778 --- [  XNIO-1 task-7] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:brick by boring brick"
+2020-12-14 21:38:18.545  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: brick by boring brick
+2020-12-14 21:38:18.645  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAkgIAMFBhcmFtb3JlOiBCcmljayBCeSBCb3JpbmcgQnJpY2sgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAQDWAALQTYzVndXejFpajAAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1BNjNWd1d6MWlqMAAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-14 21:43:09.232  INFO 778 --- [  XNIO-1 task-9] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:missery business"
+2020-12-14 21:43:09.901  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: missery business
+2020-12-14 21:43:10.036  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAjAIAKlBhcmFtb3JlOiBNaXNlcnkgQnVzaW5lc3MgW09GRklDSUFMIFZJREVPXQAIUGFyYW1vcmUAAAAAAAMNQAALYUN5R3ZHRXRPd2MAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1hQ3lHdkdFdE93YwAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-14 21:47:47.771  INFO 778 --- [ XNIO-1 task-11] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:in bloom song lyrics"
+2020-12-14 21:47:48.387  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: in bloom song lyrics
+2020-12-14 21:47:48.538  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "776310200709414932", "track": "QAAAfwIAG05pcnZhbmEgLSBJbiBCbG9vbSAoTHlyaWNzKQAKRnJpdHplczAwNwAAAAAAA+gAAAtiTXZQTUFHamRKVQABACtodHRwczovL3d3dy55b3V0dWJlLmNvbS93YXRjaD92PWJNdlBNQUdqZEpVAAd5b3V0dWJlAAAAAAAAAAA=", "noReplace": false, "startTime": "0"}
+2020-12-14 21:57:03.901  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "776310200709414932"}
+2020-12-14 21:57:03.902  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "776310200709414932"}
+2020-12-15 01:16:01.184  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:59862 -- CloseStatus[code=1006, reason=]
+2020-12-15 01:16:01.200  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 01:16:08.828  INFO 778 --- [ XNIO-1 task-13] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:60730
+2020-12-15 01:16:08.875  INFO 778 --- [ XNIO-1 task-13] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:60730
+2020-12-15 19:02:05.146  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:60730 -- CloseStatus[code=1006, reason=]
+2020-12-15 19:02:05.156  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 19:02:12.854  INFO 778 --- [ XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32786
+2020-12-15 19:02:12.891  INFO 778 --- [ XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32786
+2020-12-15 19:03:18.103  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32786 -- CloseStatus[code=1006, reason=]
+2020-12-15 19:03:18.103  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 19:03:25.122  INFO 778 --- [ XNIO-1 task-15] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32808
+2020-12-15 19:03:25.152  INFO 778 --- [ XNIO-1 task-15] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32808
+2020-12-15 19:04:16.251  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32808 -- CloseStatus[code=1006, reason=]
+2020-12-15 19:04:16.251  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 19:04:23.218  INFO 778 --- [ XNIO-1 task-16] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32828
+2020-12-15 19:04:23.229  INFO 778 --- [ XNIO-1 task-16] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32828
+2020-12-15 19:07:04.992  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32828 -- CloseStatus[code=1006, reason=]
+2020-12-15 19:07:04.992  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 19:07:11.914  INFO 778 --- [  XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32846
+2020-12-15 19:07:11.928  INFO 778 --- [  XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32846
+2020-12-15 19:08:34.269  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32846 -- CloseStatus[code=1006, reason=]
+2020-12-15 19:08:34.270  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 19:08:41.116  INFO 778 --- [  XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32860
+2020-12-15 19:08:41.135  INFO 778 --- [  XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32860
+2020-12-15 21:41:14.890  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32860 -- CloseStatus[code=1006, reason=]
+2020-12-15 21:41:14.894  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 21:41:23.613  INFO 778 --- [  XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32888
+2020-12-15 21:41:23.671  INFO 778 --- [  XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32888
+2020-12-15 22:39:41.507  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32888 -- CloseStatus[code=1006, reason=]
+2020-12-15 22:39:41.507  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 22:39:48.423  INFO 778 --- [  XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32918
+2020-12-15 22:39:48.444  INFO 778 --- [  XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32918
+2020-12-15 22:40:41.935  INFO 778 --- [  XNIO-1 task-5] l.server.player.AudioLoaderRestHandler   : Got request to load for identifier "ytsearch:never gonna give you up"
+2020-12-15 22:40:41.978  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "voiceUpdate", "guildId": "727739470731935765", "sessionId": "649b7f83d7ba60eb3cb306894c138e5e", "event": {"token": "e17ebbe62a9c8344", "guild_id": "727739470731935765", "endpoint": "us-central5752.discord.media:443"}}
+2020-12-15 22:40:42.626  INFO 778 --- [ader-2-thread-1] lavalink.server.player.AudioLoader       : Loaded playlist Search results for: never gonna give you up
+2020-12-15 22:40:42.768  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "play", "guildId": "727739470731935765", "track": "QAAAmwIALVJpY2sgQXN0bGV5IC0gTmV2ZXIgR29ubmEgR2l2ZSBZb3UgVXAgKFZpZGVvKQAUT2ZmaWNpYWwgUmljayBBc3RsZXkAAAAAAANACAALZFF3NHc5V2dYY1EAAQAraHR0cHM6Ly93d3cueW91dHViZS5jb20vd2F0Y2g/dj1kUXc0dzlXZ1hjUQAHeW91dHViZQAAAAAAAAAA", "noReplace": false, "startTime": "0"}
+2020-12-15 22:40:46.312  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "stop", "guildId": "727739470731935765"}
+2020-12-15 22:40:46.315  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : {"op": "destroy", "guildId": "727739470731935765"}
+2020-12-15 22:45:34.111  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32918 -- CloseStatus[code=1006, reason=]
+2020-12-15 22:45:34.111  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-15 22:45:41.869  INFO 778 --- [  XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:32958
+2020-12-15 22:45:41.910  INFO 778 --- [  XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:32958
+2020-12-16 13:52:50.781  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:32958 -- CloseStatus[code=1006, reason=]
+2020-12-16 13:52:50.786  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-16 13:52:58.125  INFO 778 --- [  XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:33344
+2020-12-16 13:52:58.170  INFO 778 --- [  XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:33344
+2020-12-16 14:08:11.920  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:33344 -- CloseStatus[code=1006, reason=]
+2020-12-16 14:08:11.921  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-16 14:08:34.776  INFO 778 --- [  XNIO-1 task-9] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:33384
+2020-12-16 14:08:34.818  INFO 778 --- [  XNIO-1 task-9] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:33384
+2020-12-16 14:15:12.403  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:33384 -- CloseStatus[code=1006, reason=]
+2020-12-16 14:15:12.404  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-16 14:16:14.194  INFO 778 --- [ XNIO-1 task-10] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:33414
+2020-12-16 14:16:14.207  INFO 778 --- [ XNIO-1 task-10] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:33414
+2020-12-16 14:18:05.490  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:33414 -- CloseStatus[code=1006, reason=]
+2020-12-16 14:18:05.490  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-16 14:18:12.131  INFO 778 --- [ XNIO-1 task-11] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:33430
+2020-12-16 14:18:12.157  INFO 778 --- [ XNIO-1 task-11] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:33430
+2020-12-16 14:21:06.510  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:33430 -- CloseStatus[code=1006, reason=]
+2020-12-16 14:21:06.510  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-16 14:21:13.153  INFO 778 --- [ XNIO-1 task-12] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:33448
+2020-12-16 14:21:13.163  INFO 778 --- [ XNIO-1 task-12] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:33448
+2020-12-16 14:45:11.743  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:33448 -- CloseStatus[code=1006, reason=]
+2020-12-16 14:45:11.743  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-16 14:45:18.352  INFO 778 --- [ XNIO-1 task-13] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:33482
+2020-12-16 14:45:18.368  INFO 778 --- [ XNIO-1 task-13] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:33482
+2020-12-17 23:47:38.693  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:33482 -- CloseStatus[code=1006, reason=]
+2020-12-17 23:47:38.702  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-17 23:47:46.852  INFO 778 --- [ XNIO-1 task-14] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34066
+2020-12-17 23:47:46.895  INFO 778 --- [ XNIO-1 task-14] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34066
+2020-12-17 23:49:03.574  INFO 778 --- [ XNIO-1 task-15] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34082
+2020-12-17 23:49:03.590  INFO 778 --- [ XNIO-1 task-15] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34082
+2020-12-17 23:54:29.701  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34066 -- CloseStatus[code=1006, reason=]
+2020-12-17 23:54:29.701  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-17 23:54:29.704  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34082 -- CloseStatus[code=1006, reason=]
+2020-12-17 23:54:29.704  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-17 23:54:36.529  INFO 778 --- [ XNIO-1 task-16] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34094
+2020-12-17 23:54:36.556  INFO 778 --- [ XNIO-1 task-16] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34094
+2020-12-18 00:23:51.349  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34094 -- CloseStatus[code=1006, reason=]
+2020-12-18 00:23:51.354  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 00:23:58.327  INFO 778 --- [  XNIO-1 task-1] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34130
+2020-12-18 00:23:58.339  INFO 778 --- [  XNIO-1 task-1] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34130
+2020-12-18 02:49:34.393  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34130 -- CloseStatus[code=1006, reason=]
+2020-12-18 02:49:34.394  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 02:49:41.371  INFO 778 --- [  XNIO-1 task-2] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34226
+2020-12-18 02:49:41.411  INFO 778 --- [  XNIO-1 task-2] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34226
+2020-12-18 02:50:23.465  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34226 -- CloseStatus[code=1006, reason=]
+2020-12-18 02:50:23.465  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 02:50:31.152  INFO 778 --- [  XNIO-1 task-3] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34238
+2020-12-18 02:50:31.164  INFO 778 --- [  XNIO-1 task-3] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34238
+2020-12-18 02:51:43.856  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34238 -- CloseStatus[code=1006, reason=]
+2020-12-18 02:51:43.856  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 02:51:50.415  INFO 778 --- [  XNIO-1 task-4] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34250
+2020-12-18 02:51:50.434  INFO 778 --- [  XNIO-1 task-4] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34250
+2020-12-18 02:53:49.242  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34250 -- CloseStatus[code=1006, reason=]
+2020-12-18 02:53:49.243  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 02:53:56.295  INFO 778 --- [  XNIO-1 task-5] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34272
+2020-12-18 02:53:56.305  INFO 778 --- [  XNIO-1 task-5] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34272
+2020-12-18 02:55:31.581  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34272 -- CloseStatus[code=1006, reason=]
+2020-12-18 02:55:31.582  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 02:55:38.405  INFO 778 --- [  XNIO-1 task-6] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34290
+2020-12-18 02:55:38.417  INFO 778 --- [  XNIO-1 task-6] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34290
+2020-12-18 03:11:04.643  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34290 -- CloseStatus[code=1006, reason=]
+2020-12-18 03:11:04.644  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 03:11:39.243  INFO 778 --- [  XNIO-1 task-7] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34310
+2020-12-18 03:11:39.260  INFO 778 --- [  XNIO-1 task-7] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34310
+2020-12-18 03:26:07.892  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketServer          : Connection closed from /45.76.248.11:34310 -- CloseStatus[code=1006, reason=]
+2020-12-18 03:26:07.892  INFO 778 --- [   XNIO-1 I/O-2] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2020-12-18 03:26:14.388  INFO 778 --- [  XNIO-1 task-8] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34344
+2020-12-18 03:26:14.411  INFO 778 --- [  XNIO-1 task-8] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34344
+2020-12-18 19:07:55.839  INFO 778 --- [  XNIO-1 task-9] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /45.76.248.11:34578
+2020-12-18 19:07:55.886  INFO 778 --- [  XNIO-1 task-9] lavalink.server.io.SocketServer          : Connection successfully established from /45.76.248.11:34578
