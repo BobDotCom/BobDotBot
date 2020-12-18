@@ -25,8 +25,8 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Discord Version**:
-Desktop - App, Browser, or Other
-Mobile - App, Browser, Beta App, or Other
+Desktop - App, Browser, or Other.
+Mobile - App, Browser, Beta App, or Other.
 
 **Additional context**
 Add any other context about the problem here.
