@@ -188,7 +188,6 @@ class Moderation(commands.Cog, name = cog_name):
             async with connection.cursor() as cursor:
                 await cursor.execute(create_users_table)
                 await connection.commit()
-      db = await aiosqlite.connect("punishments.sql")
 
     @commands.command(aliases=["strikes"])
     @commands.is_owner()
