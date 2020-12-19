@@ -342,7 +342,7 @@ class MainCog(commands.Cog, name = "General"):
         try:
             msg = await self.client.wait_for('message', check=check,timeout=30)
             await ctx.send(f"Ok {msg.author.mention}, I will send the raw image url.")
-            await ctx.send(url)
+            await ctx.send(final+url)
         except asyncio.TimeoutError:
             return
 
