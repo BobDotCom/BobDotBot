@@ -24,6 +24,8 @@ SOFTWARE.
 
 from discord.ext import commands
 import discord
+
+
 class EmbedHelpCommand(commands.HelpCommand):
     """This is an example of a HelpCommand that utilizes embeds.
     It's pretty basic but it lacks some nuances that people might expect.
