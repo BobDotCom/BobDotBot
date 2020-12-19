@@ -325,14 +325,10 @@ class MainCog(commands.Cog, name = "General"):
                         await ctx.send(embed=embed)
                         return
             except:
-                embed.add_field(value='I detected an error. The qr code may not show')
-            try:
-                url = self.create_url.format('200x200',text)
-                embed.set_image(url=url) 
-                embed.set_footer(text="If this didn't work, type retry within 30 seconds")
-                await ctx.send(embed=embed)
-            except:
-                await ctx.send(final_url)
+                embed.add_field(name='Oh no!',value='I detected an error. The qr code may not show')
+            embed.set_image(url=final_url) 
+            embed.set_footer(text="If this didn't work, type retry within 30 seconds")
+            await ctx.send(embed=embed)
         def check(m):
             return m.author == ctx.author and m.content.lower() == "retry" and m.channel == ctx.channel
         try:
