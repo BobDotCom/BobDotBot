@@ -81,6 +81,7 @@ class FunCog(commands.Cog, name = "Fun"):
         return bool(int(random.choice(list("1" * x) + list("0" * (100-x)))))
 
     @commands.command()
+    @commands.max_concurrency(1, commands.BucketType.user)
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def amongus(self, ctx, member: discord.Member = None, impostor: bool = None):
       """Eject a member of the current server into space. If you dont say whether they are the impostor or not, there will be a 1 in 10 chance that they are."""
@@ -104,6 +105,7 @@ class FunCog(commands.Cog, name = "Fun"):
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
 
     @commands.command()
+    @commands.max_concurrency(1, commands.BucketType.user)
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def petpet(self, ctx, member: discord.Member = None):
       """Pet someone. Defaults to yourself"""
