@@ -85,7 +85,7 @@ class FunCog(commands.Cog, name = "Fun"):
     async def amongus(self, ctx, member: discord.Member = None, impostor: bool = None):
       """Eject a member of the current server into space. If you dont say whether they are the impostor or not, there will be a 1 in 10 chance that they are."""
       async with ctx.typing():
-        impostor = self.percentage_bool(10) if x == None else impostor # have to do this because impostor can be false or none
+        impostor = self.percentage_bool(10) if impostor == None else impostor # have to do this because impostor can be false or none
         member = member or ctx.author
         try:
           gif = api.amongus(member.name, member.avatar_url,impostor) # if sr api has been updated
