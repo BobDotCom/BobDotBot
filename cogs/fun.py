@@ -111,7 +111,7 @@ class FunCog(commands.Cog, name = "Fun"):
         try:
           gif = api.petpet(member.avatar_url) # if sr api has been updated
         except:
-          return await ctx.send('Dutchy hasnt updated the wrapper yet, or Bob hasnt installed the new version yet. For now, I can only eject crewmates.')
+          return await ctx.send('Dutchy hasnt updated the wrapper, or Bob hasnt installed the new version yet. For now, I can only eject crewmates.')
         try:
           buf = BytesIO(await gif.read())
         except ValueError as error:
