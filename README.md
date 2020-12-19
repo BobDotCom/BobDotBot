@@ -10,7 +10,7 @@ Most of the code is written by me, but the RTFM and Help commands are taken from
 ### Support Server
 [Click here](https://discord.gg/EHpET2zq)
 ## Source Code
-All of the old tokens in the source code have been regenerated, and will not work anymore. Also, most of the old code that I had made is pretty bad, as I wrote it at the beginning of learning the programming language. I am currently in the process of fixing the old code. Feel free to make a pull request with your updates if you have and improvements for the code.
+All of the old tokens in the source code have been regenerated, and will not work anymore. Also, most of the old code that I had made is pretty bad, as I wrote it at the beginning of learning the programming language. I am currently in the process of fixing the old code. Feel free to make a pull request with your updates if you have and improvements for the code. Json/db/env files are hidden
 ## Commands
 ### Growtopia
 #### Commands relating to the online sandbox game, Growtopia
