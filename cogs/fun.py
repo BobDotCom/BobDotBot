@@ -25,6 +25,7 @@ SOFTWARE.
 import sr_api
 import discord
 import asyncio
+import random
 import os
 from io import BytesIO
 from dotenv import load_dotenv
@@ -84,7 +85,7 @@ class FunCog(commands.Cog, name = "Fun"):
     async def amongus(self, ctx, member: discord.Member = None, impostor: bool = percentage_bool(10)):
       """Eject a member of the current server into space. If you dont say whether they are the impostor or not, there will be a 1 in 10 chance that they are."""
       async with ctx.typing():
-        member = member or author
+        member = member or ctx.author
         try:
           gif = api.amongus(member.name, member.avatar_url,impostor) # if sr api has been updated
         except:
@@ -105,7 +106,7 @@ class FunCog(commands.Cog, name = "Fun"):
     async def petpet(self, ctx, member: discord.Member = None):
       """Pet someone. Defaults to yourself"""
       async with ctx.typing():
-        member = member or author
+        member = member or ctx.author
         try:
           gif = api.petpet(member.avatar_url) # if sr api has been updated
         except:
