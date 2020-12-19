@@ -77,7 +77,7 @@ class FunCog(commands.Cog, name = "Fun"):
     def percentage_bool(self,x: int) -> bool:
         if x > 100:
             raise ValueError('Number must be ≤ 100')
-        return bool(int(random!.choice(list("1" * x) + list("0" * (100-x)))))
+        return bool(int(random.choice(list("1" * x) + list("0" * (100-x)))))
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
@@ -119,7 +119,7 @@ class FunCog(commands.Cog, name = "Fun"):
             await ctx.send('I have detected that this error is because my API key expired! Please contact my owner, {}, and remind him to renew my API key!')
         else:
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
-          
+
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def dog(self,ctx):
