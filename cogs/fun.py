@@ -73,24 +73,53 @@ class FunCog(commands.Cog, name = "Fun"):
     def __init__(self, client):
         self.client = client
         self.bot = client
+    
+    def percentage_bool(self,x: int) -> bool:
+        if x > 100:
+            raise ValueError('Number must be ≤ 100')
+        return bool(int(random!.choice(list("1" * x) + list("0" * (100-x)))))
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def amongus(self, ctx, *, member: discord.Member = None):
-      """Eject a member of the current server into space"""
+    async def amongus(self, ctx, member: discord.Member = None, impostor: bool = percentage_bool(10)):
+      """Eject a member of the current server into space. If you dont say whether they are the impostor or not, there will be a 1 in 10 chance that they are."""
       async with ctx.typing():
-        member = ctx.author if not member else member
-        worked = False
+        member = member or author
         try:
-          gif = api.amongus(member.name, member.avatar_url)
+          gif = api.amongus(member.name, member.avatar_url,impostor) # if sr api has been updated
+        except:
+          gif = api.amongus(member.name, member.avatar_url) # if sr_api hasnt been updated yet
+          await ctx.send('Dutchy hasnt updated the wrapper yet, or Bob hasnt installed the new version yet. For now, I can only eject crewmates.')
+        try:
           buf = BytesIO(await gif.read())
+        except ValueError as error:
+          embed = discord.Embed(title='Error with API',description='```{}```'.format(error))
+          await ctx.send(embed=embed)
+          if '403' in error:
+            await ctx.send('I have detected that this error is because my API key expired! Please contact my owner, {}, and remind him to renew my API key!')
+        else:
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
-          worked = True
-        except: #HTTPError as error
-          await ctx.send("error")
-        if not worked:
-          await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it. (This could also mean that the website is down)')
 
+    @commands.command()
+    @commands.cooldown(1, 1, commands.BucketType.channel)
+    async def petpet(self, ctx, member: discord.Member = None):
+      """Pet someone. Defaults to yourself"""
+      async with ctx.typing():
+        member = member or author
+        try:
+          gif = api.petpet(member.avatar_url) # if sr api has been updated
+        except:
+          return await ctx.send('Dutchy hasnt updated the wrapper yet, or Bob hasnt installed the new version yet. For now, I can only eject crewmates.')
+        try:
+          buf = BytesIO(await gif.read())
+        except ValueError as error:
+          embed = discord.Embed(title='Error with API',description='```{}```'.format(error))
+          await ctx.send(embed=embed)
+          if '403' in error:
+            await ctx.send('I have detected that this error is because my API key expired! Please contact my owner, {}, and remind him to renew my API key!')
+        else:
+          await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
+          
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def dog(self,ctx):
