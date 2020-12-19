@@ -22,6 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+"""
+BobDotBot
+~~~~~~~~~~~~~~~~~~
+This file contains elements that are under the following licenses:
+Copyright (c) 2015 Rapptz
+license MIT, see https://github.com/Rapptz/RoboDanny/blob/e1c3c28fe20eb192463f7fc224a399141f0d915d/LICENSE.txt for more details.
+"""
+
 # All 25 of the gay imports
 import discord
 import os
