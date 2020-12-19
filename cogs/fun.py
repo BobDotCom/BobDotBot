@@ -80,6 +80,7 @@ class FunCog(commands.Cog, name = "Fun"):
       """Eject a member of the current server into space"""
       async with ctx.typing():
         member = ctx.author if not member else member
+        worked = False
         try:
           gif = api.amongus(member.name, member.avatar_url)
           buf = BytesIO(await gif.read())
@@ -88,7 +89,7 @@ class FunCog(commands.Cog, name = "Fun"):
         except: #HTTPError as error
           await ctx.send("error")
         if not worked:
-          await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it.(This could also mean that the website is down)')
+          await ctx.send('This command requires a premium API key, and the key that I use has expired! To be able to use this command, contact my owner(@BobDotCom#0001) to discuss it. (This could also mean that the website is down)')
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
