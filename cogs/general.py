@@ -33,6 +33,7 @@ import sr_api
 import json
 from termcolor import cprint
 import aiohttp
+import urllib
 from googleapiclient.discovery import build
 import sqlite3
 import aiosqlite
@@ -315,7 +316,7 @@ class MainCog(commands.Cog, name = "General"):
         if len(text) > 900:
             return await ctx.send("The maximum is 900 characters")
         async with ctx.typing():
-            async with self.session.get(self.create_url.format('200x200',text)) as resp:
+            async with self.session.get(self.create_url.format('200x200',urllib.parse.quote(text, safe=''))) as resp:
                 if not resp.status == 200:
                     embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"API could not handle this request. Please try again later.")
                     await ctx.send(embed=embed)
