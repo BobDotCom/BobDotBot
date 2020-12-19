@@ -5,7 +5,7 @@ BobDotBot is a discord bot made in python 3 using discord.py. It has many featur
 #### Contributions
 While I (BobDotCom) did write, and take credit for the majority of this code, I would like to thank all of the contributors to this project. They are listed on the main GitHub page.
 #### Licensed Material
-The RTFM and Help commands are taken from [RoboDanny](https://github.com/Rapptz/robodanny), with some modifications to better fit my purposes. Please note that while RoboDanny switched to an mpl-2.0 license on Oct. 6, 2020, I started using this code before that date. The correct credit is given in each file where the code occurs.
+The RTFM and Help commands are taken from [RoboDanny](https://github.com/Rapptz/robodanny), with some modifications to better fit my purposes. Please note that while RoboDanny switched to an mpl-2.0 license on Oct. 6, 2020, I started using this code before that date, meaning the code used is under an mit license. The correct credit is given in each file where the code occurs.
 
 ### top.gg
 [![Discord Bots](https://top.gg/api/widget/746045299125911562.svg)](https://top.gg/bot/746045299125911562)
