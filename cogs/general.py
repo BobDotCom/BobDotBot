@@ -317,17 +317,19 @@ class MainCog(commands.Cog, name = "General"):
             return await ctx.send("The maximum is 900 characters")
         async with ctx.typing():
             final_url = self.create_url.format('200x200',urllib.parse.quote(text, safe=''))
-            await ctx.send(final_url)
-            async with self.session.get(final_url) as resp:
-                if not resp.status == 200:
-                    embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"API could not handle this request. Please try again later.")
-                    await ctx.send(embed=embed)
-                    return
-                embed = discord.Embed(title=f"Here is your qr code!")
-                url = self.create_url.format('200x200',text)
-                embed.set_image(url=url) 
-                embed.set_footer(text="If this didn't work, type retry within 30 seconds")
-                await ctx.send(embed=embed)  
+            embed = discord.Embed(title=f"Here is your qr code!")
+            try:
+                async with self.session.get(final_url) as resp:
+                    if not resp.status == 200:
+                        embed = discord.Embed(color=discord.Color.red(), timestamp=ctx.message.created_at, title=f"API could not handle this request. Please try again later.")
+                        await ctx.send(embed=embed)
+                        return
+            except:
+                embed.add_field(name='I detected an error. The qr code may not show')
+            url = self.create_url.format('200x200',text)
+            embed.set_image(url=url) 
+            embed.set_footer(text="If this didn't work, type retry within 30 seconds")
+            await ctx.send(embed=embed)  
         def check(m):
             return m.author == ctx.author and m.content.lower() == "retry" and m.channel == ctx.channel
         try:
