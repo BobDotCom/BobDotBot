@@ -92,6 +92,7 @@ owner = client.get_user(client.owner_id)
 client.owner_id = None
 client.owner_ids = [690420846774321221,748937160731918378]
 os.environ["JISHAKU_NO_UNDERSCORE"] = "True"
+os.environ['JISHAKU_RETAIN'] = "True"
 client.load_extension("jishaku")
 client.sr_api = SR_API_TOKEN
 prefixes1 = get_prefix
