@@ -82,7 +82,7 @@ class FunCog(commands.Cog, name = "Fun"):
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def amongus(self, ctx, member: discord.Member = None, impostor: bool = self.percentage_bool(10)):
+    async def amongus(self, ctx, member: discord.Member = None, impostor: bool = percentage_bool(self,10)):
       """Eject a member of the current server into space. If you dont say whether they are the impostor or not, there will be a 1 in 10 chance that they are."""
       async with ctx.typing():
         member = member or ctx.author
