@@ -82,9 +82,10 @@ class FunCog(commands.Cog, name = "Fun"):
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def amongus(self, ctx, member: discord.Member = None, impostor: bool = percentage_bool(self,10)):
+    async def amongus(self, ctx, member: discord.Member = None, impostor: bool = None):
       """Eject a member of the current server into space. If you dont say whether they are the impostor or not, there will be a 1 in 10 chance that they are."""
       async with ctx.typing():
+        impostor = self.percentage_bool(10) if x == None else impostor # have to do this because impostor can be false or none
         member = member or ctx.author
         try:
           gif = api.amongus(member.name, member.avatar_url,impostor) # if sr api has been updated
@@ -96,7 +97,7 @@ class FunCog(commands.Cog, name = "Fun"):
         except ValueError as error:
           embed = discord.Embed(title='Error with API',description='```{}```'.format(error))
           await ctx.send(embed=embed)
-          if '403' in error:
+          if '403' in str(error):
             await ctx.send('I have detected that this error is because my API key expired! Please contact my owner, {}, and remind him to renew my API key!')
         else:
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
@@ -116,7 +117,7 @@ class FunCog(commands.Cog, name = "Fun"):
         except ValueError as error:
           embed = discord.Embed(title='Error with API',description='```{}```'.format(error))
           await ctx.send(embed=embed)
-          if '403' in error:
+          if '403' in str(error):
             await ctx.send('I have detected that this error is because my API key expired! Please contact my owner, {}, and remind him to renew my API key!')
         else:
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
