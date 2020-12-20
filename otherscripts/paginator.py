@@ -22,6 +22,14 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+"""
+BobDotBot
+~~~~~~~~~~~~~~~~~~
+This file contains elements that are under the following licenses:
+Copyright (c) 2015 Rapptz
+license MIT, see https://github.com/Rapptz/RoboDanny/blob/e1c3c28fe20eb192463f7fc224a399141f0d915d/LICENSE.txt for more details.
+"""
+
 import asyncio
 import discord
 from discord.ext.commands import Paginator as CommandPaginator
