@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 """
-This Source Code Form is subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this
-file, You can obtain one at http://mozilla.org/MPL/2.0/.
+BobDotBot
+~~~~~~~~~~~~~~~~~~
+This file contains elements that are under the following licenses:
+Copyright (c) 2015 Rapptz
+license MIT, see https://github.com/Rapptz/RoboDanny/blob/e1c3c28fe20eb192463f7fc224a399141f0d915d/LICENSE.txt for more details.
 """
 
 # help with: http://chairnerd.seatgeek.com/fuzzywuzzy-fuzzy-string-matching-in-python/

@@ -1,5 +1,7 @@
 # BobDotBot
 BobDotBot is a discord bot made in python 3 using discord.py. It has many features, so you dont have to have many bots in your server just to get the commands that you want. It is always being improved, so if you see a bug or have a suggestion, dont hesitate to use the report bug or suggest commands to contact the devloper. It is always online, so no need to worry about it going offline randomly
+## LICENSE WARNING
+DO NOT COPY CODE FROM THIS REPOSITORY WITHOUT PROPERLY CREDITING ME!!! I don't want to DMCA anyone, but I will do what is necessary to defend the license. If you are unsure how to properly credit me, you can [DM me on discord](https://discord.com/channels/@me/690420846774321221) or [join my support server](https://discord.gg/EHpET2zq).
 ## Bot Info
 ### Credits
 #### Contributions
