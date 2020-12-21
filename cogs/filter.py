@@ -49,14 +49,17 @@ class FilterCog(commands.Cog, name = "Filter"):
             async with connection.cursor() as cursor:
                 await cursor.execute('SELECT words, ignored, enabled FROM guilds WHERE id = ?',(message.guild.id,))
                 data = await cursor.fetchone()
-                enabled = data[2] or False
-                words = None
-                try:
-                    words = json.loads(data[0])
-                    ignored = json.loads(data[1])
-                except:
-                    words = words or []
-                    ignored = []
+                if data:
+                    enabled = data[2]
+                    words = None
+                    try:
+                        words = json.loads(data[0])
+                        ignored = json.loads(data[1])
+                    except:
+                        words = words or []
+                        ignored = []
+                else:
+                    return
         new_message = message.content
         caught = False
         if enabled and not message.channel.id in ignored:
