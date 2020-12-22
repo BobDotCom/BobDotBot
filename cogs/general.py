@@ -665,8 +665,11 @@ class MainCog(commands.Cog, name = "General"):
             }
 
             def calculate(s):
-                if s.isdigit():
-                    return float(s)
+                try:
+                    returned = float(s)
+                    return returned
+                except ValueError:
+                    pass
                 for c in operators.keys():
                     left, operator, right = s.partition(c)
                     if operator in operators:
