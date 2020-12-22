@@ -1122,11 +1122,46 @@ class MainCog(commands.Cog, name = "General"):
                     text = f"I couldn't find a rules channel, because this server does not have a rules channel set! Please ask an admin to set a rules channel in the community server settings, so I can be sure"
         embed = discord.Embed(title="Rules Channel", description=text,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
-    @commands.command(name="github",aliases=["source","info"])
+        
+    @commands.command(name="source",aliases=["github","info"])
     @commands.cooldown(1, 1, commands.BucketType.channel)
-    async def github(self,ctx):
-        """Get my github link"""
-        await ctx.send("https://github.com/BobDotCom/BobDotBot")
+    async def source(self, ctx, *, command: str = None):
+        """Displays my full source code or for a specific command.
+        To display the source code of a subcommand you can separate it by
+        periods, e.g. tag.create for the create subcommand of the tag command
+        or by spaces.
+        """
+        source_url = 'https://github.com/BobDotCom/BobDotBot'
+        branch = 'main'
+        if command is None:
+            return await ctx.send(source_url)
+
+        if command == 'help':
+            src = type(self.client.help_command)
+            module = src.__module__
+            filename = inspect.getsourcefile(src)
+        else:
+            obj = self.client.get_command(command.replace('.', ' '))
+            if obj is None:
+                return await ctx.send('Could not find command.')
+
+            # since we found the command we're looking for, presumably anyway, let's
+            # try to access the code itself
+            src = obj.callback.__code__
+            module = obj.callback.__module__
+            filename = src.co_filename
+
+        lines, firstlineno = inspect.getsourcelines(src)
+        if not module.startswith('discord'):
+            # not a built-in command
+            location = os.path.relpath(filename).replace('\\', '/')
+        else:
+            location = module.replace('.', '/') + '.py'
+            source_url = 'https://github.com/Rapptz/discord.py'
+            branch = 'master'
+
+        final_url = f'<{source_url}/blob/{branch}/{location}#L{firstlineno}-L{firstlineno + len(lines) - 1}>'
+        await ctx.send(final_url)
 
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
