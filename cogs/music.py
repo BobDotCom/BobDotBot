@@ -347,7 +347,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         self.bot = bot
         for i in range(25):
             if hasattr(bot, 'wavelink'):
-                if bot.wavelink != None:
+                if bot.wavelink.get_best_node() != None:
                     break
             time.sleep(1)
             bot.wavelink = wavelink.Client(bot=bot)
