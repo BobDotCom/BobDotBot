@@ -126,7 +126,7 @@ async def on_ready():
     else:
         print(f"{client.user.name} is not sharded and can see {cache_summary}.")
     print(cs('Bot is ready','green'))
-    total_time = int((end - start))
+    total_time = int((end_time - start_time))
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"Bot starting up... | Startup took {total_time} seconds"))
 
 async def log_error(ctx,error,handled):
