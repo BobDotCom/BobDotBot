@@ -28,6 +28,7 @@ import copy
 import datetime
 import discord
 import math
+import time
 import random
 import re
 import typing
@@ -346,7 +347,7 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         self.bot = bot
 
         if not hasattr(bot, 'wavelink'):
-            await asyncio.sleep(5) # make sure that wavelink has a chance to start up
+            time.sleep(5) # make sure that wavelink has a chance to start up
             bot.wavelink = wavelink.Client(bot=bot)
 
         bot.loop.create_task(self.start_nodes())
