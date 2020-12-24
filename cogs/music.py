@@ -353,11 +353,11 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
         """Connect and intiate nodes."""
         await self.bot.wait_until_ready()
         for i in range(25):
-            if hasattr(bot, 'wavelink'):
-                if bot.wavelink.get_best_node() != None:
+            if hasattr(self.bot, 'wavelink'):
+                if self.bot.wavelink.get_best_node() != None:
                     break
             await asyncio.sleep(1)
-            bot.wavelink = wavelink.Client(bot=bot)
+            self.bot.wavelink = wavelink.Client(bot=self.bot)
 
         if self.bot.wavelink.nodes:
             previous = self.bot.wavelink.nodes.copy()
