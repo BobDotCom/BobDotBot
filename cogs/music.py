@@ -359,6 +359,8 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
             for node in previous.values():
                 await node.destroy()
+                
+        await asyncio.sleep(5) # make sure that wavelink has a chance to start up
 
         nodes = {'MAIN': {'host': '45.76.248.11',
                           'port': 2333,
