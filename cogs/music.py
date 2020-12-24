@@ -346,11 +346,12 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
         for i in range(25):
-            if not hasattr(bot, 'wavelink'):
-                time.sleep(1)
-                bot.wavelink = wavelink.Client(bot=bot)
-            else:
-                break
+            if hasattr(bot, 'wavelink'):
+                if bot.wavelink != None:
+                    break
+            time.sleep(1)
+            bot.wavelink = wavelink.Client(bot=bot)
+                
 
         bot.loop.create_task(self.start_nodes())
 
