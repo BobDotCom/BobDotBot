@@ -27,7 +27,7 @@ import discord
 import json
 # import stuff
 import os
-
+import time
 # import stuff
 import typing
 import asyncio
@@ -44,7 +44,7 @@ from discord.ext.tasks import loop
 from otherscripts.data import Data
 from halo import Halo
 from stringcolor import * 
-
+start_time = time.perf_counter()
 
 # Load .env file
 load_dotenv()
@@ -111,6 +111,7 @@ async def on_connect():
 
 @client.event
 async def on_ready():
+    end_time = time.perf_counter()
     try:
         start_spinner.succeed('Ready')
     except:
@@ -125,7 +126,8 @@ async def on_ready():
     else:
         print(f"{client.user.name} is not sharded and can see {cache_summary}.")
     print(cs('Bot is ready','green'))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"Bot starting up..."))
+    total_time = int((end - start))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=f"Bot starting up... | Startup took {total_time} seconds"))
 
 async def log_error(ctx,error,handled):
     if not handled:
