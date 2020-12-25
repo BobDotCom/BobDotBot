@@ -41,7 +41,6 @@ import traceback
 from dotenv import load_dotenv
 from discord.ext.commands import Bot
 from discord.ext import commands
-from datetime import datetime
 from discord.ext.tasks import loop
 from otherscripts.data import Data
 from halo import Halo
@@ -89,7 +88,7 @@ except:
     client.blacklisted = []
     print('Blacklist not loaded')
 #client.remove_command('help')
-client.uptime = datetime.utcnow()
+client.uptime = datetime.datetime.utcnow()
 owner = client.get_user(client.owner_id)
 client.owner_id = None
 client.owner_ids = [690420846774321221,748937160731918378]
