@@ -371,6 +371,7 @@ class MainCog(commands.Cog, name = "General"):
         async with connection.cursor() as cursor:
           await cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, status INTEGER);")
           await connection.commit()
+
     @commands.Cog.listener()
     async def on_message_delete(self,message):
       channel = message.channel.id
@@ -380,6 +381,7 @@ class MainCog(commands.Cog, name = "General"):
       except:
         self.client.sniper[guild] = {}
         self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
+
     @commands.command()
     async def snipe(self,ctx):
       """See the last message that someone deleted from chat"""
@@ -403,6 +405,7 @@ class MainCog(commands.Cog, name = "General"):
                     async with connection.cursor() as cursor:
                         await cursor.execute("SELECT * FROM suggestions WHERE messageid = ?",(payload.message_id,))
                         rows = await cursor.fetchone()
+                        member = self.client.get_user(rows[1])
                         if rows[3] == "submitted":
                             what = "Approved"
                             color = discord.Color.yellow()
@@ -412,12 +415,12 @@ class MainCog(commands.Cog, name = "General"):
                         else:
                             return
                         try:
-                            await payload.member.send(f"Your suggestion has been {what.lower()}: `{rows[2]}`")
+                            await member.send(f"Your suggestion has been {what.lower()}: `{rows[2]}`")
                         except:
                             pass
                         message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
                         await message.remove_reaction(payload.emoji,payload.member)
-                        await message.edit(embed=discord.Embed(title="Suggestion",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await message.edit(embed=discord.Embed(title="Suggestion",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=member,icon_url=member.avatar_url))
                         await cursor.execute("UPDATE suggestions SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
                         await connection.commit()
             elif payload.emoji.name == "❎":
@@ -425,26 +428,28 @@ class MainCog(commands.Cog, name = "General"):
                     async with connection.cursor() as cursor:
                         await cursor.execute("SELECT * FROM suggestions WHERE messageid = ?",(payload.message_id,))
                         rows = await cursor.fetchone()
+                        member = self.client.get_user(rows[1])
                         if rows[3] == "declined":
                             return
                         what = "Declined"
                         color = discord.Color.red()
                         try:
-                            await payload.member.send(f"Your suggestion has been {what.lower()}: `{rows[2]}`")
+                            await member.send(f"Your suggestion has been {what.lower()}: `{rows[2]}`")
                         except:
                             pass
                         message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
                         await message.remove_reaction(payload.emoji,payload.member)
-                        await message.edit(embed=discord.Embed(title="Suggestion",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await message.edit(embed=discord.Embed(title="Suggestion",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=member,icon_url=member.avatar_url))
                         await cursor.execute("UPDATE suggestions SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
                         await connection.commit()
                 
-        elif payload.channel_id == 751971356865986731 and payload.member.id == self.client.owner_id:
+        elif payload.channel_id == 751971356865986731 and payload.member.id in self.client.owner_ids:
             if payload.emoji.name == "✅":
                 async with aiosqlite.connect('logs.db') as connection:
                     async with connection.cursor() as cursor:
                         await cursor.execute("SELECT * FROM reports WHERE messageid = ?",(payload.message_id,))
                         rows = await cursor.fetchone()
+                        member = self.client.get_user(rows[1])
                         if rows[3] == "reported":
                             what = "Verified"
                             color = discord.Color.yellow()
@@ -454,12 +459,12 @@ class MainCog(commands.Cog, name = "General"):
                         else:
                             return
                         try:
-                            await payload.member.send(f"Your bug report has been {what.lower()}: `{rows[2]}`")
+                            await member.send(f"Your bug report has been {what.lower()}: `{rows[2]}`")
                         except:
                             pass
                         message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
                         await message.remove_reaction(payload.emoji,payload.member)
-                        await message.edit(embed=discord.Embed(title="Bug Report",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await message.edit(embed=discord.Embed(title="Bug Report",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=member,icon_url=member.avatar_url))
                         await cursor.execute("UPDATE reports SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
                         await connection.commit()
             elif payload.emoji.name == "❎":
@@ -467,17 +472,18 @@ class MainCog(commands.Cog, name = "General"):
                     async with connection.cursor() as cursor:
                         await cursor.execute("SELECT * FROM reports WHERE messageid = ?",(payload.message_id,))
                         rows = await cursor.fetchone()
+                        member = self.client.get_user(rows[1])
                         if rows[3] == "declined":
                             return
                         what = "Declined"
                         color = discord.Color.red()
                         try:
-                            await payload.member.send(f"Your bug report has been {what.lower()}: `{rows[2]}`")
+                            await member.send(f"Your bug report has been {what.lower()}: `{rows[2]}`")
                         except:
                             pass
                         message = await self.client.get_guild(payload.guild_id).get_channel(payload.channel_id).fetch_message(payload.message_id)
                         await message.remove_reaction(payload.emoji,payload.member)
-                        await message.edit(embed=discord.Embed(title="Bug Report",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=payload.member,icon_url=payload.member.avatar_url))
+                        await message.edit(embed=discord.Embed(title="Bug Report",description=rows[2],color=color,timestamp=datetime.utcnow()).set_footer(text=what).set_author(name=member,icon_url=member.avatar_url))
                         await cursor.execute("UPDATE reports SET status = ? WHERE messageid = ?",(what.lower(),payload.message_id,))
                         await connection.commit()
         if payload.message_id == 762754787602595840 and not payload.member.bot:
