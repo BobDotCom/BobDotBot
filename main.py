@@ -35,7 +35,7 @@ import aiosqlite
 import datetime
 import sys
 import math 
-import humani
+import humanize
 import traceback
 # import stuff
 from dotenv import load_dotenv
