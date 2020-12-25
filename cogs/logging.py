@@ -122,7 +122,7 @@ class LogCog(commands.Cog, name = "Logging"):
     async def on_raw_message_delete(self,payload):
         async with aiosqlite.connect("log.sql") as connection:
             async with connection.cursor() as cursor:
-                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?". (payload.guild_id,))
+                await cursor.execute("SELECT * FROM guilds WHERE guildid = ?", (payload.guild_id,))
                 rows = await cursor.fetchone()
         if rows:
             if rows[2] == 1 and rows[3] != 0:

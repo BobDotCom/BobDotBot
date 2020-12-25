@@ -28,6 +28,7 @@ import copy
 import datetime
 import discord
 import math
+import time
 import random
 import re
 import typing
@@ -344,15 +345,19 @@ class Music(commands.Cog, wavelink.WavelinkMixin):
 
     def __init__(self, bot: commands.Bot):
         self.bot = bot
-
-        if not hasattr(bot, 'wavelink'):
-            bot.wavelink = wavelink.Client(bot=bot)
-
+        bot.wavelink = wavelink.Client(bot=bot)
+                
         bot.loop.create_task(self.start_nodes())
 
     async def start_nodes(self) -> None:
         """Connect and intiate nodes."""
         await self.bot.wait_until_ready()
+        for i in range(25):
+            if hasattr(self.bot, 'wavelink'):
+                if self.bot.wavelink.get_best_node() != None:
+                    break
+            await asyncio.sleep(1)
+            self.bot.wavelink = wavelink.Client(bot=self.bot)
 
         if self.bot.wavelink.nodes:
             previous = self.bot.wavelink.nodes.copy()
