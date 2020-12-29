@@ -40,13 +40,17 @@ class Verify(commands.Cog):
         if not payload.member.id in self.pending_verification:
             self.pending_verification.append(payload.member.id)
         else:
-            return
+            return payload.member.send('You are already pending verification')
         result = verification.VerifyMember(self.bot, payload, data) # this is blocking but it takes < 1ms so its fine
+        if result.moderator_approval:
+            ping = guild.get_role(data[8]).mention if bool(data[10]) else ''
+            channel = guild.get_channel(data[9])
+            await channel.send(f'{payload.member.mention} is waiting for approval {ping}')
         role = guild.get_role(data[4])
         if role in payload.member.roles:
             self.pending_verification.remove(payload.member.id)
             return await payload.member.send('You are already verified')
-        if result.failed:
+        if result.failed and not result.moderator_approval:
             if result.needs_captcha:
                 for i in range(5):
                     captcha_embed = discord.Embed(title='Captcha', description=f'Please send the text seen in this image. Once you send the correct text, you will be allowed to join **{guild.name}**. (case insensitive, letters and numbers)').set_footer(text=f'Attempt {i + 1}/5')
@@ -75,12 +79,13 @@ class Verify(commands.Cog):
             else:
                 await payload.member.send(result.failed)
 
-        else:
+        elif not result.moderator_approval:
             await payload.member.add_roles(role)
             try:
                 await payload.member.send(f'Successfully verified in **{guild.name}**')
             except:
                 pass
+                
         if data[7] != 0 and result.embed:
             logs = guild.get_channel(data[7])
             await logs.send(embed=result.embed)

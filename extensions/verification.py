@@ -8,6 +8,7 @@ class VerifyMember:
         self.points = 0
         self.failed = None
         self.result = None
+        self.moderator_approval = True
         self.needs_captcha = False
         self.join_time = datetime.datetime.utcnow() - payload.member.joined_at
         self.creation_time = datetime.datetime.utcnow() - payload.member.created_at
@@ -51,7 +52,8 @@ class VerifyMember:
                 self.failed = f'Points above 5 ({self.points}), requires captcha'
                 self.needs_captcha = True
             else:
-                self.failed = f'Points above 5 ({self.points}), captcha disabled, requires moderator approval'
+                self.failed = f'Points above 5 ({self.points}), captcha disabled, requires manual approval'
+                self.moderator_approval = True
         else:
             if data[3] == 2:
                 self.failed = f'Passed checks with less than 5 points, captcha needed (points: {self.points})'
@@ -60,14 +62,14 @@ class VerifyMember:
                 self.result = f'Passed checks with less than 5 points (points: {self.points})'
 
         override = kwargs.get('override')
-        if override:
-            self.override = f'~~{self.failed or self.result}~~ \n{override}'
+        if override or self.moderator_approval:
+            self.override = f'~~{self.failed or self.result}~~ \n{override or "Pending Manual Approval"}'
             self.failed = kwargs.get('failed') if not kwargs.get('failed') is None else self.failed
             self.result = kwargs.get('result') if not kwargs.get('result') is None else self.result
         else:
             self.override = False
 
-        if self.failed:
+        if self.failed or self.moderator_approval:
             self.embed.color = discord.Color.red()
         else:
             self.embed.color = discord.Color.green()

@@ -404,7 +404,7 @@ async def on_member_join(member):
         badges = guildvar.get_role(762684938226630666)
         members = guildvar.get_role(762684570474643507)
         colors = guildvar.get_role(762718919764082710)
-        await member.add_roles(human)
+        # await member.add_roles(human) verification added
         await member.add_roles(badges)
         await member.add_roles(members)
         await member.add_roles(colors)
