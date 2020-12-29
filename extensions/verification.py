@@ -8,7 +8,7 @@ class VerifyMember:
         self.points = 0
         self.failed = None
         self.result = None
-        self.moderator_approval = True
+        self.moderator_approval = False
         self.needs_captcha = False
         self.join_time = datetime.datetime.utcnow() - payload.member.joined_at
         self.creation_time = datetime.datetime.utcnow() - payload.member.created_at
