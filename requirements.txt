@@ -21,3 +21,4 @@ enhanced-dpy
 wavelink
 enhanced-dpy
 dblpy
+claptcha
