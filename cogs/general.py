@@ -363,6 +363,13 @@ class MainCog(commands.Cog, name = "General"):
 
 
                 await asyncio.sleep(60)
+
+    @commands.Cog.listener()
+    async def on_message_edit(self, before, after):
+        if before.content != after.content: # invoke the command again if it is edited
+            ctx = await self.client.get_context(after)
+            await self.client.invoke(ctx)
+            
     @commands.Cog.listener()
     async def on_ready(self):
       await asyncio.sleep(5)
