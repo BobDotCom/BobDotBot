@@ -166,7 +166,7 @@ class Moderator(commands.Cog):
             class user:
                 id = user_id
             await ctx.guild.ban(user,reason=reason)
-            await ctx.send("Successfully banned user id **{}**. Check the audit logs to make sure I banned the right person.".format(user.id))
+            await ctx.send("Successfully banned user id **{}** with reason: **{}**. Check the audit logs to make sure I banned the right person.".format(user.id, reason))
         except:
             return await ctx.send("I couldn't do that")
 
