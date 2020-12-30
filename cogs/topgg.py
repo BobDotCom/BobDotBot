@@ -45,7 +45,6 @@ class TopGG(commands.Cog):
   @tasks.loop(minutes=30.0) 
   async def update_stats(self):
     """This function runs every 30 minutes to automatically update your server count"""
-    logger.info('Attempting to post server count') 
     try: 
       await self.dblpy.post_guild_count() 
       logger.info('Posted server count ({})'.format(self.dblpy.guild_count()))
@@ -58,8 +57,6 @@ class TopGG(commands.Cog):
 
   @commands.Cog.listener() 
   async def on_dbl_vote(self, data): 
-    logger.info('Received an upvote') 
-    print(data) 
     channel = await self.bot.fetch_channel(781291858071912448)
     await channel.send("Upvoted!")
     chnl = await self.bot.fetch_channel(781292491576049665)
@@ -73,7 +70,5 @@ class TopGG(commands.Cog):
   async def vote(self,ctx):
     await ctx.send(embed=discord.Embed(title="Top.gg vote link",description="[Click Here](https://top.gg/bot/746045299125911562/vote) to vote for my bot! Thank you!"))
 
-def setup(bot): 
-  global logger 
-  logger = logging.getLogger('bot') 
+def setup(bot):
   bot.add_cog(TopGG(bot))
