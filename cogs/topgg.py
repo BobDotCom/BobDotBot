@@ -47,9 +47,8 @@ class TopGG(commands.Cog):
     """This function runs every 30 minutes to automatically update your server count"""
     try: 
       await self.dblpy.post_guild_count() 
-      logger.info('Posted server count ({})'.format(self.dblpy.guild_count()))
     except Exception as e: 
-      logger.exception('Failed to post server count\n{}: {}'.format(type(e).__name__, e)) 
+      print('failed to update stats')
 
     # if you are not using the tasks extension, put the line below 
 
