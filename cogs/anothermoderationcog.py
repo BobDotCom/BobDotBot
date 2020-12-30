@@ -119,7 +119,7 @@ async def mutes(self,ctx,member,time,reason):
                     rows = await cursor.fetchone()
           if not rows:
             await make_user(self,ctx,member)
-          async with aiosqlite.conncet("punishments.sql") as connection:
+          async with aiosqlite.connect("punishments.sql") as connection:
             async with connection.cursor() as cursor:
                 await cursor.execute("UPDATE users SET mutetime = ? WHERE userid = ? AND guildid = ?", (-1, member.id, guildid,))
                 await connection.commit()
