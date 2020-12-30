@@ -45,21 +45,21 @@ class VerifyMember:
         else:
             self.embed.add_field(name='\U00002705 Member is not impersonating', value=payload.member.name)
 
-        if self.points > 10:
-            self.failed = f'Points above 10 ({self.points}), requires moderator approval'
-        elif self.points > 5:
+        if self.points > 5:
+            self.failed = f'Points above 5 ({self.points}), requires moderator approval'
+        elif self.points > 2:
             if data[3] > 0:
-                self.failed = f'Points above 5 ({self.points}), requires captcha'
+                self.failed = f'Points above 2 ({self.points}), requires captcha'
                 self.needs_captcha = True
             else:
-                self.failed = f'Points above 5 ({self.points}), captcha disabled, requires manual approval'
+                self.failed = f'Points above 2 ({self.points}), captcha disabled, requires manual approval'
                 self.moderator_approval = True
         else:
             if data[3] == 2:
-                self.failed = f'Passed checks with less than 5 points, captcha needed (points: {self.points})'
+                self.failed = f'Passed checks with less than 2 points, captcha needed (points: {self.points})'
                 self.needs_captcha = True
             else:
-                self.result = f'Passed checks with less than 5 points (points: {self.points})'
+                self.result = f'Passed checks with less than 2 points (points: {self.points})'
 
         override = kwargs.get('override')
         if override or self.moderator_approval:
