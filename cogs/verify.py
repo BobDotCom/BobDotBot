@@ -27,6 +27,30 @@ from discord.ext import commands
 import extensions.verification as verification
 from claptcha import Claptcha
 
+async def captcha(bot, member):
+    for i in range(5):
+        captcha_embed = discord.Embed(title='Captcha', description=f'Please send the text seen in this image. Once you send the correct text, you will pass the captcha. (case insensitive, letters and numbers)').set_footer(text=f'Attempt {i + 1}/5')
+        s = string.ascii_uppercase + string.ascii_lowercase + string.digits
+        rand_str = ''.join(random.choices(s, k=6))
+        c = Claptcha(rand_str, "extensions/Courier.dfont")
+        text, byte = c.bytes
+        await member.send(content='Hey! I just need to make sure you are human.', embed=captcha_embed,file=discord.File(byte, 'image.png'))
+        def check(message):
+            if message.author == member and not message.guild:
+                return True
+        try:
+            msg = await bot.wait_for('message',check=check,timeout=60)
+            if msg.content.lower() == text.lower():
+                await member.send(f'Correct!')
+                return True
+            else:
+                await member.send('Incorrect!')
+                continue
+        except asyncio.TimeoutError:
+            await member.send('Time is up! Try again.')
+            return False
+    return False
+
 class Verify(commands.Cog):
 
     def __init__(self,bot):
@@ -76,30 +100,14 @@ class Verify(commands.Cog):
             return await payload.member.send('You are already verified')
         if result.failed and not result.moderator_approval:
             if result.needs_captcha:
-                for i in range(5):
-                    captcha_embed = discord.Embed(title='Captcha', description=f'Please send the text seen in this image. Once you send the correct text, you will be allowed to join **{guild.name}**. (case insensitive, letters and numbers)').set_footer(text=f'Attempt {i + 1}/5')
-                    s = string.ascii_uppercase + string.ascii_lowercase + string.digits
-                    rand_str = ''.join(random.choices(s, k=6))
-                    c = Claptcha(rand_str, "extensions/Courier.dfont")
-                    text, byte = c.bytes
-                    await payload.member.send(content='Hey! I just need to make sure you are human.', embed=captcha_embed,file=discord.File(byte, 'image.png'))
-                    def check(message):
-                        if message.author == payload.member and not message.guild:
-                            return True
-                    try:
-                        msg = await self.bot.wait_for('message',check=check,timeout=60)
-                        if msg.content.lower() == text.lower():
-                            await payload.member.send(f'Correct! You have been verified in **{guild.name}**')
-                            await payload.member.add_roles(role)
-                            result = verification.VerifyMember(self.bot, payload, data, override='Passed Captcha', failed=False)
-                            break
-                        else:
-                            await payload.member.send('Incorrect!')
-                            result = verification.VerifyMember(self.bot, payload, data, override="Failed Captcha", result=False)
-                    except asyncio.TimeoutError:
-                        await payload.member.send('Time is up! Try verifying again.')
-                        result = verification.VerifyMember(self.bot, payload, data, override="Failed Captcha", result=False)
-                        break
+                await payload.member.send(f'Please complete this captcha before joining **{guild.name}**.')
+                x = await captcha(self.bot, payload.member)
+                if x:
+                    await payload.member.add_roles(role)
+                    result = verification.VerifyMember(self.bot, payload, data, override='Passed Captcha', failed=False)
+                    await payload.member.send(f'You have been verified in **{guild.name}**')
+                else:
+                    result = verification.VerifyMember(self.bot, payload, data, override="Failed Captcha", result=False)
             else:
                 await payload.member.send(result.failed)
 

@@ -59,6 +59,7 @@ from discord.ext import commands
 from otherscripts.paginator import RoboPages
 from jishaku.codeblocks import codeblock_converter
 from discord.ext import menus
+from cogs.verify import captcha
 load_dotenv()
 MONITOR_TOKEN = os.getenv("MONITOR_TOKEN")
 SR_API_TOKEN = os.getenv("SR_API_TOKEN")
@@ -382,6 +383,20 @@ class MainCog(commands.Cog, name = "General"):
         async with connection.cursor() as cursor:
           await cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER, status INTEGER);")
           await connection.commit()
+
+    @commands.command()
+    @commands.max_concurrency(1, commands.BucketType.user)
+    async def captcha(self, ctx):
+        """See if you are human or not"""
+        await ctx.send('Starting captcha, make sure your DMs are open')
+        try:
+            result = await captcha(self.bot, ctx.author)
+        except:
+            await ctx.send('Please open your DMs')
+        if result:
+            await ctx.send('Congrats! You are a human')
+        else:
+            await ctx.send('You are a bot \U0001f916')
 
     @commands.Cog.listener()
     async def on_message_delete(self,message):
