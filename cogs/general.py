@@ -394,7 +394,7 @@ class MainCog(commands.Cog, name = "General"):
         except:
             await ctx.send('Please open your DMs')
         if result:
-            await ctx.send(f'{ctx.author.mention} Congrats! You are a human')
+            await ctx.send(f'{ctx.author.mention} Congrats! You are a human. You took {result} tries.')
         else:
             await ctx.send(f'{ctx.author.mention} You are a bot \U0001f916')
 

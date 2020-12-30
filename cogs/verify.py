@@ -42,7 +42,7 @@ async def captcha(bot, member):
             msg = await bot.wait_for('message',check=check,timeout=60)
             if msg.content.lower() == text.lower():
                 await member.send(f'Correct!')
-                return True
+                return i + 1
             else:
                 await member.send('Incorrect!')
                 continue
