@@ -156,15 +156,15 @@ class Moderator(commands.Cog):
     @commands.command()
     @commands.bot_has_guild_permissions(ban_members=True)
     @commands.has_guild_permissions(ban_members=True)
-    async def hackban(self, ctx, id: int, reason: str = None):
+    async def hackban(self, ctx, user_id: int, reason: str = None):
         """Ban a user by their id. If the user is in the current guild, the hackban command will be invoked"""
-        member = ctx.guild.get_member(id)
+        member = ctx.guild.get_member(user_id)
         if member:
             ban = self.bot.get_command('ban')
-            return await ctx.invoke(ban,member=id,reason=reason)
+            return await ctx.invoke(ban,member=user_id,reason=reason)
         try:
             class user:
-                id = id
+                id = user_id
             await ctx.guild.ban(user,reason=reason)
             await ctx.send("Successfully banned user id **{.id}**. Check the audit logs to make sure I banned the right person.")
         except:
