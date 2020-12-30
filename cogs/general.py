@@ -394,9 +394,9 @@ class MainCog(commands.Cog, name = "General"):
         except:
             await ctx.send('Please open your DMs')
         if result:
-            await ctx.send('Congrats! You are a human')
+            await ctx.send(f'{ctx.author.mention} Congrats! You are a human')
         else:
-            await ctx.send('You are a bot \U0001f916')
+            await ctx.send(f'{ctx.author.mention} You are a bot \U0001f916')
 
     @commands.Cog.listener()
     async def on_message_delete(self,message):
