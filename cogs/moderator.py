@@ -153,6 +153,23 @@ class Moderator(commands.Cog):
             except:
                 pass
 
+    @commands.command()
+    @commands.bot_has_guild_permissions(ban_members=True)
+    @commands.has_guild_permissions(ban_members=True)
+    async def hackban(self, ctx, id: int, reason: str = None):
+        """Ban a user by their id. If the user is in the current guild, the hackban command will be invoked"""
+        member = ctx.guild.get_member(id)
+        if member:
+            ban = self.bot.get_command('ban')
+            return await ctx.invoke(ban,member=id,reason=reason)
+        try:
+            class user:
+                id = id
+            await ctx.guild.ban(user,reason=reason)
+            await ctx.send("Successfully banned user id **{.id}**. Check the audit logs to make sure I banned the right person.")
+        except:
+            return await ctx.send("I couldn't do that")
+
     @commands.command(name="unban")
     @commands.has_guild_permissions(ban_members=True)
     async def unban(self, ctx, username: str = None, *, reason=None):
