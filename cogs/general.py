@@ -30,6 +30,10 @@ Copyright (c) 2015 Rapptz
 license MIT, see https://github.com/Rapptz/RoboDanny/blob/e1c3c28fe20eb192463f7fc224a399141f0d915d/LICENSE.txt for more details.
 """
 
+"""
+<:xon:792824364658720808> <:xoff:792824364545605683> <:con:792824364558843956> <:coff:792824364483477514>
+"""
+
 # All 25 of the gay imports
 import discord
 import os
