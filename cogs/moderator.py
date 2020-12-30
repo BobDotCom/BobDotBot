@@ -156,7 +156,7 @@ class Moderator(commands.Cog):
     @commands.command()
     @commands.bot_has_guild_permissions(ban_members=True)
     @commands.has_guild_permissions(ban_members=True)
-    async def hackban(self, ctx, user_id: int, reason: str = None):
+    async def hackban(self, ctx, user_id: int, *, reason: str = None):
         """Ban a user by their id. If the user is in the current guild, the hackban command will be invoked"""
         member = ctx.guild.get_member(user_id)
         if member:
