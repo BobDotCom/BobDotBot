@@ -306,7 +306,7 @@ class OwnerCog(commands.Cog, name = "Owner"):
     
     @commands.command()
     @commands.is_owner()
-    async def time(self, ctx, time: time_str.convert):
+    async def time(self, ctx, *, time: time_str.convert):
         output = humanize.precisedelta(time)
         await ctx.send(output)
 
