@@ -31,6 +31,8 @@ import json
 import subprocess as sp
 from discord.ext import commands
 from jishaku.codeblocks import codeblock_converter
+import time_str
+import humanize
 
 class OwnerCog(commands.Cog, name = "Owner"):
     """Special commands that only the owner of the bot can use"""
@@ -301,5 +303,12 @@ class OwnerCog(commands.Cog, name = "Owner"):
         displayed = '\n'.join(final)
         embed = discord.Embed(title="Cogs",description=displayed,timestamp=ctx.message.created_at)
         await ctx.send(embed=embed)
+    
+    @commands.command()
+    @commands.is_owner()
+    async def time(self, ctx, time: time_str.convert):
+        output = humanize.precisedelta(time)
+        await ctx.send(output)
+
 def setup(client):
     client.add_cog(OwnerCog(client))
