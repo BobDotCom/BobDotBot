@@ -100,7 +100,7 @@ class FunCog(commands.Cog, name = "Fun"):
           embed = discord.Embed(title='Error with API',description='```{}```'.format(error))
           await ctx.send(embed=embed)
           if '403' in str(error):
-            await ctx.send('I have detected that this error is because my API key expired! Please contact my owner, {}, and remind him to renew my API key!')
+            await ctx.send('I have detected that this error is because my API key expired! Please contact my owner, {0.mention} {0}, and remind him to renew my API key!'.format(self.bot.get_user(self.bot.owner_ids[0])))
         else:
           await ctx.send(file=discord.File(buf, filename=f"{member.name}.gif"))
 
