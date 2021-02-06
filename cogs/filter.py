@@ -84,7 +84,8 @@ class FilterCog(commands.Cog, name = "Filter"):
                     await webhook.send(
                         content=new_message,
                         username=message.author.nick or message.author.name,
-                        avatar_url=message.author.avatar_url
+                        avatar_url=message.author.avatar_url,
+                        allowed_mentions=discord.AllowedMentions.none()
                     )
 
     # COMMANDS #
