@@ -251,7 +251,7 @@ class FilterCog(commands.Cog, name = "Filter"):
         """List the ignored places in your server"""
         async with aiosqlite.connect('filter.db') as connection:
             async with connection.cursor() as cursor:
-                await cursor.execute('SELECT ignored FROM guilds WHERE id = ?',(message.guild.id,))
+                await cursor.execute('SELECT ignored FROM guilds WHERE id = ?',(ctx.guild.id,))
                 data = await cursor.fetchone()
                 if data:
                     try:
@@ -260,7 +260,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                         ignored = ['None']
                 else:
                     return
-                all_ids = guild.text_channels + guild.members + guild.roles + guild.categories
+                all_ids = ctx.guild.text_channels + ctx.guild.members + ctx.guild.roles + ctx.guild.categories
                 embed = discord.Embed(title="Ignored",description=' '.join([discord.utils.get(all_ids,id=id) for id in ignored]) if ignored != 'None' else ignored)
                 await ctx.send(embed=embed)
 
