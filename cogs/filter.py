@@ -249,7 +249,6 @@ class FilterCog(commands.Cog, name = "Filter"):
     @commands.has_guild_permissions(manage_channels=True)
     async def ignored(self, ctx):
         """List the ignored places in your server"""
-        async def filter_message(self,message):
         async with aiosqlite.connect('filter.db') as connection:
             async with connection.cursor() as cursor:
                 await cursor.execute('SELECT ignored FROM guilds WHERE id = ?',(message.guild.id,))
