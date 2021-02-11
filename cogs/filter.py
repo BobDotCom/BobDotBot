@@ -206,8 +206,9 @@ class FilterCog(commands.Cog, name = "Filter"):
 
     @filter.command()
     @commands.has_permissions(manage_channels=True)
-    async def ignore(self,ctx,channel):
+    async def ignore(self,ctx,object):
         """Ignore a channel, channel category, member, or role. If it is already ignored the bot will stop ignoring it."""
+        channel = object
         try:
             channel = await discord.ext.commands.MemberConverter().convert(ctx,channel)
         except discord.ext.commands.errors.MemberNotFound:
@@ -238,7 +239,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                         await ctx.send(embed=embed)
                     else:
                         channels.remove(channel.id)
-                        embed.description=f"Ok, I will start ignoring {channel.mention}"
+                        embed.description=f"Ok, I will stop ignoring {channel.mention}"
                         await ctx.send(embed=embed)
                     await cursor.execute('UPDATE guilds SET ignored = ? WHERE id = ?',(json.dumps(channels),ctx.guild.id,))
                     await connection.commit()

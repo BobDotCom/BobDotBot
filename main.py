@@ -172,6 +172,10 @@ async def on_command_error(ctx, error):
             pass
         #ignored = (commands.MissingRequiredArgument, commands.BadArgument, commands.NoPrivateMessage, commands.CheckFailure, commands.CommandNotFound, commands.DisabledCommand, commands.CommandInvokeError, commands.TooManyArguments, commands.UserInputError, commands.CommandOnCooldown, commands.NotOwner, commands.MissingPermissions, commands.BotMissingPermissions)   
         error = getattr(error, 'original', error)
+	
+	if ctx.author.id in ctx.bot.owner_ids:
+            if isinstance(error, commands.CommandNotFound) or isinstance(error, commands.DisabledCommand) or isinstance(error, commands.CommandOnCooldown) or isinstance(error, commands.MissingPermissions) or isinstance(error, commands.MaxConcurrencyReached):
+		return await ctx.reinvoke()
 
         if isinstance(error, commands.CommandNotFound):
             await log_error(ctx,exception,True)
