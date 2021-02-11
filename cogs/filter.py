@@ -58,7 +58,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                 for_roles = True
                 break
         ignore_it = message.channel.id in ignored or message.author.id in ignored or message.channel.category_id in ignored or for_roles
-        if enabled and not ignore_it:
+        if enabled and not ignore_it and not message.author.bot:
             for word in words:
                 if re.search(r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})',message.content):
                     caught = True
@@ -83,6 +83,15 @@ class FilterCog(commands.Cog, name = "Filter"):
                         avatar_url=message.author.avatar_url,
                         allowed_mentions=discord.AllowedMentions.none()
                     )
+                await asyncio.sleep(0.5)
+                channel = message.channel.id
+                guild = message.guild.id
+                try:
+                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": new_message, "avatar": message.author.avatar_url}
+                except:
+                    self.client.sniper[guild] = {}
+                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": new_message, "avatar": message.author.avatar_url}
+
 
     # LISTENERS #
 
