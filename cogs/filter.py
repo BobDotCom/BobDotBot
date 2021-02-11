@@ -83,6 +83,15 @@ class FilterCog(commands.Cog, name = "Filter"):
                         avatar_url=message.author.avatar_url,
                         allowed_mentions=discord.AllowedMentions.none()
                     )
+                await asyncio.sleep(0.5)
+                channel = message.channel.id
+                guild = message.guild.id
+                try:
+                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
+                except:
+                    self.client.sniper[guild] = {}
+                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
+
 
     # LISTENERS #
 
