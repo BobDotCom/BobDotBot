@@ -108,7 +108,7 @@ class FilterCog(commands.Cog, name = "Filter"):
         
     @commands.Cog.listener()
     async def on_message_edit(self,before,after):
-        await self.filter_message(after.message)
+        await self.filter_message(after)
 
     # COMMANDS #
 
