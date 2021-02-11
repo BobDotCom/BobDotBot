@@ -87,10 +87,10 @@ class FilterCog(commands.Cog, name = "Filter"):
                 channel = message.channel.id
                 guild = message.guild.id
                 try:
-                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
+                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": new_message, "avatar": message.author.avatar_url}
                 except:
                     self.client.sniper[guild] = {}
-                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": message.content, "avatar": message.author.avatar_url}
+                    self.client.sniper[guild][channel] = {"author": f"{message.author}", "content": new_message, "avatar": message.author.avatar_url}
 
 
     # LISTENERS #
