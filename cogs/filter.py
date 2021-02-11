@@ -58,7 +58,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                 for_roles = True
                 break
         ignore_it = message.channel.id in ignored or message.author.id in ignored or message.channel.category_id in ignored or for_roles
-        if enabled and not ignore_it:
+        if enabled and not ignore_it and not message.author.bot:
             for word in words:
                 if re.search(r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})',message.content):
                     caught = True
