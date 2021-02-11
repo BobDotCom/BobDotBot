@@ -261,7 +261,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                 else:
                     return
                 all_ids = ctx.guild.text_channels + ctx.guild.members + ctx.guild.roles + ctx.guild.categories
-                embed = discord.Embed(title="Ignored",description=' '.join([discord.utils.get(all_ids,id=id) for id in ignored]) if ignored != 'None' else ignored)
+                embed = discord.Embed(title="Ignored",description=' '.join([discord.utils.get(all_ids,id=id).mention for id in ignored]) if ignored != 'None' else ignored)
                 await ctx.send(embed=embed)
 
     # LOOPS #
