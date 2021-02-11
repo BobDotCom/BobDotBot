@@ -60,13 +60,14 @@ class FilterCog(commands.Cog, name = "Filter"):
         ignore_it = message.channel.id in ignored or message.author.id in ignored or message.channel.category_id in ignored or for_roles
         if enabled and not ignore_it and not message.author.bot:
             for word in words:
-                if re.search(r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})',message.content):
+                pattern = r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})' if word.isalnum() else word
+                if re.search(pattern,message.content):
                     caught = True
                     try:
                         await message.delete()
                     except:
                         pass
-                    new_message = re.sub(r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})',r'\*'*len(word),new_message)
+                    new_message = re.sub(pattern,r'\*'*(len(word) if len(word) !> 5 else 5),new_message)
             if caught:
                 webhooks = await message.channel.webhooks()
                 try:
