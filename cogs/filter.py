@@ -52,7 +52,13 @@ class FilterCog(commands.Cog, name = "Filter"):
                     return
         new_message = message.content
         caught = False
-        if enabled and not message.channel.id in ignored:
+        for_roles = False
+        for role in message.author.roles:
+            if role.id in ignored:
+                for_roles = True
+                break
+        ignore_it = message.channel.id in ignored or message.author.id in ignored or message.channel.category_id in ignored or for_roles
+        if enabled and not ignore_it:
             for word in words:
                 if re.search(r'(?i)(\b' + r'+\W*'.join(word) + f'|{word})',message.content):
                     caught = True
@@ -191,9 +197,22 @@ class FilterCog(commands.Cog, name = "Filter"):
 
     @filter.command()
     @commands.has_permissions(manage_channels=True)
-    async def ignore(self,ctx,channel: discord.TextChannel = None):
-        """Ignore a channel. Defaults to the current channel if none is specified."""
-        channel = channel or ctx.channel
+    async def ignore(self,ctx,channel):
+        """Ignore a channel, channel category, member, or role. If it is already ignored the bot will stop ignoring it."""
+        try:
+            object = await discord.ext.commands.MemberConverter().convert(ctx,test)
+        except discord.ext.commands.errors.MemberNotFound:
+            try:
+                object = await discord.ext.commands.TextChannelConverter().convert(ctx,test)
+            except discord.ext.commands.errors.ChannelNotFound:
+                try:
+                    object = await discord.ext.commands.CategoryChannelConverter().convert(ctx,test)
+                except discord.ext.commands.errors.ChannelNotFound:
+                    try:
+                        object = await discord.ext.commands.RoleConverter().convert(ctx,test)
+                    except discord.ext.commands.errors.RoleNotFound:
+                        return await ctx.send(f'I couldnt find `{text}`')
+        
         async with aiosqlite.connect('filter.db') as connection:
             async with connection.cursor() as cursor:
                 await cursor.execute('SELECT ignored FROM guilds WHERE id = ?',(ctx.guild.id,))
@@ -203,12 +222,15 @@ class FilterCog(commands.Cog, name = "Filter"):
                         channels = json.loads(data[0])
                     else:
                         channels = []
+                    embed = discord.Embed(title='Filter Ignore')
                     if not channel.id in channels:
                         channels.append(channel.id)
-                        await ctx.send(f"Ok, I will start ignoring {channel.mention}")
+                        embed.description=f"Ok, I will start ignoring {channel.mention}"
+                        await ctx.send(embed=embed)
                     else:
                         channels.remove(channel.id)
-                        await ctx.send(f"Ok, I will stop ignoring {channel.mention}")
+                        embed.description=f"Ok, I will start ignoring {channel.mention}"
+                        await ctx.send(embed=embed)
                     await cursor.execute('UPDATE guilds SET ignored = ? WHERE id = ?',(json.dumps(channels),ctx.guild.id,))
                     await connection.commit()
                 else:
