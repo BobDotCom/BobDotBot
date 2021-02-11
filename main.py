@@ -90,8 +90,7 @@ except:
 #client.remove_command('help')
 client.uptime = datetime.datetime.utcnow()
 owner = client.get_user(client.owner_id)
-client.owner_id = None
-client.owner_ids = [690420846774321221,748937160731918378]
+client.owner_ids = {690420846774321221,355121277046095872}
 os.environ["JISHAKU_NO_UNDERSCORE"] = "True"
 os.environ['JISHAKU_RETAIN'] = "True"
 client.load_extension("jishaku")

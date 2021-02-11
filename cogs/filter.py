@@ -33,18 +33,8 @@ class FilterCog(commands.Cog, name = "Filter"):
         self.client = client
         self.channel = 745390366802575391
         #self.sync_filter.start()
-
-    # LISTENERS #
-
-    @commands.Cog.listener()
-    async def on_ready(self):
-        async with aiosqlite.connect('filter.db') as connection:
-            async with connection.cursor() as cursor:
-                await cursor.execute('CREATE TABLE IF NOT EXISTS guilds (id INTEGER, ignored TEXT, words TEXT, enabled BOOL);')
-                await connection.commit()
-
-    @commands.Cog.listener()
-    async def on_message(self,message):
+        
+    async def filter_message(self,message):
         async with aiosqlite.connect('filter.db') as connection:
             async with connection.cursor() as cursor:
                 await cursor.execute('SELECT words, ignored, enabled FROM guilds WHERE id = ?',(message.guild.id,))
@@ -87,6 +77,23 @@ class FilterCog(commands.Cog, name = "Filter"):
                         avatar_url=message.author.avatar_url,
                         allowed_mentions=discord.AllowedMentions.none()
                     )
+
+    # LISTENERS #
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        async with aiosqlite.connect('filter.db') as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute('CREATE TABLE IF NOT EXISTS guilds (id INTEGER, ignored TEXT, words TEXT, enabled BOOL);')
+                await connection.commit()
+
+    @commands.Cog.listener()
+    async def on_message(self,message):
+        await self.filter_message(message)
+        
+    @commands.Cog.listener()
+    async def on_message_edit(self,before,after):
+        await self.filter_message(after.message)
 
     # COMMANDS #
 
