@@ -238,7 +238,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                         await ctx.send(embed=embed)
                     else:
                         channels.remove(channel.id)
-                        embed.description=f"Ok, I will start ignoring {channel.mention}"
+                        embed.description=f"Ok, I will stop ignoring {channel.mention}"
                         await ctx.send(embed=embed)
                     await cursor.execute('UPDATE guilds SET ignored = ? WHERE id = ?',(json.dumps(channels),ctx.guild.id,))
                     await connection.commit()
