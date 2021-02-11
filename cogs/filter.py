@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-import discord, re, json, aiosqlite
+import discord, re, json, aiosqlite, asyncio
 from discord.ext import commands,tasks
 
 
@@ -83,7 +83,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                         avatar_url=message.author.avatar_url,
                         allowed_mentions=discord.AllowedMentions.none()
                     )
-                await asyncio.sleep(0.5)
+                await asyncio.sleep(1)
                 channel = message.channel.id
                 guild = message.guild.id
                 try:
