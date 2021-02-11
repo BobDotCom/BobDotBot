@@ -200,16 +200,16 @@ class FilterCog(commands.Cog, name = "Filter"):
     async def ignore(self,ctx,channel):
         """Ignore a channel, channel category, member, or role. If it is already ignored the bot will stop ignoring it."""
         try:
-            object = await discord.ext.commands.MemberConverter().convert(ctx,test)
+            channel = await discord.ext.commands.MemberConverter().convert(ctx,channel)
         except discord.ext.commands.errors.MemberNotFound:
             try:
-                object = await discord.ext.commands.TextChannelConverter().convert(ctx,test)
+                channel = await discord.ext.commands.TextChannelConverter().convert(ctx,channel)
             except discord.ext.commands.errors.ChannelNotFound:
                 try:
-                    object = await discord.ext.commands.CategoryChannelConverter().convert(ctx,test)
+                    channel = await discord.ext.commands.CategoryChannelConverter().convert(ctx,channel)
                 except discord.ext.commands.errors.ChannelNotFound:
                     try:
-                        object = await discord.ext.commands.RoleConverter().convert(ctx,test)
+                        channel = await discord.ext.commands.RoleConverter().convert(ctx,channel)
                     except discord.ext.commands.errors.RoleNotFound:
                         return await ctx.send(f'I couldnt find `{text}`')
         
