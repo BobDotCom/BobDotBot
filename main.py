@@ -175,7 +175,7 @@ async def on_command_error(ctx, error):
 	
 	if ctx.author.id in ctx.bot.owner_ids:
             if isinstance(error, commands.CommandNotFound) or isinstance(error, commands.DisabledCommand) or isinstance(error, commands.CommandOnCooldown) or isinstance(error, commands.MissingPermissions) or isinstance(error, commands.MaxConcurrencyReached):
-		return await ctx.reinvoke()
+                return await ctx.reinvoke()
 
         if isinstance(error, commands.CommandNotFound):
             await log_error(ctx,exception,True)
