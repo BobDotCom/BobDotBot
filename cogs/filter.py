@@ -245,7 +245,7 @@ class FilterCog(commands.Cog, name = "Filter"):
                 else:
                     await ctx.send("Please enable the filter first!")
                                       
-    @commands.command()
+    @filter.command()
     @commands.has_guild_permissions(manage_channels=True)
     async def ignored(self, ctx):
         """List the ignored places in your server"""
