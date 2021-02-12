@@ -79,6 +79,7 @@ def get_logs(client, message):
 	return logs[str(message.guild.id)]
 
 intents = discord.Intents.all()
+intents.presences = False
 client = commands.Bot(command_prefix=get_prefix,intents=intents,embed_color = discord.Color.blurple(),case_insensitive = True)
 try:
     with open('blacklisted.json','r') as f:
