@@ -132,12 +132,12 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
 #            return await ctx.reply("Your output was too long, so here's the pastebin link " + url)
         embed = discord.Embed(
             title=f"{result['language'][0].upper() + result['language'][1:]}")
-        limit = 1024 - (27 + len(result['language']))
         newline = '\n'
         rep = {"python3": "py", "python2": "py", 'node': 'js'}
         rep = dict((re.escape(k), v) for k, v in rep.items()) 
         pattern = re.compile("|".join(rep.keys()))
         converted_language = pattern.sub(lambda m: rep[re.escape(m.group(0))], result['language'])
+        limit = 1024 - (27 + len(converted_language))
         output = f"```{converted_language}\n{output[:limit]}```{(len(output)>limit) * (newline + '**Output shortened**')}"
         embed.add_field(name="Output", value=output or "**No output**")
         try:
