@@ -99,6 +99,7 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
         """
         Run code and get results instantly
         **Note**: You must use codeblocks around the code
+        Supported languages: awk, bash, brainfuck, c, cpp, crystal, csharp, d, dash, deno, elixer, emacs, go, haskell, java, jelly, julia, kotlin, lisp, lua, nasm, nasm64, nim, node, osabie, paradoc, perl, php, prolog, python2, python, ruby, rust, scala, swift, typescript, zig
         """
         matches = self.regex.findall(codeblock)
         if not matches:
@@ -115,6 +116,7 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
     async def runl(self, ctx:commands.Context, lang:str, *, code:str):
         """
         Run a single line of code, **must** specify language as first argument
+        Supported languages: awk, bash, brainfuck, c, cpp, crystal, csharp, d, dash, deno, elixer, emacs, go, haskell, java, jelly, julia, kotlin, lisp, lua, nasm, nasm64, nim, node, osabie, paradoc, perl, php, prolog, python2, python, ruby, rust, scala, swift, typescript, zig
         """
         result = await self._run_code(lang=lang, code=code)
         await self._send_result(ctx, result)
@@ -132,6 +134,10 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
             title=f"{result['language'][0].upper() + result['language'][1:]}")
         limit = 1024 - (27 + len(result['language']))
         newline = '\n'
+        rep = {"python3": "py", "python2": "py", 'node': 'js'}
+        rep = dict((re.escape(k), v) for k, v in rep.items()) 
+        pattern = re.compile("|".join(rep.keys()))
+        converted_language = pattern.sub(lambda m: rep[re.escape(m.group(0))], text)
         output = f"```{result['language']}\n{output[:limit]}```{(len(output)>limit) * (newline + '**Output shortened**')}"
         embed.add_field(name="Output", value=output or "**No output**")
         try:
