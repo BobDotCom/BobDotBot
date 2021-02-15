@@ -102,10 +102,10 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
         """
         matches = self.regex.findall(codeblock)
         if not matches:
-            return await ctx.reply(embed=Embed(title="Uh-oh", description="Couldn't quite see your codeblock"))
+            return await ctx.reply(embed=discord.Embed(title="Uh-oh", description="Couldn't quite see your codeblock"))
         lang = matches[0][0] or matches[0][1]
         if not lang:
-            return await ctx.reply(embed=Embed(title="Uh-oh", description="Couldn't find the language hinted in the codeblock or before it"))
+            return await ctx.reply(embed=discord.Embed(title="Uh-oh", description="Couldn't find the language hinted in the codeblock or before it"))
         code = matches[0][2]
         result = await self._run_code(lang=lang, code=code)
 
@@ -123,12 +123,12 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
 
     async def _send_result(self, ctx:commands.Context, result:dict):
         if "message" in result:
-            return await ctx.reply(embed=Embed(title="Uh-oh", description=result["message"], color=Color.red()))
+            return await ctx.reply(embed=discord.Embed(title="Uh-oh", description=result["message"], color=Color.red()))
         output = result['output']
 #        if len(output) > 2000:
 #            url = await create_guest_paste_bin(self.session, output)
 #            return await ctx.reply("Your output was too long, so here's the pastebin link " + url)
-        embed = Embed(
+        embed = discord.Embed(
             title=f"{result['language'][0].upper() + result['language'][1:]}")
         limit = 1024 - (27 + len(result['language']))
         newline = '\n'
