@@ -137,8 +137,8 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
         rep = {"python3": "py", "python2": "py", 'node': 'js'}
         rep = dict((re.escape(k), v) for k, v in rep.items()) 
         pattern = re.compile("|".join(rep.keys()))
-        converted_language = pattern.sub(lambda m: rep[re.escape(m.group(0))], text)
-        output = f"```{result['language']}\n{output[:limit]}```{(len(output)>limit) * (newline + '**Output shortened**')}"
+        converted_language = pattern.sub(lambda m: rep[re.escape(m.group(0))], result['language'])
+        output = f"```{converted_language}\n{output[:limit]}```{(len(output)>limit) * (newline + '**Output shortened**')}"
         embed.add_field(name="Output", value=output or "**No output**")
         try:
             await ctx.reply(embed=embed)
