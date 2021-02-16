@@ -26,8 +26,12 @@ SOFTWARE.
 BobDotBot
 ~~~~~~~~~~~~~~~~~~
 This file contains elements that are under the following licenses:
+
 Copyright (c) 2015 Rapptz
 license MIT, see https://github.com/Rapptz/RoboDanny/blob/e1c3c28fe20eb192463f7fc224a399141f0d915d/LICENSE.txt for more details.
+
+Copyright (c) 2021 FalseDev
+license MIT, see https://github.com/FalseDev/Tech-Struck/blob/6ebfb91fbe41119027eb96a6cd97dfb0b85e1ec7/LICENSE for more details.
 """
 
 import discord
@@ -78,6 +82,68 @@ class ProgrammingCog(commands.Cog, name = "Programming"):
         self.client = client
         self.bot = client
         self.client.session = aiohttp.ClientSession(loop=self.client.loop)
+        self.regex = re.compile(r"(\w*)\s*(?:```)(\w*)?([\s\S]*)(?:```$)")
+        
+    @property
+    def session(self):
+        return self.bot.http._HTTPClient__session
+
+    async def _run_code(self, *, lang: str, code: str):
+        res = await self.session.post(
+            "https://emkc.org/api/v1/piston/execute",
+            json={"language": lang, "source": code})
+        return await res.json()
+
+    @commands.command()
+    async def run(self, ctx: commands.Context, *, codeblock: str):
+        """
+        Run code and get results instantly
+        **Note**: You must use codeblocks around the code
+        Supported languages: awk, bash, brainfuck, c, cpp, crystal, csharp, d, dash, deno, elixer, emacs, go, haskell, java, jelly, julia, kotlin, lisp, lua, nasm, nasm64, nim, node, osabie, paradoc, perl, php, prolog, python2, python, ruby, rust, scala, swift, typescript, zig
+        """
+        matches = self.regex.findall(codeblock)
+        if not matches:
+            return await ctx.reply(embed=discord.Embed(title="Uh-oh", description="Couldn't quite see your codeblock"))
+        lang = matches[0][0] or matches[0][1]
+        if not lang:
+            return await ctx.reply(embed=discord.Embed(title="Uh-oh", description="Couldn't find the language hinted in the codeblock or before it"))
+        code = matches[0][2]
+        result = await self._run_code(lang=lang, code=code)
+
+        await self._send_result(ctx, result)
+
+    @commands.command()
+    async def runl(self, ctx:commands.Context, lang:str, *, code:str):
+        """
+        Run a single line of code, **must** specify language as first argument
+        Supported languages: awk, bash, brainfuck, c, cpp, crystal, csharp, d, dash, deno, elixer, emacs, go, haskell, java, jelly, julia, kotlin, lisp, lua, nasm, nasm64, nim, node, osabie, paradoc, perl, php, prolog, python2, python, ruby, rust, scala, swift, typescript, zig
+        """
+        result = await self._run_code(lang=lang, code=code)
+        await self._send_result(ctx, result)
+
+
+
+    async def _send_result(self, ctx:commands.Context, result:dict):
+        if "message" in result:
+            return await ctx.reply(embed=discord.Embed(title="Uh-oh", description=result["message"], color=Color.red()))
+        output = result['output']
+#        if len(output) > 2000:
+#            url = await create_guest_paste_bin(self.session, output)
+#            return await ctx.reply("Your output was too long, so here's the pastebin link " + url)
+        embed = discord.Embed(
+            title=f"{result['language'][0].upper() + result['language'][1:]}")
+        newline = '\n'
+        rep = {"python3": "py", "python2": "py", 'node': 'js'}
+        rep = dict((re.escape(k), v) for k, v in rep.items()) 
+        pattern = re.compile("|".join(rep.keys()))
+        converted_language = pattern.sub(lambda m: rep[re.escape(m.group(0))], result['language'])
+        limit = 1024 - (29 + len(converted_language))
+        output = f"```{converted_language}\n{output[:limit]}```{(len(output)>limit) * (newline + '**Output shortened**')}"
+        embed.add_field(name="Output", value=output or "**No output**")
+        try:
+            await ctx.reply(embed=embed)
+        except:
+            await ctx.reply(output)
         
     def parse_object_inv(self, stream, url):
         # key: URL

@@ -668,7 +668,14 @@ class MainCog(commands.Cog, name = "General"):
     async def noob(self, ctx):
         """Ur nub"""
         await ctx.send("NOOOOOB")
-
+        
+    @commands.command(name='deletedata',aliases=['dontstoremydata'])
+    @commands.cooldown(86400, 1, commands.BucketType.channel)
+    async def _deletedata(self, ctx, reason=None):
+        """Request the owner of the bot to not store data on you. Keep in mind that the bot will lose lots of it's functionality if you request this. Please open your DMs and to allow the developers to contact you. If you do not do so, they may not be able to fufill your request."""
+        await self.bot.get_user(self.bot.owner_ids[0]).send(f'{ctx.author.mention} has requested their data to not be tracked because: {reason}')
+        await ctx.send('Submitted your request to the developers')
+        
     @commands.command()
     @commands.cooldown(1, 1, commands.BucketType.channel)
     async def invite(self, ctx, bot: discord.Member = None, permissions = None):
