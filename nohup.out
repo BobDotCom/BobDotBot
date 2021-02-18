@@ -5387,3 +5387,158 @@ WARNING: All illegal access operations will be denied in a future release
 2020-12-23 23:24:27.587  WARN 884 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
 2020-12-23 23:24:34.163  INFO 749 --- [       Thread-1] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
 2020-12-23 23:24:34.197  INFO 749 --- [       Thread-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+start-stop-daemon: need one of --start or --stop or --status
+Try 'start-stop-daemon --help' for more information.
+2021-02-16 20:22:03.923  WARN 5359 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-02-16 20:22:03.963 ERROR 5359 --- [           main] lavalink.server.Launcher                 : Application failed
+
+java.lang.UnsupportedClassVersionError: lavalink/server/info/AppInfo has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_282]
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756) ~[na:1.8.0_282]
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142) ~[na:1.8.0_282]
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:468) ~[na:1.8.0_282]
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:74) ~[na:1.8.0_282]
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:369) ~[na:1.8.0_282]
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:363) ~[na:1.8.0_282]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_282]
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:362) ~[na:1.8.0_282]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418) ~[na:1.8.0_282]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[lavalink.jar:na]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351) ~[na:1.8.0_282]
+	at lavalink.server.Launcher.getVersionInfo(Launcher.kt:50) [classes!/:na]
+	at lavalink.server.Launcher.getVersionInfo$default(Launcher.kt:49) [classes!/:na]
+	at lavalink.server.Launcher$main$1.onApplicationEvent(Launcher.kt:118) ~[classes!/:na]
+	at lavalink.server.Launcher$main$1.onApplicationEvent(Launcher.kt:43) ~[classes!/:na]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:76) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:342) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:305) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at lavalink.server.Launcher.main(Launcher.kt:127) [classes!/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_282]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_282]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_282]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_282]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [lavalink.jar:na]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [lavalink.jar:na]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:51) [lavalink.jar:na]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:52) [lavalink.jar:na]
+
+2021-02-16 20:22:03.964 ERROR 5359 --- [           main] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.UnsupportedClassVersionError: lavalink/server/info/AppInfo has been compiled by a more recent version of the Java Runtime (class file version 55.0), this version of the Java Runtime only recognizes class file versions up to 52.0
+	at java.lang.ClassLoader.defineClass1(Native Method) ~[na:1.8.0_282]
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:756) ~[na:1.8.0_282]
+	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142) ~[na:1.8.0_282]
+	at java.net.URLClassLoader.defineClass(URLClassLoader.java:468) ~[na:1.8.0_282]
+	at java.net.URLClassLoader.access$100(URLClassLoader.java:74) ~[na:1.8.0_282]
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:369) ~[na:1.8.0_282]
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:363) ~[na:1.8.0_282]
+	at java.security.AccessController.doPrivileged(Native Method) ~[na:1.8.0_282]
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:362) ~[na:1.8.0_282]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:418) ~[na:1.8.0_282]
+	at org.springframework.boot.loader.LaunchedURLClassLoader.loadClass(LaunchedURLClassLoader.java:93) ~[lavalink.jar:na]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:351) ~[na:1.8.0_282]
+	at lavalink.server.Launcher.getVersionInfo(Launcher.kt:50) [classes!/:na]
+	at lavalink.server.Launcher.getVersionInfo$default(Launcher.kt:49) [classes!/:na]
+	at lavalink.server.Launcher$main$1.onApplicationEvent(Launcher.kt:118) ~[classes!/:na]
+	at lavalink.server.Launcher$main$1.onApplicationEvent(Launcher.kt:43) ~[classes!/:na]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:172) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:165) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:139) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:127) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.boot.context.event.EventPublishingRunListener.environmentPrepared(EventPublishingRunListener.java:76) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplicationRunListeners.environmentPrepared(SpringApplicationRunListeners.java:53) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplication.prepareEnvironment(SpringApplication.java:342) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:305) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at lavalink.server.Launcher.main(Launcher.kt:127) [classes!/:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_282]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_282]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_282]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_282]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) [lavalink.jar:na]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) [lavalink.jar:na]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:51) [lavalink.jar:na]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:52) [lavalink.jar:na]
+
+2021-02-16 21:00:22.878  INFO 6201 --- [           main] lavalink.server.Launcher                 : 
+
+[32m       .  [31m _                  _ _       _    [32m__ _ _
+[32m      /\\ [31m| | __ ___   ____ _| (_)_ __ | | __[32m\ \ \ \
+[32m     ( ( )[31m| |/ _` \ \ / / _` | | | '_ \| |/ /[32m \ \ \ \
+[32m      \\/ [31m| | (_| |\ V / (_| | | | | | |   < [32m  ) ) ) )
+[32m       '  [31m|_|\__,_| \_/ \__,_|_|_|_| |_|_|\_\[32m / / / /
+[0m    =========================================[32m/_/_/_/[0m
+
+	Version:        3.3.2.1
+	Build:          1132
+	Build time:     28.10.2020 21:44:36 UTC
+	Branch          master
+	Commit:         833f72e
+	Commit time:    28.10.2020 21:39:31 UTC
+	JVM:            15
+	Lavaplayer      1.3.53
+
+2021-02-16 21:00:23.241  INFO 6201 --- [           main] lavalink.server.Launcher                 : Starting Launcher on BobDotBot with PID 6201 (/root/main-bot/lavalink.jar started by root in /root/main-bot)
+2021-02-16 21:00:23.242  INFO 6201 --- [           main] lavalink.server.Launcher                 : No active profile set, falling back to default profiles: default
+2021-02-16 21:00:23.495  WARN 6201 --- [kground-preinit] o.s.h.c.j.Jackson2ObjectMapperBuilder    : For Jackson Kotlin classes support please add "com.fasterxml.jackson.module:jackson-module-kotlin" to the classpath
+2021-02-16 21:00:25.965  WARN 6201 --- [           main] io.undertow.websockets.jsr               : UT026010: Buffer pool was not set on WebSocketDeploymentInfo, the default pool will be used
+2021-02-16 21:00:26.008  INFO 6201 --- [           main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext
+2021-02-16 21:00:26.008  INFO 6201 --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2637 ms
+2021-02-16 21:00:26.854  WARN 6201 --- [           main] l.server.config.SentryConfiguration      : Turning off sentry
+2021-02-16 21:00:27.802  INFO 6201 --- [           main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2021-02-16 21:00:28.389  INFO 6201 --- [           main] lavalink.server.config.KoeConfiguration  : OS: Linux, Arch: amd64
+2021-02-16 21:00:28.390  INFO 6201 --- [           main] lavalink.server.config.KoeConfiguration  : Enabling JDA-NAS
+2021-02-16 21:00:28.394  INFO 6201 --- [           main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: loading with filter null
+2021-02-16 21:00:28.422  INFO 6201 --- [           main] c.s.l.c.natives.NativeLibraryLoader      : Native library udpqueue: successfully loaded.
+2021-02-16 21:00:28.923  INFO 6201 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-16 21:00:29.490  INFO 6201 --- [           main] org.xnio                                 : XNIO version 3.3.8.Final
+2021-02-16 21:00:29.515  INFO 6201 --- [           main] org.xnio.nio                             : XNIO NIO Implementation Version 3.3.8.Final
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.xnio.nio.NioXnio$2 (jar:file:/root/main-bot/lavalink.jar!/BOOT-INF/lib/xnio-nio-3.3.8.Final.jar!/) to constructor sun.nio.ch.EPollSelectorProvider()
+WARNING: Please consider reporting this to the maintainers of org.xnio.nio.NioXnio$2
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2021-02-16 21:00:29.755  INFO 6201 --- [           main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-02-16 21:00:29.764 ERROR 6201 --- [           main] lavalink.server.Launcher                 : Application failed
+
+org.springframework.boot.web.server.PortInUseException: Port 2333 is already in use
+	at org.springframework.boot.web.embedded.undertow.UndertowServletWebServer.start(UndertowServletWebServer.java:154) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:297) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:163) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552) ~[spring-context-5.1.9.RELEASE.jar!/:5.1.9.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-2.1.8.RELEASE.jar!/:2.1.8.RELEASE]
+	at lavalink.server.Launcher.main(Launcher.kt:127) ~[classes!/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:64) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:564) ~[na:na]
+	at org.springframework.boot.loader.MainMethodRunner.run(MainMethodRunner.java:48) ~[lavalink.jar:na]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:87) ~[lavalink.jar:na]
+	at org.springframework.boot.loader.Launcher.launch(Launcher.java:51) ~[lavalink.jar:na]
+	at org.springframework.boot.loader.JarLauncher.main(JarLauncher.java:52) ~[lavalink.jar:na]
+
+2021-02-16 21:00:29.773 ERROR 6201 --- [           main] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 2333 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 2333 or configure this application to listen on another port.
+
+2021-02-16 21:00:29.782  INFO 6201 --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-16 21:00:29.783  INFO 6201 --- [           main] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
