@@ -1,4 +1,4 @@
-aiohttp==3.7.4
+aiohttp>=3.7.4
 requests
 sr_api
 jishaku
@@ -24,3 +24,4 @@ dblpy
 claptcha
 time_str
 halo
+typing>=3.6
