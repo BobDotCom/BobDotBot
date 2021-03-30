@@ -24,4 +24,4 @@ dblpy
 claptcha
 time_str
 halo
-typing>=3.6
+string-color
