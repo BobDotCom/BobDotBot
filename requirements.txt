@@ -23,3 +23,4 @@ enhanced-dpy
 dblpy
 claptcha
 time_str
+halo
