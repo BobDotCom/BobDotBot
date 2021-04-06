@@ -179,6 +179,8 @@ async def on_command_error(ctx, error):
                 return await ctx.reinvoke()
 
         if isinstance(error, commands.CommandNotFound):
+	    if ' ' in ctx.prefix:
+		return
             await log_error(ctx,exception,True)
             error=str(error)
             await ctx.send(embed=discord.Embed(title="Error",description=error,color=discord.Color.red()).set_author(name=ctx.author,icon_url=ctx.author.avatar_url))
