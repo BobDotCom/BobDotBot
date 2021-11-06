@@ -2,7 +2,6 @@ aiohttp>=3.7.4
 requests
 sr_api
 jishaku
-discord.py
 humanize
 pytz
 termcolor
@@ -10,16 +9,14 @@ PyNaCl
 async_timeout
 youtube_dl
 aiosqlite
-py-cord
+py-cord~=1.7.*
 google_api_python_client
 python-dotenv
 git+https://github.com/Rapptz/discord-ext-menus
 sympy
 beautifulsoup4
-enhanced-dpy
 ./aiosqlite_pool.zip
 wavelink
-enhanced-dpy
 dblpy
 claptcha
 time_str
