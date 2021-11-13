@@ -9,7 +9,7 @@ PyNaCl
 async_timeout
 youtube_dl
 aiosqlite
-py-cord~=1.7.*
+py-cord~=1.7.3
 google_api_python_client
 python-dotenv
 git+https://github.com/Rapptz/discord-ext-menus
